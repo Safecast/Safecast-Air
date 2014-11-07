@@ -1,1 +1,1 @@
-Temporary development repository for development of the safecast air prototype. 
+Temporary repository for development of the safecast air prototype. 
