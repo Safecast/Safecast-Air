@@ -1,4 +1,4 @@
-update=Sun 16 Nov 2014 05:40:25 PM PST
+update=Sun 16 Nov 2014 08:48:57 PM PST
 version=1
 last_client=pcbnew
 [cvpcb]
@@ -62,10 +62,10 @@ LibName41=dpdt
 version=1
 LastNetListRead=
 UseCmpFile=1
-PadDrill="    0.889000"
-PadDrillOvalY="    0.889000"
-PadSizeH="    1.397000"
-PadSizeV="    1.397000"
+PadDrill="    2.489200"
+PadDrillOvalY="    2.489200"
+PadSizeH="    3.302000"
+PadSizeV="    3.302000"
 PcbTextSizeV="    1.500000"
 PcbTextSizeH="    1.500000"
 PcbTextThickness="    0.300000"
@@ -76,7 +76,7 @@ SolderMaskClearance="    0.000000"
 SolderMaskMinWidth="    0.000000"
 DrawSegmentWidth="    0.200000"
 BoardOutlineThickness="    0.100000"
-ModuleOutlineThickness="    0.381000"
+ModuleOutlineThickness="    0.150000"
 [pcbnew/libraries]
 LibDir=
 LibName1=sockets
@@ -101,3 +101,4 @@ LibName19=3X2_SHRD_HEADER
 LibName20=DCJACK_2PIN_HC
 LibName21=JOY_NAV
 LibName22=CK_DPDT
+LibName23=ADAFRUIT_UGPS

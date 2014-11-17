@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Sun 16 Nov 2014 05:46:28 PM PST
+Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Sun 16 Nov 2014 08:50:58 PM PST
 
 BeginCmp
 TimeStamp = /545A4E12;
@@ -81,7 +81,7 @@ BeginCmp
 TimeStamp = /5450424F;
 Reference = U1;
 ValeurCmp = GPS;
-IdModule  = ;
+IdModule  = ADAFRUIT_UGPS;
 EndCmp
 
 BeginCmp
