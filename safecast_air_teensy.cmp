@@ -1,0 +1,129 @@
+Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Sun 16 Nov 2014 05:46:28 PM PST
+
+BeginCmp
+TimeStamp = /545A4E12;
+Reference = P1;
+ValeurCmp = CONN_5X2;
+IdModule  = 5X2_SHRD_HEADER;
+EndCmp
+
+BeginCmp
+TimeStamp = /545A525E;
+Reference = P2;
+ValeurCmp = CONN_5X2;
+IdModule  = 5X2_SHRD_HEADER;
+EndCmp
+
+BeginCmp
+TimeStamp = /545AEA96;
+Reference = P3;
+ValeurCmp = CONN_7X2;
+IdModule  = 7X2_SHRD_HEADER;
+EndCmp
+
+BeginCmp
+TimeStamp = /54598C0D;
+Reference = P4;
+ValeurCmp = CONN_2X2;
+IdModule  = PIN_ARRAY_2X2;
+EndCmp
+
+BeginCmp
+TimeStamp = /54598B6C;
+Reference = P5;
+ValeurCmp = CONN_2;
+IdModule  = PIN_ARRAY_2X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5450491C;
+Reference = P6;
+ValeurCmp = CONN_2;
+IdModule  = DCJACK_2PIN_HIGHCURRENT;
+EndCmp
+
+BeginCmp
+TimeStamp = /5459653D;
+Reference = P7;
+ValeurCmp = CONN_2;
+IdModule  = PIN_ARRAY_2X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /545B264A;
+Reference = P8;
+ValeurCmp = CONN_3X2;
+IdModule  = 3X2_SHRD_HEADER;
+EndCmp
+
+BeginCmp
+TimeStamp = /54692263;
+Reference = P9;
+ValeurCmp = CONN_2;
+IdModule  = PIN_ARRAY_2X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /545AC9E5;
+Reference = S1;
+ValeurCmp = JOYSWITCH;
+IdModule  = JOY_NAV;
+EndCmp
+
+BeginCmp
+TimeStamp = /54695057;
+Reference = S2;
+ValeurCmp = DPDT;
+IdModule  = CK_DPDT;
+EndCmp
+
+BeginCmp
+TimeStamp = /5450424F;
+Reference = U1;
+ValeurCmp = GPS;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /54598AE0;
+Reference = U2;
+ValeurCmp = XBEE;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /544FDEA3;
+Reference = U3;
+ValeurCmp = LCD;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /54500BB0;
+Reference = U4;
+ValeurCmp = OPENLOG;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /54691FDF;
+Reference = U5;
+ValeurCmp = POLOLU_3V3;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /544FEAE9;
+Reference = U6;
+ValeurCmp = TEENSY3.1;
+IdModule  = ;
+EndCmp
+
+BeginCmp
+TimeStamp = /545AE77F;
+Reference = U7;
+ValeurCmp = R5_BUSSED;
+IdModule  = ;
+EndCmp
+
+EndListe
