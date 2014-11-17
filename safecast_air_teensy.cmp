@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Sun 16 Nov 2014 08:50:58 PM PST
+Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Mon 17 Nov 2014 01:36:55 PM PST
 
 BeginCmp
 TimeStamp = /545A4E12;
@@ -88,42 +88,42 @@ BeginCmp
 TimeStamp = /54598AE0;
 Reference = U2;
 ValeurCmp = XBEE;
-IdModule  = ;
+IdModule  = XBEE;
 EndCmp
 
 BeginCmp
 TimeStamp = /544FDEA3;
 Reference = U3;
 ValeurCmp = LCD;
-IdModule  = ;
+IdModule  = ADAFRUIT_128X64_OLED;
 EndCmp
 
 BeginCmp
 TimeStamp = /54500BB0;
 Reference = U4;
 ValeurCmp = OPENLOG;
-IdModule  = ;
+IdModule  = OPENLOG;
 EndCmp
 
 BeginCmp
 TimeStamp = /54691FDF;
 Reference = U5;
 ValeurCmp = POLOLU_3V3;
-IdModule  = ;
+IdModule  = POLOLU_3V3;
 EndCmp
 
 BeginCmp
 TimeStamp = /544FEAE9;
 Reference = U6;
 ValeurCmp = TEENSY3.1;
-IdModule  = ;
+IdModule  = TEENSY3X;
 EndCmp
 
 BeginCmp
 TimeStamp = /545AE77F;
 Reference = U7;
 ValeurCmp = R5_BUSSED;
-IdModule  = ;
+IdModule  = R5_BUSSED;
 EndCmp
 
 EndListe

@@ -1,0 +1,182 @@
+PCBNEW-LibModule-V1  Mon 17 Nov 2014 01:36:05 PM PST
+# encoding utf-8
+Units mm
+$INDEX
+XBEE
+$EndINDEX
+$MODULE XBEE
+Po 0 0 0 15 546A6A37 00000000 ~~
+Li XBEE
+Sc 0
+AR 
+Op 0 0 0
+T0 0.1 -0.7 1 1 0 0.15 N V 21 N "XBEE"
+T1 0.6 1.1 1 1 0 0.15 N V 21 N "VAL**"
+T2 8.6 9.2 1 1 0 0.15 N V 21 N "AD4"
+T2 8.6 7.2 1 1 0 0.15 N V 21 N "CTS"
+T2 8.9 5.1 1 1 0 0.15 N V 21 N "ON"
+T2 8.1 3.2 1 1 0 0.15 N V 21 N "VREF"
+T2 8.5 1.1 1 1 0 0.15 N V 21 N "AD5"
+T2 8.6 -0.8 1 1 0 0.15 N V 21 N "RTS"
+T2 8.6 -2.9 1 1 0 0.15 N V 21 N "AD3"
+T2 8.6 -4.9 1 1 0 0.15 N V 21 N "AD2"
+T2 8.6 -6.9 1 1 0 0.15 N V 21 N "AD1"
+T2 8.6 -8.9 1 1 0 0.15 N V 21 N "AD0"
+T2 -8.5 9.1 1 1 0 0.15 N V 21 N "GND"
+T2 -8.6 7.1 1 1 0 0.15 N V 21 N "DTR"
+T2 -8.6 5.1 1 1 0 0.15 N V 21 N "RSV"
+T2 -7.9 3.1 1 1 0 0.15 N V 21 N "PWM1"
+T2 -7.9 1.1 1 1 0 0.15 N V 21 N "PWM0"
+T2 -8.7 -0.8 1 1 0 0.15 N V 21 N "RST"
+T2 -8.6 -2.9 1 1 0 0.15 N V 21 N "D08"
+T2 -8.8 -4.9 1 1 0 0.15 N V 21 N "DIN"
+T2 -8.1 -6.8 1 1 0 0.15 N V 21 N "DOUT"
+T2 -8.45 -8.85 1 1 0 0.15 N V 21 N "VCC"
+DS 3.8 -16.25 12.15 -10 0.15 21
+DS -12.15 -10 -3.8 -16.25 0.15 21
+DS -3.8 -16.25 3.8 -16.25 0.15 21
+DS -12.15 16.25 -12.15 -10 0.15 21
+DS -12.15 16.25 12.15 16.25 0.15 21
+DS 12.15 16.25 12.15 -10 0.15 21
+$PAD
+Sh "1" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11 -9
+$EndPAD
+$PAD
+Sh "2" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11 -7
+$EndPAD
+$PAD
+Sh "3" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11 -5
+$EndPAD
+$PAD
+Sh "4" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11 -3
+$EndPAD
+$PAD
+Sh "5" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11 -1
+$EndPAD
+$PAD
+Sh "6" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11 1
+$EndPAD
+$PAD
+Sh "7" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11 3
+$EndPAD
+$PAD
+Sh "8" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11 5
+$EndPAD
+$PAD
+Sh "9" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11 7
+$EndPAD
+$PAD
+Sh "10" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -11 9
+$EndPAD
+$PAD
+Sh "11" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11 9
+$EndPAD
+$PAD
+Sh "12" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11 7
+$EndPAD
+$PAD
+Sh "13" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11 5
+$EndPAD
+$PAD
+Sh "14" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11 3
+$EndPAD
+$PAD
+Sh "15" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11 1
+$EndPAD
+$PAD
+Sh "16" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11 -1
+$EndPAD
+$PAD
+Sh "17" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11 -3
+$EndPAD
+$PAD
+Sh "18" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11 -5
+$EndPAD
+$PAD
+Sh "19" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11 -7
+$EndPAD
+$PAD
+Sh "20" C 1.3 1.3 0 0 0
+Dr 0.7 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 11 -9
+$EndPAD
+$EndMODULE XBEE
+$EndLIBRARY

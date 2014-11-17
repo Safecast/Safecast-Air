@@ -55,58 +55,46 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L LCD U3
-U 1 1 544FDEA3
-P 2850 1250
-F 0 "U3" H 2900 1750 60  0000 C CNN
-F 1 "LCD" H 2900 700 60  0000 C CNN
-F 2 "" H 2650 800 60  0000 C CNN
-F 3 "" H 2650 800 60  0000 C CNN
-	1    2850 1250
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	3250 900  3500 900 
-Text Label 3500 900  0    60   ~ 0
+	3300 1300 3550 1300
+Text Label 3550 1300 0    60   ~ 0
 LCD_CS
 Wire Wire Line
-	3250 1000 3500 1000
+	3300 1200 3550 1200
 Wire Wire Line
-	3250 1100 3500 1100
+	3300 1100 3550 1100
 Wire Wire Line
-	3250 1200 3500 1200
+	3300 1000 3550 1000
 Wire Wire Line
-	3250 1300 3500 1300
+	3300 900  3550 900 
 Wire Wire Line
-	3250 1400 3500 1400
+	3300 1500 3550 1500
 Wire Wire Line
-	3250 1600 3500 1600
+	3300 1600 3550 1600
 Wire Wire Line
-	3500 1600 3500 1850
+	3550 1600 3550 1850
 $Comp
 L GND #PWR01
 U 1 1 544FDF34
-P 3500 1850
-F 0 "#PWR01" H 3500 1850 30  0001 C CNN
-F 1 "GND" H 3500 1780 30  0001 C CNN
-F 2 "" H 3500 1850 60  0000 C CNN
-F 3 "" H 3500 1850 60  0000 C CNN
-	1    3500 1850
+P 3550 1850
+F 0 "#PWR01" H 3550 1850 30  0001 C CNN
+F 1 "GND" H 3550 1780 30  0001 C CNN
+F 2 "" H 3550 1850 60  0000 C CNN
+F 3 "" H 3550 1850 60  0000 C CNN
+	1    3550 1850
 	1    0    0    -1  
 $EndComp
-Text Label 3500 1000 0    60   ~ 0
+Text Label 3550 1200 0    60   ~ 0
 LCD_RST
-Text Label 3500 1100 0    60   ~ 0
+Text Label 3550 1100 0    60   ~ 0
 LCD_DC
 Wire Wire Line
 	5400 1350 5150 1350
-Text Label 3500 1300 0    60   ~ 0
+Text Label 3550 900  0    60   ~ 0
 MOSI
-Text Label 3500 1200 0    60   ~ 0
+Text Label 3550 1000 0    60   ~ 0
 SCK
-NoConn ~ 3250 1500
-Text Label 3500 1400 0    60   ~ 0
+Text Label 3550 1500 0    60   ~ 0
 5V
 Wire Wire Line
 	5400 2150 5150 2150
@@ -153,17 +141,6 @@ Wire Wire Line
 	5400 3650 5150 3650
 Text Label 5150 3650 2    60   ~ 0
 5V
-$Comp
-L OPENLOG U4
-U 1 1 54500BB0
-P 3050 3100
-F 0 "U4" H 3050 3500 60  0000 C CNN
-F 1 "OPENLOG" H 3050 2650 60  0000 C CNN
-F 2 "" H 3100 3100 60  0000 C CNN
-F 3 "" H 3100 3100 60  0000 C CNN
-	1    3050 3100
-	1    0    0    -1  
-$EndComp
 NoConn ~ 2600 2950
 NoConn ~ 2600 3050
 NoConn ~ 2600 3150
@@ -215,9 +192,9 @@ LOG_TXO
 Wire Wire Line
 	5400 1650 5150 1650
 Text Label 5150 1650 2    60   ~ 0
-LOG_DTR
+LOG_GRN
 Text Label 3700 3350 0    60   ~ 0
-LOG_DTR
+LOG_GRN
 $Comp
 L GPS U1
 U 1 1 5450424F
@@ -579,19 +556,22 @@ Wire Wire Line
 	7450 1950 7700 1950
 NoConn ~ 7450 1750
 NoConn ~ 7450 2400
-NoConn ~ 7450 2600
+Wire Wire Line
+	7450 3650 7700 3650
 Wire Wire Line
 	7450 2300 7700 2300
-Wire Wire Line
-	7450 2500 7700 2500
 Text Notes 6900 6600 0    60   ~ 0
 3V3, 500mA FOR XBEE PRO (OPTIONAL)
 Wire Wire Line
-	7450 2900 7700 2900
-Wire Wire Line
 	7450 2700 7700 2700
 Wire Wire Line
+	7450 2500 7700 2500
+Wire Wire Line
+	7450 2600 7700 2600
+Wire Wire Line
 	7450 2800 7700 2800
+Wire Wire Line
+	7450 2900 7700 2900
 Wire Wire Line
 	7450 3050 7700 3050
 Wire Wire Line
@@ -602,10 +582,6 @@ Wire Wire Line
 	7450 3350 7700 3350
 Wire Wire Line
 	7450 3450 7700 3450
-Wire Wire Line
-	7450 3550 7700 3550
-Wire Wire Line
-	7450 3650 7700 3650
 Text Label 5150 2450 2    60   ~ 0
 OP1_A
 Text Label 5150 2550 2    60   ~ 0
@@ -632,29 +608,29 @@ Text Label 7700 1950 0    60   ~ 0
 OP2_F
 Text Label 7700 950  0    60   ~ 0
 A14,DAC
-Text Label 7700 2300 0    60   ~ 0
-A12
-Text Label 7700 2500 0    60   ~ 0
-A13
-Text Label 7700 2700 0    60   ~ 0
-D33
-Text Label 7700 2800 0    60   ~ 0
-D32
-Text Label 7700 2900 0    60   ~ 0
-D31
 Text Label 7700 3650 0    60   ~ 0
-JOY_CENT
-Text Label 7700 3550 0    60   ~ 0
-JOY_D
-Text Label 7700 3050 0    60   ~ 0
-D30
-Text Label 7700 3150 0    60   ~ 0
-D29
-Text Label 7700 3250 0    60   ~ 0
-JOY_A
-Text Label 7700 3350 0    60   ~ 0
-JOY_B
+A12
+Text Label 7700 2300 0    60   ~ 0
+A13
+Text Label 7700 2500 0    60   ~ 0
+D33
+Text Label 7700 2600 0    60   ~ 0
+D32
+Text Label 7700 2700 0    60   ~ 0
+D31
 Text Label 7700 3450 0    60   ~ 0
+JOY_CENT
+Text Label 7700 3350 0    60   ~ 0
+JOY_D
+Text Label 7700 2800 0    60   ~ 0
+D30
+Text Label 7700 2900 0    60   ~ 0
+D29
+Text Label 7700 3050 0    60   ~ 0
+JOY_A
+Text Label 7700 3150 0    60   ~ 0
+JOY_B
+Text Label 7700 3250 0    60   ~ 0
 JOY_C
 $Comp
 L CONN_5X2 P1
@@ -1057,4 +1033,28 @@ NoConn ~ 9500 3850
 NoConn ~ 9500 3950
 Text Notes 9850 4250 0    60   ~ 0
 C&K  PN: JS202011AQN\nDIGIKEY 401-2000-ND
+$Comp
+L LCD U3
+U 1 1 5469916D
+P 2900 1250
+F 0 "U3" H 2950 1750 60  0000 C CNN
+F 1 "LCD" H 2950 750 60  0000 C CNN
+F 2 "" H 2700 800 60  0000 C CNN
+F 3 "" H 2700 800 60  0000 C CNN
+	1    2900 1250
+	1    0    0    -1  
+$EndComp
+NoConn ~ 3300 1400
+$Comp
+L OPENLOG U4
+U 1 1 546A4514
+P 3050 3100
+F 0 "U4" H 3050 3500 60  0000 C CNN
+F 1 "OPENLOG" H 3050 2700 60  0000 C CNN
+F 2 "" H 3100 3100 60  0000 C CNN
+F 3 "" H 3100 3100 60  0000 C CNN
+	1    3050 3100
+	1    0    0    -1  
+$EndComp
+NoConn ~ 7450 3550
 $EndSCHEMATC
