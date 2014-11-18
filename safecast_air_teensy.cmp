@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Mon 17 Nov 2014 01:36:55 PM PST
+Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Mon 17 Nov 2014 04:59:36 PM PST
 
 BeginCmp
 TimeStamp = /545A4E12;
@@ -39,7 +39,7 @@ BeginCmp
 TimeStamp = /5450491C;
 Reference = P6;
 ValeurCmp = CONN_2;
-IdModule  = DCJACK_2PIN_HIGHCURRENT;
+IdModule  = SCREWTERM_2X;
 EndCmp
 
 BeginCmp
@@ -92,14 +92,14 @@ IdModule  = XBEE;
 EndCmp
 
 BeginCmp
-TimeStamp = /544FDEA3;
+TimeStamp = /5469916D;
 Reference = U3;
 ValeurCmp = LCD;
 IdModule  = ADAFRUIT_128X64_OLED;
 EndCmp
 
 BeginCmp
-TimeStamp = /54500BB0;
+TimeStamp = /546A4514;
 Reference = U4;
 ValeurCmp = OPENLOG;
 IdModule  = OPENLOG;

@@ -47,7 +47,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "17 nov 2014"
+Date "18 nov 2014"
 Rev ""
 Comp ""
 Comment1 ""
@@ -141,10 +141,6 @@ Wire Wire Line
 	5400 3650 5150 3650
 Text Label 5150 3650 2    60   ~ 0
 5V
-NoConn ~ 2600 2950
-NoConn ~ 2600 3050
-NoConn ~ 2600 3150
-NoConn ~ 2600 3250
 Wire Wire Line
 	3550 2950 3450 2950
 Wire Wire Line

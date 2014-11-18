@@ -1,4 +1,4 @@
-update=Mon 17 Nov 2014 01:36:40 PM PST
+update=Mon 17 Nov 2014 05:29:16 PM PST
 version=1
 last_client=pcbnew
 [cvpcb]
@@ -60,12 +60,12 @@ LibName40=pololu_3v3
 LibName41=dpdt
 [pcbnew]
 version=1
-LastNetListRead=
+LastNetListRead=safecast_air_teensy.net
 UseCmpFile=1
-PadDrill="    0.700000"
-PadDrillOvalY="    0.700000"
-PadSizeH="    1.300000"
-PadSizeV="    1.300000"
+PadDrill="    2.946400"
+PadDrillOvalY="    2.946400"
+PadSizeH="    3.556000"
+PadSizeV="    3.556000"
 PcbTextSizeV="    1.500000"
 PcbTextSizeH="    1.500000"
 PcbTextThickness="    0.300000"
@@ -108,3 +108,5 @@ LibName26=POLOLU_3V3
 LibName27=TEENSY3X
 LibName28=R5_BUSSED
 LibName29=XBEE
+LibName30=SCREWTERM_2X
+LibName31=4-40
