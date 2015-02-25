@@ -70,7 +70,7 @@
       (place S2 30607 -57912 front 180 (PN DPDT))
     )
     (component ADAFRUIT_UGPS
-      (place U1 80645 -60706 front 0 (PN GPS))
+      (place U1 83000 -61000 front 0 (PN GPS))
     )
     (component ADAFRUIT_128X64_OLED
       (place U3 129540 -58420 front 270 (PN LCD))

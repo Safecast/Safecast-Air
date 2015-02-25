@@ -3,7 +3,7 @@
   (general
     (links 118)
     (no_connects 118)
-    (area 25.349999 25.349999 133.400001 95.300001)
+    (area 24.911353 25.349999 133.400001 95.300001)
     (thickness 1.6)
     (drawings 24)
     (tracks 0)
@@ -694,7 +694,7 @@
   )
 
   (module ADAFRUIT_UGPS (layer F.Cu) (tedit 54ED4DA4) (tstamp 54ECFD13)
-    (at 80.645 60.706)
+    (at 83 61)
     (path /5450424F)
     (fp_text reference U1 (at -0.127 -32.639) (layer F.SilkS)
       (effects (font (size 1.016 1.016) (thickness 0.2032)))
