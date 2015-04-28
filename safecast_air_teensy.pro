@@ -1,4 +1,4 @@
-update=Tue 24 Feb 2015 08:03:16 PM PST
+update=Mon 27 Apr 2015 11:57:20 PM PDT
 version=1
 last_client=pcbnew
 [cvpcb]
@@ -62,8 +62,8 @@ LibName41=dpdt
 version=1
 LastNetListRead=safecast_air_teensy.net
 UseCmpFile=1
-PadDrill="    1.000000"
-PadDrillOvalY="    1.000000"
+PadDrill="    0.900000"
+PadDrillOvalY="    0.900000"
 PadSizeH="    1.500000"
 PadSizeV="    1.500000"
 PcbTextSizeV="    1.016000"
@@ -112,3 +112,4 @@ LibName30=SCREWTERM_2X
 LibName31=4-40
 LibName32=5X2_2MM_SHRD_HEADER
 LibName33=R_SMALL
+LibName34=JST_XH_5PIN
