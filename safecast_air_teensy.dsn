@@ -43,7 +43,7 @@
   )
   (placement
     (component XBEE
-      (place U2 81000 -81000 front 270 (PN XBEE))
+      (place U2 81750 -82250 front 270 (PN XBEE))
     )
     (component R5_BUSSED
       (place U7 112000 -80000 front 0 (PN R5_BUSSED))
@@ -52,12 +52,12 @@
       (place U5 56007 -70231 front 0 (PN POLOLU_3V3))
     )
     (component PIN_ARRAY_2X2
-      (place P4 45212 -90424 front 180 (PN CONN_2X2))
+      (place P4 43962 -90424 front 180 (PN CONN_2X2))
     )
     (component PIN_ARRAY_2X1
-      (place P7 58928 -90424 front 270 (PN CONN_2))
-      (place P5 37719 -30480 front 270 (PN CONN_2))
-      (place P9 52832 -90424 front 270 (PN CONN_2))
+      (place P7 55678 -90424 front 270 (PN CONN_2))
+      (place P5 60500 -90500 front 270 (PN CONN_2))
+      (place P9 50332 -90424 front 270 (PN CONN_2))
       (place P8 38100 -90424 front 270 (PN CONN_2))
     )
     (component OPENLOG
@@ -70,7 +70,7 @@
       (place S2 30607 -57912 front 180 (PN DPDT))
     )
     (component ADAFRUIT_UGPS
-      (place U1 83000 -61000 front 0 (PN GPS))
+      (place U1 82850 -66150 front 0 (PN GPS))
     )
     (component ADAFRUIT_128X64_OLED
       (place U3 129540 -58420 front 270 (PN LCD))
@@ -78,21 +78,11 @@
     (component SCREWTERM_2X
       (place P6 29210 -39878 front 270 (PN CONN_2))
     )
-    (component "4-40"
-      (place H3 127000 -88900 front 0 (PN VAL**))
-      (place H2 127000 -31750 front 0 (PN VAL**))
-      (place H4 31750 -88900 front 0 (PN VAL**))
-      (place H1 31750 -31750 front 0 (PN VAL**))
-    )
     (component 5X2_SHRD_HEADER
       (place P3 110363 -31877 front 0 (PN CONN_5X2))
     )
     (component TEENSY3X
       (place U6 45593 -56515 front 90 (PN TEENSY3.1))
-    )
-    (component 5X2_2MM_SHRD_HEADER
-      (place P1 48133 -30607 front 0 (PN CONN_5X2))
-      (place P2 62230 -30607 front 0 (PN CONN_5X2))
     )
     (component R_SMALL
       (place R2 41000 -41000 front 270 (PN R))
@@ -105,20 +95,33 @@
       (place R9 62000 -41000 front 270 (PN R))
       (place R10 65000 -41000 front 270 (PN R))
       (place R11 68000 -41000 front 270 (PN R))
-      (place R12 72000 -38000 front 270 (PN R))
+      (place R12 73500 -43500 front 270 (PN R))
       (place R1 38000 -41000 front 270 (PN R))
-      (place R14 78000 -38000 front 270 (PN R))
-      (place R15 81000 -38000 front 270 (PN R))
-      (place R16 84000 -38000 front 270 (PN R))
-      (place R17 87000 -38000 front 270 (PN R))
-      (place R18 90000 -38000 front 270 (PN R))
-      (place R19 72000 -48000 front 270 (PN R))
-      (place R20 75000 -48000 front 270 (PN R))
-      (place R21 78000 -48000 front 270 (PN R))
-      (place R22 81000 -48000 front 270 (PN R))
-      (place R23 84000 -48000 front 270 (PN R))
-      (place R24 87000 -48000 front 270 (PN R))
-      (place R13 75000 -38000 front 270 (PN R))
+      (place R14 79500 -43500 front 270 (PN R))
+      (place R15 82500 -43500 front 270 (PN R))
+      (place R16 85500 -43500 front 270 (PN R))
+      (place R17 88500 -43500 front 270 (PN R))
+      (place R18 91500 -43500 front 270 (PN R))
+      (place R19 73500 -53500 front 270 (PN R))
+      (place R20 76500 -53500 front 270 (PN R))
+      (place R21 79500 -53500 front 270 (PN R))
+      (place R22 82500 -53500 front 270 (PN R))
+      (place R23 85500 -53500 front 270 (PN R))
+      (place R24 88500 -53500 front 270 (PN R))
+      (place R13 76500 -43500 front 270 (PN R))
+    )
+    (component 5X2_2MM_SHRD_HEADER
+      (place P2 61250 -30500 front 0 (PN CONN_5X2))
+      (place P1 43250 -30500 front 0 (PN CONN_5X2))
+    )
+    (component JST_XH_5PIN
+      (place P10 82350 -29650 front 0 (PN CONN_5_MOD))
+    )
+    (component "4-40"
+      (place H1 31750 -31750 front 0 (PN VAL**))
+      (place H4 31750 -88900 front 0 (PN VAL**))
+      (place H2 127000 -31750 front 0 (PN VAL**))
+      (place H3 127000 -88900 front 0 (PN VAL**))
     )
   )
   (library
@@ -275,9 +278,6 @@
       (pin Rect[A]Pad_1600.2x1600.2_um 1 -1750.06 0)
       (pin Round[A]Pad_1600.2_um 2 1750.06 0)
     )
-    (image "4-40"
-      (pin Round[A]Pad_3556_um @1 0 0)
-    )
     (image 5X2_SHRD_HEADER
       (outline (path signal 381  -10160 4826  10160 4826))
       (outline (path signal 381  10160 4826  10160 -4826))
@@ -354,7 +354,21 @@
       (pin Round[A]Pad_1524_um 50 5080 8890)
       (pin Round[A]Pad_1524_um 51 5080 13970)
     )
+    (image R_SMALL
+      (outline (path signal 150  1500 -500  1500 500))
+      (outline (path signal 150  1500 500  -1500 500))
+      (outline (path signal 150  -1500 500  -1500 -500))
+      (outline (path signal 150  -1500 -500  1500 -500))
+      (pin Round[A]Pad_1500_um 1 -2500 0)
+      (pin Round[A]Pad_1500_um 2 2500 0)
+    )
     (image 5X2_2MM_SHRD_HEADER
+      (outline (path signal 250  8500 3200  8500 -3200))
+      (outline (path signal 250  6400 -3200  8500 -3200))
+      (outline (path signal 250  6400 3200  8500 3200))
+      (outline (path signal 250  -6400 -3200  -8500 -3200))
+      (outline (path signal 250  -8500 -3200  -8500 3200))
+      (outline (path signal 250  -8500 3200  -6400 3200))
       (outline (path signal 250  -4000 -3700  -4700 -4600))
       (outline (path signal 250  -4700 -4600  -3300 -4600))
       (outline (path signal 250  -3300 -4600  -4000 -3700))
@@ -373,13 +387,21 @@
       (pin Round[A]Pad_1250_um 9 4000 -1000)
       (pin Round[A]Pad_1250_um 10 4000 1000)
     )
-    (image R_SMALL
-      (outline (path signal 150  1500 -500  1500 500))
-      (outline (path signal 150  1500 500  -1500 500))
-      (outline (path signal 150  -1500 500  -1500 -500))
-      (outline (path signal 150  -1500 -500  1500 -500))
-      (pin Round[A]Pad_1500_um 1 -2500 0)
-      (pin Round[A]Pad_1500_um 2 2500 0)
+    (image JST_XH_5PIN
+      (outline (path signal 250  7450 0  7450 -3400))
+      (outline (path signal 250  7450 -3400  -7450 -3400))
+      (outline (path signal 250  -7450 0  -7450 -3400))
+      (outline (path signal 250  -7450 2350  7450 2350))
+      (outline (path signal 250  7450 0  7450 2350))
+      (outline (path signal 250  -7450 0  -7450 2350))
+      (pin Round[A]Pad_1500_um 1 -5000 0)
+      (pin Round[A]Pad_1500_um 2 -2500 0)
+      (pin Round[A]Pad_1500_um 3 0 0)
+      (pin Round[A]Pad_1500_um 4 2500 0)
+      (pin Round[A]Pad_1500_um 5 5000 0)
+    )
+    (image "4-40"
+      (pin Round[A]Pad_3810_um @1 0 0)
     )
     (padstack Round[A]Pad_1250_um
       (shape (circle F.Cu 1250))
@@ -436,9 +458,9 @@
       (shape (circle B.Cu 3302))
       (attach off)
     )
-    (padstack Round[A]Pad_3556_um
-      (shape (circle F.Cu 3556))
-      (shape (circle B.Cu 3556))
+    (padstack Round[A]Pad_3810_um
+      (shape (circle F.Cu 3810))
+      (shape (circle B.Cu 3810))
       (attach off)
     )
     (padstack Rect[A]Pad_1524x1524_um
@@ -481,55 +503,49 @@
       (pins U7-1 P4-2 U6-16)
     )
     (net /5V
-      (pins U5-2 P5-1 U4-3 S2-1 U1-8 U3-7 U6-33 P1-1 P2-1)
+      (pins U5-2 P5-1 U4-3 S2-1 U1-8 U3-7 U6-33 P2-1 P1-1 P10-3)
     )
     (net /A14,DAC
       (pins P8-1 U6-19)
     )
     (net /AUX1
-      (pins P1-7 R3-1)
+      (pins R3-1 P1-7)
     )
     (net /AUX1_DIV
       (pins U6-22 R3-2 R4-1)
     )
     (net /AUX2
-      (pins P1-5 R7-1)
+      (pins R7-1 P1-5)
     )
     (net /AUX2_DIV
       (pins U6-24 R7-2 R8-1)
     )
     (net /AUX3
-      (pins P1-3 R11-1)
+      (pins R11-1 P1-3)
     )
     (net /AUX3_DIV
       (pins U6-26 R11-2 R12-1)
     )
     (net /AUX4
-      (pins P2-7 R15-1)
+      (pins R15-1 P2-7)
     )
     (net /AUX4_DIV
       (pins U6-28 R15-2 R16-1)
     )
     (net /AUX5
-      (pins P2-5 R19-1)
+      (pins R19-1 P2-5)
     )
     (net /AUX5_DIV
       (pins U6-30 R19-2 R20-1)
     )
     (net /AUX6
-      (pins P2-3 R23-1)
+      (pins R23-1 P2-3)
     )
     (net /AUX6_DIV
       (pins U6-48 R23-2 R24-1)
     )
     (net /D31
       (pins P9-1 P3-10 U6-43)
-    )
-    (net /D32
-      (pins P3-3 U6-44)
-    )
-    (net /D33
-      (pins P3-4 U6-45)
     )
     (net /GPS_EN
       (pins U1-2 U6-4)
@@ -582,6 +598,12 @@
     (net /PROG
       (pins P7-1 U6-18)
     )
+    (net /PWM1
+      (pins P3-3 U6-44 P10-4)
+    )
+    (net /PWM2
+      (pins P3-4 U6-45 P10-2)
+    )
     (net /SCK
       (pins U3-2 P3-9 U6-20)
     )
@@ -601,37 +623,37 @@
       (pins P5-2 U6-51)
     )
     (net /WRK1
-      (pins P1-8 R1-1)
+      (pins R1-1 P1-8)
     )
     (net /WRK1_DIV
       (pins U6-21 R2-1 R1-2)
     )
     (net /WRK2
-      (pins P1-6 R5-1)
+      (pins R5-1 P1-6)
     )
     (net /WRK2_DIV
       (pins U6-23 R5-2 R6-1)
     )
     (net /WRK3
-      (pins P1-4 R9-1)
+      (pins R9-1 P1-4)
     )
     (net /WRK3_DIV
       (pins U6-25 R9-2 R10-1)
     )
     (net /WRK4
-      (pins P2-8 R13-1)
+      (pins R13-1 P2-8)
     )
     (net /WRK4_DIV
       (pins U6-27 R14-1 R13-2)
     )
     (net /WRK5
-      (pins P2-6 R17-1)
+      (pins R17-1 P2-6)
     )
     (net /WRK5_DIV
       (pins U6-29 R17-2 R18-1)
     )
     (net /WRK6
-      (pins P2-4 R21-1)
+      (pins R21-1 P2-4)
     )
     (net /WRK6_DIV
       (pins U6-49 R21-2 R22-1)
@@ -644,19 +666,19 @@
     )
     (net GND
       (pins U2-10 U5-3 P7-2 U4-1 U4-2 S1-4 U1-7 U3-8 P6-2 P8-2 P3-2 U6-1 U6-17 U6-32
-        P1-2 P1-10 P2-2 P2-10 R2-2 R4-2 R6-2 R8-2 R10-2 R12-2 R14-2 R16-2 R18-2 R20-2
-        R22-2 R24-2)
+        R2-2 R4-2 R6-2 R8-2 R10-2 R12-2 R14-2 R16-2 R18-2 R20-2 R22-2 R24-2 P2-2 P2-10
+        P1-2 P1-10 P10-1)
     )
-    (net "N-0000057"
+    (net "N-0000050"
       (pins S2-2 P6-1)
     )
     (class kicad_default "" /3V3_REG_SHDN /A14,DAC /AUX1 /AUX1_DIV /AUX2 /AUX2_DIV
       /AUX3 /AUX3_DIV /AUX4 /AUX4_DIV /AUX5 /AUX5_DIV /AUX6 /AUX6_DIV /D31
-      /D32 /D33 /GPS_EN /GPS_RX /GPS_TX /JOY_A /JOY_B /JOY_C /JOY_CENT /JOY_D
-      /LCD_CS /LCD_DC /LCD_RST /LOG_GRN /LOG_RXI /LOG_TXO /MISO /MOSI /PROG
-      /SCK /SCL /SDA /TMP1 /TMP2 /WRK1 /WRK1_DIV /WRK2 /WRK2_DIV /WRK3 /WRK3_DIV
-      /WRK4 /WRK4_DIV /WRK5 /WRK5_DIV /WRK6 /WRK6_DIV /XBEE_DIN /XBEE_DOUT
-      "N-0000057"
+      /GPS_EN /GPS_RX /GPS_TX /JOY_A /JOY_B /JOY_C /JOY_CENT /JOY_D /LCD_CS
+      /LCD_DC /LCD_RST /LOG_GRN /LOG_RXI /LOG_TXO /MISO /MOSI /PROG /PWM1
+      /PWM2 /SCK /SCL /SDA /TMP1 /TMP2 /WRK1 /WRK1_DIV /WRK2 /WRK2_DIV /WRK3
+      /WRK3_DIV /WRK4 /WRK4_DIV /WRK5 /WRK5_DIV /WRK6 /WRK6_DIV /XBEE_DIN
+      /XBEE_DOUT "N-0000050"
       (circuit
         (use_via Via[0-1]_889:635_um)
       )
