@@ -109,6 +109,8 @@
       (place R23 85500 -53500 front 270 (PN R))
       (place R24 88500 -53500 front 270 (PN R))
       (place R13 76500 -43500 front 270 (PN R))
+      (place R25 86750 -35750 front 0 (PN 10k))
+      (place R26 79000 -35750 front 180 (PN 10k))
     )
     (component 5X2_2MM_SHRD_HEADER
       (place P2 61250 -30500 front 0 (PN CONN_5X2))
@@ -503,7 +505,7 @@
       (pins U7-1 P4-2 U6-16)
     )
     (net /5V
-      (pins U5-2 P5-1 U4-3 S2-1 U1-8 U3-7 U6-33 P2-1 P1-1 P10-3)
+      (pins U5-2 P5-1 U4-3 S2-1 U1-8 U3-7 U6-33 P2-1 P1-1 P10-3 R25-1 R26-1)
     )
     (net /A14,DAC
       (pins P8-1 U6-19)
@@ -599,10 +601,10 @@
       (pins P7-1 U6-18)
     )
     (net /PWM1
-      (pins P3-3 U6-44 P10-4)
+      (pins P3-3 U6-44 P10-4 R25-2)
     )
     (net /PWM2
-      (pins P3-4 U6-45 P10-2)
+      (pins P3-4 U6-45 P10-2 R26-2)
     )
     (net /SCK
       (pins U3-2 P3-9 U6-20)
@@ -669,7 +671,7 @@
         R2-2 R4-2 R6-2 R8-2 R10-2 R12-2 R14-2 R16-2 R18-2 R20-2 R22-2 R24-2 P2-2 P2-10
         P1-2 P1-10 P10-1)
     )
-    (net "N-0000050"
+    (net "N-0000018"
       (pins S2-2 P6-1)
     )
     (class kicad_default "" /3V3_REG_SHDN /A14,DAC /AUX1 /AUX1_DIV /AUX2 /AUX2_DIV
@@ -678,7 +680,7 @@
       /LCD_DC /LCD_RST /LOG_GRN /LOG_RXI /LOG_TXO /MISO /MOSI /PROG /PWM1
       /PWM2 /SCK /SCL /SDA /TMP1 /TMP2 /WRK1 /WRK1_DIV /WRK2 /WRK2_DIV /WRK3
       /WRK3_DIV /WRK4 /WRK4_DIV /WRK5 /WRK5_DIV /WRK6 /WRK6_DIV /XBEE_DIN
-      /XBEE_DOUT "N-0000050"
+      /XBEE_DOUT "N-0000018"
       (circuit
         (use_via Via[0-1]_889:635_um)
       )
