@@ -1,15 +1,15 @@
 QTY   Position          Description                                    Vendor                  Part #                     Notes
 =================================================================================================================================================================
 1      --               PCB, smaller than 10x15 cm size                 iTeadStudio
-2      P1, P2           Shrouded header, 5x2                            Digikey                 S9169-ND
-1      P3               Shrouded header, 7x2                            Digikey                 S9170-ND
-3      P4,5,7,9, U6     Breakaway header, male pins, 36 pos             Digikey                 3M9457-ND
+2      P1, P2           Mini hrouded header, 5x2                        Digikey                 WM18560-ND
+1      P3               Shrouded header, 5x2                            Digikey                 S9169-ND
+1      P4               2x2 pin array                                   Digikey                 
+4      P5,7,8,9         Breakaway header, male pins, 36 pos             Digikey                 3M9457-ND
 1      P6               Screw terminal block, 2-pos                     Digikey                 ED2635-ND
-1      P8               Shrouded header, 3x2                            Pololu                  854
 1      S1               Switch, 4-direction with center push            Online components       SKQUCAA010
 1      S2               Slide switch                                    Digikey                 401-2000-ND
 1      U1               Adafruit Ultimate GPS Breakout                  Adafruit                746
-1      U2               XBEE                                            Sparkfun                WRL-08742, WRL-11215
+1      U2               XBEE                                            Sparkfun                WRL-08742
 2      U2               10pin XBee Socket                               Sparkfun                PRT-08272
 1      U3               Monochrome 1.3" 128x64 OLED graphic display     Adafruit                938
 1      U4               OpenLog                                         Sparkfun                DEV-09530
@@ -18,6 +18,13 @@ QTY   Position          Description                                    Vendor   
 1      U6               Teensy header                                   Digikey                 WM17453-ND
 3      U1,3,6           Breakaway header, female, 36 pos                Digikey                 929974E-01-36-ND
 1      U7               Resistor array, bussed                          Digikey                 4606X-1-103LF-ND
+12     R1-23 (odd)      68K resistor                                    Digikey                 S68KCACT-ND
+12     R2-24 (even)     20K resistor                                    Digikey                 S20KCACT-ND
 
 
+Hardware
+==================
 
+6       7/16” long standoffs       McMaster       91780A511
+2       Ribbon cable connector     Digikey        WM14310-ND
+1       Ribbon cable               Digikey        MC10L-5-ND
