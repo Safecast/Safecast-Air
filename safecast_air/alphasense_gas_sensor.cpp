@@ -96,7 +96,7 @@ namespace alphasense
     }
 
 
-    float GasSensor::getAuzZeroed()
+    float GasSensor::getAuxZeroed()
     {
         return aux_zeroed_;
     }

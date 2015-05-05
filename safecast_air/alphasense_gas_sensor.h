@@ -50,7 +50,7 @@ namespace alphasense
             float getAuxRaw();
             
             float getWrkZeroed();
-            float getAuzZeroed();
+            float getAuxZeroed();
 
         protected:
 
