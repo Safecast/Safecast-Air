@@ -44,7 +44,7 @@ namespace alphasense
         wrk_zeroed_ = wrk_raw_ - param_.wrk_zero/param_.pwr_scale;
         aux_zeroed_ = aux_raw_ - param_.aux_zero/param_.pwr_scale;
 
-        ppb_raw_ = 1000.0*(wrk_zeroed_ - aux_zeroed_)/param_.sensitivity;
+        ppb_raw_ = 1000.0*param_.pwr_scale*(wrk_zeroed_ - aux_zeroed_)/param_.sensitivity;
 
         // Compute lowpass filtered ppb - simple first order lowpass
         float rc = 1.0/(2.0*M_PI*param_.lowpass_fc);
