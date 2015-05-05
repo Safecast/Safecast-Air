@@ -38,17 +38,18 @@ namespace alphasense
         wrk_int_ = analogRead(param_.wrk_ain);
         aux_int_ = analogRead(param_.aux_ain);
 
-        wrk_raw_ = (ain_ref_scale*float(wrk_int_)/float(ain_max_int))*param_.ain_scale*param_.pwr_scale;
-        aux_raw_ = (ain_ref_scale*float(aux_int_)/float(ain_max_int))*param_.ain_scale*param_.pwr_scale;
+        wrk_raw_ = (ain_ref_scale*float(wrk_int_)/float(ain_max_int))*param_.ain_scale;
+        aux_raw_ = (ain_ref_scale*float(aux_int_)/float(ain_max_int))*param_.ain_scale;
 
-        wrk_zeroed_ = wrk_raw_ - param_.wrk_zero;
-        aux_zeroed_ = aux_raw_ - param_.aux_zero;
+        wrk_zeroed_ = wrk_raw_ - param_.wrk_zero/param_.pwr_scale;
+        aux_zeroed_ = aux_raw_ - param_.aux_zero/param_.pwr_scale;
 
-        ppb_raw_ = (wrk_zeroed_ - aux_zeroed_)/param_.sensitivity;
+        ppb_raw_ = 1000.0*(wrk_zeroed_ - aux_zeroed_)/param_.sensitivity;
 
         // Compute lowpass filtered ppb - simple first order lowpass
         float rc = 1.0/(2.0*M_PI*param_.lowpass_fc);
         float alpha = dt/(rc + dt);
+        Serial << alpha << endl;
         ppb_filt_ = alpha*ppb_filt_ + (1.0-alpha)*ppb_raw_;
     }
 
@@ -126,4 +127,5 @@ namespace alphasense
         analogReadAveraging(constants::gas_sensor_ain_avg);
         analogReference(INTERNAL);
     }
+
 }
