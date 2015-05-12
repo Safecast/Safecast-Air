@@ -1,17 +1,19 @@
 #include "constants.h"
 #include "alphasense_gas_sensor.h"
+#include "filter.h"
+
 #include "Streaming.h"
 
 
-alphasense::GasSensor gas_sensor[constants::num_gas_sensor];
+alphasense::GasSensor gasSensor[constants::NumGasSensor];
 
 void setup()
 {
     Serial.begin(115200);
     alphasense::analogInputSetup();
-    for (auto i=0; i<constants::num_gas_sensor; i++)
+    for (int i=0; i<constants::NumGasSensor; i++)
     {
-        gas_sensor[i] = alphasense::GasSensor(constants::gas_sensor_param[i]); 
+        gasSensor[i] = alphasense::GasSensor(constants::GasSensorParam[i]); 
     }
 
 }
@@ -19,18 +21,18 @@ void setup()
 void loop()
 {
     // Test read from sensors
-    for (auto i=0; i<constants::num_gas_sensor; i++)
+    for (int i=0; i<constants::NumGasSensor; i++)
     {
-        gas_sensor[i].sample(constants::gas_sensor_sample_dt);
+        gasSensor[i].sample(constants::GasSensorSampleDt);
     }
 
-    for (auto i=0; i<constants::num_gas_sensor; i++)
+    for (int i=0; i<constants::NumGasSensor; i++)
     {
         Serial << i << ": ";  
-        Serial << gas_sensor[i].getPPBFilt() << endl;
+        Serial << gasSensor[i].ppbLowPass() << endl;
     }
     Serial << endl;
 
 
-    delay(1000*constants::gas_sensor_sample_dt);
+    delay(1000*constants::GasSensorSampleDt);
 }

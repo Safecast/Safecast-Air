@@ -6,125 +6,133 @@
 
 namespace alphasense
 {
-    const GasSensorParam undefined_sensor_param = {GAS_TYPE_NONE, 0, 0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0};
-    const int ain_max_int = 32767;
-    const float ain_ref_scale = 1.2;
+    const GasSensorParam UndefinedSensorParam = {GAS_TYPE_NONE, 0, 0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0};
+    const int   AinMaxInt   = 32767;
+    const float AinRefScale = 1.2;
 
     // GasSensor public methods
     // ------------------------------------------------------------------------
     
     GasSensor::GasSensor() 
     {
-        setParam(undefined_sensor_param);
-        initValues();
+        setParam(UndefinedSensorParam);
+        initializeValues();
     } 
 
 
     GasSensor::GasSensor(GasSensorParam param)
     {
         setParam(param);
-        initValues();
+        initializeValues();
     }
 
+    void GasSensor::sample(float dt)
+    {
+        workingInt_   = analogRead(param_.workingAinPin);
+        auxillaryInt_ = analogRead(param_.auxillaryAinPin);
+
+        working_   = (AinRefScale*float(workingInt_)/float(AinMaxInt))*param_.ainScaleFact;
+        auxillary_ = (AinRefScale*float(auxillaryInt_)/float(AinMaxInt))*param_.ainScaleFact;
+
+        workingZeroed_   = working_ - param_.workingZero/param_.powerScaleFact;
+        auxillaryZeroed_ = auxillary_ - param_.auxillaryZero/param_.powerScaleFact;
+
+        ppb_ = 1000.0*param_.powerScaleFact*(workingZeroed_ - auxillaryZeroed_)/param_.sensitivity;
+        ppbLowPassFilter_.update(ppb_, dt);
+    }
+
+
+    GasSensorParam GasSensor::param()
+    {
+        return param_;
+    }
 
     void GasSensor::setParam(GasSensorParam param)
     {
         param_ = param;
+        ppbLowPassFilter_ = filter::LowPass(param_.lowPassCutoffFreq, param_.lowPassOrder, 0.0);
     }
 
-
-    void GasSensor::sample(float dt)
+    float GasSensor::ppb()
     {
-        wrk_int_ = analogRead(param_.wrk_ain);
-        aux_int_ = analogRead(param_.aux_ain);
-
-        wrk_raw_ = (ain_ref_scale*float(wrk_int_)/float(ain_max_int))*param_.ain_scale;
-        aux_raw_ = (ain_ref_scale*float(aux_int_)/float(ain_max_int))*param_.ain_scale;
-
-        wrk_zeroed_ = wrk_raw_ - param_.wrk_zero/param_.pwr_scale;
-        aux_zeroed_ = aux_raw_ - param_.aux_zero/param_.pwr_scale;
-
-        ppb_raw_ = 1000.0*param_.pwr_scale*(wrk_zeroed_ - aux_zeroed_)/param_.sensitivity;
-
-        // Compute lowpass filtered ppb - simple first order lowpass
-        float rc = 1.0/(2.0*M_PI*param_.lowpass_fc);
-        float alpha = dt/(rc + dt);
-        Serial << alpha << endl;
-        ppb_filt_ = alpha*ppb_filt_ + (1.0-alpha)*ppb_raw_;
+        return ppb_;
     }
 
 
-    float GasSensor::getPPB()
+    float GasSensor::ppbLowPass()
     {
-        return ppb_raw_;
+        return ppbLowPassFilter_.value();
     }
 
 
-    float GasSensor::getPPBFilt()
+    float GasSensor::ppm()
     {
-        return ppb_filt_;
+        return (1.0e-3)*ppb_;
     }
 
-
-    int GasSensor::getWrkInt()
+    float GasSensor::ppmLowPass()
     {
-        return wrk_int_;
+        return (1.0e-3)*ppbLowPassFilter_.value();
     }
 
-
-    int GasSensor::getAuxInt()
+    int GasSensor::workingInt()
     {
-        return aux_int_;
+        return workingInt_;
     }
 
 
-    float GasSensor::getWrkRaw()
+    int GasSensor::auxillaryInt()
     {
-        return wrk_raw_;
+        return auxillaryInt_;
     }
 
 
-    float GasSensor::getAuxRaw()
+    float GasSensor::working()
     {
-        return aux_raw_;
+        return working_;
     }
 
 
-    float GasSensor::getWrkZeroed()
+    float GasSensor::auxillary()
     {
-        return wrk_zeroed_;
+        return auxillary_;
     }
 
 
-    float GasSensor::getAuxZeroed()
+    float GasSensor::workingZeroed()
     {
-        return aux_zeroed_;
+        return workingZeroed_;
     }
+
+
+    float GasSensor::auxillaryZeroed()
+        {
+        return auxillaryZeroed_;
+    }
+
+
 
     // GasSensor protected methods
     // ------------------------------------------------------------------------
 
-    void GasSensor::initValues()
+    void GasSensor::initializeValues()
     {
-        wrk_int_ = 0;
-        aux_int_ = 0;
-        
-        wrk_raw_ = 0.0;
-        aux_raw_ = 0.0;
-
-        wrk_zeroed_ = 0.0;
-        aux_zeroed_ = 0.0;
-
-        ppb_raw_ = 0.0;
-        ppb_filt_ = 0.0;
+        workingInt_ = 0;
+        auxillaryInt_ = 0;
+        working_ = 0.0;
+        auxillary_ = 0.0;
+        workingZeroed_ = 0.0;
+        auxillaryZeroed_ = 0.0;
+        ppb_ = 0.0;
+        ppbLowPassFilter_.reset();
     }
 
 
     // Utiliy functions
     void analogInputSetup()
     {
-        analogReadRes(constants::gas_sensor_ain_res);
-        analogReadAveraging(constants::gas_sensor_ain_avg);
+        analogReadRes(constants::GasSensorAinResolution);
+        analogReadAveraging(constants::GasSensorAinAveraging);
         analogReference(INTERNAL);
     }
 

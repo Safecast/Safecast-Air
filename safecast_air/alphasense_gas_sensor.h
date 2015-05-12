@@ -1,5 +1,6 @@
 #ifndef ALPHASENSE_GAS_SENSOR_H
 #define ALPHASENSE_GAS_SENSOR_H
+#include "filter.h"
 
 namespace alphasense 
 {
@@ -17,16 +18,17 @@ namespace alphasense
 
     struct GasSensorParam
     {
-        GasType gas_type;
-        int wrk_ain;
-        int aux_ain;
-        float wrk_zero;
-        float aux_zero;
+        GasType gasType;
+        int workingAinPin;
+        int auxillaryAinPin;
+        float workingZero;
+        float auxillaryZero;
         float sensitivity;
-        float ain_scale;
-        float pwr_scale;
-        float lowpass_fc;
-        int temp_sensor;
+        float ainScaleFact;
+        float powerScaleFact;
+        float lowPassCutoffFreq;
+        unsigned int lowPassOrder;
+        int temperatureSensor;
     };
 
 
@@ -37,38 +39,43 @@ namespace alphasense
             GasSensor();
             GasSensor(GasSensorParam param);
 
+            GasSensorParam param();
             void setParam(GasSensorParam param);
             void sample(float dt);
 
-            float getPPB();
-            float getPPBFilt();
+            float ppb();
+            float ppbLowPass();
 
-            int getWrkInt();
-            int getAuxInt();
+            float ppm();
+            float ppmLowPass();
 
-            float getWrkRaw();
-            float getAuxRaw();
+            int workingInt();
+            int auxillaryInt();
+
+            float working();
+            float auxillary();
             
-            float getWrkZeroed();
-            float getAuxZeroed();
+            float workingZeroed();
+            float auxillaryZeroed();
+
 
         protected:
 
             GasSensorParam param_;
 
-            int wrk_int_;
-            int aux_int_;
+            int workingInt_;
+            int auxillaryInt_;
 
-            float wrk_raw_;
-            float aux_raw_;
+            float working_;
+            float auxillary_;
 
-            float wrk_zeroed_;
-            float aux_zeroed_;
+            float workingZeroed_;
+            float auxillaryZeroed_;
 
-            float ppb_raw_;
-            float ppb_filt_;
+            float ppb_;
+            filter::LowPass ppbLowPassFilter_;
 
-            void initValues();
+            void initializeValues();
     };
 
 

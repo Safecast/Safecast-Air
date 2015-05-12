@@ -4,12 +4,11 @@
 
 namespace constants
 {
-    const int num_gas_sensor = 6;
-    extern const int gas_sensor_ain_res; 
-    extern const int gas_sensor_ain_avg;
-    extern const float gas_sensor_sample_dt;
-    extern const alphasense::GasSensorParam gas_sensor_param[];
-
+    const int NumGasSensor = 6;
+    extern const int GasSensorAinResolution; 
+    extern const int GasSensorAinAveraging;
+    extern const float GasSensorSampleDt;
+    extern const alphasense::GasSensorParam GasSensorParam[];
 }
 
 
