@@ -136,4 +136,5 @@ namespace alphasense
         analogReference(INTERNAL);
     }
 
-}
+} // namespace amphenol
+

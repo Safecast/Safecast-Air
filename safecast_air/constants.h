@@ -1,6 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #include "alphasense_gas_sensor.h"
+#include "amphenol_pm_sensor.h"
 
 namespace constants
 {
@@ -8,7 +9,8 @@ namespace constants
     extern const int GasSensorAinResolution; 
     extern const int GasSensorAinAveraging;
     extern const float GasSensorSampleDt;
-    extern const alphasense::GasSensorParam GasSensorParam[];
+    extern const alphasense::GasSensorParam DefaultGasSensorParam[];
+    extern const amphenol::PMSensorParam DefaultPMSensorParam;
 }
 
 

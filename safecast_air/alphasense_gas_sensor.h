@@ -81,6 +81,7 @@ namespace alphasense
 
     void analogInputSetup();
 
-}
+} // namespace alphasense
+
 
 #endif
