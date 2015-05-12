@@ -14,6 +14,10 @@ namespace amphenol
 
     class OccupancySensor 
     {
+        // Notes  need to modifiy so that value will reset when not receiving regualar pulses.
+        // This is basically a bug. Should separate the pin chage interrupt from the elapsed 
+        // time check - perhaps run the elapsed time check on some sort of  timer interrupt.  
+
         public:
 
             OccupancySensor();
@@ -59,7 +63,7 @@ namespace amphenol
             PMSensorParam param();
 
             void initialize();
-            void update();
+            void update(bool small, bool large); 
 
             float smallParticleOccupancy();
             float largeParticleOccupancy();

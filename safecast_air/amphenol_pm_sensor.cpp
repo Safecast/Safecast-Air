@@ -44,13 +44,6 @@ namespace amphenol
        int newPinState = digitalRead(pin_);
        unsigned long currentTime = micros();
 
-       if (newPinState == pinState_)
-       {
-           // Pin state hasn't changed.
-           return;
-       }
-
-       
        // Get time since last pin change
        unsigned long dt = 0;
        if (currentTime < lastChangeTime_)
@@ -62,18 +55,25 @@ namespace amphenol
            dt = currentTime - lastChangeTime_;
        }
 
-       // Update  time and count accumulators
-       totalTimeAccum_ += dt;
-       if (newPinState == HIGH)
+       if (pinState_ != newPinState)
        {
-           lowTimeAccum_  += dt;
-           countAccum_ += 1;
-       }
-       else
-       {
-           highTimeAccum_ += dt;
+
+           // Update  time and count accumulators
+           totalTimeAccum_ += dt;
+           if (newPinState == HIGH)
+           {
+               lowTimeAccum_  += dt;
+               countAccum_ += 1;
+           }
+           else
+           {
+               highTimeAccum_ += dt;
+           }
        }
 
+       // Note: need to move the elapsed time check to callback driven by a timer interrupt.  Right 
+       // now the values won't update if the pin changes don't occur at regular intervals.
+       // 
        // Get values and reset if  sample window has passed
        if (totalTimeAccum_ >= sampleWindow_)
        {
@@ -91,10 +91,9 @@ namespace amphenol
    float  OccupancySensor::value()
    {
        float value = 0.0;
-       unsigned long timeTotal = highTime_ + lowTime_;
-       if (timeTotal != 0)
+       if (totalTime_ != 0)
        {
-           value = float(lowTime_)/float(timeTotal);
+           value = float(lowTime_)/float(totalTime_);
        }
        return value;
    }
@@ -191,10 +190,17 @@ namespace amphenol
                 );
     }
 
-    void PMSensorDev::update()
+    void PMSensorDev::update(bool small, bool large)
     {
-        smallParticleSensor_.update();
-        largeParticleSensor_.update();
+        if (small)
+        {
+            smallParticleSensor_.update();
+        }
+
+        if (large)
+        {
+            largeParticleSensor_.update();
+        }
     }
 
     // PMSensorDev Protected methods
@@ -202,12 +208,12 @@ namespace amphenol
 
     void PMSensorDev::onSmallParticlePinChange()
     {
-        PMSensor.update();
+        PMSensor.update(true,false);
     }
 
     void PMSensorDev::onLargeParticlePinChange()
     {
-        PMSensor.update();
+        PMSensor.update(false,true);
     }
 
 
