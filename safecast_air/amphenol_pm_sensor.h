@@ -21,6 +21,7 @@ namespace amphenol
             void reset();
             void update();
             float value();
+            float rate();
             unsigned long count();
 
         protected:
@@ -41,7 +42,6 @@ namespace amphenol
             unsigned long count_;
 
             void resetAccum();
-
     };
 
 
@@ -64,8 +64,12 @@ namespace amphenol
             float smallParticleOccupancy();
             float largeParticleOccupancy();
 
+            float smallParticleRate();
+            float largeParticleRate();
+
             unsigned long smallParticleCount();
             unsigned long largeParticleCount();
+
 
         protected:
 

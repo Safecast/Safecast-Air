@@ -22,11 +22,14 @@ void loop()
 {
     static unsigned long cnt = 0;
     Serial << cnt << endl;
-    Serial << "small particle occ: " <<  PMSensor.smallParticleOccupancy() << endl;
-    Serial << "small particle cnt: " <<  PMSensor.smallParticleCount()     << endl;
-    Serial << "large particle occ: " <<  PMSensor.largeParticleOccupancy() << endl;
-    Serial << "large particle cnt: " <<  PMSensor.largeParticleCount()     << endl;
+    Serial << "small particle occ:  " <<  PMSensor.smallParticleOccupancy() << endl;
+    Serial << "small particle cnt:  " <<  PMSensor.smallParticleCount()     << endl;
+    Serial << "small particle rate: " <<  PMSensor.smallParticleRate()      << endl;
     Serial << endl;
+    Serial << "large particle occ:  " <<  PMSensor.largeParticleOccupancy() << endl;
+    Serial << "large particle cnt:  " <<  PMSensor.largeParticleCount()     << endl;
+    Serial << "large particle rate: " <<  PMSensor.largeParticleRate()      << endl;
+    Serial << "--------------------------------------------" << endl;
     cnt++;
     delay(100);
 }

@@ -99,6 +99,12 @@ namespace amphenol
        return value;
    }
 
+
+   float OccupancySensor::rate()
+   {
+       return float(count_)/(1.0e-6*float(sampleWindow_));
+   }
+
    unsigned long OccupancySensor::count()
    {
        return count_;
@@ -158,6 +164,16 @@ namespace amphenol
     unsigned long PMSensorDev::largeParticleCount()
     {
         return largeParticleSensor_.count();
+    }
+
+    float PMSensorDev::smallParticleRate()
+    {
+        return smallParticleSensor_.rate();
+    }
+
+    float PMSensorDev::largeParticleRate()
+    {
+        return largeParticleSensor_.rate();
     }
 
     void PMSensorDev::initialize()
