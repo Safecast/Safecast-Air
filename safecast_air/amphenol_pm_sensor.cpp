@@ -66,12 +66,12 @@ namespace amphenol
        totalTimeAccum_ += dt;
        if (newPinState == HIGH)
        {
-           highTimeAccum_  += dt;
+           lowTimeAccum_  += dt;
            countAccum_ += 1;
        }
        else
        {
-           lowTimeAccum_ += dt;
+           highTimeAccum_ += dt;
        }
 
        // Get values and reset if  sample window has passed
