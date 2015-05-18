@@ -1,130 +1,157 @@
-#include "limits.h"
+#include "Arduino.h"
+#include <limits.h>
+#include <util/atomic.h>
+#include <TimerOne.h>
+
 #include "amphenol_pm_sensor.h"
 #include "constants.h"
-#include "Arduino.h"
 #include "Streaming.h"
 
 namespace amphenol
 {
 
-    const PMSensorParam UndefinedSensorParam = {32, 33, 1.5, 10000000};
+    inline unsigned long getDt(unsigned long t0, unsigned long t1)
+    {
+        unsigned long dt = 0;
+        if (t1 < t0)
+        {
+            dt = t1 + (ULONG_MAX - t0);
+        }
+        else
+        {
+            dt = t1 - t0;
+        }
+        return dt;
+    }
+
 
     // Occupancy public methods
     // --------------------------------------------------------------------------------------------
 
-    OccupancySensor::OccupancySensor()
-    {
-        reset();
-    }
+    OccupancyAccum::OccupancyAccum() { }
 
-    void OccupancySensor::initialize(int pin, unsigned long sampleWindow, void (*pinChangeHandler)(void))
+
+    void OccupancyAccum::initialize(int pin)
     {
         pin_ = pin;
-        sampleWindow_ = sampleWindow;
-
         pinMode(pin_, INPUT);
-        attachInterrupt(pin_,pinChangeHandler,CHANGE);
-        reset();
+        resetValues();
     }
 
-   void OccupancySensor::reset()
-   {
-       lastChangeTime_ = micros();
-       resetAccum();
-       totalTime_ = 0;
-       highTime_ = 0;
-       lowTime_ = 0;
-       count_ = 0;
-       pinState_ = digitalRead(pin_);
-   }
 
-
-   void OccupancySensor::update()
-   {
-       int newPinState = digitalRead(pin_);
-       unsigned long currentTime = micros();
-
-       // Get time since last pin change
-       unsigned long dt = 0;
-       if (currentTime < lastChangeTime_)
-       {
-           dt = currentTime + (ULONG_MAX - lastChangeTime_);
-       }
-       else
-       {
-           dt = currentTime - lastChangeTime_;
-       }
-
-       if (pinState_ != newPinState)
-       {
-
-           // Update  time and count accumulators
-           totalTimeAccum_ += dt;
-           if (newPinState == HIGH)
-           {
-               lowTimeAccum_  += dt;
-               countAccum_ += 1;
-           }
-           else
-           {
-               highTimeAccum_ += dt;
-           }
-       }
-
-       // Note: need to move the elapsed time check to callback driven by a timer interrupt.  Right 
-       // now the values won't update if the pin changes don't occur at regular intervals.
-       // 
-       // Get values and reset if  sample window has passed
-       if (totalTimeAccum_ >= sampleWindow_)
-       {
-           totalTime_ = totalTimeAccum_;
-           highTime_ = highTimeAccum_;
-           lowTime_ = lowTimeAccum_;
-           count_ = countAccum_;
-           resetAccum();
-       }
-
-       pinState_ = newPinState;
-       lastChangeTime_ = currentTime;
-   }
-
-   float  OccupancySensor::value()
-   {
-       float value = 0.0;
-       if (totalTime_ != 0)
-       {
-           value = float(lowTime_)/float(totalTime_);
-       }
-       return value;
-   }
-
-
-   float OccupancySensor::rate()
-   {
-       return float(count_)/(1.0e-6*float(sampleWindow_));
-   }
-
-   unsigned long OccupancySensor::count()
-   {
-       return count_;
-   }
-
-
-
-    // Occupancy protected methods
-    // --------------------------------------------------------------------------------------------
-
-    void OccupancySensor::resetAccum()
+    void OccupancyAccum::resetValues()
     {
-       totalTimeAccum_ = 0;
-       highTimeAccum_ = 0;
-       lowTimeAccum_ = 0;
-       countAccum_ = 0;
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+            totalTime_ = 0;
+            highTime_ = 0;
+            lowTime_ = 0;
+            count_ = 0;
+            highTimeAccum_ = 0;
+            lowTimeAccum_ = 0;
+            countAccum_ = 0;
+            pinState_ = digitalRead(pin_);
+            lastChangeTime_ = micros();
+        }
     }
+
+
+    float  OccupancyAccum::value()
+    {
+        float value = 0.0;
+        unsigned long lowTimeCpy = 0;
+        unsigned long totalTimeCpy = 0;
+
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+            lowTimeCpy = lowTime_;
+            totalTimeCpy = totalTime_;
+        }
+        if (totalTimeCpy != 0)
+        {
+            value = float(lowTimeCpy)/float(totalTimeCpy);
+        }
+        return value;
+    }
+
+
+    unsigned long OccupancyAccum::count()
+    {
+        unsigned long countCpy = 0;
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+            countCpy = count_;
+        }
+        return count_;
+    }
+
+
+    void OccupancyAccum::onResetTimer()
+    {
+        // -------------------------------
+        // Called in timer interrupt only
+        // -------------------------------
+        unsigned long currentTime = micros();
+        unsigned long dt = getDt(lastChangeTime_, currentTime);
+
+        if (pinState_ == HIGH)
+        {
+            highTimeAccum_ += dt;
+        }
+        else
+        {
+            lowTimeAccum_ += dt;
+        }
+
+        lastChangeTime_ = currentTime;
+        pinState_ = digitalRead(pin_);
+
+        count_  = countAccum_;
+        highTime_ = highTimeAccum_;
+        lowTime_ = lowTimeAccum_;
+        totalTime_ = highTimeAccum_ + lowTimeAccum_;
+
+        highTimeAccum_ = 0;
+        lowTimeAccum_ = 0;
+        countAccum_ = 0;
+    }
+
+    void OccupancyAccum::onPinChange()
+    {
+        // ------------------------------------
+        // Called  in pinChange interrupt only
+        // ------------------------------------
+        
+        int newPinState = digitalRead(pin_);
+        unsigned long currentTime = micros();
+        unsigned long dt = getDt(lastChangeTime_, currentTime);
+
+        if (pinState_ != newPinState)
+        {
+
+            // Update  time and count accumulators
+            if (newPinState == HIGH)
+            {
+                lowTimeAccum_  += dt;
+                countAccum_ += 1;
+            }
+            else
+            {
+                highTimeAccum_ += dt;
+            }
+            pinState_ = newPinState;
+            lastChangeTime_ = currentTime;
+        }
+    }
+
 
 
     // PMSensorDev public methods
     // --------------------------------------------------------------------------------------------
+   
+    const PMSensorParam UndefinedSensorParam = {32, 33, 1.5, 2000};
+    unsigned long PMSensorDev::TimerPeriodUs = 100000; 
+
     PMSensorDev::PMSensorDev()
     { 
         setParam(UndefinedSensorParam);
@@ -147,60 +174,74 @@ namespace amphenol
 
     float PMSensorDev::smallParticleOccupancy()
     {
-        return smallParticleSensor_.value();
+        return smallParticleAccum_.value();
     }
 
     float PMSensorDev::largeParticleOccupancy()
     {
-        return largeParticleSensor_.value();
+        return largeParticleAccum_.value();
     }
 
     unsigned long PMSensorDev::smallParticleCount()
     {
-        return smallParticleSensor_.count();
+        return smallParticleAccum_.count();
     }
 
     unsigned long PMSensorDev::largeParticleCount()
     {
-        return largeParticleSensor_.count();
+        return largeParticleAccum_.count();
     }
 
     float PMSensorDev::smallParticleRate()
     {
-        return smallParticleSensor_.rate();
+        float rate = float(smallParticleAccum_.count())/float(param_.sampleWindowDt);
+        return rate;
     }
 
     float PMSensorDev::largeParticleRate()
     {
-        return largeParticleSensor_.rate();
+        float rate = float(largeParticleAccum_.count())/float(param_.sampleWindowDt);
+        return rate;
     }
 
     void PMSensorDev::initialize()
     {
-        smallParticleSensor_.initialize(
-                param_.smallParticlePin, 
-                param_.sampleWindow,
-                PMSensorDev::onSmallParticlePinChange
-                );
 
-        largeParticleSensor_.initialize(
-                param_.largeParticlePin, 
-                param_.sampleWindow,
-                PMSensorDev::onLargeParticlePinChange
-                );
+        smallParticleAccum_.initialize(param_.smallParticlePin);
+        attachInterrupt(param_.smallParticlePin, PMSensorDev::onSmallParticlePinChange, CHANGE);
+
+        largeParticleAccum_.initialize(param_.largeParticlePin); 
+        attachInterrupt(param_.largeParticlePin, PMSensorDev::onLargeParticlePinChange, CHANGE);
+
+        Timer1.initialize();
+        Timer1.setPeriod(TimerPeriodUs);
+        Timer1.attachInterrupt(PMSensorDev::onTimerOverFlow);
+
     }
 
-    void PMSensorDev::update(bool small, bool large)
+    void PMSensorDev::updateSmallParticleSensor()
     {
-        if (small)
-        {
-            smallParticleSensor_.update();
-        }
+        smallParticleAccum_.onPinChange();
+    }
 
-        if (large)
-        {
-            largeParticleSensor_.update();
-        }
+    void PMSensorDev::updateLargeParticleSensor()
+    {
+        largeParticleAccum_.onPinChange();
+    }
+
+    void PMSensorDev::resetSmallParticleAccum()
+    {
+        smallParticleAccum_.onResetTimer();
+    }
+
+    void PMSensorDev::resetLargeParticleAccum()
+    {
+        largeParticleAccum_.onResetTimer();
+    }
+
+    unsigned int PMSensorDev::getSampleWindowDt()
+    {
+        return param_.sampleWindowDt;
     }
 
     // PMSensorDev Protected methods
@@ -208,14 +249,29 @@ namespace amphenol
 
     void PMSensorDev::onSmallParticlePinChange()
     {
-        PMSensor.update(true,false);
+        PMSensor.updateSmallParticleSensor();
     }
 
     void PMSensorDev::onLargeParticlePinChange()
     {
-        PMSensor.update(false,true);
+        PMSensor.updateLargeParticleSensor();
     }
 
+    void PMSensorDev::onTimerOverFlow()
+    {
+        static unsigned long cnt = 0;
+        unsigned long  elapsedTime = cnt*(PMSensorDev::TimerPeriodUs/1000);
+        if (elapsedTime >= PMSensor.getSampleWindowDt())
+        {
+            cnt = 0;
+            PMSensor.resetSmallParticleAccum();
+            PMSensor.resetLargeParticleAccum();
+        }
+        else
+        {
+            cnt++;
+        }
+    }
 
 } // namespace amphenol
 

@@ -1,21 +1,25 @@
-#include "limits.h"
+#include <limits.h>
+#include <Streaming.h>
+#include <TimerOne.h>
+#include <util/atomic.h>
+
 #include "constants.h"
 #include "filter.h"
 #include "alphasense_gas_sensor.h"
 #include "amphenol_pm_sensor.h"
 
-#include "Streaming.h"
+
 
 
 // PM Sensor Test
 // --------------------------------------------------------------------------------------
+
+
 void setup()
 {
     Serial.begin(115200);
     PMSensor.initialize();
 
-    pinMode(13,OUTPUT);
-    digitalWrite(13, HIGH);
 }
 
 void loop()
@@ -31,7 +35,7 @@ void loop()
     Serial << "large particle rate: " <<  PMSensor.largeParticleRate()      << endl;
     Serial << "--------------------------------------------" << endl;
     cnt++;
-    delay(100);
+    delay(1000);
 
 }
 

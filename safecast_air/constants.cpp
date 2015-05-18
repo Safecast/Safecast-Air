@@ -29,7 +29,7 @@ namespace constants
 
 
     // smallParticlePin, largeParticlePin, sensitivity,  sampleWindow,
-    const amphenol::PMSensorParam DefaultPMSensorParam = {32, 33, 1.5, 1000000};
+    const amphenol::PMSensorParam DefaultPMSensorParam = {32, 33, 1.5, 5000};
 
 
 
