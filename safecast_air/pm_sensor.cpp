@@ -191,10 +191,18 @@ float PMSensorDev::rate(ParticleType particleType)
 void PMSensorDev::initialize()
 {
     particleAccum_[SmallParticle].initialize(param_.smallParticlePin);
-    attachInterrupt(param_.smallParticlePin, PMSensorDev::onSmallParticlePinChange, CHANGE);
+    attachInterrupt(
+            param_.smallParticlePin, 
+            PMSensorDev::onPinChange<SmallParticle>, 
+            CHANGE
+            );
 
     particleAccum_[LargeParticle].initialize(param_.largeParticlePin);
-    attachInterrupt(param_.largeParticlePin, PMSensorDev::onLargeParticlePinChange, CHANGE);
+    attachInterrupt(
+            param_.largeParticlePin, 
+            PMSensorDev::onPinChange<LargeParticle>, 
+            CHANGE
+            );
 
     Timer1.initialize();
     Timer1.setPeriod(TimerPeriodUs);
@@ -218,27 +226,6 @@ unsigned int PMSensorDev::getSampleWindowDt()
 
 // PMSensorDev Protected methods
 // --------------------------------------------------------------------------------------------
-
-void PMSensorDev::onSmallParticlePinChange()
-{
-    PMSensor.updateParticleAccum(SmallParticle);
-
-}
-
-void PMSensorDev::onLargeParticlePinChange()
-{
-    PMSensor.updateParticleAccum(LargeParticle);
-}
-
-//void PMSensorDev::onPinChange(ParticleType particleType)
-//{
-//    PMSensor.updateParticleAccum(particleType);
-//}
-
-void PMSensorDev::test()
-{
-    Serial << "hello" << endl;
-}
 
 void PMSensorDev::onTimerOverFlow()
 {

@@ -41,7 +41,7 @@ namespace filter
         protected:
 
             LowPassParam param_;
-            float state_[MaxOrder_+1]; 
+            volatile float state_[MaxOrder_+1]; 
             void initializeState();
     };
 

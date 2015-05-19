@@ -36,16 +36,17 @@ class GasSensorDev
 
         GasSensorParam param_;
 
-        int workingInt_;
-        int auxillaryInt_;
+        volatile int workingInt_;
+        volatile int auxillaryInt_;
 
-        float working_;
-        float auxillary_;
+        volatile float working_;
+        volatile float auxillary_;
 
-        float workingZeroed_;
-        float auxillaryZeroed_;
+        volatile float workingZeroed_;
+        volatile float auxillaryZeroed_;
 
-        float ppb_;
+        volatile float ppb_;
+
         filter::LowPass ppbLowPassFilter_;
 
         void initializeValues();

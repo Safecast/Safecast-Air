@@ -70,17 +70,24 @@ class PMSensorDev
         PMSensorParam param_;
         OccupancyAccum particleAccum_[NumParticleType];
 
-        static void onSmallParticlePinChange();
-        static void onLargeParticlePinChange();
-        //static void onPinChange(ParticleType particleType);
-
-        static void test();
         static void onTimerOverFlow();
+
+        template<ParticleType particleType>
+        static void onPinChange();
+
 
 };
 
 
 extern PMSensorDev PMSensor;
+
+template<ParticleType particleType>
+void PMSensorDev::onPinChange()
+{
+    PMSensor.updateParticleAccum(particleType);
+}
+
+
 
 #endif
 

@@ -25,13 +25,12 @@ GasSensorDev::GasSensorDev(GasSensorParam param)
 
 void GasSensorDev::sample(float dt)
 {
-    workingInt_   = analogRead(param_.workingAinPin);
+    workingInt_ = analogRead(param_.workingAinPin);
+    working_ = (AinRefScale*float(workingInt_)/float(AinMaxInt))*param_.ainScaleFact;
+    workingZeroed_  = working_ - param_.workingZero/param_.powerScaleFact;
+
     auxillaryInt_ = analogRead(param_.auxillaryAinPin);
-
-    working_   = (AinRefScale*float(workingInt_)/float(AinMaxInt))*param_.ainScaleFact;
     auxillary_ = (AinRefScale*float(auxillaryInt_)/float(AinMaxInt))*param_.ainScaleFact;
-
-    workingZeroed_   = working_ - param_.workingZero/param_.powerScaleFact;
     auxillaryZeroed_ = auxillary_ - param_.auxillaryZero/param_.powerScaleFact;
 
     ppb_ = 1000.0*param_.powerScaleFact*(workingZeroed_ - auxillaryZeroed_)/param_.sensitivity;
