@@ -38,7 +38,7 @@ void GasSensorDev::sample(float dt)
 }
 
 
-GasSensorParam GasSensorDev::param()
+GasSensorParam GasSensorDev::param() const
 {
     return param_;
 }
@@ -49,59 +49,59 @@ void GasSensorDev::setParam(GasSensorParam param)
     ppbLowPassFilter_ = filter::LowPass(param_.lowPassCutoffFreq, param_.lowPassOrder, 0.0);
 }
 
-float GasSensorDev::ppb()
+float GasSensorDev::ppb() const
 {
     return ppb_;
 }
 
 
-float GasSensorDev::ppbLowPass()
+float GasSensorDev::ppbLowPass() const
 {
     return ppbLowPassFilter_.value();
 }
 
 
-float GasSensorDev::ppm()
+float GasSensorDev::ppm() const
 {
     return (1.0e-3)*ppb_;
 }
 
-float GasSensorDev::ppmLowPass()
+float GasSensorDev::ppmLowPass() const
 {
     return (1.0e-3)*ppbLowPassFilter_.value();
 }
 
-int GasSensorDev::workingInt()
+int GasSensorDev::workingInt() const
 {
     return workingInt_;
 }
 
 
-int GasSensorDev::auxillaryInt()
+int GasSensorDev::auxillaryInt() const
 {
     return auxillaryInt_;
 }
 
 
-float GasSensorDev::working()
+float GasSensorDev::working() const
 {
     return working_;
 }
 
 
-float GasSensorDev::auxillary()
+float GasSensorDev::auxillary() const
 {
     return auxillary_;
 }
 
 
-float GasSensorDev::workingZeroed()
+float GasSensorDev::workingZeroed() const
 {
     return workingZeroed_;
 }
 
 
-float GasSensorDev::auxillaryZeroed()
+float GasSensorDev::auxillaryZeroed() const
     {
     return auxillaryZeroed_;
 }
@@ -130,10 +130,16 @@ void GasSensorDevVector::initialize()
     setupAnalogInput();
     for (int i=0; i<size(); i++)
     {
-        item_[i] = GasSensorDev(constants::DefaultGasSensorParam[i]);
+        set(i,GasSensorDev(constants::DefaultGasSensorParam[i]));
     }
 }
 
+void GasSensorDevVector::sample()
+{
+}
+
+// GasSensorDevVector protected methods
+// ----------------------------------------------------------------------------
 void GasSensorDevVector::setupAnalogInput()
 {
     analogReadRes(constants::GasSensorAinResolution);

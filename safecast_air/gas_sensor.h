@@ -12,24 +12,24 @@ class GasSensorDev
         GasSensorDev();
         GasSensorDev(GasSensorParam param);
 
-        GasSensorParam param();
+        GasSensorParam param() const;
         void setParam(GasSensorParam param);
         void sample(float dt);
 
-        float ppb();
-        float ppbLowPass();
+        float ppb() const;
+        float ppbLowPass() const;
 
-        float ppm();
-        float ppmLowPass();
+        float ppm() const;
+        float ppmLowPass() const;
 
-        int workingInt();
-        int auxillaryInt();
+        int workingInt() const;
+        int auxillaryInt() const;
 
-        float working();
-        float auxillary();
+        float working() const;
+        float auxillary() const;
         
-        float workingZeroed();
-        float auxillaryZeroed();
+        float workingZeroed() const;
+        float auxillaryZeroed() const;
 
 
     protected:
@@ -60,6 +60,8 @@ class GasSensorDevVector : public FixedVector<GasSensorDev,constants::NumGasSens
     public:
         GasSensorDevVector(){};
         void initialize();
+        void sample();
+
     protected:
         void setupAnalogInput();
 

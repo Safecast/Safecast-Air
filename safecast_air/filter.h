@@ -36,7 +36,7 @@ namespace filter
 
             void update(float value, float dt);
             void reset();
-            float value();
+            float value() const;
 
         protected:
 

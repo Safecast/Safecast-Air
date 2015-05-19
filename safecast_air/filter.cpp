@@ -80,7 +80,7 @@ namespace filter
         initializeState();
     }
 
-    float LowPass::value()
+    float LowPass::value() const
     {
         return state_[param_.order];
     }
