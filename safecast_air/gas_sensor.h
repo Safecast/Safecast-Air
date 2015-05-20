@@ -14,7 +14,7 @@ class GasSensorDev
 
         GasSensorParam param() const;
         void setParam(GasSensorParam param);
-        void sample(float dt);
+        void sample(unsigned long dt);
 
         float ppb() const;
         float ppbLowPass() const;
@@ -31,6 +31,7 @@ class GasSensorDev
         float workingZeroed() const;
         float auxillaryZeroed() const;
 
+        void initialize();
 
     protected:
 
@@ -49,23 +50,24 @@ class GasSensorDev
 
         filter::LowPass ppbLowPassFilter_;
 
-        void initializeValues();
 };
 
-
-// May create gas sensor array class .. to handle array of gas sensors.
 
 class GasSensorDevVector : public FixedVector<GasSensorDev,constants::NumGasSensor>
 {
     public:
         GasSensorDevVector(){};
         void initialize();
+        void start();
+        void stop();
         void sample();
 
     protected:
         void setupAnalogInput();
-
+        static unsigned long getSampleDtUs();
+        static void onTimerOverflow();
 };
+
 
 extern GasSensorDevVector GasSensors;
 

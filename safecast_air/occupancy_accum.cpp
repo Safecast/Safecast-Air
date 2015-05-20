@@ -1,21 +1,8 @@
 #include "occupancy_accum.h"
-#include <limits.h>
-#include "Arduino.h"
+#include "utility.h"
+#include <Arduino.h>
 #include <util/atomic.h>
 
-inline unsigned long getDt(unsigned long t0, unsigned long t1)
-{
-    unsigned long dt = 0;
-    if (t1 < t0)
-    {
-        dt = t1 + (ULONG_MAX - t0);
-    }
-    else
-    {
-        dt = t1 - t0;
-    }
-    return dt;
-}
 
 
 OccupancyAccum::OccupancyAccum() { }
@@ -24,7 +11,7 @@ OccupancyAccum::OccupancyAccum() { }
 void OccupancyAccum::initialize(int pin)
 {
     pin_ = pin;
-    pinMode(pin_, INPUT);
+    pinMode(pin_, INPUT_PULLUP);
     resetValues();
 }
 
@@ -46,7 +33,7 @@ void OccupancyAccum::resetValues()
 }
 
 
-float  OccupancyAccum::value()
+float  OccupancyAccum::value() const
 {
     float value = 0.0;
     unsigned long lowTimeCpy = 0;
@@ -65,7 +52,7 @@ float  OccupancyAccum::value()
 }
 
 
-unsigned long OccupancyAccum::count()
+unsigned long OccupancyAccum::count() const
 {
     unsigned long countCpy = 0;
     ATOMIC_BLOCK(ATOMIC_RESTORESTATE)

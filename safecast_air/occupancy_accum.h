@@ -8,8 +8,8 @@ class OccupancyAccum
         OccupancyAccum();
         void initialize(int pin); 
         void resetValues();
-        float value();
-        unsigned long count();
+        float value() const;
+        unsigned long count() const;
         
         // Interrupt functions
         void onPinChange();

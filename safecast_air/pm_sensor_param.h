@@ -8,7 +8,8 @@ struct PMSensorParam
     int smallParticlePin;
     int largeParticlePin;
     float sensitivity;
-    unsigned int sampleWindowDt; // ms
+    unsigned long sampleWindowDt; // ms
+
 };
 
 #endif

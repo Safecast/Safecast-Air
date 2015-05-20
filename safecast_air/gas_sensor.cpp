@@ -1,11 +1,14 @@
 #include "gas_sensor.h"
 #include "constants.h"
-#include "Arduino.h"
-#include "Streaming.h"
+#include <Arduino.h>
+#include <Streaming.h>
+#include <TimerThree.h>
 
 const GasSensorParam UndefinedSensorParam = {GAS_TYPE_NONE, 0, 0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0};
 const int   AinMaxInt   = 32767;
 const float AinRefScale = 1.2;
+const float MilliVoltPerVolt = 1000.0;
+const float MilliSecPerSec = 1.0e-3;
 
 // GasSensorDev public methods
 // ------------------------------------------------------------------------
@@ -13,17 +16,17 @@ const float AinRefScale = 1.2;
 GasSensorDev::GasSensorDev() 
 {
     setParam(UndefinedSensorParam);
-    initializeValues();
+    initialize();
 } 
 
 
 GasSensorDev::GasSensorDev(GasSensorParam param)
 {
     setParam(param);
-    initializeValues();
+    initialize();
 }
 
-void GasSensorDev::sample(float dt)
+void GasSensorDev::sample(unsigned long dt)
 {
     workingInt_ = analogRead(param_.workingAinPin);
     working_ = (AinRefScale*float(workingInt_)/float(AinMaxInt))*param_.ainScaleFact;
@@ -33,8 +36,8 @@ void GasSensorDev::sample(float dt)
     auxillary_ = (AinRefScale*float(auxillaryInt_)/float(AinMaxInt))*param_.ainScaleFact;
     auxillaryZeroed_ = auxillary_ - param_.auxillaryZero/param_.powerScaleFact;
 
-    ppb_ = 1000.0*param_.powerScaleFact*(workingZeroed_ - auxillaryZeroed_)/param_.sensitivity;
-    ppbLowPassFilter_.update(ppb_, dt);
+    ppb_ = MilliVoltPerVolt*param_.powerScaleFact*(workingZeroed_ - auxillaryZeroed_)/param_.sensitivity;
+    ppbLowPassFilter_.update(ppb_, MilliSecPerSec*dt);
 }
 
 
@@ -107,10 +110,7 @@ float GasSensorDev::auxillaryZeroed() const
 }
 
 
-// GasSensorDev protected methods
-// ------------------------------------------------------------------------
-
-void GasSensorDev::initializeValues()
+void GasSensorDev::initialize()
 {
     workingInt_ = 0;
     auxillaryInt_ = 0;
@@ -132,10 +132,38 @@ void GasSensorDevVector::initialize()
     {
         set(i,GasSensorDev(constants::DefaultGasSensorParam[i]));
     }
+
+    Timer3.initialize();
+    Timer3.setPeriod(getSampleDtUs());
+    Timer3.stop();
+    Timer3.disablePwm(25);
+    Timer3.disablePwm(32);
+    Timer3.attachInterrupt(GasSensorDevVector::onTimerOverflow);
 }
 
 void GasSensorDevVector::sample()
 {
+    for (auto &sensor : *this)
+    {
+        sensor.sample(constants::GasSensorSampleDt);
+    }
+}
+
+void GasSensorDevVector::start()
+{
+    Serial << "hello" << endl;
+    for (auto &sensor: *this)
+    {
+        sensor.initialize();
+    }
+    // Note, it seems that Time3's start method doesn't work on the teensy 3.1
+    // However, we can use setPeriod to restart the timer.
+    Timer3.setPeriod(getSampleDtUs()); 
+}
+
+void GasSensorDevVector::stop()
+{
+    Timer3.stop();
 }
 
 // GasSensorDevVector protected methods
@@ -145,6 +173,17 @@ void GasSensorDevVector::setupAnalogInput()
     analogReadRes(constants::GasSensorAinResolution);
     analogReadAveraging(constants::GasSensorAinAveraging);
     analogReference(INTERNAL);
+}
+
+unsigned long GasSensorDevVector::getSampleDtUs()
+{
+    return 1000ul*constants::GasSensorSampleDt;
+}
+
+
+void GasSensorDevVector::onTimerOverflow()
+{
+    GasSensors.sample();
 }
 
 

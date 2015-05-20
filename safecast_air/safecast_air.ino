@@ -1,11 +1,14 @@
 #include <limits.h>
-#include <functional>
 #include <Streaming.h>
 #include <TimerOne.h>
+#include <TimerThree.h>
 #include <util/atomic.h>
+
 #include "fixed_vector.h"
 #include "constants.h"
 #include "filter.h"
+#include "utility.h"
+#include "lookup_table.h"
 #include "occupancy_accum.h"
 #include "gas_sensor_param.h"
 #include "pm_sensor_param.h"
@@ -13,59 +16,43 @@
 #include "pm_sensor.h"
 
 
-
-
-// PM Sensor Test
-// --------------------------------------------------------------------------------------
-
 void setup()
 {
-    Serial.begin(115200);
+
+    GasSensors.initialize();
     PMSensor.initialize();
 
+    GasSensors.start();
+    PMSensor.start();
+
+    Serial.begin(115200);
 }
 
 void loop()
 {
-    static unsigned long cnt = 0;
-    Serial << cnt << endl;
+    static unsigned long loopCnt = 0;
 
-    Serial << "small particle occ:  " <<  PMSensor.occupancy(SmallParticle) << endl;
-    Serial << "small particle cnt:  " <<  PMSensor.count(SmallParticle)     << endl;
-    Serial << "small particle rate: " <<  PMSensor.rate(SmallParticle)      << endl;
+    Serial << "loopCnt: " << loopCnt << endl;
+
+    Serial << endl << "Gas Sensors" << endl;
+    for (auto &sensor : GasSensors)
+    {
+        Serial << sensor.ppbLowPass() << " "; 
+    }
+    Serial << endl << endl;
+
+    Serial << "PM Sensors" << endl;
+    if (PMSensor.haveSample())
+    {
+        Serial << "(small) pcs/m^3:  " <<  PMSensor.countPerCubicFt(SmallParticle) << endl;
+        Serial << "(large) pcs/m^3:  " <<  PMSensor.countPerCubicFt(LargeParticle) << endl;
+        Serial << endl;
+    }
+
     Serial << endl;
-    Serial << "large particle occ:  " <<  PMSensor.occupancy(LargeParticle) << endl;
-    Serial << "large particle cnt:  " <<  PMSensor.count(LargeParticle)     << endl;
-    Serial << "large particle rate: " <<  PMSensor.rate(LargeParticle)      << endl;
-    Serial << endl;
-    Serial << "--------------------------------------------" << endl;
-    cnt++;
+    loopCnt++;
     delay(1000);
 }
 
 
-// Gas Sensor Test
-// --------------------------------------------------------------------------------------
 
-//void setup()
-//{
-//    Serial.begin(115200);
-//    GasSensors.initialize();
-//}
-//
-//void loop()
-//{
-//
-//    for (auto &sensor: GasSensors)
-//    {
-//        sensor.sample(constants::GasSensorSampleDt);
-//    }
-//
-//    for (auto &sensor : GasSensors)
-//    {
-//        Serial << sensor.ppbLowPass() << endl;
-//    }
-//
-//    Serial << endl;
-//    delay(1000*constants::GasSensorSampleDt);
-//}

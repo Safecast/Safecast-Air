@@ -8,9 +8,10 @@ namespace constants
     const int NumGasSensor = 6;
     extern const int GasSensorAinResolution; 
     extern const int GasSensorAinAveraging;
-    extern const float GasSensorSampleDt;
+    extern const unsigned long GasSensorSampleDt;
     extern const GasSensorParam DefaultGasSensorParam[];
     extern const PMSensorParam DefaultPMSensorParam;
+
 }
 
 

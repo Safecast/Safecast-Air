@@ -1,11 +1,9 @@
 #include "pm_sensor.h"
 #include "constants.h"
-#include "Streaming.h"
 
-#include "Arduino.h"
-#include <functional>
+#include <Arduino.h>
+#include <Streaming.h>
 #include <TimerOne.h>
-
 
 
 // PMSensorDev public methods
@@ -13,43 +11,32 @@
 
 const PMSensorParam UndefinedSensorParam = {32, 33, 1.5, 2000};
 
+volatile bool PMSensorDev::haveSample_ = false;
+volatile unsigned long PMSensorDev::overflowCnt_ = 0;
+
 PMSensorDev::PMSensorDev()
 { 
     setParam(UndefinedSensorParam);
 }
+
 
 PMSensorDev::PMSensorDev(PMSensorParam param) 
 {
     setParam(param);
 }
 
+
 void PMSensorDev::setParam(PMSensorParam param)
 {
     param_ = param;
 }
 
-PMSensorParam PMSensorDev::param()
+
+PMSensorParam PMSensorDev::param() const
 {
     return param_;
 }
 
-
-float PMSensorDev::occupancy(ParticleType particleType)
-{
-    return particleAccum_[particleType].value();
-}
-
-
-unsigned long PMSensorDev::count(ParticleType particleType)
-{
-    return particleAccum_[particleType].count();
-}
-
-
-float PMSensorDev::rate(ParticleType particleType)
-{
-    return  float(particleAccum_[particleType].count())/float(param_.sampleWindowDt);
-}
 
 void PMSensorDev::initialize()
 {
@@ -69,40 +56,100 @@ void PMSensorDev::initialize()
 
     Timer1.initialize();
     Timer1.setPeriod(TimerPeriodUs);
-    Timer1.attachInterrupt(PMSensorDev::onTimerOverFlow);
+    Timer1.stop();
+    Timer1.disablePwm(3);
+    Timer1.disablePwm(4);
+    Timer1.attachInterrupt(PMSensorDev::onTimerOverflow);
+    reset();
 }
+
+
+void PMSensorDev::start()
+{
+    reset();
+    Timer1.start();
+}
+
+
+void PMSensorDev::stop()
+{
+    Timer1.stop();
+}
+
+
+void PMSensorDev::reset()
+{
+    stop();
+    haveSample_ = false;
+    overflowCnt_= 0;
+    resetParticleAccum(SmallParticle);
+    resetParticleAccum(LargeParticle);
+}
+
+
+float PMSensorDev::occupancy(ParticleType particleType) const
+{
+    return particleAccum_[particleType].value();
+}
+
+
+unsigned long PMSensorDev::count(ParticleType particleType) const
+{
+    return particleAccum_[particleType].count();
+}
+
+
+float PMSensorDev::rate(ParticleType particleType) const
+{
+    return  float(particleAccum_[particleType].count())/float(param_.sampleWindowDt);
+}
+
 
 void PMSensorDev::updateParticleAccum(ParticleType particleType)
 {
     particleAccum_[particleType].onPinChange();
 }
 
+
 void PMSensorDev::resetParticleAccum(ParticleType particleType)
 {
     particleAccum_[particleType].onResetTimer();
 }
 
-unsigned int PMSensorDev::getSampleWindowDt()
+
+unsigned long PMSensorDev::getSampleWindowDt() const
 {
     return param_.sampleWindowDt;
+}
+
+float PMSensorDev::countPerCubicFt(ParticleType particleType) const
+{
+    float slope = (100000.0/param_.sensitivity);
+    return slope*occupancy(particleType);
+}
+
+
+bool PMSensorDev::haveSample() 
+{
+    return haveSample_;
 }
 
 // PMSensorDev Protected methods
 // --------------------------------------------------------------------------------------------
 
-void PMSensorDev::onTimerOverFlow()
+void PMSensorDev::onTimerOverflow()
 {
-    static unsigned long cnt = 0;
-    unsigned long  elapsedTime = cnt*(PMSensorDev::TimerPeriodUs/1000);
+    unsigned long  elapsedTime = overflowCnt_*(PMSensorDev::TimerPeriodUs/1000);
     if (elapsedTime >= PMSensor.getSampleWindowDt())
     {
-        cnt = 0;
+        haveSample_ = true;
+        overflowCnt_ = 0;
         PMSensor.resetParticleAccum(LargeParticle);
         PMSensor.resetParticleAccum(SmallParticle);
     }
     else
     {
-        cnt++;
+        overflowCnt_++;
     }
 }
 

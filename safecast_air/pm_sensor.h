@@ -16,30 +16,33 @@ class PMSensorDev
         PMSensorDev(PMSensorParam param);
 
         void setParam(PMSensorParam param);
-        PMSensorParam param();
+        PMSensorParam param() const;
 
         void initialize();
+        void start();
+        void stop();
+        void reset();
 
         void updateParticleAccum(ParticleType particleType);
         void resetParticleAccum(ParticleType particleType);
 
-        float occupancy(ParticleType particleType);
-        float rate(ParticleType particleType);
-
-        unsigned long count(ParticleType particleType);
-
-        unsigned int getSampleWindowDt();
+        float occupancy(ParticleType particleType) const;
+        float rate(ParticleType particleType) const;
+        unsigned long count(ParticleType particleType) const;
+        unsigned long getSampleWindowDt() const;
+        float countPerCubicFt(ParticleType particleType) const;
+        static bool haveSample();
 
     protected:
 
         PMSensorParam param_;
         OccupancyAccum particleAccum_[NumParticleType];
 
-        static void onTimerOverFlow();
-
+        static volatile bool haveSample_;
+        static volatile unsigned long overflowCnt_;
+        static void onTimerOverflow();
         template<ParticleType particleType>
         static void onPinChange();
-
 
 };
 
