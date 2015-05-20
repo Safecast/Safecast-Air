@@ -19,6 +19,7 @@ const String GasTypeToGasName[NUM_GAS_TYPE] = {"None", "NO2", "NO", "O3", "CO", 
 struct GasSensorParam
 {
     GasType gasType;
+    unsigned long serialNumber;
     int workingAinPin;
     int auxillaryAinPin;
     float workingZero;

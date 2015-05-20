@@ -9,8 +9,10 @@
 #include "lookup_table.h"
 #include "occupancy_accum.h"
 #include "gas_sensor_param.h"
+#include "tmp_sensor_param.h"
 #include "pm_sensor_param.h"
 #include "gas_sensor.h"
+#include "tmp_sensor.h"
 #include "pm_sensor.h"
 
 
