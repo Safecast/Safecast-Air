@@ -4,6 +4,8 @@
 #include "constants.h"
 #include "fixed_vector.h"
 #include "filter.h"
+#include <Arduino.h>
+
 
 class GasSensorDev
 {
@@ -14,6 +16,8 @@ class GasSensorDev
 
         GasSensorParam param() const;
         void setParam(GasSensorParam param);
+        String paramToString() const;
+
         void sample(unsigned long dt);
 
         float ppb() const;
@@ -30,6 +34,12 @@ class GasSensorDev
         
         float workingZeroed() const;
         float auxillaryZeroed() const;
+
+        String gasName() const;
+        GasType gasType() const;
+
+
+        bool isActive() const;
 
         void initialize();
 
@@ -56,6 +66,7 @@ class GasSensorDev
 class GasSensorDevVector : public FixedVector<GasSensorDev,constants::NumGasSensor>
 {
     public:
+        static const uint8_t TimerPriority = 100;
         GasSensorDevVector(){};
         void initialize();
         void start();
@@ -63,6 +74,7 @@ class GasSensorDevVector : public FixedVector<GasSensorDev,constants::NumGasSens
         void sample();
 
     protected:
+        IntervalTimer timer_;
         void setupAnalogInput();
         static unsigned long getSampleDtUs();
         static void onTimerOverflow();

@@ -1,7 +1,5 @@
 #include <limits.h>
 #include <Streaming.h>
-#include <TimerOne.h>
-#include <TimerThree.h>
 #include <util/atomic.h>
 
 #include "fixed_vector.h"
@@ -32,26 +30,28 @@ void loop()
 {
     static unsigned long loopCnt = 0;
 
-    Serial << "loopCnt: " << loopCnt << endl;
+    Serial << "loop count: " << loopCnt << endl;
 
     Serial << endl << "Gas Sensors" << endl;
     for (auto &sensor : GasSensors)
     {
-        Serial << sensor.ppbLowPass() << " "; 
+        if (sensor.isActive())
+        {
+            Serial << "  " << sensor.gasName() << ":  " << sensor.ppbLowPass() << endl; 
+        }
     }
     Serial << endl << endl;
 
-    Serial << "PM Sensors" << endl;
     if (PMSensor.haveSample())
     {
-        Serial << "(small) pcs/m^3:    " <<  PMSensor.countPerCubicFt(SmallParticle) << endl;
-        Serial << "(large) pcs/m^3:    " <<  PMSensor.countPerCubicFt(LargeParticle) << endl;
-        Serial << "(small) pulse Cnt:  " <<  PMSensor.pulseCount(SmallParticle) << endl;
-        Serial << "(large) pulse Cnt:  " <<  PMSensor.pulseCount(LargeParticle) << endl;
-        Serial << endl;
+        Serial << "PM Sensors" << endl;
+        Serial << "  (small) pcs/m^3:    " <<  PMSensor.countPerCubicFt(SmallParticle) << endl;
+        Serial << "  (large) pcs/m^3:    " <<  PMSensor.countPerCubicFt(LargeParticle) << endl;
+        Serial << "  (small) pulse Cnt:  " <<  PMSensor.pulseCount(SmallParticle) << endl;
+        Serial << "  (large) pulse Cnt:  " <<  PMSensor.pulseCount(LargeParticle) << endl;
+        Serial << endl << endl;
     }
 
-    Serial << endl;
     loopCnt++;
     delay(1000);
 }

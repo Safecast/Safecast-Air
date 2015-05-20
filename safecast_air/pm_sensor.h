@@ -2,6 +2,7 @@
 #define AMPHENOL_PM_SENSOR_H
 #include "pm_sensor_param.h"
 #include "occupancy_accum.h"
+#include <Arduino.h>
 
 
 class PMSensorDev
@@ -11,6 +12,7 @@ class PMSensorDev
     public:
 
         static const unsigned long TimerPeriodUs = 100000; 
+        static const uint8_t TimerPriority = 200;
 
         PMSensorDev();
         PMSensorDev(PMSensorParam param);
@@ -37,6 +39,7 @@ class PMSensorDev
 
         PMSensorParam param_;
         OccupancyAccum particleAccum_[NumParticleType];
+        IntervalTimer timer_;
 
         static volatile bool haveSample_;
         static volatile unsigned long overflowCnt_;

@@ -1,8 +1,6 @@
 #include "gas_sensor.h"
 #include "constants.h"
-#include <Arduino.h>
 #include <Streaming.h>
-#include <TimerThree.h>
 
 const GasSensorParam UndefinedSensorParam = {GAS_TYPE_NONE, 0, 0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0};
 const int   AinMaxInt   = 32767;
@@ -50,6 +48,14 @@ void GasSensorDev::setParam(GasSensorParam param)
 {
     param_ = param;
     ppbLowPassFilter_ = filter::LowPass(param_.lowPassCutoffFreq, param_.lowPassOrder, 0.0);
+}
+
+
+String GasSensorDev::paramToString() const
+{
+    // To Do ...
+    String paramString = "";
+    return paramString;
 }
 
 float GasSensorDev::ppb() const
@@ -110,6 +116,31 @@ float GasSensorDev::auxillaryZeroed() const
 }
 
 
+String GasSensorDev::gasName() const
+{
+    if (param_.gasType < NUM_GAS_TYPE)
+    {
+        return GasTypeToGasName[param_.gasType]; 
+    }
+    else
+    {
+        return GasTypeToGasName[GAS_TYPE_NONE];
+    }
+}
+
+
+GasType GasSensorDev::gasType() const
+{
+    return param_.gasType;
+}
+
+
+bool GasSensorDev::isActive() const
+{
+    return param_.active;
+}
+
+
 void GasSensorDev::initialize()
 {
     workingInt_ = 0;
@@ -123,6 +154,7 @@ void GasSensorDev::initialize()
 }
 
 
+
 // GasSensorDevVector public methods
 // ----------------------------------------------------------------------------
 void GasSensorDevVector::initialize()
@@ -133,12 +165,7 @@ void GasSensorDevVector::initialize()
         set(i,GasSensorDev(constants::DefaultGasSensorParam[i]));
     }
 
-    Timer3.initialize();
-    Timer3.setPeriod(getSampleDtUs());
-    Timer3.stop();
-    Timer3.disablePwm(25);
-    Timer3.disablePwm(32);
-    Timer3.attachInterrupt(GasSensorDevVector::onTimerOverflow);
+    timer_.priority(TimerPriority);
 }
 
 void GasSensorDevVector::sample()
@@ -151,19 +178,16 @@ void GasSensorDevVector::sample()
 
 void GasSensorDevVector::start()
 {
-    Serial << "hello" << endl;
     for (auto &sensor: *this)
     {
         sensor.initialize();
     }
-    // Note, it seems that Time3's start method doesn't work on the teensy 3.1
-    // However, we can use setPeriod to restart the timer.
-    Timer3.setPeriod(getSampleDtUs()); 
+    timer_.begin(GasSensorDevVector::onTimerOverflow, getSampleDtUs());
 }
 
 void GasSensorDevVector::stop()
 {
-    Timer3.stop();
+    timer_.end();
 }
 
 // GasSensorDevVector protected methods

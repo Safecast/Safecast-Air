@@ -1,10 +1,6 @@
 #include "pm_sensor.h"
 #include "constants.h"
-
-#include <Arduino.h>
 #include <Streaming.h>
-#include <TimerOne.h>
-
 
 // PMSensorDev public methods
 // --------------------------------------------------------------------------------------------
@@ -54,12 +50,7 @@ void PMSensorDev::initialize()
             CHANGE
             );
 
-    Timer1.initialize();
-    Timer1.setPeriod(TimerPeriodUs);
-    Timer1.stop();
-    Timer1.disablePwm(3);
-    Timer1.disablePwm(4);
-    Timer1.attachInterrupt(PMSensorDev::onTimerOverflow);
+    timer_.priority(TimerPriority);
     reset();
 }
 
@@ -67,13 +58,13 @@ void PMSensorDev::initialize()
 void PMSensorDev::start()
 {
     reset();
-    Timer1.start();
+    timer_.begin(PMSensorDev::onTimerOverflow,TimerPeriodUs);
 }
 
 
 void PMSensorDev::stop()
 {
-    Timer1.stop();
+    timer_.end();
 }
 
 
