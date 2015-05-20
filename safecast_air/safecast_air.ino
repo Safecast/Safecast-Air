@@ -44,8 +44,10 @@ void loop()
     Serial << "PM Sensors" << endl;
     if (PMSensor.haveSample())
     {
-        Serial << "(small) pcs/m^3:  " <<  PMSensor.countPerCubicFt(SmallParticle) << endl;
-        Serial << "(large) pcs/m^3:  " <<  PMSensor.countPerCubicFt(LargeParticle) << endl;
+        Serial << "(small) pcs/m^3:    " <<  PMSensor.countPerCubicFt(SmallParticle) << endl;
+        Serial << "(large) pcs/m^3:    " <<  PMSensor.countPerCubicFt(LargeParticle) << endl;
+        Serial << "(small) pulse Cnt:  " <<  PMSensor.pulseCount(SmallParticle) << endl;
+        Serial << "(large) pulse Cnt:  " <<  PMSensor.pulseCount(LargeParticle) << endl;
         Serial << endl;
     }
 

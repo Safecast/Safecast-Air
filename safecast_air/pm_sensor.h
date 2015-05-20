@@ -27,8 +27,8 @@ class PMSensorDev
         void resetParticleAccum(ParticleType particleType);
 
         float occupancy(ParticleType particleType) const;
-        float rate(ParticleType particleType) const;
-        unsigned long count(ParticleType particleType) const;
+        float pulseRate(ParticleType particleType) const;
+        unsigned long pulseCount(ParticleType particleType) const;
         unsigned long getSampleWindowDt() const;
         float countPerCubicFt(ParticleType particleType) const;
         static bool haveSample();

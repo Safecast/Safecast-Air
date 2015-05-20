@@ -59,7 +59,7 @@ unsigned long OccupancyAccum::count() const
     {
         countCpy = count_;
     }
-    return count_;
+    return countCpy;
 }
 
 

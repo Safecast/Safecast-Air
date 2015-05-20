@@ -93,13 +93,13 @@ float PMSensorDev::occupancy(ParticleType particleType) const
 }
 
 
-unsigned long PMSensorDev::count(ParticleType particleType) const
+unsigned long PMSensorDev::pulseCount(ParticleType particleType) const
 {
     return particleAccum_[particleType].count();
 }
 
 
-float PMSensorDev::rate(ParticleType particleType) const
+float PMSensorDev::pulseRate(ParticleType particleType) const
 {
     return  float(particleAccum_[particleType].count())/float(param_.sampleWindowDt);
 }
@@ -125,7 +125,7 @@ unsigned long PMSensorDev::getSampleWindowDt() const
 float PMSensorDev::countPerCubicFt(ParticleType particleType) const
 {
     float slope = (100000.0/param_.sensitivity);
-    return slope*occupancy(particleType);
+    return 100*slope*occupancy(particleType);
 }
 
 
