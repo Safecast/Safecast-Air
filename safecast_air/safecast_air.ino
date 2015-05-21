@@ -3,6 +3,7 @@
 #include <util/atomic.h>
 
 #include "fixed_vector.h"
+#include "sensor_dev_vector.h"
 #include "constants.h"
 #include "filter.h"
 #include "utility.h"
@@ -18,7 +19,6 @@
 
 void setup()
 {
-
     GasSensors.initialize();
     PMSensor.initialize();
 

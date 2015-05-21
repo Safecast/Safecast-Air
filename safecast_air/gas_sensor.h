@@ -1,6 +1,7 @@
 #ifndef ALPHASENSE_GAS_SENSOR_H
 #define ALPHASENSE_GAS_SENSOR_H
 #include "gas_sensor_param.h"
+#include "sensor_dev_vector.h"
 #include "constants.h"
 #include "fixed_vector.h"
 #include "filter.h"
@@ -63,24 +64,42 @@ class GasSensorDev
 };
 
 
-class GasSensorDevVector : public FixedVector<GasSensorDev,constants::NumGasSensor>
+
+class GasSensorDevVector : public SensorDevVector<GasSensorDev,GasSensorParam,constants::NumGasSensor>
 {
     public:
-        static const uint8_t TimerPriority = 100;
-        GasSensorDevVector(){};
-        void initialize();
-        void start();
-        void stop();
-        void sample();
+        GasSensorDevVector() {};
+        GasSensorDevVector(const SamplingParam sampParam, const GasSensorParam devParam[]) 
+            : SensorDevVector(sampParam, devParam) 
+        { 
+            timerCallback_ = GasSensorDevVector::onTimerOverflow;
+        };
 
     protected:
-        IntervalTimer timer_;
-        void setupAnalogInput();
-        static unsigned long getSampleDtUs();
         static void onTimerOverflow();
+
 };
 
 
+//class GasSensorDevVector : public FixedVector<GasSensorDev,constants::NumGasSensor>
+//{
+//    public:
+//        static const uint8_t TimerPriority = 100;
+//        GasSensorDevVector(){};
+//        void initialize();
+//        void start();
+//        void stop();
+//        void sample();
+//
+//    protected:
+//        IntervalTimer timer_;
+//        void setupAnalogInput();
+//        static unsigned long getSampleDtUs();
+//        static void onTimerOverflow();
+//};
+
+
 extern GasSensorDevVector GasSensors;
+
 
 #endif

@@ -7,13 +7,13 @@ namespace constants
 
     // Gas Sensor parameters
     // --------------------------------------------------------------------------------------------
-    const int GasSensorAinResolution = 16;
-    const int GasSensorAinAveraging = 32;
-    const unsigned long GasSensorSampleDt = 50; // ms
 
+    const SamplingParam GasSensorSamplingParam = 
+    {   // timerPriority,  ainResolution;, ainAveraging,  sampleDt; 
+        100, 16, 32, 50 
+    };
     const GasSensorParam DefaultGasSensorParam[NumGasSensor] = 
-    {
-        // gasType, serialNumber, workingAinPin, auxillaryAinPin, workingZero, auxillaryZero, sensitivity, 
+    {   // gasType, serialNumber, workingAinPin, auxillaryAinPin, workingZero, auxillaryZero, sensitivity, 
         // ainScaleFact, powerScaleFact, lowPassCutoffFreq, lowPassOrder, temperatureSensor, active
         {GAS_TYPE_NO2, 131410834ul, A0,  A1,  0.282,  0.296,  0.305,  4.4,  1.0,  0.1,  3, 0, true}, 
         {GAS_TYPE_O3,  135410521ul, A2,  A3,  0.422,  0.407,  0.235,  4.4,  1.0,  0.1,  3, 0, true},
@@ -25,13 +25,13 @@ namespace constants
     
     //  Temperature sensor parameters
     //  -------------------------------------------------------------------------------------------
-    const int TmpSensorAinResolution = 16;
-    const int TmpSensorAinAveraging = 32;
-    const unsigned long TmpSensorSampleDt = 100; // ms
-
+    
+    const SamplingParam TmpSensorSamplingParam = 
+    {   //  timerPriority,  ainResolution;, ainAveraging,  sampleDt; 
+        200,16,32,100 
+    };
     const TmpSensorParam DefaultTmpSensorParam[NumTmpSensor] = 
-    {
-        // ainPin, sensitivity, offsetVal, offsetTmp lowPassCutoffFreq, lowPassOrder
+    {  // ainPin, sensitivity, offsetVal, offsetTmp lowPassCutoffFreq, lowPassOrder
         {A7,  0.001, 0.297, 20.0, 0.1, 3},
         {A12, 0.001, 0.297, 20.0, 0.1, 3}
     };
@@ -44,3 +44,10 @@ namespace constants
 
 }
 
+//const int TmpSensorAinResolution = 16;
+//const int TmpSensorAinAveraging = 32;
+//const unsigned long TmpSensorSampleDt = 100; // ms
+
+//const int GasSensorAinResolution = 16;
+//const int GasSensorAinAveraging = 32;
+//const unsigned long GasSensorSampleDt = 50; // ms

@@ -38,24 +38,40 @@ class TmpSensorDev
 };
 
 
-// Perhaps can combine common stuff with GasSensorDevVector ... maybe make a SensorDevVector base class
 
-class TmpSensorDevVector : public FixedVector<TmpSensorDev,constants::NumTmpSensor>
+class TmpSensorDevVector : public SensorDevVector<TmpSensorDev,TmpSensorParam,constants::NumTmpSensor>
 {
     public:
-        static const uint8_t TimerPriority = 150;
-        TmpSensorDevVector(){};
-        void initialize();
-        void start();
-        void stop();
-        void sample();
+        TmpSensorDevVector() {};
+        TmpSensorDevVector(const SamplingParam sampParam, const TmpSensorParam devParam[]) 
+            : SensorDevVector(sampParam, devParam) 
+        { 
+            timerCallback_ = TmpSensorDevVector::onTimerOverflow;
+        };
 
     protected:
-        IntervalTimer timer_;
-        void setupAnalogInput();
-        static unsigned long getSampleDtUs();
         static void onTimerOverflow();
+
 };
+
+
+//class TmpSensorDevVector : public FixedVector<TmpSensorDev,constants::NumTmpSensor>
+//{
+//    public:
+//        static const uint8_t TimerPriority = 150;
+//        TmpSensorDevVector(){};
+//        void initialize();
+//        void start();
+//        void stop();
+//        void sample();
+//
+//    protected:
+//        IntervalTimer timer_;
+//        void setupAnalogInput();
+//        static unsigned long getSampleDtUs();
+//        static void onTimerOverflow();
+//};
+
 
 
 extern TmpSensorDevVector TmpSensors;
