@@ -24,6 +24,7 @@ GasSensorDev::GasSensorDev(GasSensorParam param)
     initialize();
 }
 
+
 void GasSensorDev::sample(unsigned long dt)
 {
     workingInt_ = analogRead(param_.workingAinPin);
@@ -44,6 +45,7 @@ GasSensorParam GasSensorDev::param() const
     return param_;
 }
 
+
 void GasSensorDev::setParam(GasSensorParam param)
 {
     param_ = param;
@@ -57,6 +59,7 @@ String GasSensorDev::paramToString() const
     String paramString = "";
     return paramString;
 }
+
 
 float GasSensorDev::ppb() const
 {
@@ -75,10 +78,12 @@ float GasSensorDev::ppm() const
     return (1.0e-3)*ppb_;
 }
 
+
 float GasSensorDev::ppmLowPass() const
 {
     return (1.0e-3)*ppbLowPassFilter_.value();
 }
+
 
 int GasSensorDev::workingInt() const
 {
@@ -154,62 +159,12 @@ void GasSensorDev::initialize()
 }
 
 
-
-// GasSensorDevVector public methods
-// ----------------------------------------------------------------------------
-//void GasSensorDevVector::initialize()
-//{
-//    setupAnalogInput();
-//    for (int i=0; i<size(); i++)
-//    {
-//        set(i,GasSensorDev(constants::DefaultGasSensorParam[i]));
-//    }
-//
-//    timer_.priority(TimerPriority);
-//}
-//
-//void GasSensorDevVector::sample()
-//{
-//    for (auto &sensor : *this)
-//    {
-//        sensor.sample(constants::GasSensorSampleDt);
-//    }
-//}
-//
-//void GasSensorDevVector::start()
-//{
-//    for (auto &sensor: *this)
-//    {
-//        sensor.initialize();
-//    }
-//    timer_.begin(GasSensorDevVector::onTimerOverflow, getSampleDtUs());
-//}
-//
-//void GasSensorDevVector::stop()
-//{
-//    timer_.end();
-//}
-
 // GasSensorDevVector protected methods
 // ----------------------------------------------------------------------------
-//void GasSensorDevVector::setupAnalogInput()
-//{
-//    analogReadRes(constants::GasSensorAinResolution);
-//    analogReadAveraging(constants::GasSensorAinAveraging);
-//    analogReference(INTERNAL);
-//}
-//
-//unsigned long GasSensorDevVector::getSampleDtUs()
-//{
-//    return 1000ul*constants::GasSensorSampleDt;
-//}
-
-
 void GasSensorDevVector::onTimerOverflow()
 {
     GasSensors.sample();
 }
-
 
 GasSensorDevVector GasSensors(constants::GasSensorSamplingParam, constants::DefaultGasSensorParam); 
 

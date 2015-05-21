@@ -64,7 +64,6 @@ class GasSensorDev
 };
 
 
-
 class GasSensorDevVector : public SensorDevVector<GasSensorDev,GasSensorParam,constants::NumGasSensor>
 {
     public:
@@ -72,7 +71,7 @@ class GasSensorDevVector : public SensorDevVector<GasSensorDev,GasSensorParam,co
         GasSensorDevVector(const SamplingParam sampParam, const GasSensorParam devParam[]) 
             : SensorDevVector(sampParam, devParam) 
         { 
-            timerCallback_ = GasSensorDevVector::onTimerOverflow;
+            setTimerCallback(GasSensorDevVector::onTimerOverflow);
         };
 
     protected:
@@ -80,26 +79,6 @@ class GasSensorDevVector : public SensorDevVector<GasSensorDev,GasSensorParam,co
 
 };
 
-
-//class GasSensorDevVector : public FixedVector<GasSensorDev,constants::NumGasSensor>
-//{
-//    public:
-//        static const uint8_t TimerPriority = 100;
-//        GasSensorDevVector(){};
-//        void initialize();
-//        void start();
-//        void stop();
-//        void sample();
-//
-//    protected:
-//        IntervalTimer timer_;
-//        void setupAnalogInput();
-//        static unsigned long getSampleDtUs();
-//        static void onTimerOverflow();
-//};
-
-
 extern GasSensorDevVector GasSensors;
-
 
 #endif

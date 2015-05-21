@@ -27,11 +27,11 @@ namespace constants
     //  -------------------------------------------------------------------------------------------
     
     const SamplingParam TmpSensorSamplingParam = 
-    {   //  timerPriority,  ainResolution;, ainAveraging,  sampleDt; 
-        200,16,32,100 
+    {   // timerPriority,  ainResolution;, ainAveraging,  sampleDt; 
+        200, 16, 32, 100 
     };
     const TmpSensorParam DefaultTmpSensorParam[NumTmpSensor] = 
-    {  // ainPin, sensitivity, offsetVal, offsetTmp lowPassCutoffFreq, lowPassOrder
+    {  // ainPin, sensitivity, offsetVal,, offsetTmp,  lowPassCutoffFreq, lowPassOrder
         {A7,  0.001, 0.297, 20.0, 0.1, 3},
         {A12, 0.001, 0.297, 20.0, 0.1, 3}
     };
@@ -39,15 +39,10 @@ namespace constants
     // PM sensor parameters
     // --------------------------------------------------------------------------------------------
 
-    // smallParticlePin, largeParticlePin, sensitivity,  sampleWindowDt (ms),
-    const PMSensorParam DefaultPMSensorParam = {32, 33, 1.5, 60000};
+    const PMSensorParam DefaultPMSensorParam = 
+    {  // smallParticlePin, largeParticlePin, sensitivity,  sampleWindowDt (ms),
+        32, 33, 1.5, 60000
+    };
 
 }
 
-//const int TmpSensorAinResolution = 16;
-//const int TmpSensorAinAveraging = 32;
-//const unsigned long TmpSensorSampleDt = 100; // ms
-
-//const int GasSensorAinResolution = 16;
-//const int GasSensorAinAveraging = 32;
-//const unsigned long GasSensorSampleDt = 50; // ms

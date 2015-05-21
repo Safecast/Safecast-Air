@@ -61,6 +61,11 @@ class SensorDevVector  : public FixedVector<Dev,n>
             sampParam_ = sampParam;
         }
 
+        void setTimerCallback(void (*timerCallback)())
+        {
+            timerCallback_ = timerCallback;
+        }
+
     protected:
 
         SamplingParam sampParam_;

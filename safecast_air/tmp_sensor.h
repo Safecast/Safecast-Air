@@ -38,7 +38,6 @@ class TmpSensorDev
 };
 
 
-
 class TmpSensorDevVector : public SensorDevVector<TmpSensorDev,TmpSensorParam,constants::NumTmpSensor>
 {
     public:
@@ -46,32 +45,13 @@ class TmpSensorDevVector : public SensorDevVector<TmpSensorDev,TmpSensorParam,co
         TmpSensorDevVector(const SamplingParam sampParam, const TmpSensorParam devParam[]) 
             : SensorDevVector(sampParam, devParam) 
         { 
-            timerCallback_ = TmpSensorDevVector::onTimerOverflow;
+            setTimerCallback(TmpSensorDevVector::onTimerOverflow);
         };
 
     protected:
         static void onTimerOverflow();
 
 };
-
-
-//class TmpSensorDevVector : public FixedVector<TmpSensorDev,constants::NumTmpSensor>
-//{
-//    public:
-//        static const uint8_t TimerPriority = 150;
-//        TmpSensorDevVector(){};
-//        void initialize();
-//        void start();
-//        void stop();
-//        void sample();
-//
-//    protected:
-//        IntervalTimer timer_;
-//        void setupAnalogInput();
-//        static unsigned long getSampleDtUs();
-//        static void onTimerOverflow();
-//};
-
 
 
 extern TmpSensorDevVector TmpSensors;
