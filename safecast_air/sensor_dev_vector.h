@@ -18,8 +18,6 @@ class SensorDevVector  : public FixedVector<Dev,n>
             setDevParam(devParam);
         };
 
-        SensorDevVector(int x) {};
-
         void initialize() 
         {
             setupAnalogInput();
