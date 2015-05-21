@@ -43,6 +43,5 @@ namespace constants
     {  // smallParticlePin, largeParticlePin, sensitivity,  sampleWindowDt (ms),
         32, 33, 1.5, 60000
     };
-
 }
 

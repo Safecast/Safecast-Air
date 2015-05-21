@@ -8,23 +8,13 @@
 namespace constants
 {
     const int NumGasSensor = 6;
-    const int NumTmpSensor = 2;
-    
     extern const SamplingParam GasSensorSamplingParam;
     extern const GasSensorParam DefaultGasSensorParam[];
 
+    const int NumTmpSensor = 2;
     extern const SamplingParam TmpSensorSamplingParam;
     extern const TmpSensorParam DefaultTmpSensorParam[];
-
     extern const PMSensorParam DefaultPMSensorParam;
-
 }
-//extern const int GasSensorAinResolution; 
-//extern const int GasSensorAinAveraging;
-//extern const unsigned long GasSensorSampleDt;
-
-//extern const int TmpSensorAinResolution;
-//extern const int TmpSensorAinAvaragin;
-//extern const unsigned long TmpSensorSampleDt;
 
 #endif
