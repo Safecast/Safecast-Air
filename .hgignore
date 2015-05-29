@@ -3,4 +3,3 @@ syntax: glob
 *.bak
 *cache.lib
 *.swp
-notes
