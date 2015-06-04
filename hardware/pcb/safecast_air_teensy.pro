@@ -1,4 +1,4 @@
-update=Wed 03 Jun 2015 11:34:40 PM PDT
+update=Thu 04 Jun 2015 08:48:39 AM PDT
 version=1
 last_client=eeschema
 [cvpcb]
@@ -114,3 +114,4 @@ LibName39=r5_bussed
 LibName40=pololu_3v3
 LibName41=dpdt
 LibName42=r4_isolated
+LibName43=schmitt
