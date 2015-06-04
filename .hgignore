@@ -1,0 +1,7 @@
+syntax: glob
+*~
+*.o
+*.swp
+*.bak
+*cache.lib
+docs/sphinx/_build

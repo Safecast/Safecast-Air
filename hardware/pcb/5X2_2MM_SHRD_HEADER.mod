@@ -1,0 +1,99 @@
+PCBNEW-LibModule-V1  Mon 27 Apr 2015 07:49:01 PM PDT
+# encoding utf-8
+Units mm
+$INDEX
+5X2_2MM_SHRD_HEADER
+$EndINDEX
+$MODULE 5X2_2MM_SHRD_HEADER
+Po 0 0 0 15 553EF4D6 00000000 ~~
+Li 5X2_2MM_SHRD_HEADER
+Sc 0
+AR 
+Op 0 0 0
+T0 0 -4.5 1.016 1.016 0 0.2032 N V 21 N "5X2_2MM_SHRD_HEADER"
+T1 0 4.7 1.016 0.8636 0 0.2032 N V 21 N "VAL**"
+DS 8.5 -3.2 8.5 3.2 0.25 21
+DS 6.4 3.2 8.5 3.2 0.25 21
+DS 6.4 -3.2 8.5 -3.2 0.25 21
+DS -6.4 3.2 -8.5 3.2 0.25 21
+DS -8.5 3.2 -8.5 -3.2 0.25 21
+DS -8.5 -3.2 -6.4 -3.2 0.25 21
+DS -4 3.7 -4.7 4.6 0.25 21
+DS -4.7 4.6 -3.3 4.6 0.25 21
+DS -3.3 4.6 -4 3.7 0.25 21
+DS -6.4 -3.2 -6.4 3.2 0.25 21
+DS -6.4 3.2 6.4 3.2 0.25 21
+DS 6.4 3.2 6.4 -3.2 0.25 21
+DS 6.4 -3.2 -6.4 -3.2 0.25 21
+$PAD
+Sh "1" C 1.25 1.25 0 0 0
+Dr 0.9 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -4 1
+$EndPAD
+$PAD
+Sh "2" C 1.25 1.25 0 0 0
+Dr 0.9 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -4 -1
+$EndPAD
+$PAD
+Sh "3" C 1.25 1.25 0 0 0
+Dr 0.9 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -2 1
+$EndPAD
+$PAD
+Sh "4" C 1.25 1.25 0 0 0
+Dr 0.9 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po -2 -1
+$EndPAD
+$PAD
+Sh "5" C 1.25 1.25 0 0 0
+Dr 0.9 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 0 1
+$EndPAD
+$PAD
+Sh "6" C 1.25 1.25 0 0 0
+Dr 0.9 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 0 -1
+$EndPAD
+$PAD
+Sh "7" C 1.25 1.25 0 0 0
+Dr 0.9 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 2 1
+$EndPAD
+$PAD
+Sh "8" C 1.25 1.25 0 0 0
+Dr 0.9 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 2 -1
+$EndPAD
+$PAD
+Sh "9" C 1.25 1.25 0 0 0
+Dr 0.9 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 4 1
+$EndPAD
+$PAD
+Sh "10" C 1.25 1.25 0 0 0
+Dr 0.9 0 0
+At STD N 00E0FFFF
+Ne 0 ""
+Po 4 -1
+$EndPAD
+$EndMODULE 5X2_2MM_SHRD_HEADER
+$EndLIBRARY
