@@ -3,9 +3,11 @@ QTY   Position          Description                                    Vendor   
 1      --               PCB, smaller than 10x15 cm size                 iTeadStudio
 2      P1, P2           Mini hrouded header, 5x2                        Digikey                 WM18560-ND
 1      P3               Shrouded header, 5x2                            Digikey                 S9169-ND
-1      P4               2x2 pin array                                   Digikey                 
-4      P5,7,8,9         Breakaway header, male pins, 36 pos             Digikey                 3M9457-ND
+1      P4               2x2 pin array                                   Digikey                 609-3225-ND
+4      P5,7,8           Breakaway header, male pins, 36 pos             Digikey                 3M9457-ND
 1      P6               Screw terminal block, 2-pos                     Digikey                 ED2635-ND
+1      P9               6-pin JST XH connector                          Digikey                 455-2271-ND
+1      P10 	        5-pin JST XH connector                          Digikey                 455-2270-ND
 1      S1               Switch, 4-direction with center push            Online components       SKQUCAA010
 1      S2               Slide switch                                    Digikey                 401-2000-ND
 1      U1               Adafruit Ultimate GPS Breakout                  Adafruit                746
@@ -17,9 +19,16 @@ QTY   Position          Description                                    Vendor   
 1      U6               Teensy 3.1                                      Sparkfun                DEV-12646
 1      U6               Teensy header                                   Digikey                 WM17453-ND
 3      U1,3,6           Breakaway header, female, 36 pos                Digikey                 929974E-01-36-ND
-1      U7               Resistor array, bussed                          Digikey                 4606X-1-103LF-ND
-12     R1-23 (odd)      68K resistor                                    Digikey                 S68KCACT-ND
-12     R2-24 (even)     20K resistor                                    Digikey                 S20KCACT-ND
+1      U7               Resistor array, isolated                        Digikey                 4608X-2-102LF-ND
+1      U8               Schmitt buffer                                  Digikey                 TC7SZ17FU(T5LJFTCT-ND
+12     R1-23 (odd)      68k resistor                                    Digikey                 S68KCACT-ND
+12     R2-24 (even)     20k resistor                                    Digikey                 S20KCACT-ND
+2      R25, R26         10k resistor                                    Digikey                 S10KQCT-ND
+1      R27              20k resistor (or 47k, 100k)                     Digikey                 S20KQCT-ND, S47KQCT-ND, CF18JT100KCT-ND
+1      R28              12k resistor                                    Digikey                 S12KQCT-ND
+1      C1               0.1uf ceramic capacitor 0.1" lead spacing       Digikey                 399-4151-ND
+
+
 
 
 Hardware

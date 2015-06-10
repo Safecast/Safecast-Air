@@ -1,4 +1,11 @@
-Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Tue 28 Apr 2015 11:15:57 AM PDT
+Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Tue 09 Jun 2015 05:44:49 PM PDT
+
+BeginCmp
+TimeStamp = /55700D03;
+Reference = C1;
+ValeurCmp = 0.1uf;
+IdModule  = C1;
+EndCmp
 
 BeginCmp
 TimeStamp = /545A4E12;
@@ -57,10 +64,10 @@ IdModule  = PIN_ARRAY_2X1;
 EndCmp
 
 BeginCmp
-TimeStamp = /54692263;
+TimeStamp = /5577490F;
 Reference = P9;
-ValeurCmp = CONN_2;
-IdModule  = PIN_ARRAY_2X1;
+ValeurCmp = CONN_6;
+IdModule  = JST_XH_6PIN;
 EndCmp
 
 BeginCmp
@@ -253,6 +260,20 @@ IdModule  = R_SMALL;
 EndCmp
 
 BeginCmp
+TimeStamp = /55700D12;
+Reference = R27;
+ValeurCmp = 20k;
+IdModule  = R_SMALL;
+EndCmp
+
+BeginCmp
+TimeStamp = /556FFD53;
+Reference = R28;
+ValeurCmp = 12k;
+IdModule  = R_SMALL;
+EndCmp
+
+BeginCmp
 TimeStamp = /545AC9E5;
 Reference = S1;
 ValeurCmp = JOYSWITCH;
@@ -309,10 +330,17 @@ IdModule  = TEENSY3X;
 EndCmp
 
 BeginCmp
-TimeStamp = /545AE77F;
+TimeStamp = /556FF45C;
 Reference = U7;
-ValeurCmp = R5_BUSSED;
-IdModule  = R5_BUSSED;
+ValeurCmp = R4_ISOLATED;
+IdModule  = R8_ISOLATED;
+EndCmp
+
+BeginCmp
+TimeStamp = /55707399;
+Reference = U8;
+ValeurCmp = SCHMITT;
+IdModule  = SOT353;
 EndCmp
 
 EndListe
