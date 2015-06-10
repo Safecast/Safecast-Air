@@ -1,0 +1,213 @@
+(pcb "/home/wbd/work/safecast/Safecast-Air-Dev/hardware/isb_adaptor/isb_adaptor.dsn"
+  (parser
+    (string_quote ")
+    (space_in_quoted_tokens on)
+    (host_cad "KiCad's Pcbnew")
+    (host_version "(2013-jul-07)-stable")
+  )
+  (resolution um 10)
+  (unit um)
+  (structure
+    (layer F.Cu
+      (type signal)
+      (property
+        (index 0)
+      )
+    )
+    (layer B.Cu
+      (type signal)
+      (property
+        (index 1)
+      )
+    )
+    (boundary
+      (path pcb 0  186055 -90805  40005 -90805  40005 -71755  186055 -71755
+            186055 -90805)
+    )
+    (via "Via[0-1]_889:635_um" "Via[0-1]_889:0_um")
+    (rule
+      (width 381)
+      (clearance 254.1)
+      (clearance 254.1 (type default_smd))
+      (clearance 63.5 (type smd_smd))
+    )
+  )
+  (placement
+    (component TMP36
+      (place U1 136525 -80010 front 0 (PN TMP36))
+    )
+    (component "PIN_ARRAY-6X1"
+      (place P2 76200 -76200 front 0 (PN CONN_6))
+      (place P3 118110 -76200 front 0 (PN CONN_6))
+      (place P4 160020 -76200 front 0 (PN CONN_6))
+    )
+    (component C1
+      (place C1 71120 -81280 front 0 (PN 10nF))
+      (place C2 71120 -86360 front 0 (PN 100nF))
+      (place C3 113030 -81280 front 0 (PN 10nF))
+      (place C4 113030 -86360 front 0 (PN 100nF))
+      (place C5 136525 -86995 front 0 (PN 10nF))
+      (place C6 154940 -81280 front 0 (PN 100nF))
+      (place C7 154940 -86360 front 0 (PN 0.1uF))
+    )
+    (component 5X2_2MM_SHRD_HEADER
+      (place P1 44450 -81280 back 90 (PN CONN_5X2))
+    )
+    (component "4-40"
+      (place M3 182880 -74930 front 0 (PN VAL**))
+      (place M4 182880 -87630 front 0 (PN VAL**))
+      (place M1 53340 -74930 front 0 (PN VAL**))
+      (place M2 53340 -87630 front 0 (PN VAL**))
+    )
+  )
+  (library
+    (image TMP36
+      (outline (path signal 150  -1524 -1270  -2540 0))
+      (outline (path signal 150  1524 -1270  2540 0))
+      (outline (path signal 150  -1524 -1270  1524 -1270))
+      (pin Round[A]Pad_838.2_um 1 -1270 0)
+      (pin Round[A]Pad_838.2_um 2 0 0)
+      (pin Round[A]Pad_838.2_um 3 1270 0)
+    )
+    (image "PIN_ARRAY-6X1"
+      (outline (path signal 304.8  -7620 -1270  -7620 1270))
+      (outline (path signal 304.8  -7620 1270  7620 1270))
+      (outline (path signal 304.8  7620 1270  7620 -1270))
+      (outline (path signal 304.8  7620 -1270  -7620 -1270))
+      (outline (path signal 304.8  -5080 -1270  -5080 1270))
+      (pin Rect[A]Pad_1524x1524_um 1 -6350 0)
+      (pin Round[A]Pad_1524_um 2 -3810 0)
+      (pin Round[A]Pad_1524_um 3 -1270 0)
+      (pin Round[A]Pad_1524_um 4 1270 0)
+      (pin Round[A]Pad_1524_um 5 3810 0)
+      (pin Round[A]Pad_1524_um 6 6350 0)
+    )
+    (image C1
+      (outline (path signal 304.8  -2489.2 1270  2540 1270))
+      (outline (path signal 304.8  2540 1270  2540 -1270))
+      (outline (path signal 304.8  2540 -1270  -2540 -1270))
+      (outline (path signal 304.8  -2540 -1270  -2540 1270))
+      (outline (path signal 304.8  -2540 635  -1905 1270))
+      (pin Round[A]Pad_1397_um 1 -1270 0)
+      (pin Round[A]Pad_1397_um 2 1270 0)
+    )
+    (image 5X2_2MM_SHRD_HEADER
+      (outline (path signal 250  8500 3200  8500 -3200))
+      (outline (path signal 250  6400 -3200  8500 -3200))
+      (outline (path signal 250  6400 3200  8500 3200))
+      (outline (path signal 250  -6400 -3200  -8500 -3200))
+      (outline (path signal 250  -8500 -3200  -8500 3200))
+      (outline (path signal 250  -8500 3200  -6400 3200))
+      (outline (path signal 250  -4000 -3700  -4700 -4600))
+      (outline (path signal 250  -4700 -4600  -3300 -4600))
+      (outline (path signal 250  -3300 -4600  -4000 -3700))
+      (outline (path signal 250  -6400 3200  -6400 -3200))
+      (outline (path signal 250  -6400 -3200  6400 -3200))
+      (outline (path signal 250  6400 -3200  6400 3200))
+      (outline (path signal 250  6400 3200  -6400 3200))
+      (pin Round[A]Pad_1250_um 1 -4000 -1000)
+      (pin Round[A]Pad_1250_um 2 -4000 1000)
+      (pin Round[A]Pad_1250_um 3 -2000 -1000)
+      (pin Round[A]Pad_1250_um 4 -2000 1000)
+      (pin Round[A]Pad_1250_um 5 0 -1000)
+      (pin Round[A]Pad_1250_um 6 0 1000)
+      (pin Round[A]Pad_1250_um 7 2000 -1000)
+      (pin Round[A]Pad_1250_um 8 2000 1000)
+      (pin Round[A]Pad_1250_um 9 4000 -1000)
+      (pin Round[A]Pad_1250_um 10 4000 1000)
+    )
+    (image "4-40"
+      (pin Round[A]Pad_3810_um @1 0 0)
+    )
+    (padstack Round[A]Pad_1250_um
+      (shape (circle F.Cu 1250))
+      (shape (circle B.Cu 1250))
+      (attach off)
+    )
+    (padstack Round[A]Pad_1397_um
+      (shape (circle F.Cu 1397))
+      (shape (circle B.Cu 1397))
+      (attach off)
+    )
+    (padstack Round[A]Pad_1524_um
+      (shape (circle F.Cu 1524))
+      (shape (circle B.Cu 1524))
+      (attach off)
+    )
+    (padstack Round[A]Pad_3810_um
+      (shape (circle F.Cu 3810))
+      (shape (circle B.Cu 3810))
+      (attach off)
+    )
+    (padstack Round[A]Pad_838.2_um
+      (shape (circle F.Cu 838.2))
+      (shape (circle B.Cu 838.2))
+      (attach off)
+    )
+    (padstack Rect[A]Pad_1524x1524_um
+      (shape (rect F.Cu -762 -762 762 762))
+      (shape (rect B.Cu -762 -762 762 762))
+      (attach off)
+    )
+    (padstack "Via[0-1]_889:635_um"
+      (shape (circle F.Cu 889))
+      (shape (circle B.Cu 889))
+      (attach off)
+    )
+    (padstack "Via[0-1]_889:0_um"
+      (shape (circle F.Cu 889))
+      (shape (circle B.Cu 889))
+      (attach off)
+    )
+  )
+  (network
+    (net /AUX1
+      (pins P2-5 P1-7)
+    )
+    (net /AUX2
+      (pins P3-5 P1-5)
+    )
+    (net /AUX3
+      (pins P4-5 P1-3)
+    )
+    (net /TMP
+      (pins U1-2 P1-9)
+    )
+    (net /VIN
+      (pins U1-1 P2-1 P3-1 P4-1 C1-1 C2-1 C3-1 C4-1 C5-1 C6-1 C7-1 P1-1)
+    )
+    (net /WRK1
+      (pins P2-3 P1-8)
+    )
+    (net /WRK2
+      (pins P3-3 P1-6)
+    )
+    (net /WRK3
+      (pins P4-3 P1-4)
+    )
+    (net GND
+      (pins U1-3 P2-2 P2-4 P2-6 P3-2 P3-4 P3-6 P4-2 P4-4 P4-6 C1-2 C2-2 C3-2 C4-2
+        C5-2 C6-2 C7-2 P1-2 P1-10)
+    )
+    (class kicad_default "" /AUX1 /AUX2 /AUX3 /TMP /WRK1 /WRK2 /WRK3
+      (circuit
+        (use_via Via[0-1]_889:635_um)
+      )
+      (rule
+        (width 381)
+        (clearance 254.1)
+      )
+    )
+    (class Power /VIN GND
+      (circuit
+        (use_via Via[0-1]_889:635_um)
+      )
+      (rule
+        (width 381)
+        (clearance 254.1)
+      )
+    )
+  )
+  (wiring
+  )
+)

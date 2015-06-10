@@ -1,0 +1,87 @@
+Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Wed 10 Jun 2015 01:11:43 PM PDT
+
+BeginCmp
+TimeStamp = /557892EC;
+Reference = C1;
+ValeurCmp = 10nF;
+IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /557892FB;
+Reference = C2;
+ValeurCmp = 100nF;
+IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /55789434;
+Reference = C3;
+ValeurCmp = 10nF;
+IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5578943A;
+Reference = C4;
+ValeurCmp = 100nF;
+IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /55789455;
+Reference = C5;
+ValeurCmp = 10nF;
+IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5578945B;
+Reference = C6;
+ValeurCmp = 100nF;
+IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /557896AB;
+Reference = C7;
+ValeurCmp = 0.1uF;
+IdModule  = C1;
+EndCmp
+
+BeginCmp
+TimeStamp = /557884F3;
+Reference = P1;
+ValeurCmp = CONN_5X2;
+IdModule  = 5X2_2MM_SHRD_HEADER;
+EndCmp
+
+BeginCmp
+TimeStamp = /557884C6;
+Reference = P2;
+ValeurCmp = CONN_6;
+IdModule  = PIN_ARRAY-6X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /557886C3;
+Reference = P3;
+ValeurCmp = CONN_6;
+IdModule  = PIN_ARRAY-6X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /557886DC;
+Reference = P4;
+ValeurCmp = CONN_6;
+IdModule  = PIN_ARRAY-6X1;
+EndCmp
+
+BeginCmp
+TimeStamp = /5578959F;
+Reference = U1;
+ValeurCmp = TMP36;
+IdModule  = TMP36;
+EndCmp
+
+EndListe
