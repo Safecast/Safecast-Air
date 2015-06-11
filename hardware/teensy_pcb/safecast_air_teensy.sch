@@ -42,14 +42,13 @@ LIBS:pololu_3v3
 LIBS:dpdt
 LIBS:r4_isolated
 LIBS:schmitt
-LIBS:safecast_air_teensy-cache
 EELAYER 27 0
 EELAYER END
 $Descr User 14000 11000
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "9 jun 2015"
+Date "11 jun 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -1855,4 +1854,6 @@ Text Label 7750 3350 0    60   ~ 0
 UEXT_TX
 Text Label 7750 3450 0    60   ~ 0
 UEXT_RX
+Text Notes 9500 4800 0    60   ~ 0
+Notes: \nuse pedvide's ADC library (github)  for access to both hardware ADCs.\nThis will allow you to set two different analog reference levels - internal \n1.2V for gas sensors and 3.3V default for joyswitch.  If you don't you will \nhave settling time issues when switching references with a single \nconverter.
 $EndSCHEMATC
