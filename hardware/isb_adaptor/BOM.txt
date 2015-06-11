@@ -1,0 +1,14 @@
+QTY   Position          Description                                    Vendor                  Part #                     Notes
+=================================================================================================================================================================
+1      P1             Mini shrouded header, 5x2                          Digikey                 WM18560-ND
+3      C1,C3,C5       10nF  ceramic capacitor 0.1" lead spacing          Digikey                 399-9858-1-ND
+4      C2,C4,C6, C7   0.1uF ceramic capacitor 0.1" lead spacing          Digikey                 399-4151-ND
+3      P2,P3,P4       6x1 female header (receptacle)                     Digikey                 S7004-ND
+1      U1             TMP36 temperature sensor                           Digikey                 TMP36GT9Z-ND
+
+
+
+Hardware
+==================
+2       Ribbon cable connector     Digikey        WM14310-ND
+1       Ribbon cable               Digikey        MC10L-5-ND
