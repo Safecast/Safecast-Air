@@ -42,13 +42,14 @@ LIBS:pololu_3v3
 LIBS:dpdt
 LIBS:r4_isolated
 LIBS:schmitt
+LIBS:safecast_air_teensy-cache
 EELAYER 27 0
 EELAYER END
 $Descr User 14000 11000
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "11 jun 2015"
+Date "12 jun 2015"
 Rev ""
 Comp ""
 Comment1 ""
@@ -1856,4 +1857,6 @@ Text Label 7750 3450 0    60   ~ 0
 UEXT_RX
 Text Notes 9500 4800 0    60   ~ 0
 Notes: \nuse pedvide's ADC library (github)  for access to both hardware ADCs.\nThis will allow you to set two different analog reference levels - internal \n1.2V for gas sensors and 3.3V default for joyswitch.  If you don't you will \nhave settling time issues when switching references with a single \nconverter.
+Text Notes 4650 -850 0    60   ~ 0
+Change notes:\n\n* Add jumper so that you can swap 3V3 and 5V power on  UEXT header. \n\n* Add (optional) pull-up resistors for I2C on UEXT header.\n\n* Look into possibility of adding LoRa module in Xbee socket or similar.
 $EndSCHEMATC
