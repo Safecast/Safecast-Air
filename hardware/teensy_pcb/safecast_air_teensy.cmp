@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Tue 09 Jun 2015 05:44:49 PM PDT
+Cmp-Mod V01 Created by CvPcb (2013-jul-07)-stable date = Wed 17 Jun 2015 06:06:00 PM PDT
 
 BeginCmp
 TimeStamp = /55700D03;
@@ -75,6 +75,13 @@ TimeStamp = /553F21A3;
 Reference = P10;
 ValeurCmp = CONN_5_MOD;
 IdModule  = JST_XH_5PIN;
+EndCmp
+
+BeginCmp
+TimeStamp = /55821DE9;
+Reference = P11;
+ValeurCmp = CONN_2X2;
+IdModule  = PIN_ARRAY_2X2;
 EndCmp
 
 BeginCmp
@@ -274,6 +281,20 @@ IdModule  = R_SMALL;
 EndCmp
 
 BeginCmp
+TimeStamp = /5582241F;
+Reference = R29;
+ValeurCmp = 4.7K;
+IdModule  = R_SMALL;
+EndCmp
+
+BeginCmp
+TimeStamp = /5582242E;
+Reference = R30;
+ValeurCmp = 4.7k;
+IdModule  = R_SMALL;
+EndCmp
+
+BeginCmp
 TimeStamp = /545AC9E5;
 Reference = S1;
 ValeurCmp = JOYSWITCH;
@@ -295,7 +316,7 @@ IdModule  = ADAFRUIT_UGPS;
 EndCmp
 
 BeginCmp
-TimeStamp = /54598AE0;
+TimeStamp = /558212A9;
 Reference = U2;
 ValeurCmp = XBEE;
 IdModule  = XBEE;

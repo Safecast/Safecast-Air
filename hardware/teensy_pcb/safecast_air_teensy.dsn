@@ -1,4 +1,4 @@
-(pcb "/home/wbd/work/safecast/Safecast-Air-Dev/hardware/pcb/safecast_air_teensy.dsn"
+(pcb "/home/wbd/work/safecast/Safecast-Air-Dev/hardware/teensy_pcb/safecast_air_teensy.dsn"
   (parser
     (string_quote ")
     (space_in_quoted_tokens on)
@@ -42,25 +42,23 @@
     )
   )
   (placement
-    (component XBEE
-      (place U2 81750 -82250 front 270 (PN XBEE))
-    )
     (component POLOLU_3V3
       (place U5 56007 -70231 front 0 (PN POLOLU_3V3))
     )
     (component PIN_ARRAY_2X2
-      (place P4 45212 -90424 front 180 (PN CONN_2X2))
+      (place P4 41021 -90551 front 180 (PN CONN_2X2))
+      (place P11 59309 -90551 front 0 (PN CONN_2X2))
     )
     (component PIN_ARRAY_2X1
-      (place P7 52376 -90424 front 270 (PN CONN_2))
-      (place P5 57706 -90500 front 270 (PN CONN_2))
-      (place P8 38100 -90424 front 270 (PN CONN_2))
+      (place P7 47423 -90551 front 270 (PN CONN_2))
+      (place P5 52372 -90627 front 270 (PN CONN_2))
+      (place P8 35052 -90551 front 270 (PN CONN_2))
     )
     (component OPENLOG
       (place U4 44958 -76581 front 270 (PN OPENLOG))
     )
     (component JOY_NAV
-      (place S1 107315 -89027 front 0 (PN JOYSWITCH))
+      (place S1 118745 -90805 front 0 (PN JOYSWITCH))
     )
     (component CK_DPDT
       (place S2 30607 -57912 front 180 (PN DPDT))
@@ -69,7 +67,7 @@
       (place U1 82850 -66150 front 0 (PN GPS))
     )
     (component ADAFRUIT_128X64_OLED
-      (place U3 129540 -58420 front 270 (PN LCD))
+      (place U3 129413 -56896 front 270 (PN LCD))
     )
     (component SCREWTERM_2X
       (place P6 29210 -39878 front 270 (PN CONN_2))
@@ -107,8 +105,10 @@
       (place R13 76500 -43500 front 270 (PN R))
       (place R25 86750 -35750 front 0 (PN 10k))
       (place R26 79000 -35750 front 180 (PN 10k))
-      (place R28 118999 -91948 front 0 (PN 12k))
-      (place R27 118999 -88646 front 180 (PN 20k))
+      (place R28 119380 -81280 front 180 (PN 12k))
+      (place R27 119380 -77470 front 0 (PN 20k))
+      (place R29 111887 -42926 front 0 (PN 4.7K))
+      (place R30 111887 -46990 front 0 (PN 4.7k))
     )
     (component 5X2_2MM_SHRD_HEADER
       (place P2 60198 -30480 front 0 (PN CONN_5X2))
@@ -121,10 +121,7 @@
       (place H3 129540 -91440 front 0 (PN VAL**))
     )
     (component SOT353
-      (place U8 118999 -84455 front 180 (PN SCHMITT))
-    )
-    (component R8_ISOLATED
-      (place U7 114173 -79629 front 0 (PN R4_ISOLATED))
+      (place U8 107061 -84391.5 front 0 (PN SCHMITT))
     )
     (component JST_XH_5PIN
       (place P10 77216 -29718 front 0 (PN CONN_5_MOD))
@@ -133,38 +130,16 @@
       (place P9 94742 -29718 front 0 (PN CONN_6))
     )
     (component C1
-      (place C1 127254 -83820 front 90 (PN 0.1uf))
+      (place C1 104267 -91821 front 0 (PN 0.1uf))
+    )
+    (component XBEE
+      (place U2 81788 -81788 front 270 (PN XBEE))
+    )
+    (component R8_ISOLATED
+      (place U7 114935 -69723 front 0 (PN R4_ISOLATED))
     )
   )
   (library
-    (image XBEE
-      (outline (path signal 150  3800 16250  12150 10000))
-      (outline (path signal 150  -12150 10000  -3800 16250))
-      (outline (path signal 150  -3800 16250  3800 16250))
-      (outline (path signal 150  -12150 -16250  -12150 10000))
-      (outline (path signal 150  -12150 -16250  12150 -16250))
-      (outline (path signal 150  12150 -16250  12150 10000))
-      (pin Round[A]Pad_1300_um 1 -11000 9000)
-      (pin Round[A]Pad_1300_um 2 -11000 7000)
-      (pin Round[A]Pad_1300_um 3 -11000 5000)
-      (pin Round[A]Pad_1300_um 4 -11000 3000)
-      (pin Round[A]Pad_1300_um 5 -11000 1000)
-      (pin Round[A]Pad_1300_um 6 -11000 -1000)
-      (pin Round[A]Pad_1300_um 7 -11000 -3000)
-      (pin Round[A]Pad_1300_um 8 -11000 -5000)
-      (pin Round[A]Pad_1300_um 9 -11000 -7000)
-      (pin Round[A]Pad_1300_um 10 -11000 -9000)
-      (pin Round[A]Pad_1300_um 11 11000 -9000)
-      (pin Round[A]Pad_1300_um 12 11000 -7000)
-      (pin Round[A]Pad_1300_um 13 11000 -5000)
-      (pin Round[A]Pad_1300_um 14 11000 -3000)
-      (pin Round[A]Pad_1300_um 15 11000 -1000)
-      (pin Round[A]Pad_1300_um 16 11000 1000)
-      (pin Round[A]Pad_1300_um 17 11000 3000)
-      (pin Round[A]Pad_1300_um 18 11000 5000)
-      (pin Round[A]Pad_1300_um 19 11000 7000)
-      (pin Round[A]Pad_1300_um 20 11000 9000)
-    )
     (image POLOLU_3V3
       (outline (path signal 381  -5080 1524  -5080 -11430))
       (outline (path signal 381  5130.8 1524  5080 -11430))
@@ -401,25 +376,6 @@
       (pin Rect[T]Pad_508x304.8_um 2 -1016 0)
       (pin Rect[T]Pad_508x304.8_um 4 1016 -635)
     )
-    (image R8_ISOLATED
-      (outline (path signal 381  -8890 -1905  -9525 -2540))
-      (outline (path signal 381  -9525 -2540  -8255 -2540))
-      (outline (path signal 381  -8255 -2540  -8890 -1905))
-      (outline (path signal 381  5080 1270  10160 1270))
-      (outline (path signal 381  10160 1270  10160 -1270))
-      (outline (path signal 381  10160 -1270  5080 -1270))
-      (outline (path signal 381  -10160 1270  -10160 -1270))
-      (outline (path signal 381  -10160 -1270  5080 -1270))
-      (outline (path signal 381  5080 1270  -10160 1270))
-      (pin Round[A]Pad_1524_um 6 8890 0)
-      (pin Round[A]Pad_1524_um 6@1 6350 0)
-      (pin Round[A]Pad_1524_um 1 -8890 0)
-      (pin Round[A]Pad_1524_um 2 -6350 0)
-      (pin Round[A]Pad_1524_um 3 -3810 0)
-      (pin Round[A]Pad_1524_um 4 -1270 0)
-      (pin Round[A]Pad_1524_um 5 1270 0)
-      (pin Round[A]Pad_1524_um 6@2 3810 0)
-    )
     (image JST_XH_5PIN
       (outline (path signal 381  -5080 -3810  -5715 -4445))
       (outline (path signal 381  -5715 -4445  -4445 -4445))
@@ -462,6 +418,53 @@
       (outline (path signal 304.8  -2540 635  -1905 1270))
       (pin Round[A]Pad_1397_um 1 -1270 0)
       (pin Round[A]Pad_1397_um 2 1270 0)
+    )
+    (image XBEE
+      (outline (path signal 150  3800 16250  12150 10000))
+      (outline (path signal 150  -12150 10000  -3800 16250))
+      (outline (path signal 150  -3800 16250  3800 16250))
+      (outline (path signal 150  -12150 -16250  -12150 10000))
+      (outline (path signal 150  -12150 -16250  12150 -16250))
+      (outline (path signal 150  12150 -16250  12150 10000))
+      (pin Round[A]Pad_1300_um 1 -11000 9000)
+      (pin Round[A]Pad_1300_um 2 -11000 7000)
+      (pin Round[A]Pad_1300_um 3 -11000 5000)
+      (pin Round[A]Pad_1300_um 4 -11000 3000)
+      (pin Round[A]Pad_1300_um 5 -11000 1000)
+      (pin Round[A]Pad_1300_um 6 -11000 -1000)
+      (pin Round[A]Pad_1300_um 7 -11000 -3000)
+      (pin Round[A]Pad_1300_um 8 -11000 -5000)
+      (pin Round[A]Pad_1300_um 9 -11000 -7000)
+      (pin Round[A]Pad_1300_um 10 -11000 -9000)
+      (pin Round[A]Pad_1300_um 11 11000 -9000)
+      (pin Round[A]Pad_1300_um 12 11000 -7000)
+      (pin Round[A]Pad_1300_um 13 11000 -5000)
+      (pin Round[A]Pad_1300_um 14 11000 -3000)
+      (pin Round[A]Pad_1300_um 15 11000 -1000)
+      (pin Round[A]Pad_1300_um 16 11000 1000)
+      (pin Round[A]Pad_1300_um 17 11000 3000)
+      (pin Round[A]Pad_1300_um 18 11000 5000)
+      (pin Round[A]Pad_1300_um 19 11000 7000)
+      (pin Round[A]Pad_1300_um 20 11000 9000)
+    )
+    (image R8_ISOLATED
+      (outline (path signal 381  -8890 -1905  -9525 -2540))
+      (outline (path signal 381  -9525 -2540  -8255 -2540))
+      (outline (path signal 381  -8255 -2540  -8890 -1905))
+      (outline (path signal 381  5080 1270  10160 1270))
+      (outline (path signal 381  10160 1270  10160 -1270))
+      (outline (path signal 381  10160 -1270  5080 -1270))
+      (outline (path signal 381  -10160 1270  -10160 -1270))
+      (outline (path signal 381  -10160 -1270  5080 -1270))
+      (outline (path signal 381  5080 1270  -10160 1270))
+      (pin Round[A]Pad_1524_um 8 8890 0)
+      (pin Round[A]Pad_1524_um 7 6350 0)
+      (pin Round[A]Pad_1524_um 1 -8890 0)
+      (pin Round[A]Pad_1524_um 2 -6350 0)
+      (pin Round[A]Pad_1524_um 3 -3810 0)
+      (pin Round[A]Pad_1524_um 4 -1270 0)
+      (pin Round[A]Pad_1524_um 5 1270 0)
+      (pin Round[A]Pad_1524_um 6 3810 0)
     )
     (padstack Round[A]Pad_1250_um
       (shape (circle F.Cu 1250))
@@ -560,7 +563,7 @@
   )
   (network
     (net /3V3
-      (pins U2-1 P4-1 P4-3 P3-1)
+      (pins P4-1 P4-3 P11-1 U2-1)
     )
     (net /3V3_REG
       (pins U5-4 P4-4)
@@ -569,7 +572,7 @@
       (pins P4-2 S1-1 U6-16 U8-5 U7-1)
     )
     (net /5V
-      (pins U5-2 P5-1 U4-3 S2-1 U1-8 U3-7 U6-33 P2-1 P1-1 R25-1 R26-1 P10-3 P9-1)
+      (pins U5-2 P5-1 U4-3 S2-1 U1-8 U3-7 U6-33 P2-1 P1-1 R25-1 R26-1 P10-3 P9-1 P11-3)
     )
     (net /A14,DAC
       (pins P8-1 U6-19)
@@ -626,13 +629,13 @@
       (pins S1-3 U7-4 U7-5)
     )
     (net /JOY_CENT
-      (pins S1-6)
+      (pins S1-6 U7-8)
     )
     (net /JOY_COMM
       (pins S1-4 U6-38 R28-1 R27-2)
     )
     (net /JOY_D
-      (pins S1-5 U7-6 U7-6@1 U7-6@2)
+      (pins S1-5 U7-7 U7-6)
     )
     (net /LCD_CS
       (pins U3-5 U6-5)
@@ -653,10 +656,10 @@
       (pins U4-4 U6-9)
     )
     (net /MISO
-      (pins P3-7 U6-14 P9-3)
+      (pins P3-7 U6-14 P9-3 U2-4)
     )
     (net /MOSI
-      (pins U3-1 P3-8 U6-13 P9-4)
+      (pins U3-1 P3-8 U6-13 P9-4 U2-11)
     )
     (net /PM_CS
       (pins U6-36 P9-5)
@@ -671,13 +674,13 @@
       (pins U6-43 R26-2 P10-2)
     )
     (net /SCK
-      (pins U3-2 P3-9 U6-20 P9-2)
+      (pins U3-2 P3-9 U6-20 P9-2 U2-18)
     )
     (net /SCL
-      (pins P3-5 U6-41)
+      (pins P3-5 U6-41 R29-2)
     )
     (net /SDA
-      (pins P3-6 U6-42)
+      (pins P3-6 U6-42 R30-2)
     )
     (net /TMP1
       (pins U6-47 P1-9)
@@ -685,14 +688,14 @@
     (net /TMP2
       (pins U6-34 P2-9)
     )
-    (net /UEXT_CS
-      (pins P3-10 U6-45)
-    )
     (net /UEXT_RX
       (pins P3-4 U6-39)
     )
     (net /UEXT_TX
       (pins P3-3 U6-40)
+    )
+    (net /UEXT_VOUT
+      (pins P3-1 R29-1 R30-1 P11-2 P11-4)
     )
     (net /VBUS
       (pins P5-2 U6-51)
@@ -734,32 +737,35 @@
       (pins U6-49 R21-2 R22-1)
     )
     (net /XBEE_DIN
-      (pins U2-3 U6-12)
+      (pins U6-12 U2-3)
     )
     (net /XBEE_DOUT
-      (pins U2-2 U6-11)
+      (pins U6-11 U2-2)
+    )
+    (net /XBEE_UEXT_CS
+      (pins P3-10 U6-45 U2-17)
     )
     (net GND
-      (pins U2-10 U5-3 P7-2 U4-1 U4-2 U1-7 U3-8 P6-2 P8-2 P3-2 U6-1 U6-17 U6-32 R2-2
-        R4-2 R6-2 R8-2 R10-2 R12-2 R14-2 R16-2 R18-2 R20-2 R22-2 R24-2 P2-2 P2-10
-        P1-2 P1-10 U8-3 R28-2 P10-1 P9-6 C1-2)
+      (pins U5-3 P7-2 U4-1 U4-2 U1-7 U3-8 P6-2 P8-2 P3-2 U6-1 U6-17 U6-32 R2-2 R4-2
+        R6-2 R8-2 R10-2 R12-2 R14-2 R16-2 R18-2 R20-2 R22-2 R24-2 P2-2 P2-10 P1-2
+        P1-10 U8-3 R28-2 P10-1 P9-6 C1-2 U2-10)
     )
-    (net "N-0000012"
+    (net "N-0000011"
       (pins U6-37 U8-4)
     )
-    (net "N-000002"
-      (pins S2-2 P6-1)
-    )
-    (net "N-0000036"
+    (net "N-0000031"
       (pins U8-2 R27-1 C1-1)
+    )
+    (net "N-0000044"
+      (pins S2-2 P6-1)
     )
     (class kicad_default "" /A14,DAC /AUX1 /AUX1_DIV /AUX2 /AUX2_DIV /AUX3
       /AUX3_DIV /AUX4 /AUX4_DIV /AUX5 /AUX5_DIV /AUX6 /AUX6_DIV /GPS_EN /GPS_RX
       /GPS_TX /JOY_B /JOY_C /JOY_CENT /JOY_COMM /JOY_D /LCD_CS /LCD_DC /LCD_RST
       /LOG_GRN /LOG_RXI /LOG_TXO /MISO /MOSI /PM_CS /PROG /PWM1 /PWM2 /SCK
-      /SCL /SDA /TMP1 /TMP2 /UEXT_CS /UEXT_RX /UEXT_TX /WRK1 /WRK1_DIV /WRK2
+      /SCL /SDA /TMP1 /TMP2 /UEXT_RX /UEXT_TX /UEXT_VOUT /WRK1 /WRK1_DIV /WRK2
       /WRK2_DIV /WRK3 /WRK3_DIV /WRK4 /WRK4_DIV /WRK5 /WRK5_DIV /WRK6 /WRK6_DIV
-      /XBEE_DIN /XBEE_DOUT "N-0000012" "N-000002" "N-0000036"
+      /XBEE_DIN /XBEE_DOUT /XBEE_UEXT_CS "N-0000011" "N-0000031" "N-0000044"
       (circuit
         (use_via Via[0-1]_889:635_um)
       )
