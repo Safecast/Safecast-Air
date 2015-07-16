@@ -7,7 +7,7 @@ QTY   Position          Description                                    Vendor   
 4      P5,7,8           Breakaway header, male pins, 36 pos             Digikey                 3M9457-ND
 1      P6               Screw terminal block, 2-pos                     Digikey                 ED2635-ND
 1      P9               6-pin JST XH connector                          Digikey                 455-2271-ND
-1      P10 	        5-pin JST XH connector                          Digikey                 455-2270-ND         
+1      P10              5-pin JST XH connector                          Digikey                 455-2270-ND         
 1      S1               Switch, 4-direction with center push            Online components       SKQUCAA010
 1      S2               Slide switch                                    Digikey                 401-2000-ND
 1      U1               Adafruit Ultimate GPS Breakout                  Adafruit                746
