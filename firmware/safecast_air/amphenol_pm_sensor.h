@@ -1,11 +1,11 @@
 #ifndef AMPHENOL_PM_SENSOR_H
 #define AMPHENOL_PM_SENSOR_H
-#include "pm_sensor_param.h"
+#include "amphenol_pm_sensor_param.h"
 #include "occupancy_accum.h"
 #include <Arduino.h>
 
 
-class PMSensorDev
+class AmphenolPMSensorDev
 {
     // Amphenol Smart Dust Sensor SM-PWM-01A 
 
@@ -14,11 +14,11 @@ class PMSensorDev
         static const unsigned long TimerPeriodUs = 100000; 
         static const uint8_t TimerPriority = 200;
 
-        PMSensorDev();
-        PMSensorDev(PMSensorParam param);
+        AmphenolPMSensorDev();
+        AmphenolPMSensorDev(AmphenolPMSensorParam param);
 
-        void setParam(PMSensorParam param);
-        PMSensorParam param() const;
+        void setParam(AmphenolPMSensorParam param);
+        AmphenolPMSensorParam param() const;
 
         void initialize();
         void start();
@@ -37,7 +37,7 @@ class PMSensorDev
 
     protected:
 
-        PMSensorParam param_;
+        AmphenolPMSensorParam param_;
         OccupancyAccum particleAccum_[NumParticleType];
         IntervalTimer timer_;
 
@@ -50,12 +50,12 @@ class PMSensorDev
 };
 
 
-extern PMSensorDev PMSensor;
+extern AmphenolPMSensorDev AmphenolPMSensor;
 
 template<ParticleType particleType>
-void PMSensorDev::onPinChange()
+void AmphenolPMSensorDev::onPinChange()
 {
-    PMSensor.updateParticleAccum(particleType);
+    AmphenolPMSensor.updateParticleAccum(particleType);
 }
 
 

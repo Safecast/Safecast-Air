@@ -3,7 +3,7 @@
 
 enum ParticleType {SmallParticle=0, LargeParticle, NumParticleType};
 
-struct PMSensorParam
+struct AmphenolPMSensorParam
 {
     int smallParticlePin;
     int largeParticlePin;

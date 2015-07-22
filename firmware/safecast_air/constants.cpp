@@ -1,7 +1,6 @@
 #include "constants.h" 
 #include <Arduino.h>
 
-
 namespace constants
 {
 
@@ -36,12 +35,19 @@ namespace constants
         {A12, 0.001, 0.297, 20.0, 0.1, 3}
     };
 
-    // PM sensor parameters
+    // Amphenol PM sensor parameters
     // --------------------------------------------------------------------------------------------
 
-    const PMSensorParam DefaultPMSensorParam = 
+    const AmphenolPMSensorParam DefaultAmphenolPMSensorParam = 
     {  // smallParticlePin, largeParticlePin, sensitivity,  sampleWindowDt (ms),
         32, 33, 1.5, 60000
+    };
+
+    // Optical particle coutner OPCN2 parameters
+    // --------------------------------------------------------------------------------------------
+    const OPCN2Param DefaultOPCN2Param = 
+    {   // spiClock , spiBitOrder, spiDataMode, spiCsPin
+        750000, MSBFIRST, SPI_MODE1, 24                
     };
 }
 
