@@ -10,7 +10,7 @@ OPCN2::OPCN2(OPCN2Param param)
 
 void OPCN2::initialize()
 {
-    delay(STARTUP_DELAY_MS); // Startup delay ~2s seems to be required
+    delay(StartupDelayMs); // Startup delay ~2s seems to be required
     pinMode(MOSI,OUTPUT);
     pinMode(SCK,OUTPUT);
     pinMode(MISO,INPUT);
@@ -18,7 +18,7 @@ void OPCN2::initialize()
     digitalWrite(param_.spiCsPin, HIGH);
     spiSettings_ = SPISettings(param_.spiClock, param_.spiBitOrder, param_.spiDataMode);
     SPI.begin();
-    delay(STARTUP_DELAY_MS); // Startup delay ~1s seems to be required
+    delay(StartupDelayMs); // Startup delay ~1s seems to be required
 }
 
 bool OPCN2::checkStatus()
@@ -26,10 +26,10 @@ bool OPCN2::checkStatus()
     bool ok = false;
     SPI.beginTransaction(spiSettings_);
     digitalWrite(param_.spiCsPin,LOW);
-    uint8_t rsp = SPI.transfer(CMD_CHECK_STATUS); // send cmd byte
+    uint8_t rsp = SPI.transfer(CmdCheckStatus); // send cmd byte
     digitalWrite(param_.spiCsPin,HIGH);
     SPI.endTransaction();
-    delay(SPI_CMD_DELAY_MS);
+    delay(SPICmdDelayMs);
     if (rsp == 0xf3)
     {
         ok = true;
@@ -42,12 +42,12 @@ void OPCN2::setFanAndLaserOn(bool *ok)
 {
     SPI.beginTransaction(spiSettings_);
     digitalWrite(param_.spiCsPin,LOW);
-    uint8_t rsp0 = SPI.transfer(CMD_LASER_FAN_ON_OFF); // send cmd byte
-    delay(SPI_CMD_DELAY_MS);
+    uint8_t rsp0 = SPI.transfer(CmdLaserFanOnOff); // send cmd byte
+    delay(SPICmdDelayMs);
     uint8_t rsp1 = SPI.transfer(0x00); // set laser and fan on
     digitalWrite(param_.spiCsPin,HIGH);
     SPI.endTransaction();
-    delay(SPI_CMD_DELAY_MS);
+    delay(SPICmdDelayMs);
     if (ok != nullptr)
     {
         if ((rsp0 == 0xf3) && (rsp1 == 0x03))
@@ -66,12 +66,12 @@ void OPCN2::setFanAndLaserOff(bool *ok)
 {
     SPI.beginTransaction(spiSettings_);
     digitalWrite(param_.spiCsPin,LOW);
-    uint8_t rsp0 = SPI.transfer(CMD_LASER_FAN_ON_OFF); // send cmd byte
-    delay(SPI_CMD_DELAY_MS);
+    uint8_t rsp0 = SPI.transfer(CmdLaserFanOnOff); // send cmd byte
+    delay(SPICmdDelayMs);
     uint8_t rsp1 = SPI.transfer(0x01); // set laser and fan off
     digitalWrite(param_.spiCsPin,HIGH);
     SPI.endTransaction();
-    delay(SPI_CMD_DELAY_MS);
+    delay(SPICmdDelayMs);
     if (ok != nullptr)
     {
         if ((rsp0 == 0xf3) && (rsp1 == 0x03))
@@ -88,32 +88,32 @@ void OPCN2::setFanAndLaserOff(bool *ok)
 
 String OPCN2::getInfoString(bool *ok)
 {
-    uint8_t rsp[INFO_MESSAGE_SIZE];
+    uint8_t rsp[InfoMessageSize];
 
     SPI.beginTransaction(spiSettings_);
     digitalWrite(param_.spiCsPin,LOW);
-    for (int i=0; i<INFO_MESSAGE_SIZE; i++)
+    for (int i=0; i<InfoMessageSize; i++)
     {
-        rsp[i] = SPI.transfer(CMD_READ_INFO_STRING);
+        rsp[i] = SPI.transfer(CmdReadInfoString);
         if (i==0)
         {
-            delay(SPI_CMD_DELAY_MS);
+            delay(SPICmdDelayMs);
         }
         else
         {
-            delayMicroseconds(SPI_VAL_DELAY_US);
+            delayMicroseconds(SPIValDelayUs);
         }
     }
     digitalWrite(param_.spiCsPin,HIGH);
     SPI.endTransaction();
-    delay(SPI_CMD_DELAY_MS);
+    delay(SPICmdDelayMs);
 
-    char infoChar[INFO_STRING_LENGTH+1];
-    for (int i=0; i<INFO_STRING_LENGTH;i++)
+    char infoChar[InfoStringLength+1];
+    for (int i=0; i<InfoStringLength;i++)
     {
         infoChar[i] = char(rsp[i+2]);
     }
-    infoChar[INFO_STRING_LENGTH] = '\0';
+    infoChar[InfoStringLength] = '\0';
     String infoString(infoChar);
 
     if (ok != nullptr)
@@ -132,33 +132,28 @@ String OPCN2::getInfoString(bool *ok)
 
 OPCN2Data OPCN2::getHistogramData(bool *ok)
 {
-    uint8_t rsp[HISTOGRAM_MESSAGE_SIZE];
+    uint8_t rsp[HistogramMessageSize];
 
     SPI.beginTransaction(spiSettings_);
     digitalWrite(param_.spiCsPin,LOW);
-    for (int i=0; i<HISTOGRAM_MESSAGE_SIZE; i++)
+    for (int i=0; i<HistogramMessageSize; i++)
     {
-        rsp[i] = SPI.transfer(CMD_READ_HISTOGRAM_DATA);
+        rsp[i] = SPI.transfer(CmdReadHistogramData);
         if (i==0)
         {
-            delay(SPI_CMD_DELAY_MS);
+            delay(SPICmdDelayMs);
         }
         else
         {
-            delayMicroseconds(SPI_VAL_DELAY_US);
+            delayMicroseconds(SPIValDelayUs);
         }
         
     }
     digitalWrite(param_.spiCsPin,HIGH);
     SPI.endTransaction();
-    delay(SPI_CMD_DELAY_MS);
+    delay(SPICmdDelayMs);
 
-    OPCN2Data data = OPCN2Data(rsp);
-    for (int i=0; i<HISTOGRAM_MESSAGE_SIZE; i++)
-    {
-        Serial << "i: " << i << ", " << rsp[i] << endl;
-    }
-    return data;
+    return OPCN2Data(rsp);
 }
 
 OPCN2 ParticleCounterOPCN2 = OPCN2(constants::DefaultOPCN2Param);

@@ -7,6 +7,9 @@
 
 void setup()
 {
+    // this is the magic trick for snprintf to support float
+      asm(".global _snprintf_float");
+
     //GasSensors.initialize();
     //AmphenolPMSensor.initialize();
 
@@ -31,6 +34,10 @@ void loop()
 {
     static unsigned long loopCnt = 0;
     OPCN2Data cntrData = ParticleCounterOPCN2.getHistogramData();
+    Serial << "PM1:   " << cntrData.PM1   << endl;
+    Serial << "PM2.5: " << cntrData.PM2_5 << endl; 
+    Serial << "PM10:  " << cntrData.PM10  << endl;
+    Serial << endl;
 
     //String infoString = ParticleCounterOPCN2.getInfoString();
     //Serial << infoString << endl;
@@ -57,7 +64,7 @@ void loop()
 
     loopCnt++;
     //delay(300);
-    delay(1000);
+    delay(15000);
 }
 
 

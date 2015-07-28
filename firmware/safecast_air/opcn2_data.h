@@ -4,10 +4,11 @@
 
 class OPCN2Data
 {
-    static const int NUM_HISTOGRAM_BINS = 16;
+    static const int NumHistogramBins = 16;
+    static const int ScratchArraySize = 50;
 
     public:
-        uint16_t binCount[NUM_HISTOGRAM_BINS];
+        uint16_t binCount[NumHistogramBins];
         uint8_t bin1_mtof;
         uint8_t bin3_mtof;
         uint8_t bin5_mtof;
@@ -15,7 +16,7 @@ class OPCN2Data
         float flowRate;
         uint32_t temperature;
         uint32_t pressure;
-        uint32_t samplingPeriod;
+        float  samplePeriod;
         uint16_t checksum;
         float PM1;
         float PM2_5;
@@ -24,6 +25,7 @@ class OPCN2Data
         OPCN2Data();
         OPCN2Data(uint8_t spiData[]);
         void fromSPIData(uint8_t spiData[]);
+        String toString();
 };
 
 #endif
