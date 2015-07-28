@@ -39,7 +39,7 @@ void OPCN2Data::fromSPIData(uint8_t spiData[])
         for (int j=0; j<2; j++)
         {
             pos++;
-            binCount[i] += (spiData[pos] << j);
+            binCount[i] |=  (spiData[pos] << 8*j);
         }
     }
 
@@ -61,7 +61,7 @@ void OPCN2Data::fromSPIData(uint8_t spiData[])
     for (int i=0; i<4; i++)
     {
         pos++;
-        flowRateUint32 += (spiData[pos] << i);
+        flowRateUint32 |= (spiData[pos] << 8*i);
     }
     flowRate = float(flowRateUint32);
 
@@ -70,7 +70,7 @@ void OPCN2Data::fromSPIData(uint8_t spiData[])
     for (int i=0; i<4; i++)
     {
         pos++;
-        tempPresUint32 += (spiData[pos] << i);
+        tempPresUint32 |= (spiData[pos] << 8*i);
     }
     if (tempPresUint32 < 1000)
     {
