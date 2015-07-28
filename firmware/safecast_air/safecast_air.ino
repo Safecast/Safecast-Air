@@ -14,24 +14,26 @@ void setup()
     //AmphenolPMSensor.start();
 
 
-    // Note, startup delays seem to be required or you will only get garbage 
-    // from the OPC-N2
-    delay(2000);
     Serial.begin(115200);
 
     ParticleCounterOPCN2.initialize();
-    delay(2000);
-    interrupts();
+
     bool status = ParticleCounterOPCN2.checkStatus();
-    ParticleCounterOPCN2.setFanAndLaserOn();
+    if (status)
+    {
+        bool ok;
+        ParticleCounterOPCN2.setFanAndLaserOn(&ok);
+        Serial << "setFanAndLaserOn ok = " << ok << endl;
+    }
 }
 
 void loop()
 {
     static unsigned long loopCnt = 0;
-    //ParticleCounterOPCN2.setFanAndLaserOn();
-    //ParticleCounterOPCN2.getInfoString();
-    ParticleCounterOPCN2.getHistogram();
+    OPCN2Data cntrData = ParticleCounterOPCN2.getHistogramData();
+
+    //String infoString = ParticleCounterOPCN2.getInfoString();
+    //Serial << infoString << endl;
 
     //Serial << endl << "Gas Sensors" << endl;
     //for (auto &sensor : GasSensors)
@@ -54,8 +56,8 @@ void loop()
     //}
 
     loopCnt++;
-    delay(30000);
-    //delay(1000);
+    //delay(300);
+    delay(1000);
 }
 
 

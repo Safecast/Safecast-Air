@@ -1,6 +1,7 @@
 #include "opcn2.h"
 #include <Streaming.h>
 #include "constants.h"
+#include "fixed_vector.h"
 
 OPCN2::OPCN2(OPCN2Param param)
 {
@@ -9,6 +10,7 @@ OPCN2::OPCN2(OPCN2Param param)
 
 void OPCN2::initialize()
 {
+    delay(STARTUP_DELAY_MS); // Startup delay ~2s seems to be required
     pinMode(MOSI,OUTPUT);
     pinMode(SCK,OUTPUT);
     pinMode(MISO,INPUT);
@@ -16,132 +18,147 @@ void OPCN2::initialize()
     digitalWrite(param_.spiCsPin, HIGH);
     spiSettings_ = SPISettings(param_.spiClock, param_.spiBitOrder, param_.spiDataMode);
     SPI.begin();
+    delay(STARTUP_DELAY_MS); // Startup delay ~1s seems to be required
 }
 
 bool OPCN2::checkStatus()
 {
+    bool ok = false;
     SPI.beginTransaction(spiSettings_);
     digitalWrite(param_.spiCsPin,LOW);
-    delay(10);
-    uint16_t cnt = 0;
-    bool ok = false;
-    while (cnt < 100)
-    {
-        uint8_t rsp = SPI.transfer(0xcf);
-        if (rsp == 0xf3)
-        {
-            ok = true;
-            break;
-        }
-        delay(50);
-        cnt++;
-    }
+    uint8_t rsp = SPI.transfer(CMD_CHECK_STATUS); // send cmd byte
     digitalWrite(param_.spiCsPin,HIGH);
     SPI.endTransaction();
+    delay(SPI_CMD_DELAY_MS);
+    if (rsp == 0xf3)
+    {
+        ok = true;
+    }
     return ok;
 }
 
-void OPCN2::setFanAndLaserOn()
+
+void OPCN2::setFanAndLaserOn(bool *ok)
 {
     SPI.beginTransaction(spiSettings_);
     digitalWrite(param_.spiCsPin,LOW);
-    delay(10);
-    bool done = false;
-    int cnt = 0;
-    while (!done)
-    {
-        uint8_t rval0 = SPI.transfer(0x03);
-        delay(10);
-        uint8_t rval1 = SPI.transfer(0x00);
-        if (rval1 == 0x03)
-        {
-            done = true;
-        }
-        Serial << "on: " << cnt << ", " << rval0 << ", "  << rval1  << endl;
-        delay(10);
-        cnt++;
-    }
-    Serial << endl;
+    uint8_t rsp0 = SPI.transfer(CMD_LASER_FAN_ON_OFF); // send cmd byte
+    delay(SPI_CMD_DELAY_MS);
+    uint8_t rsp1 = SPI.transfer(0x00); // set laser and fan on
     digitalWrite(param_.spiCsPin,HIGH);
     SPI.endTransaction();
-}
-
-void OPCN2::setFanAndLaserOff()
-{
-    SPI.beginTransaction(spiSettings_);
-    digitalWrite(param_.spiCsPin,LOW);
-    delay(10);
-    bool done = false;
-    int cnt = 0;
-    while (!done)
+    delay(SPI_CMD_DELAY_MS);
+    if (ok != nullptr)
     {
-        uint8_t rval0 = SPI.transfer(0x03);
-        delay(10);
-        uint8_t rval1 = SPI.transfer(0x01);
-        if (rval1 == 0x03)
+        if ((rsp0 == 0xf3) && (rsp1 == 0x03))
         {
-            done = true;
-        }
-        Serial << "off: " << cnt << ", " << rval0 << ", "  << rval1 << endl;
-        delay(10);
-        cnt++;
-    }
-    Serial << endl;
-    digitalWrite(param_.spiCsPin,HIGH);
-    SPI.endTransaction();
-}
-
-void OPCN2::getInfoString()
-{
-    SPI.beginTransaction(spiSettings_);
-    digitalWrite(param_.spiCsPin,LOW);
-    delay(10);
-    for (int i=0; i<61; i++)
-    {
-        uint8_t rval;
-        if (i==0)
-        {
-            rval = SPI.transfer(0x3f);
-            delay(30);
-            Serial << "i: " << i << ", " << _HEX(rval) << endl;
+            *ok = true;
         }
         else
         {
-            rval = SPI.transfer(0x3f);
-            delayMicroseconds(10);
-            Serial << "i: " << i << ", " << char(rval) << endl;
+            *ok = false;
         }
     }
-
-    digitalWrite(param_.spiCsPin,HIGH);
-    SPI.endTransaction();
 }
 
-void OPCN2::getHistogram()
+
+void OPCN2::setFanAndLaserOff(bool *ok)
 {
     SPI.beginTransaction(spiSettings_);
     digitalWrite(param_.spiCsPin,LOW);
-    delay(10);
-    for (int i=0; i<63; i++)
+    uint8_t rsp0 = SPI.transfer(CMD_LASER_FAN_ON_OFF); // send cmd byte
+    delay(SPI_CMD_DELAY_MS);
+    uint8_t rsp1 = SPI.transfer(0x01); // set laser and fan off
+    digitalWrite(param_.spiCsPin,HIGH);
+    SPI.endTransaction();
+    delay(SPI_CMD_DELAY_MS);
+    if (ok != nullptr)
     {
-        uint8_t rval;
-        if (i==0)
+        if ((rsp0 == 0xf3) && (rsp1 == 0x03))
         {
-            rval = SPI.transfer(0x30);
-            delay(30);
+            *ok = true;
         }
         else
         {
-            rval = SPI.transfer(0x30);
-            delayMicroseconds(10);
+            *ok = false;
         }
-        Serial << "i: " << i << ", " << _HEX(rval) << endl;
     }
+}
 
+
+String OPCN2::getInfoString(bool *ok)
+{
+    uint8_t rsp[INFO_MESSAGE_SIZE];
+
+    SPI.beginTransaction(spiSettings_);
+    digitalWrite(param_.spiCsPin,LOW);
+    for (int i=0; i<INFO_MESSAGE_SIZE; i++)
+    {
+        rsp[i] = SPI.transfer(CMD_READ_INFO_STRING);
+        if (i==0)
+        {
+            delay(SPI_CMD_DELAY_MS);
+        }
+        else
+        {
+            delayMicroseconds(SPI_VAL_DELAY_US);
+        }
+    }
     digitalWrite(param_.spiCsPin,HIGH);
     SPI.endTransaction();
+    delay(SPI_CMD_DELAY_MS);
 
-    Serial << endl;
+    char infoChar[INFO_STRING_LENGTH+1];
+    for (int i=0; i<INFO_STRING_LENGTH;i++)
+    {
+        infoChar[i] = char(rsp[i+2]);
+    }
+    infoChar[INFO_STRING_LENGTH] = '\0';
+    String infoString(infoChar);
+
+    if (ok != nullptr)
+    {
+        if (rsp[0] == 0xf3)
+        {
+            *ok = true;
+        }
+        else
+        {
+            *ok = false;
+        }
+    }
+    return infoString;
+}
+
+OPCN2Data OPCN2::getHistogramData(bool *ok)
+{
+    uint8_t rsp[HISTOGRAM_MESSAGE_SIZE];
+
+    SPI.beginTransaction(spiSettings_);
+    digitalWrite(param_.spiCsPin,LOW);
+    for (int i=0; i<HISTOGRAM_MESSAGE_SIZE; i++)
+    {
+        rsp[i] = SPI.transfer(CMD_READ_HISTOGRAM_DATA);
+        if (i==0)
+        {
+            delay(SPI_CMD_DELAY_MS);
+        }
+        else
+        {
+            delayMicroseconds(SPI_VAL_DELAY_US);
+        }
+        
+    }
+    digitalWrite(param_.spiCsPin,HIGH);
+    SPI.endTransaction();
+    delay(SPI_CMD_DELAY_MS);
+
+    OPCN2Data data = OPCN2Data(rsp);
+    for (int i=0; i<HISTOGRAM_MESSAGE_SIZE; i++)
+    {
+        Serial << "i: " << i << ", " << rsp[i] << endl;
+    }
+    return data;
 }
 
 OPCN2 ParticleCounterOPCN2 = OPCN2(constants::DefaultOPCN2Param);
