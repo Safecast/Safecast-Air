@@ -36,6 +36,9 @@ class OPCN2
         SPISettings spiSettings_;
 };
 
-extern OPCN2 ParticleCounterOPCN2;
+//extern OPCN2 ParticleCounterOPCN2;
+//
+extern OPCN2 ParticleCounter1;
+extern OPCN2 ParticleCounter2;
 
 #endif 

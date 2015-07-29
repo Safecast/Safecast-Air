@@ -49,5 +49,10 @@ namespace constants
     {   // spiClock , spiBitOrder, spiDataMode, spiCsPin
         750000, MSBFIRST, SPI_MODE1, 24                
     };
+
+    const OPCN2Param DefaultOPCN2Param2 = 
+    {   // spiClock , spiBitOrder, spiDataMode, spiCsPin
+        750000, MSBFIRST, SPI_MODE1, 28                
+    };
 }
 

@@ -8,6 +8,7 @@ class OPCN2Data
     static const int ScratchArraySize = 50;
 
     public:
+
         uint16_t binCount[NumHistogramBins];
         uint8_t bin1_mtof;
         uint8_t bin3_mtof;
@@ -15,7 +16,9 @@ class OPCN2Data
         uint8_t bin7_mtof;
         float flowRate;
         uint32_t temperature;
+        bool haveTemperature;
         uint32_t pressure;
+        bool havePressure;
         float  samplePeriod;
         uint16_t checksum;
         float PM1;

@@ -17,6 +17,7 @@ namespace constants
     extern const TmpSensorParam DefaultTmpSensorParam[];
     extern const AmphenolPMSensorParam DefaultAmphenolPMSensorParam;
     extern const OPCN2Param DefaultOPCN2Param;
+    extern const OPCN2Param DefaultOPCN2Param2;
 }
 
 #endif

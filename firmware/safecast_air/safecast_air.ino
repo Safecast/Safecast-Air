@@ -1,46 +1,140 @@
 #include <Streaming.h>
 #include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
 #include "gas_sensor.h"
-#include "amphenol_pm_sensor.h"
 #include "opcn2.h"
 
+const int OLED_DC = 5;
+const int OLED_CS = 3;
+const int OLED_RESET = 4;
+const int DispBufSize = 50;
+const unsigned long sampleInterval = 60000;
+
+Adafruit_SSD1306 display(OLED_DC, OLED_RESET, OLED_CS);
+
+SPISettings dispSPISettings(4000000,MSBFIRST,SPI_MODE0);
 
 void setup()
 {
+
+    char dispBuf[DispBufSize];
+
     // this is the magic trick for snprintf to support float
-      asm(".global _snprintf_float");
+    asm(".global _snprintf_float");
+
+    Serial.begin(115200);
+
+    // Setup display
+    display.begin(SSD1306_SWITCHCAPVCC);
+    display.clearDisplay();   
+    display.display();
+    display.setTextSize(1);
+    display.setTextColor(WHITE);
+
+    // Setup openlog
+    Serial3.begin(9600);
+
+    // Display Initialization message
+    display.clearDisplay();
+    display.setCursor(0,0);
+    display.println("Initializing");
+    display.println();
+    display.display();
+
+    ParticleCounter1.initialize();
+    ParticleCounter2.initialize();
+
+    bool status1 = ParticleCounter1.checkStatus();
+    bool status2 = ParticleCounter2.checkStatus();
+    bool ok1, ok2;
+    ParticleCounter1.setFanAndLaserOn(&ok1);
+    ParticleCounter2.setFanAndLaserOn(&ok2);
+
+    SPI.beginTransaction(dispSPISettings);
+    display.clearDisplay();
+    display.setCursor(0,0);
+    snprintf(dispBuf, DispBufSize, "st: %d %d", status1, status2);
+    display.println(dispBuf);
+    display.println();
+    snprintf(dispBuf, DispBufSize, "ok: %d %d", ok1, ok2);
+    display.println(dispBuf);
+    display.display();
+    SPI.endTransaction();
+
+    delay(1000);
+
 
     //GasSensors.initialize();
     //AmphenolPMSensor.initialize();
 
     //GasSensors.start();
     //AmphenolPMSensor.start();
-
-
-    Serial.begin(115200);
-
-    ParticleCounterOPCN2.initialize();
-
-    bool status = ParticleCounterOPCN2.checkStatus();
-    if (status)
-    {
-        bool ok;
-        ParticleCounterOPCN2.setFanAndLaserOn(&ok);
-        Serial << "setFanAndLaserOn ok = " << ok << endl;
-    }
 }
 
 void loop()
 {
-    static unsigned long loopCnt = 0;
-    OPCN2Data cntrData = ParticleCounterOPCN2.getHistogramData();
-    Serial << "PM1:   " << cntrData.PM1   << endl;
-    Serial << "PM2.5: " << cntrData.PM2_5 << endl; 
-    Serial << "PM10:  " << cntrData.PM10  << endl;
-    Serial << endl;
+    static int cnt = 0;
+    char dispBuf[DispBufSize];
 
-    //String infoString = ParticleCounterOPCN2.getInfoString();
-    //Serial << infoString << endl;
+    OPCN2Data cntrData1 = ParticleCounter1.getHistogramData();
+    OPCN2Data cntrData2 = ParticleCounter2.getHistogramData();
+
+    if (cnt > 0)
+    {
+
+        //Serial << "PM1:   " << cntrData1.PM1   << ", " << cntrData2.PM1   << endl;
+        //Serial << "PM2.5: " << cntrData1.PM2_5 << ", " << cntrData2.PM2_5 << endl; 
+        //Serial << "PM10:  " << cntrData1.PM10  << ", " << cntrData2.PM10  << endl;
+        //Serial << endl;
+
+        // Write data to LCD
+        SPI.beginTransaction(dispSPISettings);
+        display.clearDisplay();
+        display.setCursor(0,0);
+        snprintf(dispBuf, DispBufSize, "cnt    %d", cnt);
+        display.println(dispBuf);
+        display.println();
+        snprintf(dispBuf, DispBufSize, "PM1    %3.2f    %3.2f", cntrData1.PM1, cntrData2.PM1);
+        display.println(dispBuf);
+        display.println();
+        snprintf(dispBuf, DispBufSize, "PM2.5  %3.2f    %3.2f", cntrData1.PM2_5, cntrData2.PM2_5);
+        display.println(dispBuf);
+        display.println();
+        snprintf(dispBuf, DispBufSize, "PM10   %3.2f    %3.2f", cntrData1.PM10, cntrData2.PM10);
+        display.println(dispBuf);
+        display.println();
+        display.display();
+        SPI.endTransaction();
+
+        // Write data to openlog
+        float time = float(cnt)*(float(sampleInterval)*0.001);
+        snprintf(dispBuf, DispBufSize, "%f", time); 
+        Serial3.print(dispBuf);
+        snprintf(dispBuf, DispBufSize, " %f %f", cntrData1.PM1, cntrData2.PM1); 
+        Serial3.print(dispBuf);
+        snprintf(dispBuf, DispBufSize, " %f %f", cntrData1.PM2_5, cntrData2.PM2_5);
+        Serial3.print(dispBuf);
+        snprintf(dispBuf, DispBufSize, " %f %f", cntrData1.PM10, cntrData2.PM10);
+        Serial3.print(dispBuf);
+        Serial3.println();
+    }
+    else
+    {
+        SPI.beginTransaction(dispSPISettings);
+        display.clearDisplay();
+        display.setCursor(0,0);
+        display.println("First reading ...");
+        display.display();
+        SPI.endTransaction();
+    }
+
+
+
+    delay(sampleInterval);
+    cnt++;
+
 
     //Serial << endl << "Gas Sensors" << endl;
     //for (auto &sensor : GasSensors)
@@ -61,11 +155,10 @@ void loop()
     //    Serial << "  (large) pulse Cnt:  " <<  AmphenolPMSensor.pulseCount(LargeParticle) << endl;
     //    Serial << endl << endl;
     //}
-
-    loopCnt++;
     //delay(300);
-    delay(15000);
 }
+
+
 
 
 

@@ -156,4 +156,7 @@ OPCN2Data OPCN2::getHistogramData(bool *ok)
     return OPCN2Data(rsp);
 }
 
-OPCN2 ParticleCounterOPCN2 = OPCN2(constants::DefaultOPCN2Param);
+//OPCN2 ParticleCounterOPCN2 = OPCN2(constants::DefaultOPCN2Param);
+//OPCN2 ParticleCounterOPCN2 = OPCN2(constants::DefaultOPCN2Param);
+OPCN2 ParticleCounter1 = OPCN2(constants::DefaultOPCN2Param);
+OPCN2 ParticleCounter2 = OPCN2(constants::DefaultOPCN2Param2);

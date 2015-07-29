@@ -15,7 +15,9 @@ OPCN2Data::OPCN2Data()
     bin7_mtof = 0;
     flowRate = 0.0;
     temperature = 0;
+    haveTemperature = false;
     pressure = 0;
+    havePressure = false;
     samplePeriod = 0.0;
     checksum = 0;
     PM1 = 0.0;
@@ -55,16 +57,24 @@ void OPCN2Data::fromSPIData(uint8_t spiData[])
     flowRate = *(float *) &spiData[37];
 
     // Get Temperature or pressure (alternating)
-    uint32_t tempPressVal = *(uint32_t *) &spiData[38];
+    uint32_t tempPressVal = 0;
+    tempPressVal |= spiData[41];
+    tempPressVal |= spiData[42] << 8;
+    tempPressVal |= spiData[43] << 16;
+    tempPressVal |= spiData[44] << 24;
     if (tempPressVal < 1000)
     {
         temperature = tempPressVal;
         pressure = 0;
+        haveTemperature = true;
+        havePressure = false;
     }
     else
     {
         pressure = tempPressVal;
         temperature = 0;
+        haveTemperature = false;
+        havePressure = true;
     }
 
     // Get sampling period
@@ -110,6 +120,25 @@ String OPCN2Data::toString()
     snprintf(scratch,ScratchArraySize,"flowRate = %f\n", flowRate);
     dataStr += String(scratch);
 
+    // Add temperature or pressure
+    if (haveTemperature)
+    {
+        snprintf(scratch,ScratchArraySize,"temperature = %d\n",temperature);
+        dataStr += String(scratch);
+    }
+    if (havePressure)
+    {
+        snprintf(scratch,ScratchArraySize,"pressure = %d\n",pressure);
+        dataStr += String(scratch);
+    }
+
+    // Add sample period
+    snprintf(scratch,ScratchArraySize,"samplePeriod = %f\n",samplePeriod);
+    dataStr += String(scratch);
+
+    // Add checksum
+    snprintf(scratch,ScratchArraySize,"checksum = %d\n",checksum);
+
     // Add PM1
     snprintf(scratch,ScratchArraySize,"PM1 = %f\n",PM1);
     dataStr += String(scratch);
@@ -121,15 +150,6 @@ String OPCN2Data::toString()
     // Add PM_10
     snprintf(scratch,ScratchArraySize,"PM10 = %f\n",PM10);
     dataStr += String(scratch);
-
-    //float flowRate;
-    //uint32_t temperature;
-    //uint32_t pressure;
-    //float  samplePeriod;
-    //uint16_t checksum;
-    //float PM1;
-    //float PM2_5;
-    //float PM10;
 
     return dataStr;
 
