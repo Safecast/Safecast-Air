@@ -5,6 +5,15 @@
 #include <Arduino.h>
 
 
+
+//// Amphenol PM sensor parameters
+//// --------------------------------------------------------------------------------------------
+//const AmphenolPMSensorParam DefaultAmphenolPMSensorParam = 
+//{  // smallParticlePin, largeParticlePin, sensitivity,  sampleWindowDt (ms),
+//    32, 33, 1.5, 60000
+//};
+
+
 class AmphenolPMSensorDev
 {
     // Amphenol Smart Dust Sensor SM-PWM-01A 

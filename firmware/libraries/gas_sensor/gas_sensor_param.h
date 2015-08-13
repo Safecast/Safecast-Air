@@ -2,6 +2,7 @@
 #define GAS_SENSOR_PARAM_H
 #include <Arduino.h>
 
+
 enum GasType 
 {
     GAS_TYPE_NONE = 0, 
@@ -25,11 +26,11 @@ struct GasSensorParam
     float workingZero;
     float auxillaryZero;
     float sensitivity;
+    float ainVRef;
     float ainScaleFact;
     float powerScaleFact;
     float lowPassCutoffFreq;
     unsigned int lowPassOrder;
-    int temperatureSensor;
     bool active;
 };
 

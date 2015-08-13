@@ -3,161 +3,86 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include "fixed_vector.h"
+#include "sensor_dev_vector.h"
+#include "filter.h"
 #include "gas_sensor.h"
+#include "tmp_sensor.h"
 #include "opcn2.h"
+#include "constants.h"
 
-const int OLED_DC = 5;
-const int OLED_CS = 3;
-const int OLED_RESET = 4;
-const int DispBufSize = 50;
-const unsigned long sampleInterval = 60000;
+//const int OLED_DC = 5;
+//const int OLED_CS = 3;
+//const int OLED_RESET = 4;
+//const int DispBufSize = 50;
+//const unsigned long sampleInterval = 60000;
+//
+//
+//Adafruit_SSD1306 display(OLED_DC, OLED_RESET, OLED_CS);
+//SPISettings dispSPISettings(4000000,MSBFIRST,SPI_MODE0);
 
-Adafruit_SSD1306 display(OLED_DC, OLED_RESET, OLED_CS);
+GasSensorDevVector<constants::NumGasSensor> gasSensors(
+    constants::GasSensorSamplingParam, 
+    constants::DefaultGasSensorParam
+    );
 
-SPISettings dispSPISettings(4000000,MSBFIRST,SPI_MODE0);
+
+TmpSensorDevVector<constants::NumTmpSensor> tmpSensors(
+    constants::TmpSensorSamplingParam,
+    constants::DefaultTmpSensorParam
+    );
 
 void setup()
 {
-
-    char dispBuf[DispBufSize];
-
-    // this is the magic trick for snprintf to support float
+    // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
 
     Serial.begin(115200);
 
-    // Setup display
-    display.begin(SSD1306_SWITCHCAPVCC);
-    display.clearDisplay();   
-    display.display();
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
+    gasSensors.initialize();
+    tmpSensors.initialize();
 
-    // Setup openlog
-    Serial3.begin(9600);
+    gasSensors.setTimerCallback( []() { gasSensors.sample(); } );
+    tmpSensors.setTimerCallback( []() { tmpSensors.sample(); } );
 
-    // Display Initialization message
-    display.clearDisplay();
-    display.setCursor(0,0);
-    display.println("Initializing");
-    display.println();
-    display.display();
-
-    ParticleCounter1.initialize();
-    ParticleCounter2.initialize();
-
-    bool status1 = ParticleCounter1.checkStatus();
-    bool status2 = ParticleCounter2.checkStatus();
-    bool ok1, ok2;
-    ParticleCounter1.setFanAndLaserOn(&ok1);
-    ParticleCounter2.setFanAndLaserOn(&ok2);
-
-    SPI.beginTransaction(dispSPISettings);
-    display.clearDisplay();
-    display.setCursor(0,0);
-    snprintf(dispBuf, DispBufSize, "st: %d %d", status1, status2);
-    display.println(dispBuf);
-    display.println();
-    snprintf(dispBuf, DispBufSize, "ok: %d %d", ok1, ok2);
-    display.println(dispBuf);
-    display.display();
-    SPI.endTransaction();
-
-    delay(1000);
-
-
-    //GasSensors.initialize();
-    //AmphenolPMSensor.initialize();
-
-    //GasSensors.start();
-    //AmphenolPMSensor.start();
+    gasSensors.start();
+    tmpSensors.start();
 }
 
 void loop()
 {
-    static int cnt = 0;
-    char dispBuf[DispBufSize];
-
-    OPCN2Data cntrData1 = ParticleCounter1.getHistogramData();
-    OPCN2Data cntrData2 = ParticleCounter2.getHistogramData();
-
-    if (cnt > 0)
+    Serial << "Gas Sensors" << endl;
+    for (auto &sensor : gasSensors)
     {
+        if (sensor.isActive())
+        {
+            Serial << "  name:         " << sensor.gasName() << endl; 
+            Serial << "  workingInt:   " << sensor.workingInt() << endl;
+            Serial << "  working:      " << sensor.working() << endl;
+            Serial << "  auxillaryInt: " << sensor.auxillaryInt() << endl;
+            Serial << "  auxillary:    " << sensor.auxillary() << endl;
+            Serial << "  ppb:          " << sensor.ppb() << endl;
+            Serial << "  ppbLowPass:   " << sensor.ppbLowPass() << endl;
+            Serial << endl;
 
-        //Serial << "PM1:   " << cntrData1.PM1   << ", " << cntrData2.PM1   << endl;
-        //Serial << "PM2.5: " << cntrData1.PM2_5 << ", " << cntrData2.PM2_5 << endl; 
-        //Serial << "PM10:  " << cntrData1.PM10  << ", " << cntrData2.PM10  << endl;
-        //Serial << endl;
-
-        // Write data to LCD
-        SPI.beginTransaction(dispSPISettings);
-        display.clearDisplay();
-        display.setCursor(0,0);
-        snprintf(dispBuf, DispBufSize, "cnt    %d", cnt);
-        display.println(dispBuf);
-        display.println();
-        snprintf(dispBuf, DispBufSize, "PM1    %3.2f    %3.2f", cntrData1.PM1, cntrData2.PM1);
-        display.println(dispBuf);
-        display.println();
-        snprintf(dispBuf, DispBufSize, "PM2.5  %3.2f    %3.2f", cntrData1.PM2_5, cntrData2.PM2_5);
-        display.println(dispBuf);
-        display.println();
-        snprintf(dispBuf, DispBufSize, "PM10   %3.2f    %3.2f", cntrData1.PM10, cntrData2.PM10);
-        display.println(dispBuf);
-        display.println();
-        display.display();
-        SPI.endTransaction();
-
-        // Write data to openlog
-        float time = float(cnt)*(float(sampleInterval)*0.001);
-        snprintf(dispBuf, DispBufSize, "%f", time); 
-        Serial3.print(dispBuf);
-        snprintf(dispBuf, DispBufSize, " %f %f", cntrData1.PM1, cntrData2.PM1); 
-        Serial3.print(dispBuf);
-        snprintf(dispBuf, DispBufSize, " %f %f", cntrData1.PM2_5, cntrData2.PM2_5);
-        Serial3.print(dispBuf);
-        snprintf(dispBuf, DispBufSize, " %f %f", cntrData1.PM10, cntrData2.PM10);
-        Serial3.print(dispBuf);
-        Serial3.println();
+            //Serial << "  name: " << sensor.gasName(); 
+            //Serial << "  " << sensor.ppb();
+            //Serial << ", " << sensor.ppbLowPass() << endl;
+        }
     }
-    else
+    Serial << endl << "Tmp Sensors" << endl;
+    for (auto &sensor : tmpSensors)
     {
-        SPI.beginTransaction(dispSPISettings);
-        display.clearDisplay();
-        display.setCursor(0,0);
-        display.println("First reading ...");
-        display.display();
-        SPI.endTransaction();
+        if (sensor.isActive())
+        {
+            Serial << "  " << sensor.value()  << "  " << sensor.valueLowPass() << endl;
+        }
     }
+    Serial << "--------------------" << endl;
+    Serial << endl; 
 
-
-
-    delay(sampleInterval);
-    cnt++;
-
-
-    //Serial << endl << "Gas Sensors" << endl;
-    //for (auto &sensor : GasSensors)
-    //{
-    //    if (sensor.isActive())
-    //    {
-    //        Serial << "  " << sensor.gasName() << ":  " << sensor.ppbLowPass() << endl; 
-    //    }
-    //}
-    //Serial << endl << endl;
-
-    //if (AmphenolPMSensor.haveSample())
-    //{
-    //    Serial << "PM Sensors" << endl;
-    //    Serial << "  (small) pcs/m^3:    " <<  AmphenolPMSensor.countPerCubicFt(SmallParticle) << endl;
-    //    Serial << "  (large) pcs/m^3:    " <<  AmphenolPMSensor.countPerCubicFt(LargeParticle) << endl;
-    //    Serial << "  (small) pulse Cnt:  " <<  AmphenolPMSensor.pulseCount(SmallParticle) << endl;
-    //    Serial << "  (large) pulse Cnt:  " <<  AmphenolPMSensor.pulseCount(LargeParticle) << endl;
-    //    Serial << endl << endl;
-    //}
-    //delay(300);
+    delay(1000);
 }
-
 
 
 

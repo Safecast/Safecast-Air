@@ -1,0 +1,19 @@
+External Libraries
+------------------
+Adafruit-GFX
+Adafruit_SSD1306
+i2c_t3
+LiquidCrystal_I2C
+Streaming
+
+
+Safecast Air Libraries
+----------------------
+fixed_vector
+sensor_dev_vector
+gas_sensor
+amphenol_pm_sensor
+filter
+lookup_table
+opcn2
+temp_sensor

@@ -14,8 +14,7 @@ class SensorDevVector  : public FixedVector<Dev,n>
 
         SensorDevVector(const SamplingParam sampParam, const DevParam devParam[n])
         {
-            setSamplingParam(sampParam);
-            setDevParam(devParam);
+            setParam(sampParam,devParam);
         };
 
         void initialize() 
@@ -46,6 +45,12 @@ class SensorDevVector  : public FixedVector<Dev,n>
             }
         }
 
+        void setParam(const SamplingParam sampParam, const DevParam devParam[n])
+        {
+            setSamplingParam(sampParam);
+            setDevParam(devParam);
+        }
+
         void setDevParam(const DevParam devParam[n])
         {
             for (int i=0; i<n; i++)
@@ -69,8 +74,9 @@ class SensorDevVector  : public FixedVector<Dev,n>
         SamplingParam sampParam_;
         IntervalTimer timer_;
 
-        static void onTimerOverflow() { };
-        void (*timerCallback_)() = onTimerOverflow; 
+        static void dummyTimerCallback() { }; 
+
+        void (*timerCallback_)() = dummyTimerCallback; 
 
         void setupAnalogInput()
         {

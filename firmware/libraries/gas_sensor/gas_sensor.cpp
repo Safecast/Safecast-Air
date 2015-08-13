@@ -1,12 +1,28 @@
 #include "gas_sensor.h"
-#include "constants.h"
 #include <Streaming.h>
+#include <cstdint>
 
-const GasSensorParam UndefinedSensorParam = {GAS_TYPE_NONE, 0, 0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 0};
-const int   AinMaxInt   = 32767;
-const float AinRefScale = 1.2;
+const int   AinMaxInt   = UINT16_MAX;
 const float MilliVoltPerVolt = 1000.0;
 const float MilliSecPerSec = 1.0e-3;
+
+const GasSensorParam UndefinedSensorParam = 
+    {
+        GAS_TYPE_NONE,   // gasType 
+        0,               // serialNumber
+        A0,              // workingAinPin 
+        A1,              // auxillaryAinPin
+        0.0,             // workingZero
+        0.0,             // auxillaryZero
+        1.0,             // sensitivity
+        1.2,             // ainVRef
+        1.0,             // ainScaleFact
+        1.0,             // powerScaleFact
+        1.0,             // lowPassCutoffFreq
+        1,               // lowPassOrder
+        false            // active
+    };
+
 
 // GasSensorDev public methods
 // ------------------------------------------------------------------------
@@ -27,15 +43,16 @@ GasSensorDev::GasSensorDev(GasSensorParam param)
 
 void GasSensorDev::sample(unsigned long dt)
 {
-    workingInt_ = analogRead(param_.workingAinPin);
-    working_ = (AinRefScale*float(workingInt_)/float(AinMaxInt))*param_.ainScaleFact;
+    workingInt_   = analogRead(param_.workingAinPin);
+    working_ = (param_.ainVRef*float(workingInt_)/float(AinMaxInt))*param_.ainScaleFact;
     workingZeroed_  = working_ - param_.workingZero/param_.powerScaleFact;
 
     auxillaryInt_ = analogRead(param_.auxillaryAinPin);
-    auxillary_ = (AinRefScale*float(auxillaryInt_)/float(AinMaxInt))*param_.ainScaleFact;
+    auxillary_ = (param_.ainVRef*float(auxillaryInt_)/float(AinMaxInt))*param_.ainScaleFact;
     auxillaryZeroed_ = auxillary_ - param_.auxillaryZero/param_.powerScaleFact;
 
     ppb_ = MilliVoltPerVolt*param_.powerScaleFact*(workingZeroed_ - auxillaryZeroed_)/param_.sensitivity;
+    //ppb_ = MilliVoltPerVolt*param_.powerScaleFact*workingZeroed_/param_.sensitivity;
     ppbLowPassFilter_.update(ppb_, MilliSecPerSec*dt);
 }
 
@@ -50,14 +67,6 @@ void GasSensorDev::setParam(GasSensorParam param)
 {
     param_ = param;
     ppbLowPassFilter_ = filter::LowPass(param_.lowPassCutoffFreq, param_.lowPassOrder, 0.0);
-}
-
-
-String GasSensorDev::paramToString() const
-{
-    // To Do ...
-    String paramString = "";
-    return paramString;
 }
 
 
@@ -157,18 +166,6 @@ void GasSensorDev::initialize()
     ppb_ = 0.0;
     ppbLowPassFilter_.reset();
 }
-
-
-// GasSensorDevVector protected methods
-// ----------------------------------------------------------------------------
-void GasSensorDevVector::onTimerOverflow()
-{
-    GasSensors.sample();
-}
-
-GasSensorDevVector GasSensors(constants::GasSensorSamplingParam, constants::DefaultGasSensorParam); 
-
-
 
 
 

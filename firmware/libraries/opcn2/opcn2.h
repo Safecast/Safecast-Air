@@ -22,9 +22,11 @@ class OPCN2
         static const int InfoStringLength = 26;       // Number of actual values in string
         static const int HistogramMessageSize = 63;   // Number of bytes in SPI response
 
+        OPCN2();
         OPCN2(OPCN2Param param);
         void initialize();
         bool checkStatus();
+        void setParam(OPCN2Param param);
         void setFanAndLaserOn(bool *ok=nullptr);
         void setFanAndLaserOff(bool *ok=nullptr);
         String getInfoString(bool *ok=nullptr);
@@ -35,10 +37,5 @@ class OPCN2
         OPCN2Param param_;
         SPISettings spiSettings_;
 };
-
-//extern OPCN2 ParticleCounterOPCN2;
-//
-extern OPCN2 ParticleCounter1;
-extern OPCN2 ParticleCounter2;
 
 #endif 

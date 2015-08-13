@@ -1,11 +1,13 @@
 #include "opcn2.h"
 #include <Streaming.h>
-#include "constants.h"
 #include "fixed_vector.h"
+
+OPCN2::OPCN2()
+{ }
 
 OPCN2::OPCN2(OPCN2Param param)
 {
-    param_ = param;
+    setParam(param);
 };
 
 void OPCN2::initialize()
@@ -35,6 +37,11 @@ bool OPCN2::checkStatus()
         ok = true;
     }
     return ok;
+}
+
+void OPCN2::setParam(OPCN2Param param)
+{
+    param_ = param;
 }
 
 
@@ -156,7 +163,3 @@ OPCN2Data OPCN2::getHistogramData(bool *ok)
     return OPCN2Data(rsp);
 }
 
-//OPCN2 ParticleCounterOPCN2 = OPCN2(constants::DefaultOPCN2Param);
-//OPCN2 ParticleCounterOPCN2 = OPCN2(constants::DefaultOPCN2Param);
-OPCN2 ParticleCounter1 = OPCN2(constants::DefaultOPCN2Param);
-OPCN2 ParticleCounter2 = OPCN2(constants::DefaultOPCN2Param2);

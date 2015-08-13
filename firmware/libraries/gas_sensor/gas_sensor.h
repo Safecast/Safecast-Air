@@ -2,11 +2,10 @@
 #define ALPHASENSE_GAS_SENSOR_H
 #include "gas_sensor_param.h"
 #include "sensor_dev_vector.h"
-#include "constants.h"
-#include "fixed_vector.h"
 #include "filter.h"
 #include <Arduino.h>
 
+const int NumGasSensor = 6;
 
 class GasSensorDev
 {
@@ -17,7 +16,6 @@ class GasSensorDev
 
         GasSensorParam param() const;
         void setParam(GasSensorParam param);
-        String paramToString() const;
 
         void sample(unsigned long dt);
 
@@ -64,21 +62,17 @@ class GasSensorDev
 };
 
 
-class GasSensorDevVector : public SensorDevVector<GasSensorDev,GasSensorParam,constants::NumGasSensor>
+
+template<unsigned int n>
+class GasSensorDevVector: public SensorDevVector<GasSensorDev,GasSensorParam,n>
 {
     public:
-        GasSensorDevVector() {};
+        GasSensorDevVector() 
+        { };
         GasSensorDevVector(const SamplingParam sampParam, const GasSensorParam devParam[]) 
-            : SensorDevVector(sampParam, devParam) 
-        { 
-            setTimerCallback(GasSensorDevVector::onTimerOverflow);
-        };
-
-    protected:
-        static void onTimerOverflow();
+            : SensorDevVector<GasSensorDev,GasSensorParam,n>(sampParam, devParam) 
+        { };
 
 };
-
-extern GasSensorDevVector GasSensors;
 
 #endif
