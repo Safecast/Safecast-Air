@@ -1,5 +1,6 @@
 External Libraries
 ------------------
+Adafruit_GPS
 Adafruit-GFX
 Adafruit_SSD1306
 i2c_t3
