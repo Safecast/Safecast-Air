@@ -6,7 +6,7 @@ namespace constants
 {
     // Gas Sensor parameters
     // --------------------------------------------------------------------------------------------
-    const SamplingParam GasSensorSamplingParam = 
+    const SamplingParam DefaultGasSensorSamplingParam = 
     {   // timerPriority,  ainResolution;, ainAveraging,  sampleDt; 
         100, 16, 32, 50 
     };
@@ -25,7 +25,7 @@ namespace constants
 
     // Temperature sensor parameters
     // --------------------------------------------------------------------------------------------
-    const SamplingParam TmpSensorSamplingParam = 
+    const SamplingParam DefaultTmpSensorSamplingParam = 
     {
         100, 16, 32, 50
     };
@@ -42,10 +42,12 @@ namespace constants
     {   // spiClock , spiBitOrder, spiDataMode, spiCsPin
         750000, MSBFIRST, SPI_MODE1, 24                
     };
+
+    // OLED Dislay settings
+    const int DisplayDC = 5;
+    const int DisplayCS = 3;
+    const int DisplayReset = 4;
+    const SPISettings DisplsySPISettings(4000000,MSBFIRST,SPI_MODE0);
 }
 
 
-//const OPCN2Param DefaultOPCN2Param2 = 
-//{   // spiClock , spiBitOrder, spiDataMode, spiCsPin
-//    750000, MSBFIRST, SPI_MODE1, 28                
-//};

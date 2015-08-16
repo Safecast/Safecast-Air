@@ -11,26 +11,25 @@
 #include "opcn2.h"
 #include "constants.h"
 
-//const int OLED_DC = 5;
-//const int OLED_CS = 3;
-//const int OLED_RESET = 4;
-//const int DispBufSize = 50;
-//const unsigned long sampleInterval = 60000;
-//
-//
-//Adafruit_SSD1306 display(OLED_DC, OLED_RESET, OLED_CS);
-//SPISettings dispSPISettings(4000000,MSBFIRST,SPI_MODE0);
 
 GasSensorDevVector<constants::NumGasSensor> gasSensors(
-    constants::GasSensorSamplingParam, 
+    constants::DefaultGasSensorSamplingParam, 
     constants::DefaultGasSensorParam
     );
 
 
 TmpSensorDevVector<constants::NumTmpSensor> tmpSensors(
-    constants::TmpSensorSamplingParam,
+    constants::DefaultTmpSensorSamplingParam,
     constants::DefaultTmpSensorParam
     );
+
+
+Adafruit_SSD1306 display(
+    constants::DisplayDC, 
+    constants::DisplayReset, 
+    constants::DisplayCS
+    );
+
 
 void setup()
 {
@@ -39,13 +38,14 @@ void setup()
 
     Serial.begin(115200);
 
+    // Setup gas sensors
     gasSensors.initialize();
-    tmpSensors.initialize();
-
     gasSensors.setTimerCallback( []() { gasSensors.sample(); } );
-    tmpSensors.setTimerCallback( []() { tmpSensors.sample(); } );
-
     gasSensors.start();
+
+    // Setup temperature sensors
+    tmpSensors.initialize();
+    tmpSensors.setTimerCallback( []() { tmpSensors.sample(); } );
     tmpSensors.start();
 }
 

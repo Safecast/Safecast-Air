@@ -5,8 +5,6 @@
 #include "filter.h"
 #include <Arduino.h>
 
-const int NumGasSensor = 6;
-
 class GasSensorDev
 {
     public:
