@@ -32,6 +32,7 @@ Adafruit_SSD1306 display(
     constants::DisplayCS
     );
 
+GPSMonitor gpsMonitor;
 
 void setup()
 {
@@ -49,39 +50,59 @@ void setup()
     tmpSensors.initialize();
     tmpSensors.setTimerCallback( []() { tmpSensors.sample(); } );
     tmpSensors.start();
+
+    gpsMonitor.initialize();
+    gpsMonitor.setTimerCallback( []() {gpsMonitor.readData(); });
+    gpsMonitor.start();
 }
 
 void loop()
 {
-    Serial << "Gas Sensors" << endl;
-    for (auto &sensor : gasSensors)
-    {
-        if (sensor.isActive())
-        {
-            Serial << "  name:         " << sensor.gasName() << endl; 
-            Serial << "  workingInt:   " << sensor.workingInt() << endl;
-            Serial << "  working:      " << sensor.working() << endl;
-            Serial << "  auxillaryInt: " << sensor.auxillaryInt() << endl;
-            Serial << "  auxillary:    " << sensor.auxillary() << endl;
-            Serial << "  ppb:          " << sensor.ppb() << endl;
-            Serial << "  ppbLowPass:   " << sensor.ppbLowPass() << endl;
-            Serial << endl;
 
-            //Serial << "  name: " << sensor.gasName(); 
-            //Serial << "  " << sensor.ppb();
-            //Serial << ", " << sensor.ppbLowPass() << endl;
-        }
-    }
-    Serial << endl << "Tmp Sensors" << endl;
-    for (auto &sensor : tmpSensors)
+    if (gpsMonitor.haveData())
     {
-        if (sensor.isActive())
+        bool ok = false;
+        GPSData gpsData = gpsMonitor.getData(&ok);
+        Serial << "GPS Data ok = " << ok << endl;
+        if (ok)
         {
-            Serial << "  " << sensor.value()  << "  " << sensor.valueLowPass() << endl;
+            
+            Serial << " datetime:  " << gpsData.getDateTimeString() << endl;
+            Serial << " fix:       " << gpsData.fix << endl;
+            Serial << " longitude: " << gpsData.getLongitudeString() << endl;
+            Serial << " latitude:  " << gpsData.getLatitudeString() << endl;
         }
     }
-    Serial << "--------------------" << endl;
-    Serial << endl; 
+    Serial << endl;
+    //Serial << "Gas Sensors" << endl;
+    //for (auto &sensor : gasSensors)
+    //{
+    //    if (sensor.isActive())
+    //    {
+    //        Serial << "  name:         " << sensor.gasName() << endl; 
+    //        Serial << "  workingInt:   " << sensor.workingInt() << endl;
+    //        Serial << "  working:      " << sensor.working() << endl;
+    //        Serial << "  auxillaryInt: " << sensor.auxillaryInt() << endl;
+    //        Serial << "  auxillary:    " << sensor.auxillary() << endl;
+    //        Serial << "  ppb:          " << sensor.ppb() << endl;
+    //        Serial << "  ppbLowPass:   " << sensor.ppbLowPass() << endl;
+    //        Serial << endl;
+
+    //        //Serial << "  name: " << sensor.gasName(); 
+    //        //Serial << "  " << sensor.ppb();
+    //        //Serial << ", " << sensor.ppbLowPass() << endl;
+    //    }
+    //}
+    //Serial << endl << "Tmp Sensors" << endl;
+    //for (auto &sensor : tmpSensors)
+    //{
+    //    if (sensor.isActive())
+    //    {
+    //        Serial << "  " << sensor.value()  << "  " << sensor.valueLowPass() << endl;
+    //    }
+    //}
+    //Serial << "--------------------" << endl;
+    //Serial << endl; 
 
     delay(1000);
 }
