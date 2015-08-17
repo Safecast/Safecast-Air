@@ -25,6 +25,7 @@ namespace constants
     extern const int DisplayCS;
     extern const int DisplayReset;
     extern const SPISettings DisplsySPISettings;
+
 }
 
 #endif

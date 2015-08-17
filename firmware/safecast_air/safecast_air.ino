@@ -3,6 +3,7 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <Adafruit_GPS.h>
 #include "fixed_vector.h"
 #include "sensor_dev_vector.h"
 #include "filter.h"
@@ -10,6 +11,7 @@
 #include "tmp_sensor.h"
 #include "opcn2.h"
 #include "constants.h"
+#include "gps_monitor.h"
 
 
 GasSensorDevVector<constants::NumGasSensor> gasSensors(
