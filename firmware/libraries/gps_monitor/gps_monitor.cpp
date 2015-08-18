@@ -48,7 +48,10 @@ bool GPSMonitor::haveNewData()
 
 GPSData GPSMonitor::getData(bool *ok) 
 {
-    *ok = false;
+    if (ok != nullptr)
+    {
+        *ok = false;
+    }
     if (haveNewData())
     {
         bool newDataOk = false;
@@ -56,10 +59,9 @@ GPSData GPSMonitor::getData(bool *ok)
         if (newDataOk)
         {
             gpsData_ = gpsDataTmp;
-            haveData_ = true;
         }
     }
-    if (haveData_)
+    if (haveData_ && (ok != nullptr))
     {
         *ok = true;
     }
@@ -68,11 +70,19 @@ GPSData GPSMonitor::getData(bool *ok)
 
 GPSData GPSMonitor::getNewData(bool *ok) 
 { 
-    *ok = false;
+    if (ok != nullptr)
+    {
+        *ok = false;
+    }
     GPSData data;
     if (gps_.parse(gps_.lastNMEA()))   
     {
-        *ok = true;
+        if (ok != nullptr)
+        {
+            *ok = true;
+        }
+        haveData_ = true;
+
         data.fix = gps_.fix; 
         data.fixquality = gps_.fixquality;
         data.satellites = gps_.satellites;
@@ -83,8 +93,8 @@ GPSData GPSMonitor::getNewData(bool *ok)
         data.minute = gps_.minute;
         data.seconds = gps_.seconds;
         data.milliseconds = gps_.milliseconds;
-        data.latitude_fixed = gps_.latitude_fixed;
-        data.longitude_fixed = gps_.longitude_fixed;
+        data.latitudeFixed = gps_.latitude_fixed;
+        data.longitudeFixed = gps_.longitude_fixed;
         data.latitude = gps_.latitude;
         data.longitude = gps_.longitude;
         data.latitudeDegrees = gps_.latitudeDegrees;
@@ -98,8 +108,25 @@ GPSData GPSMonitor::getNewData(bool *ok)
         data.angle = gps_.angle;
         data.magvariation = gps_.magvariation;
         data.HDOP = gps_.HDOP;
+        gpsData_ = data;
     }
     return data;
+}
+
+
+void GPSMonitor::update()
+{
+    if (haveNewData())
+    {
+        getNewData();
+    }
+}
+
+
+void GPSMonitor::reset()
+{
+    gpsData_ = GPSData();
+    haveData_ = false;
 }
 
 void GPSMonitor::readData()

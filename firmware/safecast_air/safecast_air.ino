@@ -4,6 +4,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GPS.h>
+#include <ArduinoJson.h>
 #include "fixed_vector.h"
 #include "sensor_dev_vector.h"
 #include "filter.h"
@@ -32,14 +33,16 @@ Adafruit_SSD1306 display(
     constants::DisplayCS
     );
 
+
 GPSMonitor gpsMonitor;
+
 
 void setup()
 {
+    Serial.begin(115200);
+
     // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
-
-    Serial.begin(115200);
 
     // Setup gas sensors
     gasSensors.initialize();
@@ -51,29 +54,48 @@ void setup()
     tmpSensors.setTimerCallback( []() { tmpSensors.sample(); } );
     tmpSensors.start();
 
+    // Setup GPS monitor
     gpsMonitor.initialize();
     gpsMonitor.setTimerCallback( []() {gpsMonitor.readData(); });
     gpsMonitor.start();
 }
 
+
 void loop()
 {
 
+    gpsMonitor.update();
     if (gpsMonitor.haveData())
     {
-        bool ok = false;
-        GPSData gpsData = gpsMonitor.getData(&ok);
-        Serial << "GPS Data ok = " << ok << endl;
-        if (ok)
-        {
-            
-            Serial << " datetime:  " << gpsData.getDateTimeString() << endl;
-            Serial << " fix:       " << gpsData.fix << endl;
-            Serial << " longitude: " << gpsData.getLongitudeString() << endl;
-            Serial << " latitude:  " << gpsData.getLatitudeString() << endl;
-        }
+        GPSData gpsData = gpsMonitor.getData();
+        //Serial << " datetime:  " << gpsData.getDateTimeString() << endl;
+        //Serial << " fix:       " << gpsData.fix << endl;
+        //Serial << " latitude:  " << gpsData.getLatitudeString() << endl;
+        //Serial << " longitude: " << gpsData.getLongitudeString() << endl;
+
+        StaticJsonBuffer<1000> jsonBuffer;
+        JsonObject &root =  jsonBuffer.createObject();
+        String dateTimeString = gpsData.getDateTimeString();
+        String latitudeString = gpsData.getLatitudeString(true);
+        String longitudeString = gpsData.getLongitudeString(true);
+
+        root["name"] = "GPS";
+        root["date"] = dateTimeString.c_str();
+        root["lat"] = latitudeString.c_str();
+        root["lon"] = longitudeString.c_str();
+        root.printTo(Serial);
+        //root.prettyPrintTo(Serial);
+
+        // Get current length (test)
+        //char buffer[500];
+        //root.printTo(buffer,sizeof(buffer));
+        //Serial << strlen(buffer) << " " << buffer; 
+
+
     }
     Serial << endl;
+
+
     //Serial << "Gas Sensors" << endl;
     //for (auto &sensor : gasSensors)
     //{
@@ -93,7 +115,10 @@ void loop()
     //        //Serial << ", " << sensor.ppbLowPass() << endl;
     //    }
     //}
-    //Serial << endl << "Tmp Sensors" << endl;
+    //Serial << endl;
+
+
+    //Serial << "Tmp Sensors" << endl;
     //for (auto &sensor : tmpSensors)
     //{
     //    if (sensor.isActive())

@@ -20,8 +20,8 @@ class GPSData
         uint8_t seconds;
         uint16_t milliseconds;
 
-        int32_t latitude_fixed;
-        int32_t longitude_fixed;
+        int32_t latitudeFixed;
+        int32_t longitudeFixed;
 
         float latitude;
         float longitude;
@@ -44,8 +44,8 @@ class GPSData
         GPSData();
 
         String getDateTimeString();
-        String getLatitudeString();
-        String getLongitudeString();
+        String getLatitudeString(bool addNS=false);
+        String getLongitudeString(bool addEW=false);
 
     protected:
 

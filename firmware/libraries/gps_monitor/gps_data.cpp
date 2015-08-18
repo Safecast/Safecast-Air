@@ -12,8 +12,8 @@ GPSData::GPSData()
         minute = 0;
         seconds = 0;
         milliseconds = 0;
-        latitude_fixed = 0;
-        longitude_fixed = 0;
+        latitudeFixed = 0;
+        longitudeFixed = 0;
         latitude = 0.0;
         longitude = 0.0;
         latitudeDegrees = 0.0;
@@ -38,17 +38,31 @@ String GPSData::getDateTimeString()
 }
 
 
-String GPSData::getLatitudeString()
+String GPSData::getLatitudeString(bool addNS)
 {
     char scratch[ScratchArraySize];
-    snprintf(scratch,ScratchArraySize,"%1.4f%c",latitude,lat);
+    if (addNS)
+    {
+        snprintf(scratch,ScratchArraySize,"%09.4f%c",latitude,lat);
+    }
+    else
+    {
+        snprintf(scratch,ScratchArraySize,"%09.4f",latitude);
+    }
     return String(scratch);
 }
 
 
-String GPSData::getLongitudeString()
+String GPSData::getLongitudeString(bool addEW)
 {
     char scratch[ScratchArraySize];
-    snprintf(scratch,ScratchArraySize,"%1.4f%c",longitude,lon);
+    if (addEW)
+    {
+        snprintf(scratch,ScratchArraySize,"%010.4f%c",longitude,lon);
+    }
+    else
+    {
+        snprintf(scratch,ScratchArraySize,"%010.4f",longitude);
+    }
     return String(scratch);
 }

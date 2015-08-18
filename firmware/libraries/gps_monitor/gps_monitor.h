@@ -23,9 +23,11 @@ class GPSMonitor
         bool haveData();
         bool haveNewData();
 
-        GPSData getData(bool *ok);
-        GPSData getNewData(bool *ok);
+        GPSData getData(bool *ok=nullptr);
+        GPSData getNewData(bool *ok=nullptr);
 
+        void update();
+        void reset();
         void readData();
 
     protected:
