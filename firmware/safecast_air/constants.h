@@ -9,6 +9,9 @@
 
 namespace constants
 {
+    extern const char DeviceName[]; 
+    extern const char  DeviceId[]; 
+
     extern const long USBSerialBaudRate;
     extern const unsigned long LoopDelay;
 

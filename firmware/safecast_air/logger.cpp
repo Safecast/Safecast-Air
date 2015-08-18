@@ -60,12 +60,31 @@ void Logger::setTimerCallback(void (*timerCallback)())
 
 void Logger::writeConfiguration()
 {
-    // TO DO
+    StaticJsonBuffer<JsonBufferSize> jsonBuffer;
+    JsonObject &rootObj = jsonBuffer.createObject();
+    rootObj["dev"] = constants::DeviceName;  // Change to something from loaded settings
+    rootObj["id"] = constants::DeviceId;     // Change to something from loaded settings
+    rootObj["msg"] = "cfg";
+
+    // Add gas sensor metadata
+    JsonArray &gasArray = rootObj.createNestedArray("gas");
+
+    //rootObj.printTo(*serialPtr_);
+    //*serialPtr_ << endl;
+
+    // Dev
+    // ----------------------------------------
+    rootObj.prettyPrintTo(Serial);
+    Serial << endl;
+    // ----------------------------------------
+
 }
 
 
 void Logger::writeData()
 {
+    Serial << __PRETTY_FUNCTION__ << endl;
+
     GPSData gpsData; 
     bool gpsDataOk = false;
     if (gpsMonitor.haveData())
@@ -85,26 +104,27 @@ void Logger::writeData()
     // Create Json output data
     StaticJsonBuffer<JsonBufferSize> jsonBuffer;
     JsonObject &rootObj = jsonBuffer.createObject();
-    rootObj["hdr"] = "Air001";
-    rootObj["id"] = "0001";
-    rootObj["date"] = dateTimeString.c_str();
+    rootObj["dev"] = constants::DeviceName;  // Change to something from loaded settings
+    rootObj["id"] = constants::DeviceId;     // Change to something from loaded settings
+    rootObj["msg"] = "dat";
 
     // Add GPS data
     JsonObject &gpsObj = rootObj.createNestedObject("gps");
+    gpsObj["date"] = dateTimeString.c_str();
     gpsObj["lat"] = latitudeString.c_str();
     gpsObj["lon"] = longitudeString.c_str();
     gpsObj["fix"] = gpsData.fix;
     gpsObj["num"] = gpsData.satellites;
 
     // Add gas sensors
-    JsonArray &gasSensorArray = rootObj.createNestedArray("gas");
+    JsonArray &gasArray = rootObj.createNestedArray("gas");
     String gasSensorType[constants::NumGasSensor];
     int cnt = 0;
     for (auto &sensor : gasSensors)
     {
         if (sensor.isActive())
         {
-            JsonObject &sensorObj = gasSensorArray.createNestedObject();
+            JsonObject &sensorObj = gasArray.createNestedObject();
             GasSensorParam param = sensor.param();
             gasSensorType[cnt] = sensor.gasName();
             sensorObj["type"] = gasSensorType[cnt].c_str();
@@ -112,17 +132,17 @@ void Logger::writeData()
             sensorObj["pos"] = param.position;
             sensorObj["wrk"] = sensor.working();
             sensorObj["aux"] = sensor.auxillary();
-            sensorObj["pbb"] = sensor.ppb();
-            sensorObj["pbbFlt"] = sensor.ppbLowPass();
+            sensorObj["ppb"] = sensor.ppb();
+            sensorObj["ppbFlt"] = sensor.ppbLowPass();
             cnt++;
         }
     }
 
     // Add tmp sensors
-    JsonArray &tmpSensorArray = rootObj.createNestedArray("tmp");
+    JsonArray &tmpArray = rootObj.createNestedArray("tmp");
     for (auto &sensor : tmpSensors)
     {
-        JsonObject &sensorObj = tmpSensorArray.createNestedObject();
+        JsonObject &sensorObj = tmpArray.createNestedObject();
         TmpSensorParam param = sensor.param();
         sensorObj["hdr"] = param.header;
         sensorObj["val"] = sensor.value();
@@ -130,8 +150,8 @@ void Logger::writeData()
     }
 
     // Add OPN2 sensor
-    JsonArray &pmSensorArray = rootObj.createNestedArray("pm");
-    JsonObject &opcn2Obj = pmSensorArray.createNestedObject();
+    JsonArray &pmArray = rootObj.createNestedArray("pm");
+    JsonObject &opcn2Obj = pmArray.createNestedObject();
     opcn2Obj["pos"] = "norm";
     opcn2Obj["pm1"] = opcn2Data.PM1;
     opcn2Obj["pm2_5"] = opcn2Data.PM2_5;
@@ -150,9 +170,13 @@ void Logger::writeData()
 
     rootObj.printTo(*serialPtr_);
     *serialPtr_ << endl;
+
+    // DEV
+    // -------------------------------------------------
     //rootObj.printTo(Serial);
     //rootObj.prettyPrintTo(Serial);
-    Serial << __PRETTY_FUNCTION__ << endl;
+    //Serial << endl;
+    // -------------------------------------------------
 
 }
 

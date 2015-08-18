@@ -45,7 +45,6 @@ void setup()
     Serial.begin(constants::USBSerialBaudRate);
     Serial << "Initializing" << endl;
 
-
     // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
 
@@ -71,7 +70,6 @@ void setup()
     particleCounter.setFanAndLaserOn(&laserAndFanOk);
     Serial << "OPCN2 status:  " << status << endl;
     Serial << "laserAndFanOK: " << laserAndFanOk << endl;
-    delay(1000);
 
     // Setup logTimer
     logger.initialize();
@@ -85,77 +83,74 @@ void setup()
 
 void loop()
 {
-
     gpsMonitor.update();
-    //if (gpsMonitor.haveData())
-    //{
-    //    GPSData gpsData = gpsMonitor.getData();
-    //    //Serial << " datetime:  " << gpsData.getDateTimeString() << endl;
-    //    //Serial << " fix:       " << gpsData.fix << endl;
-    //    //Serial << " latitude:  " << gpsData.getLatitudeString() << endl;
-    //    //Serial << " longitude: " << gpsData.getLongitudeString() << endl;
-
-    //    StaticJsonBuffer<1000> jsonBuffer;
-    //    JsonObject &root =  jsonBuffer.createObject();
-    //    String dateTimeString = gpsData.getDateTimeString();
-    //    String latitudeString = gpsData.getLatitudeString(true);
-    //    String longitudeString = gpsData.getLongitudeString(true);
-
-    //    root["name"] = "GPS";
-    //    root["date"] = dateTimeString.c_str();
-    //    root["lat"] = latitudeString.c_str();
-    //    root["lon"] = longitudeString.c_str();
-    //    root.printTo(Serial);
-    //    //root.prettyPrintTo(Serial);
-
-    //    // Get current length (test)
-    //    //char buffer[500];
-    //    //root.printTo(buffer,sizeof(buffer));
-    //    //Serial << strlen(buffer) << " " << buffer; 
-
-
-    //}
-    //Serial << endl;
-
-    //Serial << "Gas Sensors" << endl;
-    //for (auto &sensor : gasSensors)
-    //{
-    //    if (sensor.isActive())
-    //    {
-    //        Serial << "  name:         " << sensor.gasName() << endl; 
-    //        Serial << "  workingInt:   " << sensor.workingInt() << endl;
-    //        Serial << "  working:      " << sensor.working() << endl;
-    //        Serial << "  auxillaryInt: " << sensor.auxillaryInt() << endl;
-    //        Serial << "  auxillary:    " << sensor.auxillary() << endl;
-    //        Serial << "  ppb:          " << sensor.ppb() << endl;
-    //        Serial << "  ppbLowPass:   " << sensor.ppbLowPass() << endl;
-    //        Serial << endl;
-
-    //        //Serial << "  name: " << sensor.gasName(); 
-    //        //Serial << "  " << sensor.ppb();
-    //        //Serial << ", " << sensor.ppbLowPass() << endl;
-    //    }
-    //}
-    //Serial << endl;
-
-
-    //Serial << "Tmp Sensors" << endl;
-    //for (auto &sensor : tmpSensors)
-    //{
-    //    if (sensor.isActive())
-    //    {
-    //        Serial << "  " << sensor.value()  << "  " << sensor.valueLowPass() << endl;
-    //    }
-    //}
-    //Serial << "--------------------" << endl;
-    //Serial << endl; 
-
     logger.update();
-
-
     delay(constants::LoopDelay);
 }
 
+
+//if (gpsMonitor.haveData())
+//{
+//    GPSData gpsData = gpsMonitor.getData();
+//    //Serial << " datetime:  " << gpsData.getDateTimeString() << endl;
+//    //Serial << " fix:       " << gpsData.fix << endl;
+//    //Serial << " latitude:  " << gpsData.getLatitudeString() << endl;
+//    //Serial << " longitude: " << gpsData.getLongitudeString() << endl;
+
+//    StaticJsonBuffer<1000> jsonBuffer;
+//    JsonObject &root =  jsonBuffer.createObject();
+//    String dateTimeString = gpsData.getDateTimeString();
+//    String latitudeString = gpsData.getLatitudeString(true);
+//    String longitudeString = gpsData.getLongitudeString(true);
+
+//    root["name"] = "GPS";
+//    root["date"] = dateTimeString.c_str();
+//    root["lat"] = latitudeString.c_str();
+//    root["lon"] = longitudeString.c_str();
+//    root.printTo(Serial);
+//    //root.prettyPrintTo(Serial);
+
+//    // Get current length (test)
+//    //char buffer[500];
+//    //root.printTo(buffer,sizeof(buffer));
+//    //Serial << strlen(buffer) << " " << buffer; 
+
+
+//}
+//Serial << endl;
+
+//Serial << "Gas Sensors" << endl;
+//for (auto &sensor : gasSensors)
+//{
+//    if (sensor.isActive())
+//    {
+//        Serial << "  name:         " << sensor.gasName() << endl; 
+//        Serial << "  workingInt:   " << sensor.workingInt() << endl;
+//        Serial << "  working:      " << sensor.working() << endl;
+//        Serial << "  auxillaryInt: " << sensor.auxillaryInt() << endl;
+//        Serial << "  auxillary:    " << sensor.auxillary() << endl;
+//        Serial << "  ppb:          " << sensor.ppb() << endl;
+//        Serial << "  ppbLowPass:   " << sensor.ppbLowPass() << endl;
+//        Serial << endl;
+
+//        //Serial << "  name: " << sensor.gasName(); 
+//        //Serial << "  " << sensor.ppb();
+//        //Serial << ", " << sensor.ppbLowPass() << endl;
+//    }
+//}
+//Serial << endl;
+
+
+//Serial << "Tmp Sensors" << endl;
+//for (auto &sensor : tmpSensors)
+//{
+//    if (sensor.isActive())
+//    {
+//        Serial << "  " << sensor.value()  << "  " << sensor.valueLowPass() << endl;
+//    }
+//}
+//Serial << "--------------------" << endl;
+//Serial << endl; 
 
 
 
