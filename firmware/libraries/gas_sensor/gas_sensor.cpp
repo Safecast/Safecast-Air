@@ -10,6 +10,8 @@ const GasSensorParam UndefinedSensorParam =
     {
         GAS_TYPE_NONE,   // gasType 
         0,               // serialNumber
+        0,               // header
+        0,               // position
         A0,              // workingAinPin 
         A1,              // auxillaryAinPin
         0.0,             // workingZero

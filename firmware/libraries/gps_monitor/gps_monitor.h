@@ -14,7 +14,7 @@ class GPSMonitor
         static const uint8_t DefaultTimerPriority = 12;
 
         GPSMonitor();
-        GPSMonitor(HardwareSerial *serial);
+        GPSMonitor(HardwareSerial *serialPtr);
         void initialize();
         void start();
         void stop();

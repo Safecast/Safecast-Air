@@ -21,6 +21,8 @@ struct GasSensorParam
 {
     GasType gasType;
     unsigned long serialNumber;
+    uint8_t header;
+    uint8_t position;
     int workingAinPin;
     int auxillaryAinPin;
     float workingZero;

@@ -3,10 +3,10 @@
 GPSMonitor::GPSMonitor()
 { }
 
-GPSMonitor::GPSMonitor(HardwareSerial *serial)
+GPSMonitor::GPSMonitor(HardwareSerial *serialPtr)
 {
-    gpsSerialPtr_ = serial;
-    gps_ = Adafruit_GPS(serial);
+    gpsSerialPtr_ = serialPtr;
+    gps_ = Adafruit_GPS(serialPtr);
 }
 
 void GPSMonitor::initialize()

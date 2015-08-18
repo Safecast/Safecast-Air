@@ -4,10 +4,10 @@
 
 class OPCN2Data
 {
-    static const int NumHistogramBins = 16;
-    static const int ScratchArraySize = 50;
 
     public:
+        static const int NumHistogramBins = 16;
+        static const int ScratchArraySize = 50;
 
         uint16_t binCount[NumHistogramBins];
         uint8_t bin1_mtof;

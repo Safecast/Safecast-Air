@@ -8,6 +8,7 @@ const float MilliSecPerSec = 1.0e-3;
 
 const TmpSensorParam UndefinedSensorParam = 
     {
+        0,        // header
         A0,       // ainPin
         0.0,      // offset
         1.0,      // sensitivity

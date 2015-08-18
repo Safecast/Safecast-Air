@@ -35,7 +35,6 @@ class GasSensorDev
         String gasName() const;
         GasType gasType() const;
 
-
         bool isActive() const;
 
         void initialize();

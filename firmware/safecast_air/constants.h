@@ -4,10 +4,14 @@
 #include "gas_sensor_param.h"
 #include "tmp_sensor_param.h"
 #include "opcn2_param.h"
+#include "logger_param.h"
 #include <SPI.h>
 
 namespace constants
 {
+    extern const long USBSerialBaudRate;
+    extern const unsigned long LoopDelay;
+
     // Gas sensor Constatns
     const int NumGasSensor = 6;
     extern const SamplingParam DefaultGasSensorSamplingParam;
@@ -18,6 +22,7 @@ namespace constants
     extern const SamplingParam DefaultTmpSensorSamplingParam;
     extern const TmpSensorParam DefaultTmpSensorParam[];
 
+    // Particle counter parameters
     extern const OPCN2Param DefaultOPCN2Param;
 
     // OLED Display constatns
@@ -25,6 +30,9 @@ namespace constants
     extern const int DisplayCS;
     extern const int DisplayReset;
     extern const SPISettings DisplsySPISettings;
+
+    // Logger parameters
+    extern const LoggerParam DefaultLoggerParam;
 
 }
 
