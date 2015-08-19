@@ -1,20 +1,22 @@
-External Libraries
-------------------
-Adafruit_GPS
-Adafruit-GFX
-Adafruit_SSD1306
-i2c_t3
-LiquidCrystal_I2C
-Streaming
-
-
 Safecast Air Libraries
 ----------------------
 fixed_vector
 sensor_dev_vector
+gps_monitor
 gas_sensor
+tmp_sensor
 amphenol_pm_sensor
 filter
 lookup_table
 opcn2
-temp_sensor
+
+
+External (third party) libraries
+--------------------------------
+Adafruit_GPS
+Adafruit-GFX
+Adafruit_SSD1306
+LiquidCrystal_I2C
+ArduinoJson
+Streaming
+i2c_t3
