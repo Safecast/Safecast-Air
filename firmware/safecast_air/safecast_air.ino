@@ -28,17 +28,14 @@ GasSensorDevVector<constants::NumGasSensor> gasSensors(
     constants::DefaultGasSensorParam
     );
 
-
 TmpSensorDevVector<constants::NumTmpSensor> tmpSensors(
     constants::DefaultTmpSensorSamplingParam,
     constants::DefaultTmpSensorParam
     );
 
-
 OPCN2 particleCounter(constants::DefaultOPCN2Param);
 
-
-Logger logger(constants::DefaultLoggerParam);
+Logger dataLogger(constants::DefaultLoggerParam);
 
 void setup()
 {
@@ -71,11 +68,11 @@ void setup()
     Serial << "OPCN2 status:  " << status << endl;
     Serial << "laserAndFanOK: " << laserAndFanOk << endl;
 
-    // Setup logTimer
-    logger.initialize();
-    logger.writeConfiguration();
-    logger.setTimerCallback( []() { logger.onTimer(); } );
-    logger.start();
+    // Setup dataLogger
+    dataLogger.initialize();
+    dataLogger.writeConfiguration();
+    dataLogger.setTimerCallback( []() { dataLogger.onTimer(); } );
+    dataLogger.start();
 
     Serial << "done" << endl;
 }
@@ -84,7 +81,7 @@ void setup()
 void loop()
 {
     gpsMonitor.update();
-    logger.update();
+    dataLogger.update();
     delay(constants::LoopDelay);
 }
 

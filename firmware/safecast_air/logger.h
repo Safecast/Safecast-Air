@@ -1,13 +1,14 @@
 #ifndef LOGGER_H
 #define LOGGER_H
-#include "logger_param.h"
 #include <Arduino.h>
+#include <ArduinoJson.h>
+#include "logger_param.h"
 
 class Logger
 {
     public:
         static const uint8_t DefaultTimerPriority = 124;
-        static const int JsonBufferSize = 3000;
+        static const int JsonBufferSize = 3000;  // Probably bigger than we need
 
         Logger(LoggerParam param, HardwareSerial *serialPtr=&Serial3);
 
@@ -27,6 +28,7 @@ class Logger
         IntervalTimer timer_;
         LoggerParam param_;
         volatile bool writeDataFlag_ = false;
+        StaticJsonBuffer<JsonBufferSize> jsonBuffer_;
 
         static void dummyTimerCallback() { }; 
         void (*timerCallback_)() = dummyTimerCallback; 

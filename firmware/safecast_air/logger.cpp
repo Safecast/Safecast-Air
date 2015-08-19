@@ -1,6 +1,5 @@
 #include "logger.h"
 #include <Streaming.h>
-#include <ArduinoJson.h>
 #include "constants.h"
 #include "opcn2.h"
 #include "gas_sensor.h"
@@ -60,8 +59,8 @@ void Logger::setTimerCallback(void (*timerCallback)())
 
 void Logger::writeConfiguration()
 {
-    StaticJsonBuffer<JsonBufferSize> jsonBuffer;
-    JsonObject &rootObj = jsonBuffer.createObject();
+    jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
+    JsonObject &rootObj = jsonBuffer_.createObject();
     rootObj["dev"] = constants::DeviceName;  // Change to something from loaded settings
     rootObj["id"] = constants::DeviceId;     // Change to something from loaded settings
     rootObj["msg"] = "cfg";
@@ -102,8 +101,8 @@ void Logger::writeData()
     String longitudeString = gpsData.getLongitudeString(true);
 
     // Create Json output data
-    StaticJsonBuffer<JsonBufferSize> jsonBuffer;
-    JsonObject &rootObj = jsonBuffer.createObject();
+    jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
+    JsonObject &rootObj = jsonBuffer_.createObject();
     rootObj["dev"] = constants::DeviceName;  // Change to something from loaded settings
     rootObj["id"] = constants::DeviceId;     // Change to something from loaded settings
     rootObj["msg"] = "dat";

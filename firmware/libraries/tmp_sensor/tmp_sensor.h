@@ -28,7 +28,7 @@ class TmpSensorDev
 
         void initialize();
 
-    private:
+    protected:
 
         TmpSensorParam param_;
         filter::LowPass lowPassFilter_;
