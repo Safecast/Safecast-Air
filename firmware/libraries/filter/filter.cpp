@@ -1,5 +1,6 @@
 #include "filter.h"
 #include <Arduino.h>
+#include <Streaming.h>
 
 namespace filter
 {
@@ -20,8 +21,9 @@ namespace filter
     void LowPass::setParam(float cutoffFreq, unsigned int order, float value)
     {
         param_.initialValue = value;
-        param_.cutoffFreq = cutoffFreq;
         param_.order = min(order,MaxOrder_);
+        param_.order = max(param_.order,1);
+        setCutoffFreq(cutoffFreq);
     }
 
     void LowPass::setParam(LowPassParam param)
@@ -42,7 +44,11 @@ namespace filter
     void LowPass::setCutoffFreq(float cutoffFreq)
     {
         param_.cutoffFreq = cutoffFreq;
+        float gainScale = 1.0/ (sqrt( pow(2.0, 1.0/float(param_.order)) - 1.0));
+        elemCutoffFreq_ = param_.cutoffFreq*gainScale; // Cutoff freqency for first order stages
+        rc_ = 1.0/(2.0*M_PI*elemCutoffFreq_);
     }
+
 
     float LowPass::initialValue()
     {
@@ -64,10 +70,19 @@ namespace filter
         param_.order = order;
     }
 
+    float LowPass::singleStageRC()
+    {
+        return rc_;
+    }
+
+    float LowPass::singleStageCutoffFreq()
+    {
+        return elemCutoffFreq_;
+    }
+
     void LowPass::update(float value, float dt)
     {
-        float rc = 1.0/(2.0*M_PI*param_.cutoffFreq);
-        float alpha = dt/(rc + dt);
+        float alpha = dt/(rc_ + dt);
         state_[0] = value;
         for (int i=1; i<=param_.order; i++)
         {

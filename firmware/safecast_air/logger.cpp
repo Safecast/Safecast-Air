@@ -112,6 +112,9 @@ void Logger::writeData()
     gpsObj["date"] = dateTimeString.c_str();
     gpsObj["lat"] = latitudeString.c_str();
     gpsObj["lon"] = longitudeString.c_str();
+    gpsObj["alt"] = gpsData.altitude;
+    gpsObj["spd"] = gpsData.speed;
+    gpsObj["ang"] = gpsData.angle;
     gpsObj["fix"] = gpsData.fix;
     gpsObj["num"] = gpsData.satellites;
 
@@ -169,12 +172,18 @@ void Logger::writeData()
 
     rootObj.printTo(*serialPtr_);
     *serialPtr_ << endl;
+    count_++;
 
     // DEV
     // -------------------------------------------------
     //rootObj.printTo(Serial);
     //rootObj.prettyPrintTo(Serial);
     //Serial << endl;
+
+    Serial << "cnt = " << count_ << ": ";
+    Serial << opcn2Data.PM1  << ", ";  
+    Serial << opcn2Data.PM2_5 << ", "; 
+    Serial << opcn2Data.PM10 << endl;
     // -------------------------------------------------
 
 }

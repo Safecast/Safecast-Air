@@ -6,12 +6,12 @@ namespace filter
 
     struct LowPassParam
     {
-        float cutoffFreq;
+        float cutoffFreq;   //  cutoff frequency (-3dB) for fileter cascade 
         float initialValue;
         unsigned int order;
     };
 
-    // First order low-pass filter
+    // Cascaded first order low-pass filters
     class LowPass
     {
         public:
@@ -33,6 +33,8 @@ namespace filter
 
             float order();
             float setOrder(unsigned int order);
+            float singleStageRC();
+            float singleStageCutoffFreq();
 
             void update(float value, float dt);
             void reset();
@@ -42,6 +44,8 @@ namespace filter
 
             LowPassParam param_;
             volatile float state_[MaxOrder_+1]; 
+            float rc_;
+            float elemCutoffFreq_;
             void initializeState();
     };
 

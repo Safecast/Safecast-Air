@@ -39,6 +39,7 @@ Logger dataLogger(constants::DefaultLoggerParam);
 
 void setup()
 {
+
     Serial.begin(constants::USBSerialBaudRate);
     Serial << "Initializing" << endl;
 
