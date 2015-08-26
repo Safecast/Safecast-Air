@@ -70,6 +70,9 @@ class GasSensorDevVector: public SensorDevVector<GasSensorDev,GasSensorParam,n>
             : SensorDevVector<GasSensorDev,GasSensorParam,n>(sampParam, devParam) 
         { };
 
+        // Add custom sample function which in addition to normal sampling performs
+        // O3/NO2 subtraction
+
 };
 
 #endif
