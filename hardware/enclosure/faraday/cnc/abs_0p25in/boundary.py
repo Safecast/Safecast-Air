@@ -14,7 +14,7 @@ toolDiam = 0.25
 direction = 'ccw'
 cutterComp = 'outside'
 startDwell = 1.0
-startCond = 'minX'
+startCond = 'minY'
 layerList = ['screen_pocket', 'boundary']
 
 prog = gcode_cmd.GCodeProg()
