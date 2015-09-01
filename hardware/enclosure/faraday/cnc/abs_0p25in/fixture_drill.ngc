@@ -1,0 +1,829 @@
+
+; Generic Start
+G40 (Cancel cutter radius compensation)
+G49 (Cancel tool length offset)
+G80 (Cancel canned cycle)
+G54 (Select coordinate system 1)
+G90 (Set absolute distance mode)
+G20 (Set units to inches)
+G61 (Exact path mode)
+
+F 50.0
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 3.0
+; centerY: 10.0
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X3.00000000 Y10.00000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X3.0 Y10.0 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 6.4
+; centerY: 10.0
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X6.40000000 Y10.00000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X6.4 Y10.0 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 3.0
+; centerY: 8.5
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X3.00000000 Y8.50000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X3.0 Y8.5 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 6.4
+; centerY: 8.5
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X6.40000000 Y8.50000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X6.4 Y8.5 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 11.4
+; centerY: 10.8
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X11.40000000 Y10.80000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X11.4 Y10.8 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 11.4
+; centerY: 9.0
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X11.40000000 Y9.00000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X11.4 Y9.0 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 11.4
+; centerY: 4.5
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X11.40000000 Y4.50000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X11.4 Y4.5 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 11.4
+; centerY: 2.7
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X11.40000000 Y2.70000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X11.4 Y2.7 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 16.9
+; centerY: 6.4
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X16.90000000 Y6.40000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X16.9 Y6.4 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 16.9
+; centerY: 4.5
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X16.90000000 Y4.50000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X16.9 Y4.5 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 16.9
+; centerY: 2.6
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X16.90000000 Y2.60000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X16.9 Y2.6 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 20.9
+; centerY: 6.4
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X20.90000000 Y6.40000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X20.9 Y6.4 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 20.9
+; centerY: 4.5
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X20.90000000 Y4.50000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X20.9 Y4.5 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 20.9
+; centerY: 2.6
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X20.90000000 Y2.60000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X20.9 Y2.6 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 0.2
+; centerY: 12.8
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X0.20000000 Y12.80000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X0.2 Y12.8 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 0.2
+; centerY: 0.2
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X0.20000000 Y0.20000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X0.2 Y0.2 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 0.2
+; centerY: 6.3
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X0.20000000 Y6.30000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X0.2 Y6.3 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 13.8
+; centerY: 12.8
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X13.80000000 Y12.80000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X13.8 Y12.8 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 13.8
+; centerY: 6.8
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X13.80000000 Y6.80000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X13.8 Y6.8 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 13.8
+; centerY: 0.2
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X13.80000000 Y0.20000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X13.8 Y0.2 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 14.7
+; centerY: 0.2
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X14.70000000 Y0.20000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X14.7 Y0.2 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 14.7
+; centerY: 8.0
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X14.70000000 Y8.00000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X14.7 Y8.0 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 22.5
+; centerY: 0.2
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X22.50000000 Y0.20000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X22.5 Y0.2 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+; Begin PeckDrill
+; ------------------------------------------------------------
+; layers: ['fixture_holes']
+; startZ: 0.0
+; startCond: minX
+; stopZ: -0.375
+; startDwell: 0.5
+; fileName: layout.dxf
+; safeZ: 0.3
+; dxfTypes: ['CIRCLE']
+; centerX: 19.0
+; centerY: 0.2
+; stepZ: 0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; PeckDrill: rapid move to drill x,y
+G0 X19.00000000 Y0.20000000
+
+; PeckDrill: dwell
+G4 P0.5
+
+; PeckDrill: move to start z
+G1 Z0.00000000
+G83 X19.0 Y0.2 Z-0.375 R0.0 Q0.03
+
+; PeckDrill: rapid move to safe z
+G0 Z0.30000000
+
+; End PeckDrill
+; ------------------------------------------------------------
+
+
+M2 (End program)
