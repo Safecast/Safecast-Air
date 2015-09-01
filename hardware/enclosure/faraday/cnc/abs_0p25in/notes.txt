@@ -1,0 +1,16 @@
+Machining operations  (CNC router)
+
+1. fixture_drill.ngc (part secured with double sided type)
+
+---------------------------------------------
+Secure part with #6 screws via fixture holes
+---------------------------------------------
+
+2. pocket_hole.ngc
+
+3. sensor_cutout.ngc
+
+4. boundary.ngc
+
+
+

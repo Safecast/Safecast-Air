@@ -1,0 +1,17 @@
+Materials
+----------
+
+1) 24"x 48"x 0.25" extruded ABS sheet (Interstate plastics). Note, you can
+get multiple faraday cages from each sheet. 
+
+2) Aluminum Male-Female Threaded Hex Standoff, 1/4" Hex, 5/8" Length, 4-40
+Screw Size.  McMaster Carr 93505A820.
+
+3) Copper Woven Wire Cloth, 22 x 22 Mesh, .012" Wire Diameter, 24" x 24"
+Sheet.  McMaster Carr 9224T59. 
+
+
+Tools 
+-----
+1) Hammer-Driven Small Hole Punch size 9/64", 11/64", 13/64".  McMaster Carr
+3424A13, 3424A15, 3424A17. Used for puching holes in mesh.
