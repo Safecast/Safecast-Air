@@ -5,12 +5,12 @@ from py2gcode import gcode_cmd
 from py2gcode import cnc_dxf
 
 fileName = 'layout.dxf'
-feedrate = 150.0
+feedrate = 100.0
 depth = 0.28
 startZ = 0.0
 safeZ = 0.5
 maxCutDepth = 0.10
-toolDiam = 0.25 
+toolDiam = 3.0/16.0 
 direction = 'ccw'
 cutterComp = 'outside'
 startDwell = 1.0

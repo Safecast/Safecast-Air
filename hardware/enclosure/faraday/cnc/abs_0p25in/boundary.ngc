@@ -8,7 +8,7 @@ G90 (Set absolute distance mode)
 G20 (Set units to inches)
 G61 (Exact path mode)
 
-F 150.0
+F 100.0
 G64 p0.02 q0.01
 
 ; Begin LineSegBoundaryXY
@@ -28,7 +28,7 @@ G64 p0.02 q0.01
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -38,8 +38,8 @@ G0 Z0.50000000
 G0 X7.63800000 Y7.46200000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X7.63800000 Y7.21200000
-G41.1 D0.25
+G0 X7.63800000 Y7.27450000
+G41.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X7.63800000 Y7.46200000
@@ -77,17 +77,17 @@ G1 X7.63800000 Y11.23800000 Z-0.28000000
 G1 X1.86200000 Y11.23800000 Z-0.28000000
 G1 X1.86200000 Y7.46200000 Z-0.28000000
 G1 X7.63800000 Y7.46200000 Z-0.28000000
-G1 X7.63800000 Y7.58700000 Z-0.28000000
+G1 X7.63800000 Y7.55575000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X7.63800000 Y7.83700000
+G0 X7.63800000 Y7.74325000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X7.63800000 Y7.58700000
+G0 X7.63800000 Y7.55575000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
@@ -110,7 +110,7 @@ G0 X7.63800000 Y7.58700000
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -120,8 +120,8 @@ G0 Z0.50000000
 G0 X10.61200000 Y1.86200000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X10.36200000 Y1.86200000
-G41.1 D0.25
+G0 X10.42450000 Y1.86200000
+G41.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X10.61200000 Y1.86200000
@@ -159,17 +159,17 @@ G1 X12.13800000 Y1.86200000 Z-0.28000000
 G1 X12.13800000 Y5.63800000 Z-0.28000000
 G1 X10.61200000 Y5.63800000 Z-0.28000000
 G1 X10.61200000 Y1.86200000 Z-0.28000000
-G1 X10.73700000 Y1.86200000 Z-0.28000000
+G1 X10.70575000 Y1.86200000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X10.98700000 Y1.86200000
+G0 X10.89325000 Y1.86200000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X10.73700000 Y1.86200000
+G0 X10.70575000 Y1.86200000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
@@ -192,7 +192,7 @@ G0 X10.73700000 Y1.86200000
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -202,8 +202,8 @@ G0 Z0.50000000
 G0 X10.61200000 Y7.86200000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X10.36200000 Y7.86200000
-G41.1 D0.25
+G0 X10.42450000 Y7.86200000
+G41.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X10.61200000 Y7.86200000
@@ -241,17 +241,17 @@ G1 X12.13800000 Y7.86200000 Z-0.28000000
 G1 X12.13800000 Y11.63800000 Z-0.28000000
 G1 X10.61200000 Y11.63800000 Z-0.28000000
 G1 X10.61200000 Y7.86200000 Z-0.28000000
-G1 X10.73700000 Y7.86200000 Z-0.28000000
+G1 X10.70575000 Y7.86200000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X10.98700000 Y7.86200000
+G0 X10.89325000 Y7.86200000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X10.73700000 Y7.86200000
+G0 X10.70575000 Y7.86200000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
@@ -274,7 +274,7 @@ G0 X10.73700000 Y7.86200000
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -284,8 +284,8 @@ G0 Z0.50000000
 G0 X16.11200000 Y1.61200000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X15.86200000 Y1.61200000
-G41.1 D0.25
+G0 X15.92450000 Y1.61200000
+G41.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X16.11200000 Y1.61200000
@@ -323,17 +323,17 @@ G1 X17.63800000 Y1.61200000 Z-0.28000000
 G1 X17.63800000 Y7.38800000 Z-0.28000000
 G1 X16.11200000 Y7.38800000 Z-0.28000000
 G1 X16.11200000 Y1.61200000 Z-0.28000000
-G1 X16.23700000 Y1.61200000 Z-0.28000000
+G1 X16.20575000 Y1.61200000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X16.48700000 Y1.61200000
+G0 X16.39325000 Y1.61200000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X16.23700000 Y1.61200000
+G0 X16.20575000 Y1.61200000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
@@ -356,7 +356,7 @@ G0 X16.23700000 Y1.61200000
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -366,8 +366,8 @@ G0 Z0.50000000
 G0 X20.11200000 Y1.61200000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X19.86200000 Y1.61200000
-G41.1 D0.25
+G0 X19.92450000 Y1.61200000
+G41.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X20.11200000 Y1.61200000
@@ -405,17 +405,17 @@ G1 X21.63800000 Y1.61200000 Z-0.28000000
 G1 X21.63800000 Y7.38800000 Z-0.28000000
 G1 X20.11200000 Y7.38800000 Z-0.28000000
 G1 X20.11200000 Y1.61200000 Z-0.28000000
-G1 X20.23700000 Y1.61200000 Z-0.28000000
+G1 X20.20575000 Y1.61200000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X20.48700000 Y1.61200000
+G0 X20.39325000 Y1.61200000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X20.23700000 Y1.61200000
+G0 X20.20575000 Y1.61200000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
@@ -438,7 +438,7 @@ G0 X20.23700000 Y1.61200000
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -448,8 +448,8 @@ G0 Z0.50000000
 G0 X1.00000000 Y1.00000000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X0.75000000 Y1.00000000
-G42.1 D0.25
+G0 X0.81250000 Y1.00000000
+G42.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X1.00000000 Y1.00000000
@@ -487,17 +487,17 @@ G1 X8.00000000 Y1.00000000 Z-0.28000000
 G1 X8.00000000 Y6.00000000 Z-0.28000000
 G1 X1.00000000 Y6.00000000 Z-0.28000000
 G1 X1.00000000 Y1.00000000 Z-0.28000000
-G1 X1.12500000 Y1.00000000 Z-0.28000000
+G1 X1.09375000 Y1.00000000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X1.37500000 Y1.00000000
+G0 X1.28125000 Y1.00000000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X1.12500000 Y1.00000000
+G0 X1.09375000 Y1.00000000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
@@ -520,7 +520,7 @@ G0 X1.12500000 Y1.00000000
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -530,8 +530,8 @@ G0 Z0.50000000
 G0 X1.00000000 Y6.60000000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X0.75000000 Y6.60000000
-G42.1 D0.25
+G0 X0.81250000 Y6.60000000
+G42.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X1.00000000 Y6.60000000
@@ -569,17 +569,17 @@ G1 X8.50000000 Y6.60000000 Z-0.28000000
 G1 X8.50000000 Y12.10000000 Z-0.28000000
 G1 X1.00000000 Y12.10000000 Z-0.28000000
 G1 X1.00000000 Y6.60000000 Z-0.28000000
-G1 X1.12500000 Y6.60000000 Z-0.28000000
+G1 X1.09375000 Y6.60000000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X1.37500000 Y6.60000000
+G0 X1.28125000 Y6.60000000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X1.12500000 Y6.60000000
+G0 X1.09375000 Y6.60000000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
@@ -602,7 +602,7 @@ G0 X1.12500000 Y6.60000000
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -612,8 +612,8 @@ G0 Z0.50000000
 G0 X13.00000000 Y1.00000000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X13.00000000 Y0.75000000
-G42.1 D0.25
+G0 X13.00000000 Y0.81250000
+G42.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X13.00000000 Y1.00000000
@@ -651,17 +651,17 @@ G1 X13.00000000 Y6.50000000 Z-0.28000000
 G1 X10.00000000 Y6.50000000 Z-0.28000000
 G1 X10.00000000 Y1.00000000 Z-0.28000000
 G1 X13.00000000 Y1.00000000 Z-0.28000000
-G1 X13.00000000 Y1.12500000 Z-0.28000000
+G1 X13.00000000 Y1.09375000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X13.00000000 Y1.37500000
+G0 X13.00000000 Y1.28125000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X13.00000000 Y1.12500000
+G0 X13.00000000 Y1.09375000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
@@ -684,7 +684,7 @@ G0 X13.00000000 Y1.12500000
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -694,8 +694,8 @@ G0 Z0.50000000
 G0 X18.50000000 Y1.00000000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X18.50000000 Y0.75000000
-G42.1 D0.25
+G0 X18.50000000 Y0.81250000
+G42.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X18.50000000 Y1.00000000
@@ -733,17 +733,17 @@ G1 X18.50000000 Y8.00000000 Z-0.28000000
 G1 X15.50000000 Y8.00000000 Z-0.28000000
 G1 X15.50000000 Y1.00000000 Z-0.28000000
 G1 X18.50000000 Y1.00000000 Z-0.28000000
-G1 X18.50000000 Y1.12500000 Z-0.28000000
+G1 X18.50000000 Y1.09375000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X18.50000000 Y1.37500000
+G0 X18.50000000 Y1.28125000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X18.50000000 Y1.12500000
+G0 X18.50000000 Y1.09375000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
@@ -766,7 +766,7 @@ G0 X18.50000000 Y1.12500000
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -776,8 +776,8 @@ G0 Z0.50000000
 G0 X22.50000000 Y1.00000000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X22.50000000 Y0.75000000
-G42.1 D0.25
+G0 X22.50000000 Y0.81250000
+G42.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X22.50000000 Y1.00000000
@@ -815,17 +815,17 @@ G1 X22.50000000 Y8.00000000 Z-0.28000000
 G1 X19.50000000 Y8.00000000 Z-0.28000000
 G1 X19.50000000 Y1.00000000 Z-0.28000000
 G1 X22.50000000 Y1.00000000 Z-0.28000000
-G1 X22.50000000 Y1.12500000 Z-0.28000000
+G1 X22.50000000 Y1.09375000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X22.50000000 Y1.37500000
+G0 X22.50000000 Y1.28125000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X22.50000000 Y1.12500000
+G0 X22.50000000 Y1.09375000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
@@ -848,7 +848,7 @@ G0 X22.50000000 Y1.12500000
 ; safeZ: 0.5
 ; dxfTypes: ['LINE', 'ARC']
 ; closed: True
-; toolDiam: 0.25
+; toolDiam: 0.1875
 ; pointList: too big
 
 ; LineSegBoundaryXY: rapid move to safe z
@@ -858,8 +858,8 @@ G0 Z0.50000000
 G0 X13.00000000 Y7.00000000
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
-G0 X13.00000000 Y6.75000000
-G42.1 D0.25
+G0 X13.00000000 Y6.81250000
+G42.1 D0.1875
 
 ; LineSegBoundaryXY: rapid move to cutterComp start move
 G0 X13.00000000 Y7.00000000
@@ -917,17 +917,17 @@ G1 X10.05000000 Y8.87500000 Z-0.28000000
 G1 X10.00000000 Y8.75000000 Z-0.28000000
 G1 X10.00000000 Y7.00000000 Z-0.28000000
 G1 X13.00000000 Y7.00000000 Z-0.28000000
-G1 X13.00000000 Y7.12500000 Z-0.28000000
+G1 X13.00000000 Y7.09375000 Z-0.28000000
 
 ; LineSegBoundaryXY: rapid move to safe z
 G0 Z0.50000000
 G40
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X13.00000000 Y7.37500000
+G0 X13.00000000 Y7.28125000
 
 ; LineSegBoundaryXY: rapid move to cancel cutter comp move
-G0 X13.00000000 Y7.12500000
+G0 X13.00000000 Y7.09375000
 
 ; End LineSegBoundaryXY
 ; ------------------------------------------------------------
