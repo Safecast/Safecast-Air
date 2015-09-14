@@ -1,0 +1,2035 @@
+
+; Generic Start
+G40 (Cancel cutter radius compensation)
+G49 (Cancel tool length offset)
+G80 (Cancel canned cycle)
+G54 (Select coordinate system 1)
+G90 (Set absolute distance mode)
+G20 (Set units to inches)
+G61 (Exact path mode)
+
+F 80.0
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.1
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 12.89175
+; centerY: 3.04575
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X12.92925000 Y3.04575000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X12.92925000 Y3.04575000
+G1 X12.92925000 Y3.04575000 Z0.00000000
+G3 X12.92925000 Y3.04575000 Z-0.08000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X12.92925000 Y3.04575000
+G3 X12.92925000 Y3.04575000 I-0.03750000 J0.00000000
+G1 X12.89175000 Y3.04575000
+
+; CircPocketXY: pass 2 lead-in
+G1 X12.92925000 Y3.04575000
+G1 X12.92925000 Y3.04575000 Z-0.08000000
+G3 X12.92925000 Y3.04575000 Z-0.16000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X12.92925000 Y3.04575000
+G3 X12.92925000 Y3.04575000 I-0.03750000 J0.00000000
+G1 X12.89175000 Y3.04575000
+
+; CircPocketXY: pass 3 lead-in
+G1 X12.92925000 Y3.04575000
+G1 X12.92925000 Y3.04575000 Z-0.16000000
+G3 X12.92925000 Y3.04575000 Z-0.24000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X12.92925000 Y3.04575000
+G3 X12.92925000 Y3.04575000 I-0.03750000 J0.00000000
+G1 X12.89175000 Y3.04575000
+
+; CircPocketXY: pass 4 lead-in
+G1 X12.92925000 Y3.04575000
+G1 X12.92925000 Y3.04575000 Z-0.24000000
+G3 X12.92925000 Y3.04575000 Z-0.27000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X12.92925000 Y3.04575000
+G3 X12.92925000 Y3.04575000 I-0.03750000 J0.00000000
+G1 X12.89175000 Y3.04575000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.1
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 12.89175
+; centerY: 12.89175
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X12.92925000 Y12.89175000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X12.92925000 Y12.89175000
+G1 X12.92925000 Y12.89175000 Z0.00000000
+G3 X12.92925000 Y12.89175000 Z-0.08000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X12.92925000 Y12.89175000
+G3 X12.92925000 Y12.89175000 I-0.03750000 J0.00000000
+G1 X12.89175000 Y12.89175000
+
+; CircPocketXY: pass 2 lead-in
+G1 X12.92925000 Y12.89175000
+G1 X12.92925000 Y12.89175000 Z-0.08000000
+G3 X12.92925000 Y12.89175000 Z-0.16000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X12.92925000 Y12.89175000
+G3 X12.92925000 Y12.89175000 I-0.03750000 J0.00000000
+G1 X12.89175000 Y12.89175000
+
+; CircPocketXY: pass 3 lead-in
+G1 X12.92925000 Y12.89175000
+G1 X12.92925000 Y12.89175000 Z-0.16000000
+G3 X12.92925000 Y12.89175000 Z-0.24000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X12.92925000 Y12.89175000
+G3 X12.92925000 Y12.89175000 I-0.03750000 J0.00000000
+G1 X12.89175000 Y12.89175000
+
+; CircPocketXY: pass 4 lead-in
+G1 X12.92925000 Y12.89175000
+G1 X12.92925000 Y12.89175000 Z-0.24000000
+G3 X12.92925000 Y12.89175000 Z-0.27000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X12.92925000 Y12.89175000
+G3 X12.92925000 Y12.89175000 I-0.03750000 J0.00000000
+G1 X12.89175000 Y12.89175000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.1
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 3.04575
+; centerY: 3.04575
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X3.08325000 Y3.04575000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X3.08325000 Y3.04575000
+G1 X3.08325000 Y3.04575000 Z0.00000000
+G3 X3.08325000 Y3.04575000 Z-0.08000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X3.08325000 Y3.04575000
+G3 X3.08325000 Y3.04575000 I-0.03750000 J0.00000000
+G1 X3.04575000 Y3.04575000
+
+; CircPocketXY: pass 2 lead-in
+G1 X3.08325000 Y3.04575000
+G1 X3.08325000 Y3.04575000 Z-0.08000000
+G3 X3.08325000 Y3.04575000 Z-0.16000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X3.08325000 Y3.04575000
+G3 X3.08325000 Y3.04575000 I-0.03750000 J0.00000000
+G1 X3.04575000 Y3.04575000
+
+; CircPocketXY: pass 3 lead-in
+G1 X3.08325000 Y3.04575000
+G1 X3.08325000 Y3.04575000 Z-0.16000000
+G3 X3.08325000 Y3.04575000 Z-0.24000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X3.08325000 Y3.04575000
+G3 X3.08325000 Y3.04575000 I-0.03750000 J0.00000000
+G1 X3.04575000 Y3.04575000
+
+; CircPocketXY: pass 4 lead-in
+G1 X3.08325000 Y3.04575000
+G1 X3.08325000 Y3.04575000 Z-0.24000000
+G3 X3.08325000 Y3.04575000 Z-0.27000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X3.08325000 Y3.04575000
+G3 X3.08325000 Y3.04575000 I-0.03750000 J0.00000000
+G1 X3.04575000 Y3.04575000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.1
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 3.04575
+; centerY: 12.89175
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X3.08325000 Y12.89175000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X3.08325000 Y12.89175000
+G1 X3.08325000 Y12.89175000 Z0.00000000
+G3 X3.08325000 Y12.89175000 Z-0.08000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X3.08325000 Y12.89175000
+G3 X3.08325000 Y12.89175000 I-0.03750000 J0.00000000
+G1 X3.04575000 Y12.89175000
+
+; CircPocketXY: pass 2 lead-in
+G1 X3.08325000 Y12.89175000
+G1 X3.08325000 Y12.89175000 Z-0.08000000
+G3 X3.08325000 Y12.89175000 Z-0.16000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X3.08325000 Y12.89175000
+G3 X3.08325000 Y12.89175000 I-0.03750000 J0.00000000
+G1 X3.04575000 Y12.89175000
+
+; CircPocketXY: pass 3 lead-in
+G1 X3.08325000 Y12.89175000
+G1 X3.08325000 Y12.89175000 Z-0.16000000
+G3 X3.08325000 Y12.89175000 Z-0.24000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X3.08325000 Y12.89175000
+G3 X3.08325000 Y12.89175000 I-0.03750000 J0.00000000
+G1 X3.04575000 Y12.89175000
+
+; CircPocketXY: pass 4 lead-in
+G1 X3.08325000 Y12.89175000
+G1 X3.08325000 Y12.89175000 Z-0.24000000
+G3 X3.08325000 Y12.89175000 Z-0.27000000 I-0.03750000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X3.08325000 Y12.89175000
+G3 X3.08325000 Y12.89175000 I-0.03750000 J0.00000000
+G1 X3.04575000 Y12.89175000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 13.4375
+; centerY: 9.19375
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X13.45400000 Y9.19375000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X13.45400000 Y9.19375000
+G1 X13.45400000 Y9.19375000 Z0.00000000
+G3 X13.45400000 Y9.19375000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X13.45400000 Y9.19375000
+G3 X13.45400000 Y9.19375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y9.19375000
+
+; CircPocketXY: pass 2 lead-in
+G1 X13.45400000 Y9.19375000
+G1 X13.45400000 Y9.19375000 Z-0.08000000
+G3 X13.45400000 Y9.19375000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X13.45400000 Y9.19375000
+G3 X13.45400000 Y9.19375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y9.19375000
+
+; CircPocketXY: pass 3 lead-in
+G1 X13.45400000 Y9.19375000
+G1 X13.45400000 Y9.19375000 Z-0.16000000
+G3 X13.45400000 Y9.19375000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X13.45400000 Y9.19375000
+G3 X13.45400000 Y9.19375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y9.19375000
+
+; CircPocketXY: pass 4 lead-in
+G1 X13.45400000 Y9.19375000
+G1 X13.45400000 Y9.19375000 Z-0.24000000
+G3 X13.45400000 Y9.19375000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X13.45400000 Y9.19375000
+G3 X13.45400000 Y9.19375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y9.19375000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 13.4375
+; centerY: 6.74375
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X13.45400000 Y6.74375000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X13.45400000 Y6.74375000
+G1 X13.45400000 Y6.74375000 Z0.00000000
+G3 X13.45400000 Y6.74375000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X13.45400000 Y6.74375000
+G3 X13.45400000 Y6.74375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y6.74375000
+
+; CircPocketXY: pass 2 lead-in
+G1 X13.45400000 Y6.74375000
+G1 X13.45400000 Y6.74375000 Z-0.08000000
+G3 X13.45400000 Y6.74375000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X13.45400000 Y6.74375000
+G3 X13.45400000 Y6.74375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y6.74375000
+
+; CircPocketXY: pass 3 lead-in
+G1 X13.45400000 Y6.74375000
+G1 X13.45400000 Y6.74375000 Z-0.16000000
+G3 X13.45400000 Y6.74375000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X13.45400000 Y6.74375000
+G3 X13.45400000 Y6.74375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y6.74375000
+
+; CircPocketXY: pass 4 lead-in
+G1 X13.45400000 Y6.74375000
+G1 X13.45400000 Y6.74375000 Z-0.24000000
+G3 X13.45400000 Y6.74375000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X13.45400000 Y6.74375000
+G3 X13.45400000 Y6.74375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y6.74375000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 9.4875
+; centerY: 9.19375
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X9.50400000 Y9.19375000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X9.50400000 Y9.19375000
+G1 X9.50400000 Y9.19375000 Z0.00000000
+G3 X9.50400000 Y9.19375000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X9.50400000 Y9.19375000
+G3 X9.50400000 Y9.19375000 I-0.01650000 J0.00000000
+G1 X9.48750000 Y9.19375000
+
+; CircPocketXY: pass 2 lead-in
+G1 X9.50400000 Y9.19375000
+G1 X9.50400000 Y9.19375000 Z-0.08000000
+G3 X9.50400000 Y9.19375000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X9.50400000 Y9.19375000
+G3 X9.50400000 Y9.19375000 I-0.01650000 J0.00000000
+G1 X9.48750000 Y9.19375000
+
+; CircPocketXY: pass 3 lead-in
+G1 X9.50400000 Y9.19375000
+G1 X9.50400000 Y9.19375000 Z-0.16000000
+G3 X9.50400000 Y9.19375000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X9.50400000 Y9.19375000
+G3 X9.50400000 Y9.19375000 I-0.01650000 J0.00000000
+G1 X9.48750000 Y9.19375000
+
+; CircPocketXY: pass 4 lead-in
+G1 X9.50400000 Y9.19375000
+G1 X9.50400000 Y9.19375000 Z-0.24000000
+G3 X9.50400000 Y9.19375000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X9.50400000 Y9.19375000
+G3 X9.50400000 Y9.19375000 I-0.01650000 J0.00000000
+G1 X9.48750000 Y9.19375000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 9.4875
+; centerY: 6.74375
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X9.50400000 Y6.74375000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X9.50400000 Y6.74375000
+G1 X9.50400000 Y6.74375000 Z0.00000000
+G3 X9.50400000 Y6.74375000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X9.50400000 Y6.74375000
+G3 X9.50400000 Y6.74375000 I-0.01650000 J0.00000000
+G1 X9.48750000 Y6.74375000
+
+; CircPocketXY: pass 2 lead-in
+G1 X9.50400000 Y6.74375000
+G1 X9.50400000 Y6.74375000 Z-0.08000000
+G3 X9.50400000 Y6.74375000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X9.50400000 Y6.74375000
+G3 X9.50400000 Y6.74375000 I-0.01650000 J0.00000000
+G1 X9.48750000 Y6.74375000
+
+; CircPocketXY: pass 3 lead-in
+G1 X9.50400000 Y6.74375000
+G1 X9.50400000 Y6.74375000 Z-0.16000000
+G3 X9.50400000 Y6.74375000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X9.50400000 Y6.74375000
+G3 X9.50400000 Y6.74375000 I-0.01650000 J0.00000000
+G1 X9.48750000 Y6.74375000
+
+; CircPocketXY: pass 4 lead-in
+G1 X9.50400000 Y6.74375000
+G1 X9.50400000 Y6.74375000 Z-0.24000000
+G3 X9.50400000 Y6.74375000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X9.50400000 Y6.74375000
+G3 X9.50400000 Y6.74375000 I-0.01650000 J0.00000000
+G1 X9.48750000 Y6.74375000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 13.4375
+; centerY: 5.74375
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X13.45400000 Y5.74375000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X13.45400000 Y5.74375000
+G1 X13.45400000 Y5.74375000 Z0.00000000
+G3 X13.45400000 Y5.74375000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X13.45400000 Y5.74375000
+G3 X13.45400000 Y5.74375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y5.74375000
+
+; CircPocketXY: pass 2 lead-in
+G1 X13.45400000 Y5.74375000
+G1 X13.45400000 Y5.74375000 Z-0.08000000
+G3 X13.45400000 Y5.74375000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X13.45400000 Y5.74375000
+G3 X13.45400000 Y5.74375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y5.74375000
+
+; CircPocketXY: pass 3 lead-in
+G1 X13.45400000 Y5.74375000
+G1 X13.45400000 Y5.74375000 Z-0.16000000
+G3 X13.45400000 Y5.74375000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X13.45400000 Y5.74375000
+G3 X13.45400000 Y5.74375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y5.74375000
+
+; CircPocketXY: pass 4 lead-in
+G1 X13.45400000 Y5.74375000
+G1 X13.45400000 Y5.74375000 Z-0.24000000
+G3 X13.45400000 Y5.74375000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X13.45400000 Y5.74375000
+G3 X13.45400000 Y5.74375000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y5.74375000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 13.4375
+; centerY: 3.81462
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X13.45400000 Y3.81462000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X13.45400000 Y3.81462000
+G1 X13.45400000 Y3.81462000 Z0.00000000
+G3 X13.45400000 Y3.81462000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X13.45400000 Y3.81462000
+G3 X13.45400000 Y3.81462000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y3.81462000
+
+; CircPocketXY: pass 2 lead-in
+G1 X13.45400000 Y3.81462000
+G1 X13.45400000 Y3.81462000 Z-0.08000000
+G3 X13.45400000 Y3.81462000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X13.45400000 Y3.81462000
+G3 X13.45400000 Y3.81462000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y3.81462000
+
+; CircPocketXY: pass 3 lead-in
+G1 X13.45400000 Y3.81462000
+G1 X13.45400000 Y3.81462000 Z-0.16000000
+G3 X13.45400000 Y3.81462000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X13.45400000 Y3.81462000
+G3 X13.45400000 Y3.81462000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y3.81462000
+
+; CircPocketXY: pass 4 lead-in
+G1 X13.45400000 Y3.81462000
+G1 X13.45400000 Y3.81462000 Z-0.24000000
+G3 X13.45400000 Y3.81462000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X13.45400000 Y3.81462000
+G3 X13.45400000 Y3.81462000 I-0.01650000 J0.00000000
+G1 X13.43750000 Y3.81462000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 11.15404
+; centerY: 3.81462
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X11.17054000 Y3.81462000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X11.17054000 Y3.81462000
+G1 X11.17054000 Y3.81462000 Z0.00000000
+G3 X11.17054000 Y3.81462000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X11.17054000 Y3.81462000
+G3 X11.17054000 Y3.81462000 I-0.01650000 J0.00000000
+G1 X11.15404000 Y3.81462000
+
+; CircPocketXY: pass 2 lead-in
+G1 X11.17054000 Y3.81462000
+G1 X11.17054000 Y3.81462000 Z-0.08000000
+G3 X11.17054000 Y3.81462000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X11.17054000 Y3.81462000
+G3 X11.17054000 Y3.81462000 I-0.01650000 J0.00000000
+G1 X11.15404000 Y3.81462000
+
+; CircPocketXY: pass 3 lead-in
+G1 X11.17054000 Y3.81462000
+G1 X11.17054000 Y3.81462000 Z-0.16000000
+G3 X11.17054000 Y3.81462000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X11.17054000 Y3.81462000
+G3 X11.17054000 Y3.81462000 I-0.01650000 J0.00000000
+G1 X11.15404000 Y3.81462000
+
+; CircPocketXY: pass 4 lead-in
+G1 X11.17054000 Y3.81462000
+G1 X11.17054000 Y3.81462000 Z-0.24000000
+G3 X11.17054000 Y3.81462000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X11.17054000 Y3.81462000
+G3 X11.17054000 Y3.81462000 I-0.01650000 J0.00000000
+G1 X11.15404000 Y3.81462000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 11.15404
+; centerY: 5.74375
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X11.17054000 Y5.74375000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X11.17054000 Y5.74375000
+G1 X11.17054000 Y5.74375000 Z0.00000000
+G3 X11.17054000 Y5.74375000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X11.17054000 Y5.74375000
+G3 X11.17054000 Y5.74375000 I-0.01650000 J0.00000000
+G1 X11.15404000 Y5.74375000
+
+; CircPocketXY: pass 2 lead-in
+G1 X11.17054000 Y5.74375000
+G1 X11.17054000 Y5.74375000 Z-0.08000000
+G3 X11.17054000 Y5.74375000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X11.17054000 Y5.74375000
+G3 X11.17054000 Y5.74375000 I-0.01650000 J0.00000000
+G1 X11.15404000 Y5.74375000
+
+; CircPocketXY: pass 3 lead-in
+G1 X11.17054000 Y5.74375000
+G1 X11.17054000 Y5.74375000 Z-0.16000000
+G3 X11.17054000 Y5.74375000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X11.17054000 Y5.74375000
+G3 X11.17054000 Y5.74375000 I-0.01650000 J0.00000000
+G1 X11.15404000 Y5.74375000
+
+; CircPocketXY: pass 4 lead-in
+G1 X11.17054000 Y5.74375000
+G1 X11.17054000 Y5.74375000 Z-0.24000000
+G3 X11.17054000 Y5.74375000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X11.17054000 Y5.74375000
+G3 X11.17054000 Y5.74375000 I-0.01650000 J0.00000000
+G1 X11.15404000 Y5.74375000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 6.96875
+; centerY: 13.1875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X6.98525000 Y13.18750000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X6.98525000 Y13.18750000
+G1 X6.98525000 Y13.18750000 Z0.00000000
+G3 X6.98525000 Y13.18750000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X6.98525000 Y13.18750000
+G3 X6.98525000 Y13.18750000 I-0.01650000 J0.00000000
+G1 X6.96875000 Y13.18750000
+
+; CircPocketXY: pass 2 lead-in
+G1 X6.98525000 Y13.18750000
+G1 X6.98525000 Y13.18750000 Z-0.08000000
+G3 X6.98525000 Y13.18750000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X6.98525000 Y13.18750000
+G3 X6.98525000 Y13.18750000 I-0.01650000 J0.00000000
+G1 X6.96875000 Y13.18750000
+
+; CircPocketXY: pass 3 lead-in
+G1 X6.98525000 Y13.18750000
+G1 X6.98525000 Y13.18750000 Z-0.16000000
+G3 X6.98525000 Y13.18750000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X6.98525000 Y13.18750000
+G3 X6.98525000 Y13.18750000 I-0.01650000 J0.00000000
+G1 X6.96875000 Y13.18750000
+
+; CircPocketXY: pass 4 lead-in
+G1 X6.98525000 Y13.18750000
+G1 X6.98525000 Y13.18750000 Z-0.24000000
+G3 X6.98525000 Y13.18750000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X6.98525000 Y13.18750000
+G3 X6.98525000 Y13.18750000 I-0.01650000 J0.00000000
+G1 X6.96875000 Y13.18750000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 6.96875
+; centerY: 11.3875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X6.98525000 Y11.38750000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X6.98525000 Y11.38750000
+G1 X6.98525000 Y11.38750000 Z0.00000000
+G3 X6.98525000 Y11.38750000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X6.98525000 Y11.38750000
+G3 X6.98525000 Y11.38750000 I-0.01650000 J0.00000000
+G1 X6.96875000 Y11.38750000
+
+; CircPocketXY: pass 2 lead-in
+G1 X6.98525000 Y11.38750000
+G1 X6.98525000 Y11.38750000 Z-0.08000000
+G3 X6.98525000 Y11.38750000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X6.98525000 Y11.38750000
+G3 X6.98525000 Y11.38750000 I-0.01650000 J0.00000000
+G1 X6.96875000 Y11.38750000
+
+; CircPocketXY: pass 3 lead-in
+G1 X6.98525000 Y11.38750000
+G1 X6.98525000 Y11.38750000 Z-0.16000000
+G3 X6.98525000 Y11.38750000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X6.98525000 Y11.38750000
+G3 X6.98525000 Y11.38750000 I-0.01650000 J0.00000000
+G1 X6.96875000 Y11.38750000
+
+; CircPocketXY: pass 4 lead-in
+G1 X6.98525000 Y11.38750000
+G1 X6.98525000 Y11.38750000 Z-0.24000000
+G3 X6.98525000 Y11.38750000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X6.98525000 Y11.38750000
+G3 X6.98525000 Y11.38750000 I-0.01650000 J0.00000000
+G1 X6.96875000 Y11.38750000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.13625
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 6.96875
+; centerY: 9.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X7.04250000 Y9.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X7.04250000 Y9.96875000
+G1 X7.04250000 Y9.96875000 Z0.00000000
+G3 X7.04250000 Y9.96875000 Z-0.08000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X7.04250000 Y9.96875000
+G3 X7.04250000 Y9.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y9.96875000
+G3 X6.98000000 Y9.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y9.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X7.04250000 Y9.96875000
+G1 X7.04250000 Y9.96875000 Z-0.08000000
+G3 X7.04250000 Y9.96875000 Z-0.16000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X7.04250000 Y9.96875000
+G3 X7.04250000 Y9.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y9.96875000
+G3 X6.98000000 Y9.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y9.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X7.04250000 Y9.96875000
+G1 X7.04250000 Y9.96875000 Z-0.16000000
+G3 X7.04250000 Y9.96875000 Z-0.24000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X7.04250000 Y9.96875000
+G3 X7.04250000 Y9.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y9.96875000
+G3 X6.98000000 Y9.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y9.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X7.04250000 Y9.96875000
+G1 X7.04250000 Y9.96875000 Z-0.24000000
+G3 X7.04250000 Y9.96875000 Z-0.27000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X7.04250000 Y9.96875000
+G3 X7.04250000 Y9.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y9.96875000
+G3 X6.98000000 Y9.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y9.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.13625
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 6.96875
+; centerY: 7.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X7.04250000 Y7.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X7.04250000 Y7.96875000
+G1 X7.04250000 Y7.96875000 Z0.00000000
+G3 X7.04250000 Y7.96875000 Z-0.08000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X7.04250000 Y7.96875000
+G3 X7.04250000 Y7.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y7.96875000
+G3 X6.98000000 Y7.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y7.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X7.04250000 Y7.96875000
+G1 X7.04250000 Y7.96875000 Z-0.08000000
+G3 X7.04250000 Y7.96875000 Z-0.16000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X7.04250000 Y7.96875000
+G3 X7.04250000 Y7.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y7.96875000
+G3 X6.98000000 Y7.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y7.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X7.04250000 Y7.96875000
+G1 X7.04250000 Y7.96875000 Z-0.16000000
+G3 X7.04250000 Y7.96875000 Z-0.24000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X7.04250000 Y7.96875000
+G3 X7.04250000 Y7.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y7.96875000
+G3 X6.98000000 Y7.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y7.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X7.04250000 Y7.96875000
+G1 X7.04250000 Y7.96875000 Z-0.24000000
+G3 X7.04250000 Y7.96875000 Z-0.27000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X7.04250000 Y7.96875000
+G3 X7.04250000 Y7.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y7.96875000
+G3 X6.98000000 Y7.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y7.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.13625
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 6.96875
+; centerY: 5.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X7.04250000 Y5.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X7.04250000 Y5.96875000
+G1 X7.04250000 Y5.96875000 Z0.00000000
+G3 X7.04250000 Y5.96875000 Z-0.08000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X7.04250000 Y5.96875000
+G3 X7.04250000 Y5.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y5.96875000
+G3 X6.98000000 Y5.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y5.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X7.04250000 Y5.96875000
+G1 X7.04250000 Y5.96875000 Z-0.08000000
+G3 X7.04250000 Y5.96875000 Z-0.16000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X7.04250000 Y5.96875000
+G3 X7.04250000 Y5.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y5.96875000
+G3 X6.98000000 Y5.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y5.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X7.04250000 Y5.96875000
+G1 X7.04250000 Y5.96875000 Z-0.16000000
+G3 X7.04250000 Y5.96875000 Z-0.24000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X7.04250000 Y5.96875000
+G3 X7.04250000 Y5.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y5.96875000
+G3 X6.98000000 Y5.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y5.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X7.04250000 Y5.96875000
+G1 X7.04250000 Y5.96875000 Z-0.24000000
+G3 X7.04250000 Y5.96875000 Z-0.27000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X7.04250000 Y5.96875000
+G3 X7.04250000 Y5.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y5.96875000
+G3 X6.98000000 Y5.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y5.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.13625
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 6.96875
+; centerY: 3.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X7.04250000 Y3.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X7.04250000 Y3.96875000
+G1 X7.04250000 Y3.96875000 Z0.00000000
+G3 X7.04250000 Y3.96875000 Z-0.08000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X7.04250000 Y3.96875000
+G3 X7.04250000 Y3.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y3.96875000
+G3 X6.98000000 Y3.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y3.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X7.04250000 Y3.96875000
+G1 X7.04250000 Y3.96875000 Z-0.08000000
+G3 X7.04250000 Y3.96875000 Z-0.16000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X7.04250000 Y3.96875000
+G3 X7.04250000 Y3.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y3.96875000
+G3 X6.98000000 Y3.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y3.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X7.04250000 Y3.96875000
+G1 X7.04250000 Y3.96875000 Z-0.16000000
+G3 X7.04250000 Y3.96875000 Z-0.24000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X7.04250000 Y3.96875000
+G3 X7.04250000 Y3.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y3.96875000
+G3 X6.98000000 Y3.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y3.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X7.04250000 Y3.96875000
+G1 X7.04250000 Y3.96875000 Z-0.24000000
+G3 X7.04250000 Y3.96875000 Z-0.27000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X7.04250000 Y3.96875000
+G3 X7.04250000 Y3.96875000 I-0.07375000 J0.00000000
+G1 X6.98000000 Y3.96875000
+G3 X6.98000000 Y3.96875000 I-0.01125000 J0.00000000
+G1 X6.96875000 Y3.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.13625
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 5.96875
+; centerY: 2.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X6.04250000 Y2.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X6.04250000 Y2.96875000
+G1 X6.04250000 Y2.96875000 Z0.00000000
+G3 X6.04250000 Y2.96875000 Z-0.08000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X6.04250000 Y2.96875000
+G3 X6.04250000 Y2.96875000 I-0.07375000 J0.00000000
+G1 X5.98000000 Y2.96875000
+G3 X5.98000000 Y2.96875000 I-0.01125000 J0.00000000
+G1 X5.96875000 Y2.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X6.04250000 Y2.96875000
+G1 X6.04250000 Y2.96875000 Z-0.08000000
+G3 X6.04250000 Y2.96875000 Z-0.16000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X6.04250000 Y2.96875000
+G3 X6.04250000 Y2.96875000 I-0.07375000 J0.00000000
+G1 X5.98000000 Y2.96875000
+G3 X5.98000000 Y2.96875000 I-0.01125000 J0.00000000
+G1 X5.96875000 Y2.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X6.04250000 Y2.96875000
+G1 X6.04250000 Y2.96875000 Z-0.16000000
+G3 X6.04250000 Y2.96875000 Z-0.24000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X6.04250000 Y2.96875000
+G3 X6.04250000 Y2.96875000 I-0.07375000 J0.00000000
+G1 X5.98000000 Y2.96875000
+G3 X5.98000000 Y2.96875000 I-0.01125000 J0.00000000
+G1 X5.96875000 Y2.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X6.04250000 Y2.96875000
+G1 X6.04250000 Y2.96875000 Z-0.24000000
+G3 X6.04250000 Y2.96875000 Z-0.27000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X6.04250000 Y2.96875000
+G3 X6.04250000 Y2.96875000 I-0.07375000 J0.00000000
+G1 X5.98000000 Y2.96875000
+G3 X5.98000000 Y2.96875000 I-0.01125000 J0.00000000
+G1 X5.96875000 Y2.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.13625
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 3.96875
+; centerY: 2.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X4.04250000 Y2.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X4.04250000 Y2.96875000
+G1 X4.04250000 Y2.96875000 Z0.00000000
+G3 X4.04250000 Y2.96875000 Z-0.08000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X4.04250000 Y2.96875000
+G3 X4.04250000 Y2.96875000 I-0.07375000 J0.00000000
+G1 X3.98000000 Y2.96875000
+G3 X3.98000000 Y2.96875000 I-0.01125000 J0.00000000
+G1 X3.96875000 Y2.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X4.04250000 Y2.96875000
+G1 X4.04250000 Y2.96875000 Z-0.08000000
+G3 X4.04250000 Y2.96875000 Z-0.16000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X4.04250000 Y2.96875000
+G3 X4.04250000 Y2.96875000 I-0.07375000 J0.00000000
+G1 X3.98000000 Y2.96875000
+G3 X3.98000000 Y2.96875000 I-0.01125000 J0.00000000
+G1 X3.96875000 Y2.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X4.04250000 Y2.96875000
+G1 X4.04250000 Y2.96875000 Z-0.16000000
+G3 X4.04250000 Y2.96875000 Z-0.24000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X4.04250000 Y2.96875000
+G3 X4.04250000 Y2.96875000 I-0.07375000 J0.00000000
+G1 X3.98000000 Y2.96875000
+G3 X3.98000000 Y2.96875000 I-0.01125000 J0.00000000
+G1 X3.96875000 Y2.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X4.04250000 Y2.96875000
+G1 X4.04250000 Y2.96875000 Z-0.24000000
+G3 X4.04250000 Y2.96875000 Z-0.27000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X4.04250000 Y2.96875000
+G3 X4.04250000 Y2.96875000 I-0.07375000 J0.00000000
+G1 X3.98000000 Y2.96875000
+G3 X3.98000000 Y2.96875000 I-0.01125000 J0.00000000
+G1 X3.96875000 Y2.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.13625
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 9.46875
+; centerY: 12.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X9.54250000 Y12.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X9.54250000 Y12.96875000
+G1 X9.54250000 Y12.96875000 Z0.00000000
+G3 X9.54250000 Y12.96875000 Z-0.08000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X9.54250000 Y12.96875000
+G3 X9.54250000 Y12.96875000 I-0.07375000 J0.00000000
+G1 X9.48000000 Y12.96875000
+G3 X9.48000000 Y12.96875000 I-0.01125000 J0.00000000
+G1 X9.46875000 Y12.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X9.54250000 Y12.96875000
+G1 X9.54250000 Y12.96875000 Z-0.08000000
+G3 X9.54250000 Y12.96875000 Z-0.16000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X9.54250000 Y12.96875000
+G3 X9.54250000 Y12.96875000 I-0.07375000 J0.00000000
+G1 X9.48000000 Y12.96875000
+G3 X9.48000000 Y12.96875000 I-0.01125000 J0.00000000
+G1 X9.46875000 Y12.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X9.54250000 Y12.96875000
+G1 X9.54250000 Y12.96875000 Z-0.16000000
+G3 X9.54250000 Y12.96875000 Z-0.24000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X9.54250000 Y12.96875000
+G3 X9.54250000 Y12.96875000 I-0.07375000 J0.00000000
+G1 X9.48000000 Y12.96875000
+G3 X9.48000000 Y12.96875000 I-0.01125000 J0.00000000
+G1 X9.46875000 Y12.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X9.54250000 Y12.96875000
+G1 X9.54250000 Y12.96875000 Z-0.24000000
+G3 X9.54250000 Y12.96875000 Z-0.27000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X9.54250000 Y12.96875000
+G3 X9.54250000 Y12.96875000 I-0.07375000 J0.00000000
+G1 X9.48000000 Y12.96875000
+G3 X9.48000000 Y12.96875000 I-0.01125000 J0.00000000
+G1 X9.46875000 Y12.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.13625
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 9.46875
+; centerY: 10.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X9.54250000 Y10.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X9.54250000 Y10.96875000
+G1 X9.54250000 Y10.96875000 Z0.00000000
+G3 X9.54250000 Y10.96875000 Z-0.08000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X9.54250000 Y10.96875000
+G3 X9.54250000 Y10.96875000 I-0.07375000 J0.00000000
+G1 X9.48000000 Y10.96875000
+G3 X9.48000000 Y10.96875000 I-0.01125000 J0.00000000
+G1 X9.46875000 Y10.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X9.54250000 Y10.96875000
+G1 X9.54250000 Y10.96875000 Z-0.08000000
+G3 X9.54250000 Y10.96875000 Z-0.16000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X9.54250000 Y10.96875000
+G3 X9.54250000 Y10.96875000 I-0.07375000 J0.00000000
+G1 X9.48000000 Y10.96875000
+G3 X9.48000000 Y10.96875000 I-0.01125000 J0.00000000
+G1 X9.46875000 Y10.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X9.54250000 Y10.96875000
+G1 X9.54250000 Y10.96875000 Z-0.16000000
+G3 X9.54250000 Y10.96875000 Z-0.24000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X9.54250000 Y10.96875000
+G3 X9.54250000 Y10.96875000 I-0.07375000 J0.00000000
+G1 X9.48000000 Y10.96875000
+G3 X9.48000000 Y10.96875000 I-0.01125000 J0.00000000
+G1 X9.46875000 Y10.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X9.54250000 Y10.96875000
+G1 X9.54250000 Y10.96875000 Z-0.24000000
+G3 X9.54250000 Y10.96875000 Z-0.27000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X9.54250000 Y10.96875000
+G3 X9.54250000 Y10.96875000 I-0.07375000 J0.00000000
+G1 X9.48000000 Y10.96875000
+G3 X9.48000000 Y10.96875000 I-0.01125000 J0.00000000
+G1 X9.46875000 Y10.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 7.96875
+; centerY: 2.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X7.98525000 Y2.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X7.98525000 Y2.96875000
+G1 X7.98525000 Y2.96875000 Z0.00000000
+G3 X7.98525000 Y2.96875000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X7.98525000 Y2.96875000
+G3 X7.98525000 Y2.96875000 I-0.01650000 J0.00000000
+G1 X7.96875000 Y2.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X7.98525000 Y2.96875000
+G1 X7.98525000 Y2.96875000 Z-0.08000000
+G3 X7.98525000 Y2.96875000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X7.98525000 Y2.96875000
+G3 X7.98525000 Y2.96875000 I-0.01650000 J0.00000000
+G1 X7.96875000 Y2.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X7.98525000 Y2.96875000
+G1 X7.98525000 Y2.96875000 Z-0.16000000
+G3 X7.98525000 Y2.96875000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X7.98525000 Y2.96875000
+G3 X7.98525000 Y2.96875000 I-0.01650000 J0.00000000
+G1 X7.96875000 Y2.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X7.98525000 Y2.96875000
+G1 X7.98525000 Y2.96875000 Z-0.24000000
+G3 X7.98525000 Y2.96875000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X7.98525000 Y2.96875000
+G3 X7.98525000 Y2.96875000 I-0.01650000 J0.00000000
+G1 X7.96875000 Y2.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.079
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 9.46875
+; centerY: 2.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X9.48525000 Y2.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X9.48525000 Y2.96875000
+G1 X9.48525000 Y2.96875000 Z0.00000000
+G3 X9.48525000 Y2.96875000 Z-0.08000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X9.48525000 Y2.96875000
+G3 X9.48525000 Y2.96875000 I-0.01650000 J0.00000000
+G1 X9.46875000 Y2.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X9.48525000 Y2.96875000
+G1 X9.48525000 Y2.96875000 Z-0.08000000
+G3 X9.48525000 Y2.96875000 Z-0.16000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X9.48525000 Y2.96875000
+G3 X9.48525000 Y2.96875000 I-0.01650000 J0.00000000
+G1 X9.46875000 Y2.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X9.48525000 Y2.96875000
+G1 X9.48525000 Y2.96875000 Z-0.16000000
+G3 X9.48525000 Y2.96875000 Z-0.24000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X9.48525000 Y2.96875000
+G3 X9.48525000 Y2.96875000 I-0.01650000 J0.00000000
+G1 X9.46875000 Y2.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X9.48525000 Y2.96875000
+G1 X9.48525000 Y2.96875000 Z-0.24000000
+G3 X9.48525000 Y2.96875000 Z-0.27000000 I-0.01650000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X9.48525000 Y2.96875000
+G3 X9.48525000 Y2.96875000 I-0.01650000 J0.00000000
+G1 X9.46875000 Y2.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+; Begin CircPocketXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; direction: ccw
+; components: True
+; startDwell: 1.0
+; maxCutDepth: 0.08
+; fileName: floor_layout.dxf
+; radius: 0.13625
+; layers: too big
+; overlapFinish: 0.5
+; depth: 0.27
+; overlap: 0.5
+; safeZ: 0.5
+; dxfTypes: ['CIRCLE']
+; centerX: 11.96875
+; centerY: 10.96875
+; toolDiam: 0.125
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; CircPocketXY: rapid move to start x,y
+G0 X12.04250000 Y10.96875000
+
+; CircPocketXY: dwell
+G4 P1.0
+
+; CircPocketXY: move to start z
+G1 Z0.00000000
+
+; CircPocketXY: pass 1 lead-in
+G1 X12.04250000 Y10.96875000
+G1 X12.04250000 Y10.96875000 Z0.00000000
+G3 X12.04250000 Y10.96875000 Z-0.08000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 1 filled circle
+G1 X12.04250000 Y10.96875000
+G3 X12.04250000 Y10.96875000 I-0.07375000 J0.00000000
+G1 X11.98000000 Y10.96875000
+G3 X11.98000000 Y10.96875000 I-0.01125000 J0.00000000
+G1 X11.96875000 Y10.96875000
+
+; CircPocketXY: pass 2 lead-in
+G1 X12.04250000 Y10.96875000
+G1 X12.04250000 Y10.96875000 Z-0.08000000
+G3 X12.04250000 Y10.96875000 Z-0.16000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 2 filled circle
+G1 X12.04250000 Y10.96875000
+G3 X12.04250000 Y10.96875000 I-0.07375000 J0.00000000
+G1 X11.98000000 Y10.96875000
+G3 X11.98000000 Y10.96875000 I-0.01125000 J0.00000000
+G1 X11.96875000 Y10.96875000
+
+; CircPocketXY: pass 3 lead-in
+G1 X12.04250000 Y10.96875000
+G1 X12.04250000 Y10.96875000 Z-0.16000000
+G3 X12.04250000 Y10.96875000 Z-0.24000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 3 filled circle
+G1 X12.04250000 Y10.96875000
+G3 X12.04250000 Y10.96875000 I-0.07375000 J0.00000000
+G1 X11.98000000 Y10.96875000
+G3 X11.98000000 Y10.96875000 I-0.01125000 J0.00000000
+G1 X11.96875000 Y10.96875000
+
+; CircPocketXY: pass 4 lead-in
+G1 X12.04250000 Y10.96875000
+G1 X12.04250000 Y10.96875000 Z-0.24000000
+G3 X12.04250000 Y10.96875000 Z-0.27000000 I-0.07375000 J0.00000000
+
+; CircPocketXY: pass 4 filled circle
+G1 X12.04250000 Y10.96875000
+G3 X12.04250000 Y10.96875000 I-0.07375000 J0.00000000
+G1 X11.98000000 Y10.96875000
+G3 X11.98000000 Y10.96875000 I-0.01125000 J0.00000000
+G1 X11.96875000 Y10.96875000
+
+; CircPocketXY: rapid move to safe z
+G0 Z0.50000000
+
+; End CircPocketXY
+; ------------------------------------------------------------
+
+
+M2 (End program)
