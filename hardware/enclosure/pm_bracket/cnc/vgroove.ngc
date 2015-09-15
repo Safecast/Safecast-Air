@@ -1,0 +1,101 @@
+
+; Generic Start
+G40 (Cancel cutter radius compensation)
+G49 (Cancel tool length offset)
+G80 (Cancel canned cycle)
+G54 (Select coordinate system 1)
+G90 (Set absolute distance mode)
+G20 (Set units to inches)
+G61 (Exact path mode)
+
+F 200.0
+
+; Begin LineSegBoundaryXY
+; ------------------------------------------------------------
+; startZ: 0.0
+; maxArcLen: 0.01
+; startCond: minX
+; cutterComp: None
+; startDwell: 2.0
+; direction: ccw
+; maxCutDepth: 0.03
+; fileName: pm_bracket.dxf
+; convertArcs: True
+; ptEquivTol: 1e-05
+; layers: ['bend']
+; depth: 0.175
+; safeZ: 0.5
+; dxfTypes: ['LINE', 'ARC']
+; closed: False
+; toolDiam: 0.25
+; pointList: too big
+
+; LineSegBoundaryXY: rapid move to safe z
+G0 Z0.50000000
+
+; LineSegBoundaryXY: rapid move to start x,y
+G0 X2.62500000 Y4.50000000
+
+; LineSegBoundaryXY: dwell
+G4 P2.0
+
+; LineSegBoundaryXY: move to start z
+G1 Z0.00000000
+
+; LineSegBoundaryXY: LineSegPath 0
+G1 X2.62500000 Y4.50000000 Z0.00000000
+G1 X2.62500000 Y0.50000000 Z-0.01500000
+G1 X2.62500000 Y0.50000000 Z-0.01500000
+G1 X2.62500000 Y4.50000000 Z-0.03000000
+
+; LineSegBoundaryXY: LineSegPath 1
+G1 X2.62500000 Y4.50000000 Z-0.03000000
+G1 X2.62500000 Y0.50000000 Z-0.04500000
+G1 X2.62500000 Y0.50000000 Z-0.04500000
+G1 X2.62500000 Y4.50000000 Z-0.06000000
+
+; LineSegBoundaryXY: LineSegPath 2
+G1 X2.62500000 Y4.50000000 Z-0.06000000
+G1 X2.62500000 Y0.50000000 Z-0.07500000
+G1 X2.62500000 Y0.50000000 Z-0.07500000
+G1 X2.62500000 Y4.50000000 Z-0.09000000
+
+; LineSegBoundaryXY: LineSegPath 3
+G1 X2.62500000 Y4.50000000 Z-0.09000000
+G1 X2.62500000 Y0.50000000 Z-0.10500000
+G1 X2.62500000 Y0.50000000 Z-0.10500000
+G1 X2.62500000 Y4.50000000 Z-0.12000000
+
+; LineSegBoundaryXY: LineSegPath 4
+G1 X2.62500000 Y4.50000000 Z-0.12000000
+G1 X2.62500000 Y0.50000000 Z-0.13500000
+G1 X2.62500000 Y0.50000000 Z-0.13500000
+G1 X2.62500000 Y4.50000000 Z-0.15000000
+
+; LineSegBoundaryXY: LineSegPath 5
+G1 X2.62500000 Y4.50000000 Z-0.15000000
+G1 X2.62500000 Y0.50000000 Z-0.16250000
+G1 X2.62500000 Y0.50000000 Z-0.16250000
+G1 X2.62500000 Y4.50000000 Z-0.17500000
+
+; LineSegBoundaryXY: LineSegPath 6
+G1 X2.62500000 Y4.50000000 Z-0.17500000
+G1 X2.62500000 Y0.50000000 Z-0.17500000
+G1 X2.62500000 Y0.50000000 Z-0.17500000
+G1 X2.62500000 Y4.50000000 Z-0.17500000
+
+; LineSegBoundaryXY: rapid move to safe z
+G0 Z0.50000000
+G40
+
+; LineSegBoundaryXY: rapid move to cancel cutter comp move
+G0 X2.62500000 Y4.75000000
+
+; LineSegBoundaryXY: rapid move to cancel cutter comp move
+G0 X2.62500000 Y4.50000000
+
+; End LineSegBoundaryXY
+; ------------------------------------------------------------
+
+
+M2 (End program)
