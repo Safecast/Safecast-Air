@@ -15,6 +15,7 @@
 #include "gps_monitor.h"
 #include "logger.h"
 
+
 Adafruit_SSD1306 display(
     constants::DisplayDC, 
     constants::DisplayReset, 
@@ -45,6 +46,14 @@ void setup()
 
     // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
+
+    display.begin(SSD1306_SWITCHCAPVCC);
+    display.clearDisplay();   
+    display.display();
+    display.setTextSize(1);
+    display.setTextColor(WHITE);
+    display.println("Safecast Air");
+    display.display();
 
     // Setup GPS monitor
     gpsMonitor.initialize();
