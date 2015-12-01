@@ -93,6 +93,7 @@ void loop()
     gpsMonitor.update();
     dataLogger.update();
     delay(constants::LoopDelay);
+
 }
 
 
