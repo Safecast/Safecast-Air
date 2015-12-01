@@ -46,10 +46,14 @@ class GPSData
         String getDateTimeString();
         String getLatitudeString(bool addNS=false);
         String getLongitudeString(bool addEW=false);
+        double getLatitudeDecDeg();
+        double getLongitudeDecDeg();
 
     protected:
 
         static const int ScratchArraySize = 150;
+
+        static double convertToDecDeg(double valueNEMAish);
 
 
 };

@@ -97,8 +97,8 @@ void Logger::writeData()
 
     OPCN2Data opcn2Data = particleCounter.getHistogramData();
     String dateTimeString = gpsData.getDateTimeString();
-    String latitudeString = gpsData.getLatitudeString(true);
-    String longitudeString = gpsData.getLongitudeString(true);
+    String latitudeString = gpsData.getLatitudeString();
+    String longitudeString = gpsData.getLongitudeString();
 
     // Create Json output data
     jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
@@ -180,10 +180,10 @@ void Logger::writeData()
     //rootObj.prettyPrintTo(Serial);
     //Serial << endl;
 
-    Serial << "cnt = " << count_ << ": ";
-    Serial << opcn2Data.PM1  << ", ";  
-    Serial << opcn2Data.PM2_5 << ", "; 
-    Serial << opcn2Data.PM10 << endl;
+    //Serial << "cnt = " << count_ << ": ";
+    //Serial << opcn2Data.PM1  << ", ";  
+    //Serial << opcn2Data.PM2_5 << ", "; 
+    //Serial << opcn2Data.PM10 << endl;
     // -------------------------------------------------
 
 }

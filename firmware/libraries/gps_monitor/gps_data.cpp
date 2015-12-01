@@ -1,4 +1,5 @@
 #include "gps_data.h"
+#include <cmath>
 
 GPSData::GPSData()
 {
@@ -41,13 +42,14 @@ String GPSData::getDateTimeString()
 String GPSData::getLatitudeString(bool addNS)
 {
     char scratch[ScratchArraySize];
+    double latitudeDecDeg = getLatitudeDecDeg();
     if (addNS)
     {
-        snprintf(scratch,ScratchArraySize,"%09.4f%c",latitude,lat);
+        snprintf(scratch,ScratchArraySize,"%.8f%c",latitudeDecDeg,lat);
     }
     else
     {
-        snprintf(scratch,ScratchArraySize,"%09.4f",latitude);
+        snprintf(scratch,ScratchArraySize,"%.8f",latitudeDecDeg);
     }
     return String(scratch);
 }
@@ -56,13 +58,35 @@ String GPSData::getLatitudeString(bool addNS)
 String GPSData::getLongitudeString(bool addEW)
 {
     char scratch[ScratchArraySize];
+    double longitudeDecDeg = getLongitudeDecDeg();
     if (addEW)
     {
-        snprintf(scratch,ScratchArraySize,"%010.4f%c",longitude,lon);
+        snprintf(scratch,ScratchArraySize,"%.8f%c",longitudeDecDeg,lon);
     }
     else
     {
-        snprintf(scratch,ScratchArraySize,"%010.4f",longitude);
+        snprintf(scratch,ScratchArraySize,"%.8f",longitudeDecDeg);
     }
     return String(scratch);
+}
+
+
+double GPSData::getLatitudeDecDeg()
+{
+    return convertToDecDeg(latitude);
+}
+
+
+double GPSData::getLongitudeDecDeg()
+{
+    return convertToDecDeg(longitude);
+}
+
+
+double GPSData::convertToDecDeg(double valueNEMAish)
+{
+    double decDeg = double(trunc(valueNEMAish/100.0));
+    double decMinute = double(valueNEMAish) - 100.0*decDeg;
+    decDeg += decMinute/60.0;
+    return decDeg;
 }
