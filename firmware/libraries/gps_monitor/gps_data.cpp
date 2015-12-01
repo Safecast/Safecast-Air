@@ -83,6 +83,17 @@ double GPSData::getLongitudeDecDeg()
 }
 
 
+float GPSData::getAltitudeInMeter()
+{
+    return altitude*CentimeterToMeter;
+}
+
+
+float GPSData::getSpeedInMeterPerSec()
+{
+    return speed*KnotsToMeterPerSec;
+}
+
 double GPSData::convertToDecDeg(double valueNEMAish)
 {
     double decDeg = double(trunc(valueNEMAish/100.0));

@@ -48,13 +48,15 @@ class GPSData
         String getLongitudeString(bool addEW=false);
         double getLatitudeDecDeg();
         double getLongitudeDecDeg();
+        float getAltitudeInMeter();
+        float getSpeedInMeterPerSec();
 
     protected:
 
         static const int ScratchArraySize = 150;
-
+        static constexpr float CentimeterToMeter = 1.0e-2;
+        static constexpr float KnotsToMeterPerSec = 0.514444;
         static double convertToDecDeg(double valueNEMAish);
-
 
 };
 

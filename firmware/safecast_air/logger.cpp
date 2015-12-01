@@ -112,8 +112,8 @@ void Logger::writeData()
     gpsObj["date"] = dateTimeString.c_str();
     gpsObj["lat"] = latitudeString.c_str();
     gpsObj["lon"] = longitudeString.c_str();
-    gpsObj["alt"] = gpsData.altitude;
-    gpsObj["spd"] = gpsData.speed;
+    gpsObj["alt"] = gpsData.getAltitudeInMeter();
+    gpsObj["spd"] = gpsData.getSpeedInMeterPerSec();
     gpsObj["ang"] = gpsData.angle;
     gpsObj["fix"] = gpsData.fix;
     gpsObj["num"] = gpsData.satellites;
