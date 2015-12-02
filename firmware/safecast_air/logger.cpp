@@ -2,6 +2,7 @@
 #include <Streaming.h>
 #include "constants.h"
 #include "opcn2.h"
+#include "opcn2_ids.h"
 #include "gas_sensor.h"
 #include "tmp_sensor.h"
 #include "gps_monitor.h"
@@ -96,6 +97,7 @@ void Logger::writeData()
     }
 
     OPCN2Data opcn2Data = particleCounter.getHistogramData();
+    OPCN2Ids opcn2Ids = particleCounter.getIds();
     String dateTimeString = gpsData.getDateTimeString();
     String latitudeString = gpsData.getLatitudeString();
     String longitudeString = gpsData.getLongitudeString();
@@ -162,8 +164,10 @@ void Logger::writeData()
         idsObj["valFlt"] = param.ids.valFlt;
     }
 
-    // Add OPN2 sensor
+    // Add OPN2 sensor  ...
+    // TO DO modifiy to handle multiple opcn2 devices.
     JsonArray &pmArray = rootObj.createNestedArray("pm");
+
     JsonObject &opcn2Obj = pmArray.createNestedObject();
     opcn2Obj["pos"] = "norm";
     opcn2Obj["pm1"] = opcn2Data.PM1;
@@ -180,6 +184,24 @@ void Logger::writeData()
     {
         binCntArray.add(opcn2Data.binCount[i]);
     }
+
+
+    JsonObject &idsObj = opcn2Obj.createNestedObject("ids");
+    idsObj["pm1"] = opcn2Ids.pm1;
+    idsObj["pm2_5"] = opcn2Ids.pm2_5;
+    idsObj["pm10"] = opcn2Ids.pm10;
+    idsObj["rate"] = opcn2Ids.rate;
+    idsObj["dt"] = opcn2Ids.dt;
+    idsObj["mtof1"] = opcn2Ids.mtof1;
+    idsObj["mtof3"] = opcn2Ids.mtof3;
+    idsObj["mtof5"] = opcn2Ids.mtof5;
+    idsObj["mtof7"] = opcn2Ids.mtof7;
+    JsonArray &cntIdsArray = idsObj.createNestedArray("cnt");
+    for (int i=0; i<OPCN2Data::NumHistogramBins; i++)
+    {
+        cntIdsArray.add(opcn2Ids.cnt[i]);
+    }
+
 
     rootObj.printTo(*serialPtr_);
     *serialPtr_ << endl;

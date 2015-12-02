@@ -2,6 +2,7 @@
 #define OPCN2_H
 #include "opcn2_param.h"
 #include "opcn2_data.h"
+#include "opcn2_ids.h"
 
 
 class OPCN2
@@ -24,6 +25,7 @@ class OPCN2
 
         OPCN2();
         OPCN2(OPCN2Param param);
+        OPCN2(OPCN2Param param, OPCN2Ids ids);
         void initialize();
         bool checkStatus();
         void setParam(OPCN2Param param);
@@ -32,9 +34,13 @@ class OPCN2
         String getInfoString(bool *ok=nullptr);
         OPCN2Data getHistogramData(bool *ok=nullptr);
 
+        void setIds(OPCN2Ids ids);
+        OPCN2Ids getIds();
+
     protected:
 
         OPCN2Param param_;
+        OPCN2Ids ids_;
         SPISettings spiSettings_;
 };
 

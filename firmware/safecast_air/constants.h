@@ -4,6 +4,7 @@
 #include "gas_sensor_param.h"
 #include "tmp_sensor_param.h"
 #include "opcn2_param.h"
+#include "opcn2_ids.h"
 #include "logger_param.h"
 #include <SPI.h>
 
@@ -27,6 +28,7 @@ namespace constants
 
     // Particle counter parameters
     extern const OPCN2Param DefaultOPCN2Param;
+    extern const OPCN2Ids DefaultOPCN2Ids;
 
     // OLED Display constatns
     extern const int DisplayDC;

@@ -10,6 +10,12 @@ OPCN2::OPCN2(OPCN2Param param)
     setParam(param);
 };
 
+OPCN2::OPCN2(OPCN2Param param, OPCN2Ids ids)
+{
+    setParam(param);
+    setIds(ids);
+}
+
 void OPCN2::initialize()
 {
     delay(StartupDelayMs); // Startup delay ~2s seems to be required
@@ -163,3 +169,13 @@ OPCN2Data OPCN2::getHistogramData(bool *ok)
     return OPCN2Data(rsp);
 }
 
+
+void OPCN2::setIds(OPCN2Ids ids)
+{
+    ids_ = ids;
+}
+
+OPCN2Ids OPCN2::getIds()
+{
+    return ids_;
+}

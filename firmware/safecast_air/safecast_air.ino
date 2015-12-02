@@ -34,7 +34,7 @@ TmpSensorDevVector<constants::NumTmpSensor> tmpSensors(
     constants::DefaultTmpSensorParam
     );
 
-OPCN2 particleCounter(constants::DefaultOPCN2Param);
+OPCN2 particleCounter(constants::DefaultOPCN2Param, constants::DefaultOPCN2Ids);
 
 Logger dataLogger(constants::DefaultLoggerParam);
 

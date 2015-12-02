@@ -1,5 +1,5 @@
 #ifndef OPCN2_DATA_H
-#define OPCN2_DATA_h
+#define OPCN2_DATA_H
 #include "Arduino.h"
 
 class OPCN2Data
