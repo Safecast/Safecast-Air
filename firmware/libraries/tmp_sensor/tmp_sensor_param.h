@@ -2,6 +2,12 @@
 #define TMP_SENSOR_PARAM_H
 #include <Arduino.h>
 
+struct TmpSensorIds
+{
+    unsigned int val;
+    unsigned int valFlt;
+};
+
 struct TmpSensorParam
 {
     uint8_t header;
@@ -13,6 +19,7 @@ struct TmpSensorParam
     float lowPassCutoffFreq;
     unsigned int lowPassOrder;
     bool active;
+    TmpSensorIds ids;
 };
 
 #endif

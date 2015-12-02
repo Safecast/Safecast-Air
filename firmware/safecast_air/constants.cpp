@@ -19,7 +19,7 @@ namespace constants
 
     const GasSensorParam DefaultGasSensorParam[NumGasSensor] = 
     {   // gasType, serialNumber, header, position, workingAinPin, auxillaryAinPin, workingZero, auxillaryZero,
-        // sensitivity, ainVRef, ainScaleFact, powerScaleFact, lowPassCutoffFreq, lowPassOrder, active,
+        // sensitivity, ainVRef, ainScaleFact, powerScaleFact, lowPassCutoffFreq, lowPassOrder, active, {ids}
         {GAS_TYPE_NO2, 161740024ul, 0, 0, A0,  A1,  0.234,  0.235,  0.435,  1.2,  4.4,  1.00,  0.005,  3, true, { 0,  1,  2,  3}}, 
         {GAS_TYPE_O3,  165417321ul, 0, 1, A2,  A3,  0.416,  0.416,  0.321,  1.2,  4.4,  1.00,  0.005,  3, true, { 4,  5,  6,  7}},
         {GAS_TYPE_CO,  162740011ul, 0, 2, A4,  A5,  0.398,  0.346,  0.403,  1.2,  4.4,  1.00,  0.005,  3, true, { 8,  9, 10, 11}},
@@ -36,9 +36,9 @@ namespace constants
     };
 
     const TmpSensorParam DefaultTmpSensorParam[NumTmpSensor] = 
-    { // header, ainPin, offset, sensitivity, ainVRef, ainScaleFact, lowPassCutoffFreq, lowPassOrder, active,
-        {0, A13, 0.5, 10.0, 1.2, 1.0, 0.005, 3, true},
-        {1, A12, 0.5, 10.0, 1.2, 1.0, 0.005, 3, true}
+    { // header, ainPin, offset, sensitivity, ainVRef, ainScaleFact, lowPassCutoffFreq, lowPassOrder, active, {ids}
+        {0, A13, 0.5, 10.0, 1.2, 1.0, 0.005, 3, true, {24,25}},
+        {1, A12, 0.5, 10.0, 1.2, 1.0, 0.005, 3, true, {26,27}}
     };
 
     // Optical particle coutner OPCN2 parameters

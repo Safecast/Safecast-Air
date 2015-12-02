@@ -156,6 +156,10 @@ void Logger::writeData()
         sensorObj["hdr"] = param.header;
         sensorObj["val"] = sensor.value();
         sensorObj["valFlt"] = sensor.valueLowPass();
+        
+        JsonObject &idsObj = sensorObj.createNestedObject("ids");
+        idsObj["val"] = param.ids.val;
+        idsObj["valFlt"] = param.ids.valFlt;
     }
 
     // Add OPN2 sensor
