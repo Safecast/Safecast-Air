@@ -136,6 +136,13 @@ void Logger::writeData()
             sensorObj["aux"] = sensor.auxillary();
             sensorObj["ppb"] = sensor.ppb();
             sensorObj["ppbFlt"] = sensor.ppbLowPass();
+            
+            JsonObject &idsObj = sensorObj.createNestedObject("ids");
+            idsObj["wrk'"] = param.ids.wrk;
+            idsObj["aux'"] = param.ids.aux;
+            idsObj["ppb'"] = param.ids.ppb;
+            idsObj["ppbFlt'"] = param.ids.ppbFlt;
+
             cnt++;
         }
     }
@@ -176,9 +183,9 @@ void Logger::writeData()
 
     // DEV
     // -------------------------------------------------
-    //rootObj.printTo(Serial);
-    //rootObj.prettyPrintTo(Serial);
-    //Serial << endl;
+    rootObj.printTo(Serial);
+    rootObj.prettyPrintTo(Serial);
+    Serial << endl;
 
     //Serial << "cnt = " << count_ << ": ";
     //Serial << opcn2Data.PM1  << ", ";  

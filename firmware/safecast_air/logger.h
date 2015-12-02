@@ -8,7 +8,7 @@ class Logger
 {
     public:
         static const uint8_t DefaultTimerPriority = 124;
-        static const int JsonBufferSize = 3200;  // Probably bigger than we need
+        static const int JsonBufferSize = 5000;  // Probably bigger than we need
 
         Logger(LoggerParam param, HardwareSerial *serialPtr=&Serial3);
 

@@ -17,6 +17,14 @@ enum GasType
 
 const String GasTypeToGasName[NUM_GAS_TYPE] = {"None", "NO2", "NO", "O3", "CO", "H2S", "SO2"};
 
+struct GasSensorIds
+{
+    unsigned int wrk;
+    unsigned int aux;
+    unsigned int ppb;
+    unsigned int ppbFlt;
+};
+
 struct GasSensorParam
 {
     GasType gasType;
@@ -34,6 +42,7 @@ struct GasSensorParam
     float lowPassCutoffFreq;
     unsigned int lowPassOrder;
     bool active;
+    GasSensorIds ids;
 };
 
 #endif
