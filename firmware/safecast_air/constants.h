@@ -34,7 +34,7 @@ namespace constants
     extern const int DisplayDC;
     extern const int DisplayCS;
     extern const int DisplayReset;
-    extern const SPISettings DisplsySPISettings;
+    extern const SPISettings DisplaySPISettings;
 
     // Logger parameters
     extern const LoggerParam DefaultLoggerParam;

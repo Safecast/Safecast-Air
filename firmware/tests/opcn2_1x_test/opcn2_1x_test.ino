@@ -6,7 +6,8 @@
 #include "opcn2.h"
 #include "fixed_vector.h"
 
-const unsigned long sampleInterval = 60000;
+//const unsigned long sampleInterval = 60000;
+const unsigned long sampleInterval = 10000;
 
 const int OLED_DC = 5;
 const int OLED_CS = 3;

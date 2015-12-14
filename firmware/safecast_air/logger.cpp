@@ -1,5 +1,7 @@
 #include "logger.h"
 #include <Streaming.h>
+#include <Adafruit_SSD1306.h>
+#include <Adafruit_GPS.h>
 #include "constants.h"
 #include "opcn2.h"
 #include "opcn2_ids.h"
@@ -11,6 +13,7 @@ extern GasSensorDevVector<constants::NumGasSensor> gasSensors;
 extern TmpSensorDevVector<constants::NumTmpSensor> tmpSensors;
 extern GPSMonitor gpsMonitor;
 extern OPCN2 particleCounter;
+extern Adafruit_SSD1306 display;
 
 Logger::Logger(LoggerParam param, HardwareSerial *serialPtr)
 {
@@ -203,16 +206,84 @@ void Logger::writeData()
     }
 
 
+    // Write json object to open log
     rootObj.printTo(*serialPtr_);
     *serialPtr_ << endl;
+
+
+    if (count_ > 0)
+    {
+        if (count_%2==0)
+        {
+            SPI.beginTransaction(constants::DisplaySPISettings);
+            display.clearDisplay();
+            display.setCursor(0,0);
+            display.println("Gas Sensor (ppb)");
+            display.println();
+
+            for (int i=0; i<NUM_GAS_TYPE; i++)
+            {
+                if (GasTypeArray[i] == GAS_TYPE_NONE)
+                {
+                    continue;
+                }
+
+                int numType = 0;
+                float cumValue = 0.0;
+
+                for (auto &sensor : gasSensors)
+                {
+                    if (sensor.gasType() == GasTypeArray[i])
+                    {
+                        numType++;
+                        cumValue += sensor.ppbLowPass();
+                    }
+                }
+                if (numType > 0)
+                {
+                    float avgValue = cumValue/float(numType);
+                    display.print("  ");
+                    display.print(GasTypeToGasName[i]);
+                    for (int j=0; j<8-GasTypeToGasName[i].length(); j++)
+                    {
+                        display.print(" "); 
+                    }
+                    display.println(avgValue);
+                    display.println();
+                }
+            } 
+
+            display.display();
+            SPI.endTransaction();
+        }
+        else
+        {
+            SPI.beginTransaction(constants::DisplaySPISettings);
+            display.clearDisplay();
+            display.setCursor(0,0);
+            display.println("Particle Counter");
+            display.println();
+            display.print("  PM1      ");
+            display.println(opcn2Data.PM1);
+            display.println();
+            display.print("  PM2.5    ");
+            display.println(opcn2Data.PM2_5);
+            display.println();
+            display.print("  PM10     ");
+            display.println(opcn2Data.PM10);
+            display.display();
+            SPI.endTransaction();
+        }
+    }
+
     count_++;
 
     // DEV
     // -------------------------------------------------
-    rootObj.printTo(Serial);
-    rootObj.prettyPrintTo(Serial);
-    Serial << endl;
-
+    //rootObj.printTo(Serial);
+    //rootObj.prettyPrintTo(Serial);
+    //Serial << endl;
+    //
     //Serial << "cnt = " << count_ << ": ";
     //Serial << opcn2Data.PM1  << ", ";  
     //Serial << opcn2Data.PM2_5 << ", "; 

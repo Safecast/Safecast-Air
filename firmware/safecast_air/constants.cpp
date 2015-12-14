@@ -58,7 +58,7 @@ namespace constants
     const int DisplayDC = 5;
     const int DisplayCS = 3;
     const int DisplayReset = 4;
-    const SPISettings DisplsySPISettings(4000000,MSBFIRST,SPI_MODE0);
+    const SPISettings DisplaySPISettings(4000000,MSBFIRST,SPI_MODE0);
 
     // Logger parameters
     // --------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ namespace constants
 
     const LoggerParam DefaultLoggerParam = 
     { // timerPriority,  timerPeriod (us), baudRate
-        122, 5000000, 9600
+        122, 15000000, 9600
     };
 }
 
