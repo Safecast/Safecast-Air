@@ -4,6 +4,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include "opcn2.h"
+#include "fixed_vector.h"
 
 const unsigned long sampleInterval = 60000;
 
@@ -20,7 +21,7 @@ const OPCN2Param OPCN2Param0 =
 };
 const OPCN2Param OPCN2Param1 = 
 {   // spiClock , spiBitOrder, spiDataMode, spiCsPin
-    750000, MSBFIRST, SPI_MODE1, 28                
+    750000, MSBFIRST, SPI_MODE1, 24                
 };
 OPCN2 ParticleCounter0(OPCN2Param0);
 OPCN2 ParticleCounter1(OPCN2Param1);
@@ -61,7 +62,7 @@ void setup()
     ParticleCounter0.setFanAndLaserOn(&ok0);
     ParticleCounter1.setFanAndLaserOn(&ok1);
 
-    SPI.beginTransaction(dispSPISettings);
+//    SPI.beginTransaction(dispSPISettings);
     display.clearDisplay();
     display.setCursor(0,0);
     snprintf(dispBuf, DispBufSize, "st: %d %d", status0, status1);
@@ -70,7 +71,7 @@ void setup()
     snprintf(dispBuf, DispBufSize, "ok: %d %d", ok0, ok1);
     display.println(dispBuf);
     display.display();
-    SPI.endTransaction();
+//    SPI.endTransaction();
 
     delay(1000);
 }

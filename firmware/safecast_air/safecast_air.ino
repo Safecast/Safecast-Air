@@ -40,7 +40,9 @@ Logger dataLogger(constants::DefaultLoggerParam);
 
 void setup()
 {
-
+    pinMode(24,OUTPUT);
+    digitalWrite(24,HIGH);
+    
     Serial.begin(constants::USBSerialBaudRate);
     Serial << "Initializing" << endl;
 
