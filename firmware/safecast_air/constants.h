@@ -10,6 +10,7 @@
 
 namespace constants
 {
+    extern const char SoftwareVersion[];
     extern const char DeviceName[]; 
     extern const char  DeviceId[]; 
 
