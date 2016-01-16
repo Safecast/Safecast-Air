@@ -4,7 +4,7 @@
 
 namespace constants
 {
-    const char SoftwareVersion[] = "0.30";
+    const char SoftwareVersion[] = "0.31";
     const char DeviceName[] = "air001";
     const char DeviceId[] = "00000001";
 

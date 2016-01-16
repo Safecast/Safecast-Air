@@ -278,18 +278,19 @@ void Logger::writeData()
 
     count_++;
 
-    // DEV
-    // -------------------------------------------------
-    //rootObj.printTo(Serial);
+//     DEV
+//     -------------------------------------------------
+    rootObj.printTo(Serial2);
     //rootObj.prettyPrintTo(Serial);
-    //Serial << endl;
-    //
-    //Serial << "cnt = " << count_ << ": ";
-    //Serial << opcn2Data.PM1  << ", ";  
-    //Serial << opcn2Data.PM2_5 << ", "; 
-    //Serial << opcn2Data.PM10 << endl;
-    // -------------------------------------------------
+    Serial2 << endl;
+    
+//    Serial << "cnt = " << count_ << ": ";
+//    Serial << opcn2Data.PM1  << ", ";  
+//    Serial << opcn2Data.PM2_5 << ", "; 
+//    Serial << opcn2Data.PM10 << endl;
+//     -------------------------------------------------
 
 }
+
 
 
