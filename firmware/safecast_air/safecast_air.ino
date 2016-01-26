@@ -81,6 +81,7 @@ void setup()
     
     Serial.begin(constants::USBSerialBaudRate);
     Serial << "Initializing" << endl;
+    Serial2.begin(9600);
 
     // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
