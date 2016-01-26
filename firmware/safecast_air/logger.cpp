@@ -86,7 +86,7 @@ void Logger::writeConfiguration()
 
 void Logger::writeData()
 {
-    Serial << __PRETTY_FUNCTION__ << endl;
+    //Serial << __PRETTY_FUNCTION__ << endl;
 
     GPSData gpsData; 
     bool gpsDataOk = false;
@@ -278,17 +278,20 @@ void Logger::writeData()
 
     count_++;
 
-//     DEV
-//     -------------------------------------------------
-    rootObj.printTo(Serial2);
+    //DEV
+    //-------------------------------------------------
+    //rootObj.printTo(Serial);
     //rootObj.prettyPrintTo(Serial);
+    //Serial << endl;
+    
+    rootObj.printTo(Serial2);
     Serial2 << endl;
     
-//    Serial << "cnt = " << count_ << ": ";
-//    Serial << opcn2Data.PM1  << ", ";  
-//    Serial << opcn2Data.PM2_5 << ", "; 
-//    Serial << opcn2Data.PM10 << endl;
-//     -------------------------------------------------
+    //Serial << "cnt = " << count_ << ": ";
+    //Serial << opcn2Data.PM1  << ", ";  
+    //Serial << opcn2Data.PM2_5 << ", "; 
+    //Serial << opcn2Data.PM10 << endl;
+    // -------------------------------------------------
 
 }
 

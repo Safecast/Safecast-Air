@@ -18,6 +18,7 @@ namespace constants
         50, 16, 32, 50 
     };
 
+    // Rob's prototype
     const GasSensorParam DefaultGasSensorParam[NumGasSensor] = 
     {   // gasType, serialNumber, header, position, workingAinPin, auxillaryAinPin, workingZero, auxillaryZero,
         // sensitivity, ainVRef, ainScaleFact, powerScaleFact, lowPassCutoffFreq, lowPassOrder, active, {ids}
@@ -29,6 +30,19 @@ namespace constants
         {GAS_TYPE_CO,  162740010ul, 1, 2, A10, A11, 0.406,  0.363,  0.381,  1.2,  4.4,  1.00,  0.005,  3, true, {20, 21, 22, 23}}
     };
 
+
+    //// Sean's prototype
+    //const GasSensorParam DefaultGasSensorParam[NumGasSensor] = 
+    //{   // gasType, serialNumber, header, position, workingAinPin, auxillaryAinPin, workingZero, auxillaryZero,
+    //    // sensitivity, ainVRef, ainScaleFact, powerScaleFact, lowPassCutoffFreq, lowPassOrder, active, {ids}
+    //    {GAS_TYPE_NO2, 131410831ul, 0, 0, A0,  A1,  0.292,  0.319,  0.357,  1.2,  4.4,  1.00,  0.005,  3, true, {54,  55, 56,  57}}, 
+    //    {GAS_TYPE_O3,  135410519ul, 0, 1, A2,  A3,  0.410,  0.415,  0.183,  1.2,  4.4,  1.00,  0.005,  3, true, {58,  59, 60,  61}},
+    //    {GAS_TYPE_CO,  132410527ul, 0, 2, A4,  A5,  0.326,  0.270,  0.468,  1.2,  4.4,  1.00,  0.005,  3, true, {62,  63, 64,  65}},
+    //    {GAS_TYPE_NO2, 131410833ul, 1, 0, A6,  A7,  0.297,  0.307,  0.335,  1.2,  4.4,  1.00,  0.005,  3, true, {66,  67, 68,  69}},
+    //    {GAS_TYPE_O3,  135410523ul, 1, 1, A8,  A9,  0.396,  0.416,  0.225,  1.2,  4.4,  1.00,  0.005,  3, true, {70,  71, 72,  73}},
+    //    {GAS_TYPE_CO,  132410528ul, 1, 2, A10, A11, 0.436,  0.329,  0.532,  1.2,  4.4,  1.00,  0.005,  3, true, {74,  75, 76,  77}}
+    //};
+
     // Temperature sensor parameters
     // --------------------------------------------------------------------------------------------
     const SamplingParam DefaultTmpSensorSamplingParam = 
@@ -36,11 +50,19 @@ namespace constants
         60, 16, 32, 50
     };
 
+    // Rob's prototype
     const TmpSensorParam DefaultTmpSensorParam[NumTmpSensor] = 
     { // header, ainPin, offset, sensitivity, ainVRef, ainScaleFact, lowPassCutoffFreq, lowPassOrder, active, {ids}
         {0, A13, 0.5, 10.0, 1.2, 1.0, 0.005, 3, true, {24,25}},
         {1, A12, 0.5, 10.0, 1.2, 1.0, 0.005, 3, true, {26,27}}
     };
+
+    //// Sean's prototype
+    //const TmpSensorParam DefaultTmpSensorParam[NumTmpSensor] = 
+    //{ // header, ainPin, offset, sensitivity, ainVRef, ainScaleFact, lowPassCutoffFreq, lowPassOrder, active, {ids}
+    //    {0, A13, 0.3009, 1.0, 1.2, 1.0, 0.005, 3, true, {78, 79}},
+    //    {1, A12, 0.3009, 1.0, 1.2, 1.0, 0.005, 3, true, {80, 81}}
+    //};
 
     // Optical particle coutner OPCN2 parameters
     // --------------------------------------------------------------------------------------------
@@ -55,6 +77,11 @@ namespace constants
         29,30, 31, 32, 33, 34, 35, 36, 37, {38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53}
     };
 
+    const OPCN2Ids DefaultOPCN2Ids = 
+    {
+        82, 83, 84, 85, 86, 87, 88, 89, 90, {91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106}
+    };
+
     // OLED Dislay settings
     // --------------------------------------------------------------------------------------------
     const int DisplayDC = 5;
@@ -64,15 +91,15 @@ namespace constants
 
     // Logger parameters
     // --------------------------------------------------------------------------------------------
-    //const LoggerParam DefaultLoggerParam = 
-    //{ // timerPriority,  timerPeriod (us), baudRate
-    //    122, 60000000, 9600
-    //};
-
     const LoggerParam DefaultLoggerParam = 
     { // timerPriority,  timerPeriod (us), baudRate
         122, 60000000, 9600
     };
+
+    //const LoggerParam DefaultLoggerParam = 
+    //{ // timerPriority,  timerPeriod (us), baudRate
+    //    122, 5000000, 9600
+    //};
 }
 
 
