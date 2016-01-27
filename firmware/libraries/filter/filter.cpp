@@ -22,7 +22,7 @@ namespace filter
     {
         param_.initialValue = value;
         param_.order = min(order,MaxOrder_);
-        param_.order = max(param_.order,1);
+        param_.order = max(param_.order,MinOrder_);
         setCutoffFreq(cutoffFreq);
     }
 
@@ -65,7 +65,7 @@ namespace filter
         return param_.order;
     }
 
-    float LowPass::setOrder(unsigned int order)
+    void LowPass::setOrder(unsigned int order)
     {
         param_.order = order;
     }
@@ -84,7 +84,7 @@ namespace filter
     {
         float alpha = dt/(rc_ + dt);
         state_[0] = value;
-        for (int i=1; i<=param_.order; i++)
+        for (unsigned int i=1; i<=param_.order; i++)
         {
             state_[i] = (1.0 - alpha)*state_[i] + alpha*state_[i-1]; 
         }
@@ -105,7 +105,7 @@ namespace filter
 
     void LowPass::initializeState()
     {
-        for (int i=0; i<MaxOrder_+1; i++)
+        for (unsigned int i=0; i<MaxOrder_+1; i++)
         {
             state_[i] = param_.initialValue;
         }

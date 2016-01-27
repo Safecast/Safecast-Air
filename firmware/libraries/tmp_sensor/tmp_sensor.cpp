@@ -4,7 +4,7 @@
 
 const int   AinMaxInt   = UINT16_MAX;
 const float MilliVoltPerVolt = 1000.0;
-const float MilliSecPerSec = 1.0e-3;
+const float MilliSecToSec = 1.0e-3;
 
 const TmpSensorParam UndefinedSensorParam = 
     {
@@ -37,7 +37,7 @@ void TmpSensorDev::sample(unsigned long dt)
     rawInt_ = analogRead(param_.ainPin);
     rawVolt_ = (param_.ainVRef*float(rawInt_)/float(AinMaxInt))*param_.ainScaleFact; 
     value_ = MilliVoltPerVolt*(rawVolt_ - param_.offset)/param_.sensitivity;
-    lowPassFilter_.update(value_, MilliSecPerSec*dt);
+    lowPassFilter_.update(value_, MilliSecToSec*dt);
 }
 
 TmpSensorParam TmpSensorDev::param() const

@@ -17,6 +17,7 @@ namespace filter
         public:
 
             static const unsigned int MaxOrder_ = 5; 
+            static const unsigned int MinOrder_ = 1;
 
             LowPass(float cutoff_freq=1.0, unsigned int order=1, float value=0.0);
             LowPass(LowPassParam param);
@@ -32,7 +33,7 @@ namespace filter
             void setInitialValue(float initialValue);
 
             float order();
-            float setOrder(unsigned int order);
+            void setOrder(unsigned int order);
             float singleStageRC();
             float singleStageCutoffFreq();
 

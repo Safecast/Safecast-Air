@@ -4,7 +4,7 @@
 
 const int   AinMaxInt   = UINT16_MAX;
 const float MilliVoltPerVolt = 1000.0;
-const float MilliSecPerSec = 1.0e-3;
+const float MilliSecToSec = 1.0e-3;
 
 const GasSensorParam UndefinedSensorParam = 
     {
@@ -55,7 +55,7 @@ void GasSensorDev::sample(unsigned long dt)
 
     ppb_ = MilliVoltPerVolt*param_.powerScaleFact*(workingZeroed_ - auxillaryZeroed_)/param_.sensitivity;
     //ppb_ = MilliVoltPerVolt*param_.powerScaleFact*workingZeroed_/param_.sensitivity;
-    ppbLowPassFilter_.update(ppb_, MilliSecPerSec*dt);
+    ppbLowPassFilter_.update(ppb_, MilliSecToSec*dt);
 }
 
 

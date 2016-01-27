@@ -42,14 +42,10 @@ Contact:
 #include <Adafruit_GPS.h>
 #include <ArduinoJson.h>
 #include "constants.h"
-#include "fixed_vector.h"
-#include "sensor_dev_vector.h"
 #include "filter.h"
-#include "gas_sensor.h"
-#include "tmp_sensor.h"
-#include "opcn2.h"
 #include "gps_monitor.h"
 #include "logger.h"
+#include "mq4_methane.h"
 
 
 Adafruit_SSD1306 display(
@@ -60,30 +56,14 @@ Adafruit_SSD1306 display(
 
 GPSMonitor gpsMonitor;
 
-GasSensorDevVector<constants::NumGasSensor> gasSensors(
-    constants::DefaultGasSensorSamplingParam, 
-    constants::DefaultGasSensorParam
-    );
-
-TmpSensorDevVector<constants::NumTmpSensor> tmpSensors(
-    constants::DefaultTmpSensorSamplingParam,
-    constants::DefaultTmpSensorParam
-    );
-
-OPCN2 particleCounter(constants::DefaultOPCN2Param, constants::DefaultOPCN2Ids);
-
 Logger dataLogger(constants::DefaultLoggerParam);
+
+MQ4_Methane methaneSensor(constants::DefaultMethaneParam);
 
 void setup()
 {
-    
-    // Required or conflict with OLED display ... maybe add OPCN2 ... some kind of initialization
-    pinMode(constants::DefaultOPCN2Param.spiCsPin,OUTPUT);
-    digitalWrite(constants::DefaultOPCN2Param.spiCsPin,HIGH);
-    
     Serial.begin(constants::USBSerialBaudRate);
     Serial << "Initializing" << endl;
-    Serial2.begin(9600);
 
     // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
@@ -94,17 +74,18 @@ void setup()
     display.display();
     display.setTextSize(1);
     display.setTextColor(WHITE);
-    display.print("Safecast Air V");
+    display.println();
+    display.print("SafecastAir V");
     display.println((constants::SoftwareVersion));
-    display.print("Device Name=");
+    display.println();
+    display.print("DeviceName=");
     display.println((constants::DeviceName));
-    display.print("Device ID=");
+    display.println();
+    display.print("DeviceID=");
     display.println((constants::DeviceId));
     display.display();
-    display.println("Initializing ... ");
-    display.println();
-    display.display();
     SPI.endTransaction();
+    delay(1500);
 
     // Setup GPS monitor
     gpsMonitor.initialize();
@@ -112,45 +93,25 @@ void setup()
     gpsMonitor.start();
 
     SPI.beginTransaction(constants::DisplaySPISettings);
+    display.clearDisplay();   
+    display.setCursor(0,0);
+    display.println("Initializing ... ");
+    display.println();
     display.println("  * gps");
     display.display();
     SPI.endTransaction();
+    delay(500);
 
-    // Setup gas sensors
-    gasSensors.initialize();
-    gasSensors.setTimerCallback( []() { gasSensors.sample(); } );
-    gasSensors.start();
-
-    SPI.beginTransaction(constants::DisplaySPISettings);
-    display.println("  * gas sensors");
-    display.display();
-    SPI.endTransaction();
-
-    // Setup temperature sensors
-    tmpSensors.initialize();
-    tmpSensors.setTimerCallback( []() { tmpSensors.sample(); } );
-    tmpSensors.start();
+    // Setup Methane Sensor
+    methaneSensor.initialize();
+    methaneSensor.setTimerCallback( []() {methaneSensor.sample();});
+    methaneSensor.start();
 
     SPI.beginTransaction(constants::DisplaySPISettings);
-    display.println("  * tmp sensors");
+    display.println("  * methane");
     display.display();
     SPI.endTransaction();
-    delay(200);  // Short delay seems to be necessary or opcn2 won't will give an error 
-                 // and not work properly.
-
-    // Setup particle counter
-    particleCounter.initialize();
-    bool status = particleCounter.checkStatus();
-    bool laserAndFanOk = false;
-    particleCounter.setFanAndLaserOn(&laserAndFanOk);
-
-    SPI.beginTransaction(constants::DisplaySPISettings);
-    display.print("  * opcn2: ");
-    display.print(status);
-    display.print(",");
-    display.println(laserAndFanOk);
-    display.display();
-    SPI.endTransaction();
+    delay(500);
 
     // Setup dataLogger
     dataLogger.initialize();
@@ -158,14 +119,12 @@ void setup()
     dataLogger.setTimerCallback( []() { dataLogger.onTimer(); } );
     dataLogger.start();
 
-    delay(500);
     SPI.beginTransaction(constants::DisplaySPISettings);
-    display.clearDisplay();
-    display.setCursor(0,0);
-    display.println("First reading  ... ");
-    display.println("takes 60 seconds");
+    display.println("  * logger");
     display.display();
     SPI.endTransaction();
+
+    delay(1000);
 }
 
 
@@ -175,6 +134,41 @@ void loop()
     dataLogger.update();
     delay(constants::LoopDelay);
 
+    GPSData gpsData; 
+    bool gpsDataOk = false;
+    if (gpsMonitor.haveData())
+    {
+        gpsData = gpsMonitor.getData(&gpsDataOk);
+    }
+    if (gpsDataOk)
+    {
+        String dateTimeString = gpsData.getDateTimeString();
+        String latitudeString = gpsData.getLatitudeString();
+        String longitudeString = gpsData.getLongitudeString();
+
+        SPI.beginTransaction(constants::DisplaySPISettings);
+        display.clearDisplay();
+        display.setCursor(0,0);
+        display.println(dateTimeString.c_str());
+        display.println();
+        display.print("SAT:  ");
+        display.println(gpsData.satellites);
+        display.print("LAT:  ");
+        display.println(latitudeString.c_str());
+        display.print("LON:  ");
+        display.println(longitudeString.c_str());
+        display.print("ALT:  ");
+        display.print(gpsData.getAltitudeInMeter());
+        display.println("(m)"); 
+        display.print("SPD:  ");
+        display.print(gpsData.getSpeedInMeterPerSec());
+        display.println("(m/s)");
+        display.print("CH4:  ");
+        display.print(methaneSensor.ppmLowPass());
+        display.println("(ppm) ");
+        display.display();
+        SPI.endTransaction();
+    }
 }
 
 
