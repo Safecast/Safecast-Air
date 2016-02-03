@@ -77,8 +77,8 @@ void Logger::writeConfiguration()
 
     // Dev
     // ----------------------------------------
-    rootObj.prettyPrintTo(Serial);
-    Serial << endl;
+    //rootObj.prettyPrintTo(Serial);
+    //Serial << endl;
     // ----------------------------------------
 
 }

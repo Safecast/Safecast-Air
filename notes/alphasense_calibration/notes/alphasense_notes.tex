@@ -1,0 +1,240 @@
+\documentclass[letterpaper]{article}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{setspace}
+\usepackage[parfill]{parskip}
+\vfuzz2pt
+\hfuzz2pt
+\onehalfspacing
+
+\newcommand{\cgas}{C_{\mathrm{gas}}}
+\newcommand{\cgasnorm}{C_{\mathrm{gas,*}}}
+\newcommand{\wrk}{w}
+\newcommand{\aux}{a}
+\newcommand{\wrknorm}{\wrk_{\mathrm{*}}}
+\newcommand{\auxnorm}{\aux_{\mathrm{*}}}
+
+\begin{document}
+
+\title{Safecast-Air Notes: Alphasense 4-Electrode Sensors}
+
+\date{}
+\maketitle
+
+\section{Calculating gas concentration from the electrode voltages}
+
+In this section I discuss how to calculate the gas concentration, $\cgas$, (in
+ppb) from the voltage measured at the working electrode, $\wrk$, and the
+voltage measured at the auxiliary electrode, $\aux$.   
+
+I examine the following points:
+
+\begin{itemize}
+
+    \item The form of the factory calibration for the Alphasense 4-electrode
+        gas sensors as given in the user manuals for the ISB and 3-way AFE
+        signal conditioning boards. 
+
+    \item Under what conditions might we calculate $\cgas \leq 0$? Both Rob and
+        I have observed this with current Safecast-Air prototypes and we would like
+        to understand why it happens and how to fix it.
+
+    \item Possible methods for re-zeroing a sensor.  
+
+\end{itemize}
+
+
+For the purposes of these notes I am assuming the working and auxiliary
+voltages are being read from a sensor operating off a 5V supply using either
+the ISB or 3-way AFE signal conditioning boards. I am also assuming that
+the voltages have not been scaled via voltage dividers. Note, the current
+Safecast-Air prototype uses a voltage divider to scale the electrode voltages
+from the 0-5V range to a 0-1.2V range in order to be sampled by an analog input
+on the teensy 3.x using the internal 1.2V reference source. I will consider this
+scaling in a later section.  However, for the purposes of this section we will
+assume that the measured voltages are in the original 0-5V range. 
+
+Also, note that computing the gas concentration for the $\mathrm{O_3}$ sensor
+is special case which requires a paired $\mathrm{NO_2}$ sensor in order to
+perform a subtraction. This will also be discussed in a later section.
+
+\subsection{Factory calibration}
+The factory calibration, which is used to convert the voltages to gas
+concentration,  consists of three constants:
+\begin{itemize}
+    \item $\wrk_0$ $=$  working electrode total zero (V),
+    \item $\aux_0$ $=$  auxiliary electrode total zero (V),
+    \item $S$ $=$  the sensor's sensitivity (V/ppb).
+\end{itemize}
+
+In the Alphasense documentation (See ISB and 3-way AFE user manuals) the procedure for calculating
+$\cgas$ from electrode voltages is given as follows: 
+
+\begin{enumerate}
+    \item Zero the working electrode voltage $(\wrk - \wrk_0)$, 
+    \item Zero the auxiliary electrode voltage $(\aux - \aux_0)$, 
+    \item Correct drift by subtracting the zeroed auxiliary elctrode voltage from the zeroed
+        working electrode voltage $(\wrk - \wrk_0) - (\aux - \aux_0)$,  
+    
+    \item Calculate the gas concentration, $\cgas$,  (in ppb) by dividing by the
+        drift corrected voltage by the sensor sensitivity, S. This results in
+        the folliwng equation for gas concentration: 
+
+\end{enumerate}
+
+\begin{equation} \label{factorycal}
+    %\cgas = (1/S)\left[(\wrk - \wrk_0) - (\aux - \aux_0)\right].
+    \cgas = \frac{(\wrk - \wrk_0) - (\aux - \aux_0)}{S}
+\end{equation}
+
+\subsection{Linear relationship between $\cgas$ and $\wrk-\aux$}
+It is easy to see that equation \ref{factorycal} is really just a simple
+linear relationship between the difference in the electrode voltages,
+$(\wrk-\aux)$, and the gas concentration, $\cgas$.  As such we can rearrange
+this equation into the following form
+\begin{equation} \label{linearcal}
+    \cgas= \alpha (\wrk - \aux) + \beta
+\end{equation}
+where the slope, $\alpha$, and offset, $\beta$, are constants given by
+\begin{equation}
+    \alpha = \frac{1}{S}
+\end{equation}
+and
+\begin{equation}
+    \beta = \frac{\aux_0 - \wrk_0}{S}.
+\end{equation}
+
+Knowing that we should expect a linear relationship between $\cgas$ and
+$(\wrk-\aux)$ should be useful when performing an empirical calibration/test of
+the sensor. During such a calibration/test we would most likely measure the
+working and auxiliary electrode voltages over a range of different gas
+concentrations. After performing such measurements one of the first things we
+would probably want to look at is a plot of $\cgas$  vs $(\wrk-\aux)$.  From
+the form of the factory calibration we would expect to see a linear
+relationship in the plot.  In addition we should be able to perform a  linear
+regression on this data in
+order to determine empirical values for the calibration coefficients $\alpha$
+and $\beta$. 
+
+Notes:
+\begin{itemize}
+
+    \item The slope of the linear relationship is given by $1/S $ and thus
+        depends only on the sensor's sensitivity.   
+
+    \item The $y$-intercept of the linear relationship, the value of $(\wrk -
+        \aux)$ for which we get $\cgas = 0$, is given by $(\wrk_0 - \aux_0)$
+        and  depends only on the electrode zeros.  
+\end{itemize}
+
+Since the $y$-intercept is only related to the electrode zeros it may be
+possible to re-zero the sensor/calibration without using expensive test
+equipment - either using clean test gas or knowing the current atmospheric gas
+concentration. I will elaborate further on this idea later in this section.
+
+
+\subsection{Under what conditions would we calculate $\cgas \leq 0$?} 
+
+As Rob and I have both seen negative gas concentrations, $\cgas \leq 0$,
+reported by the early Safecast-Air prototypes it is interesting to consider
+under what conditions this might happen.  From the $y$-intercept calculated in
+the previous section we can see that the $\cgas \leq 0$ whenever
+
+\begin{equation}  \label{zerocond2}
+    \wrk-\aux \leq \wrk_0 - \aux_0.
+\end{equation}
+This can be as read as saying that $\cgas \leq 0$ whenever the difference
+between the working and auxiliary voltages is less then the difference between
+the working and auxiliary total zeros (in the calibration).  In any case it
+is clear that  the values of electronic zeros, $\wrk_0$ and $\aux_0$,  are what
+determine at what point this zero crossing occurs. Thus a device which is frequently
+reporting negative gas concentration probably has an incorrectly set zero(s). 
+
+
+Some thoughts:
+
+\begin{enumerate}
+
+    \item I'm not completely sure under what conditions we would expect to see
+        this. However, the factory calibration is performed under a certain set
+        of conditions, i.e., temperature, humidity, etc.  It is very possible
+        that the electronic zeros do depend on external factors to some extent.
+        In which case we can expect to see some zeroing issues when the sensor
+        is operated outside of the calibration conditions.  It is also possible
+        that the working and auxiliary electrode zeros may change over time and
+        that the sensors need to be re-zeroed occasionally.
+
+    \item Assuming the linear relationship is valid - what are the consequences
+        of an incorrectly set zero?  Because the electrode zeros only effect
+        the $y$-intercept and not the slope of the linear relationship an
+        incorrectly set zero will result in a constant offset in the calculated
+        gas concentration.  If this constant offset is in a negative direction
+        then, at sufficiently low (actual) gas concentrations, this will result
+        in the sensor erroneously reporting a negative gas concentration.
+
+    \item Since gas concentrations which are less than zero don't make physical
+        sense it might be reasonable to consider clamping the $\cgas$ values in
+        software so that they are always $\geq 0$. Here I am assuming
+        that the cause of the negative gas concentration is due to a problem
+        with sensor zero - perhaps due to a change in temperature etc. - and
+        not due to some other error.  Since we also report the raw 
+        working and auxiliary electrode voltages in the JSON data this won't
+        result in unrecoverable data loss. 
+
+\end{enumerate}
+
+
+\subsection{Re-zeroing the sensor}
+
+Prior to re-zeroing the user manual suggests running the sensor for
+at least 6 hours in clean air in order to stabilize.
+
+\subsubsection{Using zero air}
+If we have zero air (synthetic or scrubbed/cleaned zero air) available then
+re-zeroing the sensor is straight forward and we can follow the procedure
+described in the user manual.  
+
+\begin{enumerate}
+    \item Apply zero air to the sensor for 20min.  
+    \item Record the voltages at both the working and auxiliary electrodes. 
+\end{enumerate}
+
+The recorded values are then the new working and auxiliary electrode zeros,
+$\wrk_0$ and $\aux_0$.  It looks like ``zero'' air can be purchased in small
+bottles for a fairly reasonable price. In order to perform the procedure we
+would probably need some sort of gas chamber ... maybe make one?
+
+\subsubsection{Quick and dirty - using a known gas concentration}
+Another possibility, which is perhaps a bit more quick and dirty, but might be
+used to correct a sensor which has an obvious issue with the sensor zero is as
+follows.  Say we know the current  gas concentration $\cgasnorm$ maybe from a
+reference sensor or perhaps we are in known ``clean'' air and we can use the
+baseline atmospheric concentrations.  After the sensor stabilization period we
+record the working and auxiliary electrode voltages  $\wrknorm$ and $\auxnorm$
+which result from operating at this known  gas concentration. 
+    
+We then have 
+\begin{equation}
+    \cgasnorm = \frac{(\wrknorm - \auxnorm) - (\wrk_0 - \aux_0)}{S}
+\end{equation}
+We can solve this equation for the $y$-intercept, $(\wrk_0 - \aux_0)$, as follows:
+\begin{equation}
+    \wrk_0 - \aux_0 = \wrknorm - \auxnorm - S \cgas 
+\end{equation}
+Since the linear relationship in equation \ref{linearcal}  only depends
+on difference $(\wrk_0 - \aux_0)$ and not on the individual values of $\wrk_0$
+and $\aux_0$ we can set these values relatively arbitrarily (in our
+calibration). As long as the difference is equal to $\wrknorm - \auxnorm - S \cgas$
+we get the same linear relationship. Thus a set of ``working'' zeroes might be
+defined
+by 
+\begin{equation}
+    \wrk_0 = \frac{ \wrknorm - \auxnorm - S\cgas}{2}
+\end{equation}
+and 
+\begin{equation}
+    \aux_0 = - \frac{\wrknorm - \auxnorm - S \cgas}{2}.
+\end{equation}
+
+
+\end{document}

@@ -5,3 +5,4 @@ syntax: glob
 *.bak
 *cache.lib
 docs/sphinx/_build
+notes/alphasense_calibration/build
