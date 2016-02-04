@@ -41,6 +41,7 @@ Contact:
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GPS.h>
 #include <ArduinoJson.h>
+#include <WiFlyHQ.h>
 #include "constants.h"
 #include "filter.h"
 #include "gps_monitor.h"
@@ -59,6 +60,8 @@ GPSMonitor gpsMonitor;
 Logger dataLogger(constants::DefaultLoggerParam);
 
 MQ4_Methane methaneSensor(constants::DefaultMethaneParam);
+
+rnxv::WiFly wifly;
 
 void setup()
 {
@@ -124,6 +127,27 @@ void setup()
     display.display();
     SPI.endTransaction();
 
+    // Setup wifly
+    Serial2.begin(9600);
+    wifly.begin(&Serial2);
+
+    // Note settings are save to wifly eeprom
+    char wifiBuf[100];
+    if (wifly.isAssociated())
+    {
+        SPI.beginTransaction(constants::DisplaySPISettings);
+        display.print("  * ");
+        display.println(wifly.getIP(wifiBuf,sizeof(wifiBuf)));
+        display.display();
+        SPI.endTransaction();
+    }
+    else
+    {
+        SPI.beginTransaction(constants::DisplaySPISettings);
+        display.println("  * no wifi");
+        display.display();
+        SPI.endTransaction();
+    }
     delay(1000);
 }
 
@@ -169,6 +193,7 @@ void loop()
         display.display();
         SPI.endTransaction();
     }
+
 }
 
 

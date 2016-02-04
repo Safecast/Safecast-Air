@@ -8,7 +8,7 @@ namespace constants
     const char DeviceId[] = "00000003";
 
     const long USBSerialBaudRate = 115200;
-    const unsigned long LoopDelay = 50;
+    const unsigned long LoopDelay = 100;
 
     const int DisplayDC = 5;
     const int DisplayCS = 3;

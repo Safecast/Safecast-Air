@@ -6,3 +6,4 @@ syntax: glob
 *cache.lib
 docs/sphinx/_build
 notes/alphasense_calibration/build
+firmware/tests/methane_test/wifi_pass_temp.h

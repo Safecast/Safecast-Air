@@ -1,5 +1,5 @@
 Safecast Air Libraries
-----------------------
+-----------------------------------------------
 fixed_vector
 sensor_dev_vector
 gps_monitor
@@ -9,14 +9,19 @@ amphenol_pm_sensor
 filter
 lookup_table
 opcn2
+mq4_methane
 
 
 External (third party) libraries
---------------------------------
+-----------------------------------------------
 Adafruit_GPS
-Adafruit-GFX
-Adafruit_SSD1306
 LiquidCrystal_I2C
 ArduinoJson
 Streaming
 i2c_t3
+WiflyHQ (modified to work with teensy)
+
+Removed
+-----------------------------------------------
+Adafruit-GFX      (comes w/ latest Arduino IDE)
+Adafruit_SSD1306  (comes w/ latest Arduino IDE)
