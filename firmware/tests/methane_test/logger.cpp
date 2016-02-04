@@ -106,25 +106,26 @@ void Logger::writeData()
     gpsObj["date"] = dateTimeString.c_str();
     gpsObj["lat"] = latitudeString.c_str();
     gpsObj["lon"] = longitudeString.c_str();
-    //gpsObj["alt"] = gpsData.getAltitudeInMeter();
-    //gpsObj["spd"] = gpsData.getSpeedInMeterPerSec();
-    //gpsObj["ang"] = gpsData.angle;
+    gpsObj["alt"] = gpsData.getAltitudeInMeter();
+    gpsObj["spd"] = gpsData.getSpeedInMeterPerSec();
+    gpsObj["ang"] = gpsData.angle;
     gpsObj["fix"] = gpsData.fix;
     gpsObj["num"] = gpsData.satellites;
+    gpsObj["ang"] = 1.4;
 
-    //// Add UEXT array
-    //JsonArray &uextArray = rootObj.createNestedArray("uext");
-    //JsonObject &sensorObj = uextArray.createNestedObject();
-    //sensorObj["type"] = methaneSensor.type().c_str();
-    //sensorObj["ain"] = methaneSensor.ain();
-    //sensorObj["ppm"] = methaneSensor.ppm();
-    //sensorObj["ppmFlt"] = methaneSensor.ppmLowPass();
+    // Add UEXT array
+    JsonArray &uextArray = rootObj.createNestedArray("uext");
+    JsonObject &sensorObj = uextArray.createNestedObject();
+    sensorObj["type"] = methaneSensor.type().c_str();
+    sensorObj["ain"] = methaneSensor.ain();
+    sensorObj["ppm"] = methaneSensor.ppm();
+    sensorObj["ppmFlt"] = methaneSensor.ppmLowPass();
 
-    //JsonObject &idsObj = sensorObj.createNestedObject("ids");
-    //MQ4_MethaneParam param = methaneSensor.getParam();
-    //idsObj["ain'"] = param.ids.ain;
-    //idsObj["ppm'"] = param.ids.ppm;
-    //idsObj["ppmFlt'"] = param.ids.ppmFlt;
+    JsonObject &idsObj = sensorObj.createNestedObject("ids");
+    MQ4_MethaneParam param = methaneSensor.getParam();
+    idsObj["ain'"] = param.ids.ain;
+    idsObj["ppm'"] = param.ids.ppm;
+    idsObj["ppmFlt'"] = param.ids.ppmFlt;
 
     // Write json object to open log
     rootObj.printTo(*serialPtr_);
@@ -132,37 +133,27 @@ void Logger::writeData()
 
     count_++;
 
-    //DEV
-    //-------------------------------------------------
-    //rootObj.printTo(Serial);
-    //rootObj.prettyPrintTo(Serial);
-    //Serial << endl;
-    // -------------------------------------------------
-
-
-    // DEV
+    // DEV - write json Object to wifi
     // --------------------------------------------------
-    String params = "{\"id\":[1,2,3,4],\"bob\":1.2,\"dave\":7.234,\"rick\":1234.2}";
-    String paramsLength = String(params.length());
-    //String paramsLength = String(rootObj.measureLength());
+    char buf[JsonBufferSize];
+    rootObj.printTo(buf,JsonBufferSize);
+    String paramsLength = String(strlen(buf));
 
-    wifly.open("192.168.1.106", 5000);
+    wifly.open("192.168.1.105", 5000);
     wifly.println("POST /jsontest HTTP/1.1");
-    wifly.println("Host: 192.168.1.106:5000");
+    wifly.println("Host: 192.168.1.105:5000");
     wifly.println("Content-type: application/json");
     wifly.println("Accept: application/json");
     wifly.print("Content-Length: ");
     wifly.println(paramsLength);
     wifly.println("User-Agent: easyPEP/0.0.1");
     wifly.println();
-    wifly.println(params);
-    
-    //rootObj.printTo(wifly);
-    //wifly.println();
+    wifly.println(buf);
     wifly.close();
 
-    rootObj.printTo(Serial);
-    Serial << endl;
+    //rootObj.printTo(Serial);
+    //Serial << endl;
+    //Serial << buf << endl;
 
 
 }
