@@ -73,13 +73,13 @@ String GPSData::getLongitudeString(bool addEW)
 
 double GPSData::getLatitudeDecDeg()
 {
-    return convertToDecDeg(latitude);
+    return convertToDecDeg(latitude,lat);
 }
 
 
 double GPSData::getLongitudeDecDeg()
 {
-    return convertToDecDeg(longitude);
+    return convertToDecDeg(longitude,lon);
 }
 
 
@@ -94,10 +94,14 @@ float GPSData::getSpeedInMeterPerSec()
     return speed*KnotsToMeterPerSec;
 }
 
-double GPSData::convertToDecDeg(double valueNEMAish)
+double GPSData::convertToDecDeg(double valueNEMAish,char hemi)
 {
     double decDeg = double(trunc(valueNEMAish/100.0));
     double decMinute = double(valueNEMAish) - 100.0*decDeg;
     decDeg += decMinute/60.0;
+    if ((hemi == 'S') || (hemi == 'W'))
+    {
+        decDeg = -decDeg;
+    }
     return decDeg;
 }

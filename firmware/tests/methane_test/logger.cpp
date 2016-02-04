@@ -135,25 +135,61 @@ void Logger::writeData()
 
     // DEV - write json Object to wifi
     // --------------------------------------------------
-    char buf[JsonBufferSize];
-    rootObj.printTo(buf,JsonBufferSize);
-    String paramsLength = String(strlen(buf));
+    //char buf[JsonBufferSize];
+    //rootObj.printTo(buf,JsonBufferSize);
+    //String bufLen = String(strlen(buf));
 
-    wifly.open("192.168.1.105", 5000);
-    wifly.println("POST /jsontest HTTP/1.1");
-    wifly.println("Host: 192.168.1.105:5000");
+    //wifly.open("192.168.1.105", 5000);
+    //wifly.println("POST /jsontest HTTP/1.1");
+    //wifly.println("Host: 192.168.1.105:5000");
+    //wifly.println("Content-type: application/json");
+    //wifly.println("Accept: application/json");
+    //wifly.print("Content-Length: ");
+    //wifly.println(bufLen);
+    //wifly.println("User-Agent: easyPEP/0.0.1");
+    //wifly.println();
+    //wifly.println(buf);
+    //wifly.close();
+
+    // Dev create Rob's style of json message
+    // ----------------------------------------------------------------
+
+    String methaneValue = String(methaneSensor.ppmLowPass(),5); 
+    String altitudeValue = String(gpsData.getAltitudeInMeter(),5); 
+
+    jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
+    JsonObject &testObj = jsonBuffer_.createObject();
+    testObj["longitude"] =  longitudeString.c_str();  
+    testObj["latitude"] = latitudeString.c_str();
+    testObj["device_id"] = "5001";
+    testObj["value"] = methaneValue.c_str();
+    testObj["unit"] = "Methane_PPM";
+    testObj["height"] = altitudeValue.c_str();;
+    testObj["devicetype_id"] = "300";
+    testObj["sensor_id"] = "300";
+
+    char buf[JsonBufferSize];
+    testObj.printTo(buf,JsonBufferSize);
+    String bufLen = String(strlen(buf));
+
+    //wifly.open("192.168.1.105", 5000);
+    //wifly.println("POST /jsontest HTTP/1.1");
+    
+    wifly.open("107.161.164.166",80);
+    wifly.println("POST /scripts/indextest.php?api_key=AzQLKPwQqkyCTDGZHSdy HTTP/1.1");
+    wifly.println("Host: 107.161.164.166:80"); 
     wifly.println("Content-type: application/json");
-    wifly.println("Accept: application/json");
     wifly.print("Content-Length: ");
-    wifly.println(paramsLength);
-    wifly.println("User-Agent: easyPEP/0.0.1");
+    wifly.println(bufLen);
+    wifly.println("User-Agent: Arduino");
     wifly.println();
     wifly.println(buf);
     wifly.close();
 
+
     //rootObj.printTo(Serial);
     //Serial << endl;
-    //Serial << buf << endl;
+    Serial << buf << endl;
 
 
 }

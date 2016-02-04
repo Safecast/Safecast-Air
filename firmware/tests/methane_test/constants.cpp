@@ -22,7 +22,7 @@ namespace constants
 
     const LoggerParam DefaultLoggerParam = 
     { // timerPriority,  timerPeriod (us), baudRate
-        122, 10000000, 115200 
+        122, 60000000, 115200 
     };
 }
 
