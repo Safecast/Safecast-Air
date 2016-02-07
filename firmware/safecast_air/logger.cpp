@@ -211,15 +211,12 @@ void Logger::writeData()
     *serialPtr_ << endl;
 
 
-    if (count_ > 0)
-    {
-        if (count_%2==0)
-        {
-            SPI.beginTransaction(constants::DisplaySPISettings);
+    // Display the data
+    
+            SPI.beginTransaction(constants::DisplaySPISettings);            
             display.clearDisplay();
             display.setCursor(0,0);
             display.println("Gas Sensor (ppb)");
-            display.println();
 
             for (int i=0; i<NUM_GAS_TYPE; i++)
             {
@@ -241,7 +238,7 @@ void Logger::writeData()
                 }
                 if (numType > 0)
                 {
-                    float avgValue = cumValue/float(numType);
+                    int avgValue = cumValue/int(numType);
                     display.print("  ");
                     display.print(GasTypeToGasName[i]);
                     for (int j=0; j<8-GasTypeToGasName[i].length(); j++)
@@ -249,34 +246,20 @@ void Logger::writeData()
                         display.print(" "); 
                     }
                     display.println(avgValue);
-                    display.println();
                 }
             } 
 
-            display.display();
-            SPI.endTransaction();
-        }
-        else
-        {
-            SPI.beginTransaction(constants::DisplaySPISettings);
-            display.clearDisplay();
-            display.setCursor(0,0);
-            display.println("Particle Counter");
-            display.println();
+            display.setCursor(0,32);
+            display.println("Particle counter");
             display.print("  PM1      ");
             display.println(opcn2Data.PM1);
-            display.println();
             display.print("  PM2.5    ");
             display.println(opcn2Data.PM2_5);
-            display.println();
             display.print("  PM10     ");
             display.println(opcn2Data.PM10);
             display.display();
             SPI.endTransaction();
-        }
-    }
 
-    count_++;
 
     //DEV
     //-------------------------------------------------
@@ -287,10 +270,10 @@ void Logger::writeData()
     rootObj.printTo(Serial2);
     Serial2 << endl;
     
-    //Serial << "cnt = " << count_ << ": ";
-    //Serial << opcn2Data.PM1  << ", ";  
-    //Serial << opcn2Data.PM2_5 << ", "; 
-    //Serial << opcn2Data.PM10 << endl;
+    Serial << "cnt = " << count_ << ": ";
+    Serial << opcn2Data.PM1  << ", ";  
+    Serial << opcn2Data.PM2_5 << ", "; 
+    Serial << opcn2Data.PM10 << endl;
     // -------------------------------------------------
 
 }

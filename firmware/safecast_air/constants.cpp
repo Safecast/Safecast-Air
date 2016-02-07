@@ -4,7 +4,7 @@
 
 namespace constants
 {
-    const char SoftwareVersion[] = "0.32";
+    const char SoftwareVersion[] = "0.33";
     const char DeviceName[] = "air001";
     const char DeviceId[] = "00000001";
 
@@ -91,15 +91,15 @@ namespace constants
 
     // Logger parameters
     // --------------------------------------------------------------------------------------------
+//    const LoggerParam DefaultLoggerParam = 
+//    { // timerPriority,  timerPeriod (us), baudRate
+//        122, 60000000, 9600
+//    };
+
     const LoggerParam DefaultLoggerParam = 
     { // timerPriority,  timerPeriod (us), baudRate
-        122, 60000000, 9600
+        122, 5000000, 9600
     };
-
-    //const LoggerParam DefaultLoggerParam = 
-    //{ // timerPriority,  timerPeriod (us), baudRate
-    //    122, 5000000, 9600
-    //};
 }
 
 
