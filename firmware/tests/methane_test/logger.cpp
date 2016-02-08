@@ -176,7 +176,7 @@ void Logger::writeData()
     //wifly.println("POST /jsontest HTTP/1.1");
     
     wifly.open("107.161.164.166",80);
-    wifly.println("POST /scripts/indextest.php?api_key=AzQLKPwQqkyCTDGZHSdy HTTP/1.1");
+    wifly.println("POST /scripts/airtest.php?api_key=AzQLKPwQqkyCTDGZHSdy HTTP/1.1");
     wifly.println("Host: 107.161.164.166:80"); 
     wifly.println("Content-type: application/json");
     wifly.print("Content-Length: ");
