@@ -24,17 +24,9 @@ void Logger::initialize()
     serialPtr_ -> begin(param_.baudRate);
 }
 
-
-void Logger::start()
+unsigned long Logger::period()
 {
-    timer_.priority(param_.priority);
-    timer_.begin(timerCallback_, param_.period);
-}
-
-
-void Logger::stop()
-{
-    timer_.end();
+    return param_.period;
 }
 
 void Logger::onTimer()
@@ -50,12 +42,6 @@ void Logger::update()
         writeData();
         writeDataFlag_ = false;
     }
-}
-
-
-void Logger::setTimerCallback(void (*timerCallback)())
-{
-    timerCallback_ = timerCallback;
 }
 
 void Logger::writeConfiguration()
@@ -131,8 +117,6 @@ void Logger::writeData()
     rootObj.printTo(*serialPtr_);
     *serialPtr_ << endl;
 
-    count_++;
-
     // DEV - write json Object to wifi
     // --------------------------------------------------
     //char buf[JsonBufferSize];
@@ -153,7 +137,6 @@ void Logger::writeData()
 
     // Dev create Rob's style of json message
     // ----------------------------------------------------------------
-
     String methaneValue = String(methaneSensor.ppmLowPass(),5); 
     String altitudeValue = String(gpsData.getAltitudeInMeter(),5); 
 
@@ -172,25 +155,24 @@ void Logger::writeData()
     testObj.printTo(buf,JsonBufferSize);
     String bufLen = String(strlen(buf));
 
-    //wifly.open("192.168.1.105", 5000);
-    //wifly.println("POST /jsontest HTTP/1.1");
-    
-    wifly.open("107.161.164.166",80);
-    wifly.println("POST /scripts/airtest.php?api_key=AzQLKPwQqkyCTDGZHSdy HTTP/1.1");
-    wifly.println("Host: 107.161.164.166:80"); 
-    wifly.println("Content-type: application/json");
-    wifly.print("Content-Length: ");
-    wifly.println(bufLen);
-    wifly.println("User-Agent: Arduino");
-    wifly.println();
-    wifly.println(buf);
-    wifly.close();
+    Serial << "opening connection... " << endl;
+    //if (wifly.open("192.168.1.110", 5000));
+    if (wifly.open("107.161.164.166",80,true))
+    {
+        //wifly.println("POST /jsontest HTTP/1.1");
+        wifly.println("POST /scripts/airtest.php?api_key=AzQLKPwQqkyCTDGZHSdy HTTP/1.1");
+        wifly.println("Host: 107.161.164.166:80"); 
+        wifly.println("Content-type: application/json");
+        wifly.print("Content-Length: ");
+        wifly.println(bufLen);
+        wifly.println("User-Agent: Arduino");
+        wifly.println();
+        wifly.println(buf);
+        wifly.close();
+    }
 
-
-    //rootObj.printTo(Serial);
-    //Serial << endl;
     Serial << buf << endl;
-
+    //Serial.println(methaneSensor.ain(),5);
 
 }
 

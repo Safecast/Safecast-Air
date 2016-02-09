@@ -13,10 +13,7 @@ class Logger
         Logger(LoggerParam param, HardwareSerial *serialPtr=&Serial3);
 
         void initialize();
-
-        void start();
-        void stop();
-        void setTimerCallback(void (*timerCallback)());
+        unsigned long period();
         void onTimer();
         void update();
 
@@ -28,11 +25,7 @@ class Logger
         IntervalTimer timer_;
         LoggerParam param_;
         volatile bool writeDataFlag_ = false;
-        unsigned long count_ = 0;
         StaticJsonBuffer<JsonBufferSize> jsonBuffer_;
-
-        static void dummyTimerCallback() { }; 
-        void (*timerCallback_)() = dummyTimerCallback; 
 
 };
 

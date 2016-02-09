@@ -8,7 +8,7 @@ namespace constants
     const char DeviceId[] = "00000003";
 
     const long USBSerialBaudRate = 115200;
-    const unsigned long LoopDelay = 100;
+    const unsigned long LoopDelay = 250;
 
     const int DisplayDC = 5;
     const int DisplayCS = 3;
@@ -17,12 +17,12 @@ namespace constants
 
     const MQ4_MethaneParam DefaultMethaneParam = 
     { // priority, sampleDt, ainPin, ainReadRes, ainReadAvg, ainMaxVal, lowPassCutoffFreq, lowPassOrder, numLookup, tableVoltToPPM[MQ4_MaxNumLookup][2], {ids}, 
-        100, 50, A17, 16, 32, 1.2, 0.5, 2, 5, {{0.0720, 1.8}, {0.1610, 200.0}, {0.2826, 1000.0}, {0.4832, 5000.0}, {0.6374, 10000.0}}, {107,108,109}
+        100, 50, A17, 16, 32, 1.2, 0.5, 2, 6, {{0.0197, 0.001}, {0.0710, 1.8}, {0.1588, 200.0}, {0.2788, 1000.0}, {0.4770, 5000.0}, {0.6295, 10000.0}}, {107,108,109}
     };
 
     const LoggerParam DefaultLoggerParam = 
-    { // timerPriority,  timerPeriod (us), baudRate
-        122, 60000000, 115200 
+    { // timerPeriod (s), baudRate
+        300, 115200 
     };
 }
 

@@ -42,6 +42,8 @@ Contact:
 #include <Adafruit_GPS.h>
 #include <ArduinoJson.h>
 #include <WiFlyHQ.h>
+#include <Time.h>
+#include <TimeAlarms.h>
 #include "constants.h"
 #include "filter.h"
 #include "gps_monitor.h"
@@ -119,8 +121,7 @@ void setup()
     // Setup dataLogger
     dataLogger.initialize();
     dataLogger.writeConfiguration();
-    dataLogger.setTimerCallback( []() { dataLogger.onTimer(); } );
-    dataLogger.start();
+    Alarm.timerRepeat(dataLogger.period(), [](){dataLogger.onTimer();} );
 
     SPI.beginTransaction(constants::DisplaySPISettings);
     display.println("  * logger");
@@ -129,7 +130,8 @@ void setup()
 
     // Setup wifly
     Serial2.begin(9600);
-    wifly.begin(&Serial2);
+    //wifly.begin(&Serial2);
+    wifly.begin(&Serial2,&Serial);
 
     // Note settings are save to wifly eeprom
     char wifiBuf[100];
@@ -154,9 +156,10 @@ void setup()
 
 void loop()
 {
+    //static unsigned int cnt = 0;
+    Alarm.delay(constants::LoopDelay);
     gpsMonitor.update();
     dataLogger.update();
-    delay(constants::LoopDelay);
 
     GPSData gpsData; 
     bool gpsDataOk = false;
@@ -193,6 +196,9 @@ void loop()
         display.display();
         SPI.endTransaction();
     }
+    //Serial << "loop cnt: " << cnt << ", ";
+    //Serial.println(methaneSensor.ain(),5);
+    //cnt++;
 
 }
 
