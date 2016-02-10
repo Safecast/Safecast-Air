@@ -16,6 +16,7 @@ Logger::Logger(LoggerParam param, HardwareSerial *serialPtr)
 {
     param_ = param;
     serialPtr_ = serialPtr;
+    wiflyFailCount_ = 0;
 }
 
 
@@ -169,9 +170,20 @@ void Logger::writeData()
         wifly.println();
         wifly.println(buf);
         wifly.close();
+        wiflyFailCount_ = 0;
+    }
+    else
+    {
+        // Reboot if failing ... possible temporary fix for occassional crash issue?
+        wiflyFailCount_++;
+        if (wiflyFailCount_ >= WiFlyMaxFailCount)
+        {
+            wifly.reboot();
+            wiflyFailCount_ = 0;
+        }
     }
 
-    Serial << buf << endl;
+    //Serial << buf << endl;
     //Serial.println(methaneSensor.ain(),5);
 
 }

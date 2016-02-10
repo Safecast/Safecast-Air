@@ -65,6 +65,8 @@ MQ4_Methane methaneSensor(constants::DefaultMethaneParam);
 
 rnxv::WiFly wifly;
 
+char wiflyIP[100];
+
 void setup()
 {
     Serial.begin(constants::USBSerialBaudRate);
@@ -130,16 +132,15 @@ void setup()
 
     // Setup wifly
     Serial2.begin(9600);
-    //wifly.begin(&Serial2);
-    wifly.begin(&Serial2,&Serial);
+    wifly.begin(&Serial2);
+    //wifly.begin(&Serial2,&Serial);
 
     // Note settings are save to wifly eeprom
-    char wifiBuf[100];
     if (wifly.isAssociated())
     {
         SPI.beginTransaction(constants::DisplaySPISettings);
         display.print("  * ");
-        display.println(wifly.getIP(wifiBuf,sizeof(wifiBuf)));
+        display.println(wifly.getIP(wiflyIP,sizeof(wiflyIP)));
         display.display();
         SPI.endTransaction();
     }
@@ -178,18 +179,21 @@ void loop()
         display.setCursor(0,0);
         display.println(dateTimeString.c_str());
         display.println();
+        display.print("IP:   ");
+        display.print(wiflyIP);
+        display.println();
         display.print("SAT:  ");
         display.println(gpsData.satellites);
         display.print("LAT:  ");
         display.println(latitudeString.c_str());
         display.print("LON:  ");
         display.println(longitudeString.c_str());
-        display.print("ALT:  ");
-        display.print(gpsData.getAltitudeInMeter());
-        display.println("(m)"); 
-        display.print("SPD:  ");
-        display.print(gpsData.getSpeedInMeterPerSec());
-        display.println("(m/s)");
+        //display.print("ALT:  ");
+        //display.print(gpsData.getAltitudeInMeter());
+        //display.println("(m)"); 
+        //display.print("SPD:  ");
+        //display.print(gpsData.getSpeedInMeterPerSec());
+        //display.println("(m/s)");
         display.print("CH4:  ");
         display.print(methaneSensor.ppmLowPass());
         display.println("(ppm) ");
