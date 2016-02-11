@@ -9,7 +9,7 @@ class Logger
     public:
         static const uint8_t DefaultTimerPriority = 124;
         static const int JsonBufferSize = 6000;  // Probably bigger than we need
-        static const int WiFlyMaxFailCount = 5;
+        static const int WiFlyMaxFailCount = 3;
 
         Logger(LoggerParam param, HardwareSerial *serialPtr=&Serial3);
 
