@@ -1,0 +1,783 @@
+
+; Generic Start
+G40 (Cancel cutter radius compensation)
+G49 (Cancel tool length offset)
+G80 (Cancel canned cycle)
+G54 (Select coordinate system 1)
+G90 (Set absolute distance mode)
+G20 (Set units to inches)
+G61 (Exact path mode)
+
+
+; Setup laser
+F 10.0
+M65 P1
+S 600.0
+M3
+G4 P3.0
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.079
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (3.2598425197, 5.46062992126)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X3.33884252 Y5.46062992
+
+; Laser on
+M62 P1
+G1 X3.33884252 Y5.46062992
+G2 X3.33884252 Y5.46062992 I-0.07900000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.079
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (6.2598425197, 5.46062992126)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X6.33884252 Y5.46062992
+
+; Laser on
+M62 P1
+G1 X6.33884252 Y5.46062992
+G2 X6.33884252 Y5.46062992 I-0.07900000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.079
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (3.2598425197, 1.46062992126)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X3.33884252 Y1.46062992
+
+; Laser on
+M62 P1
+G1 X3.33884252 Y1.46062992
+G2 X3.33884252 Y1.46062992 I-0.07900000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.079
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (6.2598425197, 1.46062992126)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X6.33884252 Y1.46062992
+
+; Laser on
+M62 P1
+G1 X6.33884252 Y1.46062992
+G2 X6.33884252 Y1.46062992 I-0.07900000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.079
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (7.7598425197, 5.46062992126)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X7.83884252 Y5.46062992
+
+; Laser on
+M62 P1
+G1 X7.83884252 Y5.46062992
+G2 X7.83884252 Y5.46062992 I-0.07900000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.079
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (7.7598425197, 1.46062992126)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X7.83884252 Y1.46062992
+
+; Laser on
+M62 P1
+G1 X7.83884252 Y1.46062992
+G2 X7.83884252 Y1.46062992 I-0.07900000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.079
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (1.75984251969, 1.46062992126)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X1.83884252 Y1.46062992
+
+; Laser on
+M62 P1
+G1 X1.83884252 Y1.46062992
+G2 X1.83884252 Y1.46062992 I-0.07900000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.079
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (1.75984251969, 5.46062992126)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X1.83884252 Y5.46062992
+
+; Laser on
+M62 P1
+G1 X1.83884252 Y5.46062992
+G2 X1.83884252 Y5.46062992 I-0.07900000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserLineSegPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; closed: True
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+; pointList: too big
+
+; LaserLineSegPath: rapid move to start x,y
+G0 X1.01968504 Y5.79625984
+G64 p0.001 q0.001
+
+; Laser on
+M62 P1
+G1 X1.01968504 Y5.79625984
+G1 X1.01968504 Y1.12500000
+G1 X1.02011198 Y1.11467758
+G1 X1.02138988 Y1.10442568
+G1 X1.02351001 Y1.09431431
+G1 X1.02645788 Y1.08441257
+G1 X1.03021337 Y1.07478807
+G1 X1.03475082 Y1.06550658
+G1 X1.04003923 Y1.05663148
+G1 X1.04604248 Y1.04822341
+G1 X1.05271955 Y1.04033980
+G1 X1.06002484 Y1.03303451
+G1 X1.06790845 Y1.02635744
+G1 X1.07631652 Y1.02035419
+G1 X1.08519162 Y1.01506578
+G1 X1.09447311 Y1.01052833
+G1 X1.10409761 Y1.00677284
+G1 X1.11399935 Y1.00382497
+G1 X1.12411072 Y1.00170484
+G1 X1.13436262 Y1.00042694
+G1 X1.14468504 Y1.00000000
+G1 X8.37500000 Y1.00000000
+G1 X8.38532242 Y1.00042694
+G1 X8.39557432 Y1.00170484
+G1 X8.40568569 Y1.00382497
+G1 X8.41558743 Y1.00677284
+G1 X8.42521193 Y1.01052833
+G1 X8.43449342 Y1.01506578
+G1 X8.44336852 Y1.02035419
+G1 X8.45177659 Y1.02635744
+G1 X8.45966020 Y1.03303451
+G1 X8.46696549 Y1.04033980
+G1 X8.47364256 Y1.04822341
+G1 X8.47964581 Y1.05663148
+G1 X8.48493422 Y1.06550658
+G1 X8.48947167 Y1.07478807
+G1 X8.49322716 Y1.08441257
+G1 X8.49617503 Y1.09431431
+G1 X8.49829516 Y1.10442568
+G1 X8.49957306 Y1.11467758
+G1 X8.50000000 Y1.12500000
+G1 X8.50000000 Y5.79625984
+G1 X8.49957306 Y5.80658226
+G1 X8.49829516 Y5.81683417
+G1 X8.49617503 Y5.82694553
+G1 X8.49322716 Y5.83684728
+G1 X8.48947167 Y5.84647177
+G1 X8.48493422 Y5.85575327
+G1 X8.47964581 Y5.86462836
+G1 X8.47364256 Y5.87303643
+G1 X8.46696549 Y5.88092004
+G1 X8.45966020 Y5.88822533
+G1 X8.45177659 Y5.89490241
+G1 X8.44336852 Y5.90090565
+G1 X8.43449342 Y5.90619406
+G1 X8.42521193 Y5.91073151
+G1 X8.41558743 Y5.91448700
+G1 X8.40568569 Y5.91743488
+G1 X8.39557432 Y5.91955501
+G1 X8.38532242 Y5.92083290
+G1 X8.37500000 Y5.92125984
+G1 X1.14468504 Y5.92125984
+G1 X1.13436262 Y5.92083290
+G1 X1.12411072 Y5.91955501
+G1 X1.11399935 Y5.91743488
+G1 X1.10409761 Y5.91448700
+G1 X1.09447311 Y5.91073151
+G1 X1.08519162 Y5.90619406
+G1 X1.07631652 Y5.90090565
+G1 X1.06790845 Y5.89490241
+G1 X1.06002484 Y5.88822533
+G1 X1.05271955 Y5.88092004
+G1 X1.04604248 Y5.87303643
+G1 X1.04003923 Y5.86462836
+G1 X1.03475082 Y5.85575327
+G1 X1.03021337 Y5.84647177
+G1 X1.02645788 Y5.83684728
+G1 X1.02351001 Y5.82694553
+G1 X1.02138988 Y5.81683417
+G1 X1.02011198 Y5.80658226
+G1 X1.01968504 Y5.79625984
+G1 X1.01968504 Y5.79625984
+
+; Laser off
+M65 P1
+G61
+
+; End LaserLineSegPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.0625
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (9.13937007874, 2.05984251969)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X9.20187008 Y2.05984252
+
+; Laser on
+M62 P1
+G1 X9.20187008 Y2.05984252
+G2 X9.20187008 Y2.05984252 I-0.06250000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.0625
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (9.13937007874, 5.0598425197)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X9.20187008 Y5.05984252
+
+; Laser on
+M62 P1
+G1 X9.20187008 Y5.05984252
+G2 X9.20187008 Y5.05984252 I-0.06250000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.0625
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (9.83937007874, 5.0598425197)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X9.90187008 Y5.05984252
+
+; Laser on
+M62 P1
+G1 X9.90187008 Y5.05984252
+G2 X9.90187008 Y5.05984252 I-0.06250000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserCircPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; radius: 0.0625
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; center: (9.83937007874, 2.05984251969)
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+
+; LaserCircPath: rapid move to start x,y
+G0 X9.90187008 Y2.05984252
+
+; Laser on
+M62 P1
+G1 X9.90187008 Y2.05984252
+G2 X9.90187008 Y2.05984252 I-0.06250000 J0.00000000
+
+; Laser off
+M65 P1
+
+; End LaserCircPath
+; ------------------------------------------------------------
+
+
+; Begin LaserLineSegPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; closed: True
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+; pointList: too big
+
+; LaserLineSegPath: rapid move to start x,y
+G0 X8.93937008 Y1.78484252
+G64 p0.001 q0.001
+
+; Laser on
+M62 P1
+G1 X8.93937008 Y1.78484252
+G1 X8.93979702 Y1.77452010
+G1 X8.94107492 Y1.76426820
+G1 X8.94319505 Y1.75415683
+G1 X8.94614292 Y1.74425509
+G1 X8.94989841 Y1.73463059
+G1 X8.95443586 Y1.72534910
+G1 X8.95972427 Y1.71647400
+G1 X8.96572752 Y1.70806593
+G1 X8.97240459 Y1.70018232
+G1 X8.97970988 Y1.69287703
+G1 X8.98759349 Y1.68619996
+G1 X8.99600156 Y1.68019671
+G1 X9.00487665 Y1.67490830
+G1 X9.01415815 Y1.67037085
+G1 X9.02378265 Y1.66661536
+G1 X9.03368439 Y1.66366749
+G1 X9.04379575 Y1.66154736
+G1 X9.05404766 Y1.66026946
+G1 X9.06437008 Y1.65984252
+G1 X9.21437008 Y1.65984252
+G1 X9.22469250 Y1.66026946
+G1 X9.23494440 Y1.66154736
+G1 X9.24505576 Y1.66366749
+G1 X9.25495751 Y1.66661536
+G1 X9.26458201 Y1.67037085
+G1 X9.27386350 Y1.67490830
+G1 X9.28273860 Y1.68019671
+G1 X9.29114667 Y1.68619996
+G1 X9.29903028 Y1.69287703
+G1 X9.30633557 Y1.70018232
+G1 X9.31301264 Y1.70806593
+G1 X9.31901589 Y1.71647400
+G1 X9.32430430 Y1.72534910
+G1 X9.32884174 Y1.73463059
+G1 X9.33259723 Y1.74425509
+G1 X9.33554511 Y1.75415683
+G1 X9.33766524 Y1.76426820
+G1 X9.33894314 Y1.77452010
+G1 X9.33937008 Y1.78484252
+G1 X9.33937008 Y5.33484252
+G1 X9.33894314 Y5.34516494
+G1 X9.33766524 Y5.35541684
+G1 X9.33554511 Y5.36552821
+G1 X9.33259723 Y5.37542995
+G1 X9.32884174 Y5.38505445
+G1 X9.32430430 Y5.39433594
+G1 X9.31901589 Y5.40321104
+G1 X9.31301264 Y5.41161911
+G1 X9.30633557 Y5.41950272
+G1 X9.29903028 Y5.42680801
+G1 X9.29114667 Y5.43348508
+G1 X9.28273860 Y5.43948833
+G1 X9.27386350 Y5.44477674
+G1 X9.26458201 Y5.44931419
+G1 X9.25495751 Y5.45306967
+G1 X9.24505576 Y5.45601755
+G1 X9.23494440 Y5.45813768
+G1 X9.22469250 Y5.45941558
+G1 X9.21437008 Y5.45984252
+G1 X9.06437008 Y5.45984252
+G1 X9.05404766 Y5.45941558
+G1 X9.04379575 Y5.45813768
+G1 X9.03368439 Y5.45601755
+G1 X9.02378265 Y5.45306967
+G1 X9.01415815 Y5.44931419
+G1 X9.00487665 Y5.44477674
+G1 X8.99600156 Y5.43948833
+G1 X8.98759349 Y5.43348508
+G1 X8.97970988 Y5.42680801
+G1 X8.97240459 Y5.41950272
+G1 X8.96572752 Y5.41161911
+G1 X8.95972427 Y5.40321104
+G1 X8.95443586 Y5.39433594
+G1 X8.94989841 Y5.38505445
+G1 X8.94614292 Y5.37542995
+G1 X8.94319505 Y5.36552821
+G1 X8.94107492 Y5.35541684
+G1 X8.93979702 Y5.34516494
+G1 X8.93937008 Y5.33484252
+G1 X8.93937008 Y1.78484252
+G1 X8.93937008 Y1.78484252
+
+; Laser off
+M65 P1
+G61
+
+; End LaserLineSegPath
+; ------------------------------------------------------------
+
+
+; Begin LaserLineSegPath
+; ------------------------------------------------------------
+; maxArcLen: 0.01
+; startCond: minX
+; returnHome: True
+; startDwell: 3.0
+; direction: ccw
+; fileName: lower_insert.dxf
+; convertArcs: True
+; ptEquivTol: 0.0004
+; layers: ['vector']
+; feedRate: 10
+; closed: True
+; laserHomeXY: (35, 23)
+; dxfTypes: ['LINE', 'ARC', 'CIRCLE']
+; laserPower: 600
+; laserDIOPin: 1
+; pointList: too big
+
+; LaserLineSegPath: rapid move to start x,y
+G0 X9.63937008 Y1.78484252
+G64 p0.001 q0.001
+
+; Laser on
+M62 P1
+G1 X9.63937008 Y1.78484252
+G1 X9.63979702 Y1.77452010
+G1 X9.64107492 Y1.76426820
+G1 X9.64319505 Y1.75415683
+G1 X9.64614292 Y1.74425509
+G1 X9.64989841 Y1.73463059
+G1 X9.65443586 Y1.72534910
+G1 X9.65972427 Y1.71647400
+G1 X9.66572752 Y1.70806593
+G1 X9.67240459 Y1.70018232
+G1 X9.67970988 Y1.69287703
+G1 X9.68759349 Y1.68619996
+G1 X9.69600156 Y1.68019671
+G1 X9.70487665 Y1.67490830
+G1 X9.71415815 Y1.67037085
+G1 X9.72378265 Y1.66661536
+G1 X9.73368439 Y1.66366749
+G1 X9.74379575 Y1.66154736
+G1 X9.75404766 Y1.66026946
+G1 X9.76437008 Y1.65984252
+G1 X9.91437008 Y1.65984252
+G1 X9.92469250 Y1.66026946
+G1 X9.93494440 Y1.66154736
+G1 X9.94505576 Y1.66366749
+G1 X9.95495751 Y1.66661536
+G1 X9.96458201 Y1.67037085
+G1 X9.97386350 Y1.67490830
+G1 X9.98273860 Y1.68019671
+G1 X9.99114667 Y1.68619996
+G1 X9.99903028 Y1.69287703
+G1 X10.00633557 Y1.70018232
+G1 X10.01301264 Y1.70806593
+G1 X10.01901589 Y1.71647400
+G1 X10.02430430 Y1.72534910
+G1 X10.02884174 Y1.73463059
+G1 X10.03259723 Y1.74425509
+G1 X10.03554511 Y1.75415683
+G1 X10.03766524 Y1.76426820
+G1 X10.03894314 Y1.77452010
+G1 X10.03937008 Y1.78484252
+G1 X10.03937008 Y5.33484252
+G1 X10.03894314 Y5.34516494
+G1 X10.03766524 Y5.35541684
+G1 X10.03554511 Y5.36552821
+G1 X10.03259723 Y5.37542995
+G1 X10.02884174 Y5.38505445
+G1 X10.02430430 Y5.39433594
+G1 X10.01901589 Y5.40321104
+G1 X10.01301264 Y5.41161911
+G1 X10.00633557 Y5.41950272
+G1 X9.99903028 Y5.42680801
+G1 X9.99114667 Y5.43348508
+G1 X9.98273860 Y5.43948833
+G1 X9.97386350 Y5.44477674
+G1 X9.96458201 Y5.44931419
+G1 X9.95495751 Y5.45306967
+G1 X9.94505576 Y5.45601755
+G1 X9.93494440 Y5.45813768
+G1 X9.92469250 Y5.45941558
+G1 X9.91437008 Y5.45984252
+G1 X9.76437008 Y5.45984252
+G1 X9.75404766 Y5.45941558
+G1 X9.74379575 Y5.45813768
+G1 X9.73368439 Y5.45601755
+G1 X9.72378265 Y5.45306967
+G1 X9.71415815 Y5.44931419
+G1 X9.70487665 Y5.44477674
+G1 X9.69600156 Y5.43948833
+G1 X9.68759349 Y5.43348508
+G1 X9.67970988 Y5.42680801
+G1 X9.67240459 Y5.41950272
+G1 X9.66572752 Y5.41161911
+G1 X9.65972427 Y5.40321104
+G1 X9.65443586 Y5.39433594
+G1 X9.64989841 Y5.38505445
+G1 X9.64614292 Y5.37542995
+G1 X9.64319505 Y5.36552821
+G1 X9.64107492 Y5.35541684
+G1 X9.63979702 Y5.34516494
+G1 X9.63937008 Y5.33484252
+G1 X9.63937008 Y1.78484252
+G1 X9.63937008 Y1.78484252
+
+; Laser off
+M65 P1
+G61
+
+; End LaserLineSegPath
+; ------------------------------------------------------------
+
+
+; Shutdown laser
+M65 P1
+M5
+S 0.0
+
+; VectorCut: rapid move to {'y': 23, 'x': 35}
+G0 X35.00000000 Y23.00000000
+
+M2 (End program)
