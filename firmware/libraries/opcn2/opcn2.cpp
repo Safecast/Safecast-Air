@@ -1,5 +1,4 @@
 #include "opcn2.h"
-#include <Streaming.h>
 #include "fixed_vector.h"
 
 OPCN2::OPCN2()

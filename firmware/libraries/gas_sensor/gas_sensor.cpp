@@ -1,5 +1,4 @@
 #include "gas_sensor.h"
-#include <Streaming.h>
 #include <cstdint>
 
 const int   AinMaxInt   = UINT16_MAX;

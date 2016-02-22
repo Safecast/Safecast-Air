@@ -4,7 +4,6 @@
 
 struct LoggerParam
 {
-   //uint8_t priority;
    unsigned long period;
    unsigned long baudRate;
 };

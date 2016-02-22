@@ -2,7 +2,6 @@
 #define SENSOR_DEV_VECTOR_H
 #include "sampling_param.h"
 #include "fixed_vector.h"
-#include <Streaming.h>
 
 
 template<typename Dev, typename DevParam, unsigned int n>

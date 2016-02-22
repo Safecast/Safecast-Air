@@ -34,13 +34,14 @@ Contact:
    
 */
 
-#include <Streaming.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GPS.h>
 #include <ArduinoJson.h>
+#include <Time.h>
+#include <TimeAlarms.h>
 #include "constants.h"
 #include "fixed_vector.h"
 #include "sensor_dev_vector.h"
@@ -50,7 +51,6 @@ Contact:
 #include "opcn2.h"
 #include "gps_monitor.h"
 #include "logger.h"
-
 
 Adafruit_SSD1306 display(
     constants::DisplayDC, 
@@ -72,7 +72,13 @@ TmpSensorDevVector<constants::NumTmpSensor> tmpSensors(
 
 OPCN2 particleCounter(constants::DefaultOPCN2Param, constants::DefaultOPCN2Ids);
 
+#ifdef WITH_METHANE
+#include "mq4_methane.h"
+MQ4_Methane methaneSensor(constants::DefaultMethaneParam);
+#endif
+
 Logger dataLogger(constants::DefaultLoggerParam);
+
 
 void setup()
 {
@@ -82,8 +88,11 @@ void setup()
     digitalWrite(constants::DefaultOPCN2Param.spiCsPin,HIGH);
     
     Serial.begin(constants::USBSerialBaudRate);
-    Serial << "Initializing" << endl;
+    Serial.println("Initializing");
+
+#ifdef WITH_ROBS_PARAMS
     Serial2.begin(9600);
+#endif
 
     // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
@@ -105,6 +114,7 @@ void setup()
     display.println();
     display.display();
     SPI.endTransaction();
+    delay(1000);
 
     // Setup GPS monitor
     gpsMonitor.initialize();
@@ -112,7 +122,9 @@ void setup()
     gpsMonitor.start();
 
     SPI.beginTransaction(constants::DisplaySPISettings);
-    display.println("  * gps");
+    display.clearDisplay();   
+    display.setCursor(0,0);
+    display.println("* gps");
     display.display();
     SPI.endTransaction();
 
@@ -122,7 +134,7 @@ void setup()
     gasSensors.start();
 
     SPI.beginTransaction(constants::DisplaySPISettings);
-    display.println("  * gas sensors");
+    display.println("* gas sensors");
     display.display();
     SPI.endTransaction();
 
@@ -132,7 +144,7 @@ void setup()
     tmpSensors.start();
 
     SPI.beginTransaction(constants::DisplaySPISettings);
-    display.println("  * tmp sensors");
+    display.println("* tmp sensors");
     display.display();
     SPI.endTransaction();
     delay(200);  // Short delay seems to be necessary or opcn2 won't will give an error 
@@ -145,25 +157,36 @@ void setup()
     particleCounter.setFanAndLaserOn(&laserAndFanOk);
 
     SPI.beginTransaction(constants::DisplaySPISettings);
-    display.print("  * opcn2: ");
+    display.print("* opcn2: ");
     display.print(status);
     display.print(",");
     display.println(laserAndFanOk);
     display.display();
     SPI.endTransaction();
 
+    // Setup Methane Sensor
+    methaneSensor.initialize();
+    methaneSensor.setTimerCallback( []() {methaneSensor.sample();});
+    methaneSensor.start();
+
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    display.println("* methane");
+    display.display();
+    SPI.endTransaction();
+    delay(500);
+
     // Setup dataLogger
     dataLogger.initialize();
     dataLogger.writeConfiguration();
-    dataLogger.setTimerCallback( []() { dataLogger.onTimer(); } );
-    dataLogger.start();
+    Alarm.timerRepeat(dataLogger.period(), [](){dataLogger.onTimer();} );
 
     delay(500);
     SPI.beginTransaction(constants::DisplaySPISettings);
-    display.clearDisplay();
-    display.setCursor(0,0);
+    display.println();
     display.println("First reading  ... ");
-    display.println("takes 60 seconds");
+    display.print("takes ");
+    display.print(constants::DefaultLoggerParam.period);
+    display.println(" seconds");
     display.display();
     SPI.endTransaction();
 }
@@ -171,10 +194,9 @@ void setup()
 
 void loop()
 {
+    Alarm.delay(constants::LoopDelay);
     gpsMonitor.update();
     dataLogger.update();
-    delay(constants::LoopDelay);
-
 }
 
 

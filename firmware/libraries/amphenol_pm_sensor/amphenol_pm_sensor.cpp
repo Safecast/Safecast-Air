@@ -1,6 +1,5 @@
 #include "amphenol_pm_sensor.h"
 #include "constants.h"
-#include <Streaming.h>
 
 // AmphenolPMSensorDev public methods
 // --------------------------------------------------------------------------------------------

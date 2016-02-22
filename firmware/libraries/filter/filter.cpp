@@ -1,6 +1,5 @@
 #include "filter.h"
 #include <Arduino.h>
-#include <Streaming.h>
 
 namespace filter
 {

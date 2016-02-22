@@ -1,5 +1,4 @@
 #include "opcn2_data.h"
-#include "Streaming.h"
 
 const int SCRATCH_SIZE = 50;
 

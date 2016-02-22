@@ -1,5 +1,4 @@
 #include "mq4_methane.h"
-#include <Streaming.h>
 
 const float MilliSecToSec = 1.0e-3;
 float mapfloat(float x, float in_min, float in_max, float out_min, float out_max);
