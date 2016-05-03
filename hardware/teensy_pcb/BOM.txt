@@ -7,7 +7,6 @@ QTY   Position          Description                                    Vendor   
 4      P5,7,8           Breakaway header, male pins, 36 pos             Digikey                 3M9457-ND
 1      P6               Screw terminal block, 2-pos                     Digikey                 ED2635-ND
 1      P9               6-pin JST XH connector                          Digikey                 455-2271-ND
-1      P10              5-pin JST XH connector                          Digikey                 455-2270-ND         
 1      S1               Switch, 4-direction with center push            Online components       SKQUCAA010
 1      S2               Slide switch                                    Digikey                 401-2000-ND
 1      U1               Adafruit Ultimate GPS Breakout                  Adafruit                746
@@ -23,12 +22,22 @@ QTY   Position          Description                                    Vendor   
 1      U8               Schmitt buffer                                  Digikey                 TC7SZ17FU(T5LJFTCT-ND
 12     R1-23 (odd)      68k resistor (1%)                               Digikey                 S68KCACT-ND
 12     R2-24 (even)     20k resistor (1%)                               Digikey                 S20KCACT-ND
-2      R25,R26          10k resistor                                    Digikey                 S10KQCT-ND
 1      R27              20k resistor (or 47k, 100k)                     Digikey                 S20KQCT-ND, S47KQCT-ND, CF18JT100KCT-ND
 1      R28              12k resistor                                    Digikey                 S12KQCT-ND
 2      R29,R30          4.7k resistor (select via I2C requirements)     Digikey                 S4.7KQCT-ND     
 1      C1               0.1uf ceramic capacitor 0.1" lead spacing       Digikey                 399-4151-ND
 
+
+Added
+==================================================================================================================================================================
+1      U9               Adafruit temperature humidity breakout          Adafruit/Digikey        2857/1528-1540-ND 
+4      P10              Breakaway header, male pins, 36 pos             Digikey                 3M9457-ND
+
+Removed
+===================================================================================================================================================================
+
+1      P10              5-pin JST XH connector                          Digikey                 455-2270-ND         
+2      R25,R26          10k resistor                                    Digikey                 S10KQCT-ND
 
 
 Hardware
