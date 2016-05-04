@@ -805,5 +805,12 @@
     )
   )
   (wiring
+    (wire (path F.Cu 254  111125 -80073.5  112204 -80073.5)(net GND)(type protect))
+    (wire (path F.Cu 254  114046 -78232  114681 -78232)(net GND)(type protect))
+    (wire (path F.Cu 254  113792 -78486  114046 -78232)(net GND)(type protect))
+    (wire (path F.Cu 254  112204 -80073.5  113792 -78486)(net GND)(type protect))
+    (wire (path F.Cu 254  114681 -77597  113411 -77597)(net "N-0000031")(type protect))
+    (wire (path F.Cu 254  112840 -78168.5  111125 -78168.5)(net "N-0000031")(type protect))
+    (wire (path F.Cu 254  113411 -77597  112840 -78168.5)(net "N-0000031")(type protect))
   )
 )

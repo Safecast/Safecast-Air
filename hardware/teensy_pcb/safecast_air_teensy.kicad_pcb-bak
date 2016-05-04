@@ -2,11 +2,11 @@
 
   (general
     (links 151)
-    (no_connects 151)
-    (area 24.911353 18.389602 152.339522 95.669)
+    (no_connects 149)
+    (area 24.911353 18.389602 152.339522 95.923)
     (thickness 1.6)
     (drawings 28)
-    (tracks 0)
+    (tracks 7)
     (zones 0)
     (modules 58)
     (nets 68)
@@ -2691,5 +2691,13 @@
   (gr_arc (start 128.5875 90.4875) (end 133.35 90.4875) (angle 90) (layer Edge.Cuts) (width 0.1))
   (gr_arc (start 128.5875 30.1625) (end 128.5875 25.4) (angle 90) (layer Edge.Cuts) (width 0.1))
   (gr_arc (start 30.1625 90.4875) (end 30.1625 95.25) (angle 90) (layer Edge.Cuts) (width 0.1))
+
+  (segment (start 111.125 80.0735) (end 112.2045 80.0735) (width 0.254) (layer F.Cu) (net 61) (status 400000))
+  (segment (start 114.046 78.232) (end 114.681 78.232) (width 0.254) (layer F.Cu) (net 61) (tstamp 57297D4B) (status 800000))
+  (segment (start 113.792 78.486) (end 114.046 78.232) (width 0.254) (layer F.Cu) (net 61) (tstamp 57297D4A))
+  (segment (start 112.2045 80.0735) (end 113.792 78.486) (width 0.254) (layer F.Cu) (net 61) (tstamp 57297D49))
+  (segment (start 114.681 77.597) (end 113.411 77.597) (width 0.254) (layer F.Cu) (net 63) (status 400000))
+  (segment (start 112.8395 78.1685) (end 111.125 78.1685) (width 0.254) (layer F.Cu) (net 63) (tstamp 57297D46) (status 800000))
+  (segment (start 113.411 77.597) (end 112.8395 78.1685) (width 0.254) (layer F.Cu) (net 63) (tstamp 57297D43))
 
 )
