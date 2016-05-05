@@ -1,4 +1,4 @@
-update=Wed 04 May 2016 07:52:11 PM PDT
+update=Wed 04 May 2016 08:10:30 PM PDT
 version=1
 last_client=eeschema
 [cvpcb]
@@ -125,3 +125,4 @@ LibName44=adafruit_sht31-d
 LibName45=pchan_mosfet
 LibName46=resistor_old_style
 LibName47=conn_old_style
+LibName48=c_old_style

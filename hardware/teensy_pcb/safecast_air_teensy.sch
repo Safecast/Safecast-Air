@@ -46,6 +46,7 @@ LIBS:adafruit_sht31-d
 LIBS:pchan_mosfet
 LIBS:resistor_old_style
 LIBS:conn_old_style
+LIBS:c_old_style
 LIBS:safecast_air_teensy-cache
 EELAYER 27 0
 EELAYER END
@@ -1165,7 +1166,7 @@ F 3 "" H 10100 4600 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C1
+L C_OLD C1
 U 1 1 55700D03
 P 10100 4200
 F 0 "C1" H 10100 4300 40  0000 L CNN
