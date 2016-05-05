@@ -140,6 +140,9 @@
     (component PMOS_SOT323
       (place Q1 69342 -84328 front 0 (PN PCHAN_MOSFET))
     )
+    (component LOGO
+      (place G*** 93710 -49620 back 180 (PN LOGO))
+    )
   )
   (library
     (image POLOLU_3V3
@@ -476,6 +479,8 @@
       (pin Rect[T]Pad_599.44x1000.76_um G 650.24 949.96)
       (pin Rect[T]Pad_599.44x1000.76_um D 0 -949.96)
     )
+    (image LOGO
+    )
     (padstack Round[A]Pad_1250_um
       (shape (circle F.Cu 1250))
       (shape (circle B.Cu 1250))
@@ -782,10 +787,9 @@
       /AUX3_DIV /AUX4 /AUX4_DIV /AUX5 /AUX5_DIV /AUX6 /AUX6_DIV /GPS_EN /GPS_RX
       /GPS_TX /JOY_B /JOY_C /JOY_CENT /JOY_COMM /JOY_D /LCD_CS /LCD_DC /LCD_RST
       /LOG_GRN /LOG_RXI /LOG_TXO /MISO /MOSI /PM_CS /PROG /SCK /SCL /SDA /TMP1
-      /TMP2 /UEXT_RX /UEXT_TX /UEXT_VOUT /WRK1 /WRK1_DIV /WRK2 /WRK2_DIV /WRK3
-      /WRK3_DIV /WRK4 /WRK4_DIV /WRK5 /WRK5_DIV /WRK6 /WRK6_DIV /XBEE_DIN
-      /XBEE_DOUT /XBEE_PWR_CTL /XBEE_UEXT_CS "N-0000017" "N-0000031" "N-0000072"
-      "N-0000075"
+      /TMP2 /UEXT_RX /UEXT_TX /WRK1 /WRK1_DIV /WRK2 /WRK2_DIV /WRK3 /WRK3_DIV
+      /WRK4 /WRK4_DIV /WRK5 /WRK5_DIV /WRK6 /WRK6_DIV /XBEE_DIN /XBEE_DOUT
+      /XBEE_PWR_CTL /XBEE_UEXT_CS "N-0000017" "N-0000031" "N-0000071" "N-0000072"
       (circuit
         (use_via Via[0-1]_889:635_um)
       )
@@ -794,23 +798,23 @@
         (clearance 254.1)
       )
     )
-    (class Pwr /3V3 /3V3_REG /3V3_TNSY /5V /VBUS GND "N-0000047" "N-0000071"
+    (class Pwr /3V3 /3V3_REG /3V3_TNSY /5V /UEXT_VOUT /VBUS GND "N-0000047"
+      "N-0000075"
       (circuit
         (use_via Via[0-1]_889:635_um)
       )
       (rule
-        (width 254)
-        (clearance 508.1)
+        (width 508)
+        (clearance 254.1)
       )
     )
   )
   (wiring
-    (wire (path F.Cu 254  111125 -80073.5  112204 -80073.5)(net GND)(type protect))
-    (wire (path F.Cu 254  114046 -78232  114681 -78232)(net GND)(type protect))
-    (wire (path F.Cu 254  113792 -78486  114046 -78232)(net GND)(type protect))
-    (wire (path F.Cu 254  112204 -80073.5  113792 -78486)(net GND)(type protect))
-    (wire (path F.Cu 254  114681 -77597  113411 -77597)(net "N-0000031")(type protect))
-    (wire (path F.Cu 254  112840 -78168.5  111125 -78168.5)(net "N-0000031")(type protect))
-    (wire (path F.Cu 254  113411 -77597  112840 -78168.5)(net "N-0000031")(type protect))
+    (wire (path F.Cu 254  114681 -78232  114348 -78232)(net GND)(type protect))
+    (wire (path F.Cu 254  112506 -80073.5  111125 -80073.5)(net GND)(type protect))
+    (wire (path F.Cu 254  114348 -78232  112506 -80073.5)(net GND)(type protect))
+    (wire (path F.Cu 254  111125 -78168.5  112802 -78168.5)(net "N-0000031")(type protect))
+    (wire (path F.Cu 254  113373 -77597  114681 -77597)(net "N-0000031")(type protect))
+    (wire (path F.Cu 254  112802 -78168.5  113373 -77597)(net "N-0000031")(type protect))
   )
 )
