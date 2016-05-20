@@ -20,7 +20,7 @@ QTY   Position          Description                                    Vendor   
 3      U1,3,6           Breakaway header, female, 36 pos                Digikey                 929974E-01-36-ND
 1      U7               Resistor array, isolated                        Digikey                 4608X-2-102LF-ND
 1      U8               Schmitt buffer                                  Digikey                 TC7SZ17FU(T5LJFTCT-ND
-2      R29,R30          4.7k resistor (select via I2C requirements)     Digikey                 S4.7KQCT-ND     
+2      R29,R30          4.7k resistor (select via I2C requirements)     Digikey                 311-4.70KCRCT-ND    
 
 
 Added/Changed
