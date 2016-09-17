@@ -1,4 +1,5 @@
-Contains (Sphinx) source for Safecast-Air documentation
+Sphinx source for Safecast-Air documentation. Note, if you just want to
+read the documentation see https://safecast.github.io/Safecast-Air 
 
 1. The documentation for the particulate only version of the sensor can be
    found in the "particulate_only" sub-directory.
