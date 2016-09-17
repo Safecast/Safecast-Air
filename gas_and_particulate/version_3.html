@@ -1,0 +1,477 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Version 3.0 &mdash; Safecast Air Documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Safecast Air Documentation" href="index.html" />
+    <link rel="up" title="Table of Contents" href="toc.html" />
+    <link rel="prev" title="Enclosure" href="enclosure_1.html" /> 
+  </head>
+  <body>
+      <div class="header"><a href="http://www.blog.safecast.org"  target="_blank">
+  <img class="rightlogo" src="_static/safecast_logo_2.png" alt="Logo"/>
+  </a><h1 class="heading"><a href="index.html">
+  <span>Safecast Air Documentation</span></a></h1>
+<h2 class="heading"><span>Version 3.0</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="enclosure_1.html">Enclosure</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="version-3-0">
+<h1>Version 3.0<a class="headerlink" href="#version-3-0" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="image-of-prototype-v0-1-r3">
+<h2>Image of Prototype V0.1 R3<a class="headerlink" href="#image-of-prototype-v0-1-r3" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<img alt="_images/rev3_1.png" src="_images/rev3_1.png" />
+</div>
+</div>
+<div class="section" id="bill-of-materials">
+<h2>Bill Of Materials<a class="headerlink" href="#bill-of-materials" title="Permalink to this headline">¶</a></h2>
+<p><strong>This is the BOM for prototype V0.1 R3 shown above</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="5%" />
+<col width="43%" />
+<col width="18%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Ref</th>
+<th class="head">Qty</th>
+<th class="head">Description</th>
+<th class="head">Vendor</th>
+<th class="head">Part #</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>R1-23 (odd)</td>
+<td>12</td>
+<td>68K resistor (1%)</td>
+<td>Digikey</td>
+<td>S68KCACT-ND</td>
+</tr>
+<tr class="row-odd"><td>R2-24 (even)</td>
+<td>12</td>
+<td>20K resistor (1%)</td>
+<td>Digikey</td>
+<td>S20KCACT-ND</td>
+</tr>
+<tr class="row-even"><td>R25,R26</td>
+<td>2</td>
+<td>10k resistor</td>
+<td>Digikey</td>
+<td>S10KQCT-ND</td>
+</tr>
+<tr class="row-odd"><td>R27</td>
+<td>1</td>
+<td>20K resistor</td>
+<td>Digikey</td>
+<td>S20KQCT-ND</td>
+</tr>
+<tr class="row-even"><td>R28</td>
+<td>1</td>
+<td>12k resistor</td>
+<td>Digikey</td>
+<td>S12KQCT-ND</td>
+</tr>
+<tr class="row-odd"><td>R29,R30</td>
+<td>2</td>
+<td>4.7k resistor (select via I2C requirements)</td>
+<td>Digikey</td>
+<td>S4.7KQCT-ND</td>
+</tr>
+<tr class="row-even"><td>C1</td>
+<td>1</td>
+<td>0.1uf ceramic capacitor</td>
+<td>Digikey</td>
+<td>399-4151-ND</td>
+</tr>
+<tr class="row-odd"><td>P1, P2</td>
+<td>2</td>
+<td>Mini shrouded header, 5x2</td>
+<td>Digikey</td>
+<td>WM18560-ND</td>
+</tr>
+<tr class="row-even"><td>P3</td>
+<td>1</td>
+<td>Shrouded header, 5x2</td>
+<td>Digikey</td>
+<td>S9169-ND</td>
+</tr>
+<tr class="row-odd"><td>P4, P11</td>
+<td>2</td>
+<td>2x2 pin array</td>
+<td>Digikey</td>
+<td>609-3225-ND</td>
+</tr>
+<tr class="row-even"><td>P5,7,8</td>
+<td>3</td>
+<td>Breakaway header, male pins, 36 pos</td>
+<td>Digikey</td>
+<td>3M9457-ND</td>
+</tr>
+<tr class="row-odd"><td>P6</td>
+<td>1</td>
+<td>Screw terminal block, 2-pos</td>
+<td>Digikey</td>
+<td>ED2635-ND</td>
+</tr>
+<tr class="row-even"><td>P9</td>
+<td>1</td>
+<td>6-pin JST XH connector</td>
+<td>Digikey</td>
+<td>455-2271-ND</td>
+</tr>
+<tr class="row-odd"><td>P10</td>
+<td>1</td>
+<td>5-pin JST XH connector</td>
+<td>Digikey</td>
+<td>455-2270-ND</td>
+</tr>
+<tr class="row-even"><td>S1</td>
+<td>1</td>
+<td>Switch, 4-direction with center push</td>
+<td>Online components</td>
+<td>SKQUCAA010</td>
+</tr>
+<tr class="row-odd"><td>S2</td>
+<td>1</td>
+<td>Slide switch</td>
+<td>Digikey</td>
+<td>401-2000-ND</td>
+</tr>
+<tr class="row-even"><td>U1</td>
+<td>1</td>
+<td>Adafruit Ultimate GPS Breakout</td>
+<td>Adafruit</td>
+<td>746</td>
+</tr>
+<tr class="row-odd"><td>U2</td>
+<td>1</td>
+<td>XBEE</td>
+<td>Sparkfun</td>
+<td>WRL-08742</td>
+</tr>
+<tr class="row-even"><td>(or</td>
+<td>1</td>
+<td>RN-XV WiFly</td>
+<td>Sparkfun</td>
+<td>WRL-10822)</td>
+</tr>
+<tr class="row-odd"><td>U2</td>
+<td>2</td>
+<td>2mm 10pin XBee Socket</td>
+<td>Sparkfun</td>
+<td>PRT-08272</td>
+</tr>
+<tr class="row-even"><td>U3</td>
+<td>1</td>
+<td>Monochrome 1.3&#8221; 128x64 OLED graphic display</td>
+<td>Adafruit</td>
+<td>938</td>
+</tr>
+<tr class="row-odd"><td>U4</td>
+<td>1</td>
+<td>OpenLog</td>
+<td>Sparkfun</td>
+<td>DEV-09530</td>
+</tr>
+<tr class="row-even"><td>U5</td>
+<td>1</td>
+<td>3.3V, 600mA step down voltage regulator</td>
+<td>Pololu</td>
+<td>2106</td>
+</tr>
+<tr class="row-odd"><td>U6</td>
+<td>1</td>
+<td>Teensy 3.1</td>
+<td>Sparkfun</td>
+<td>DEV-12646</td>
+</tr>
+<tr class="row-even"><td>U6</td>
+<td>1</td>
+<td>Teensy header</td>
+<td>Digikey</td>
+<td>WM17453-ND</td>
+</tr>
+<tr class="row-odd"><td>U1,3,6</td>
+<td>3</td>
+<td>Breakaway header, female, 36 pos</td>
+<td>Digikey</td>
+<td>929974E-01-36-ND</td>
+</tr>
+<tr class="row-even"><td>U7</td>
+<td>1</td>
+<td>Resistor array, isolated</td>
+<td>Digikey</td>
+<td>4608X-2-102LF-ND</td>
+</tr>
+<tr class="row-odd"><td>U8</td>
+<td>1</td>
+<td>Schmitt buffer</td>
+<td>Digikey</td>
+<td>TC7SZ17FU(T5LJFTCT-ND</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="build-instructions">
+<h1>Build instructions<a class="headerlink" href="#build-instructions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="resistors">
+<h2>1) Resistors<a class="headerlink" href="#resistors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="voltage-divider-resistors-for-the-alphasense-4-electrode-gas-sensors">
+<h3>Voltage divider resistors for the alphasense 4-electrode gas sensors<a class="headerlink" href="#voltage-divider-resistors-for-the-alphasense-4-electrode-gas-sensors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>R1-R23 odd-numbered resistors (68K) and R2-R24 even-numbered resistors (20K) are paired. For example, R1 &amp; R2 are paired, R3 &amp; R4 etc.</li>
+<li>Each resistor pair is for one of the 12 analog inputs.</li>
+<li>The resistor pair form a voltage divider for scaling 0-5V sensor output to 0-1.2V analog input range (using 1.2V internal reference voltage).</li>
+</ul>
+<p>Take the 68K resistors are solder these into each of the 12 odd-numbered positions from R1-R23 i.e. R1,3,5,7,9,11,13,15,17,19,21 and 23.</p>
+<div class="figure align-center">
+<img alt="_images/1a.JPG" src="_images/1a.JPG" />
+</div>
+<p>Next, take the 20K resistors are solder these into each of the 12 even-numbered positions from R2-R24 i.e. R2,4,6,8,10,12,14,16,18,20,22 and 24.</p>
+<div class="figure align-center">
+<img alt="_images/2b.JPG" src="_images/2b.JPG" />
+</div>
+</div>
+<div class="section" id="pull-up-resistors">
+<h3>Pull-up resistors<a class="headerlink" href="#pull-up-resistors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>R25 and R26 are pull-up resistors for the amphenol particulate sensor (P10). Note, these will be likely removed in the next board revision.</li>
+<li>R29 and R30 are I2C pull-up resistors for the UEXT header</li>
+</ul>
+<p>Solder these resistors to the board as shown in the image below.</p>
+<div class="figure align-center">
+<img alt="_images/5.JPG" src="_images/5.JPG" />
+</div>
+</div>
+</div>
+<div class="section" id="joystick-input-circuit">
+<h2>2) Joystick input circuit<a class="headerlink" href="#joystick-input-circuit" title="Permalink to this headline">¶</a></h2>
+<p>A 5-position joystick toggle switch is used for accessing device configuration menus. It is not yet enabled in firmware.</p>
+<p>In addition to the toggle switch (S1) the following additional components are required for the joystick circuit:</p>
+<ul class="simple">
+<li>20K Resistor (R27)</li>
+<li>12K Resistor (R28)</li>
+<li>0.1 uF capactor (C1)</li>
+<li>Resistor array (U7)</li>
+<li>Schmitt buffer (U8)</li>
+</ul>
+<p>Solder the resistors and capacitors onto the board as shown in the pictures below (no specific order).</p>
+<div class="figure align-center">
+<img alt="_images/7.JPG" src="_images/7.JPG" />
+</div>
+<p>Solder the toggle switch onto the board.</p>
+<div class="figure align-center">
+<img alt="_images/8.JPG" src="_images/8.JPG" />
+</div>
+<p>Solder the Schmitt buffer onto the board (image to be added).</p>
+</div>
+<div class="section" id="headers-for-gas-particulate-sensors">
+<h2>3) Headers for gas, particulate sensors<a class="headerlink" href="#headers-for-gas-particulate-sensors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sensor-headers">
+<h3>Sensor Headers<a class="headerlink" href="#sensor-headers" title="Permalink to this headline">¶</a></h3>
+<p>There are 5 headers available for connecting sensors to the board.</p>
+<ul class="simple">
+<li><strong>P1 and P2</strong> - Alphasense Gas sensor headers</li>
+<li><strong>P9</strong> - OPC-N2 Alphasense particulate sensor</li>
+<li><strong>P10</strong> - Amphenol particulate sensor. In the next board revision P10 will be removed and the digital lines can be used for other purposes. May also add a humidity sensor.</li>
+<li><strong>P3</strong> - UEXT general purpose expansion header. Has 12C, SPI and UART. Can also be used as additional analog inputs e.g. for connecting methane sensor.</li>
+</ul>
+<p>Solder the headers onto the board as shown in the images below.</p>
+<div class="figure align-center">
+<img alt="_images/9.JPG" src="_images/9.JPG" />
+</div>
+<div class="figure align-center">
+<img alt="_images/10.JPG" src="_images/10.JPG" />
+</div>
+<div class="figure align-center">
+<img alt="_images/11.JPG" src="_images/11.JPG" />
+</div>
+</div>
+</div>
+<div class="section" id="external-5v-power">
+<h2>4) External 5V power<a class="headerlink" href="#external-5v-power" title="Permalink to this headline">¶</a></h2>
+<p>Optional source of higher current power input which can be used as an alternative to powering from the USB connector on the Teensy (500 mA limit). The slide switch (S2) can be used as an on/off switch for the device when using the external 5V power.</p>
+<p>Solder the blue 2-position terminal block onto the board as shown below. Make sure the terminal block is positioned with the connector side facing out.</p>
+<div class="figure align-center">
+<img alt="_images/12.JPG" src="_images/12.JPG" />
+</div>
+<p>Solder the switch onto the board as shown below.</p>
+<div class="figure align-center">
+<img alt="_images/13b.JPG" src="_images/13b.JPG" />
+</div>
+</div>
+<div class="section" id="configuration-and-expansion-headers">
+<h2>5) Configuration and expansion headers<a class="headerlink" href="#configuration-and-expansion-headers" title="Permalink to this headline">¶</a></h2>
+<p>These pins provide access to additional features on the Teensy and some additional configuration options for the device.</p>
+<ul class="simple">
+<li>AOUT (P8) - This header provides access to the onboard DAC (digital to analog converter) on the Teensy.</li>
+<li>3V3SEL (P4) - Selects between the 3.3V regulator on the Teensy or the higher current external 3.3V Pololu regulator. You might use the higher current Pololu regulator when using the XBEE or WiFly.</li>
+<li>PROG (P7) - Provides access to the Teensy program signal which reboots the microcontroller into Bootloader mode. (Development option).</li>
+<li>VBUS (P5) - For connecting the external power to the Teensy. If you are using the external power you will want to put a jumper on the pins.</li>
+<li>UEXT VOUT (P11) - Selects the power for the UEXT expansion header, whether it is 5V or 3.3V. For example, to select 5V, place a jumper on the right pins.</li>
+</ul>
+<p>Solder the 2x2 pins into positions P4 and P11.</p>
+<div class="figure align-center">
+<img alt="_images/14.JPG" src="_images/14.JPG" />
+</div>
+<p>Take the 36-position male breakaway header and break off 3 sets of 2-position headers. Solder these into positions P5, P7 and P8. Solder with the longer pin facing up.</p>
+<div class="figure align-center">
+<img alt="_images/15.JPG" src="_images/15.JPG" />
+</div>
+</div>
+<div class="section" id="openlog-and-3v3-headers">
+<h2>6) OpenLOG and 3V3 Headers<a class="headerlink" href="#openlog-and-3v3-headers" title="Permalink to this headline">¶</a></h2>
+<p>Take the same breakaway header from the previous step and break off a 6-position and a 4-position header. Solder these into positions U4 and U5 as shown in the image below. Solder with the shorter pin side facing up.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>These pin headers will be used to connect the OpenLog SD card data logger and Pololu 3V3 optional power regulator later in the instructions.</p>
+<div class="figure align-center">
+<img alt="_images/16.JPG" src="_images/16.JPG" />
+</div>
+</div>
+<div class="section" id="teensy-headers">
+<h2>7) Teensy Headers<a class="headerlink" href="#teensy-headers" title="Permalink to this headline">¶</a></h2>
+<p>There are 3 of the 36-position (pos) female breakaway headers. These breakaway headers can be cut into customs lengths using a pair of wire clippers.</p>
+<ul class="simple">
+<li>Take one of the breakaway headers and cut off two 14-position headers.</li>
+<li>Take a second breakaway header and cut off two 5-position headers and two 7-position headers.</li>
+<li>Place the custom headers into the board at position U6 as shown in the image below. You may find that you will need to sand the rough edges of the headers where they were cut to get the headers to all fit into the board.</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>These female headers will be used to connect the Teensy later in the instructions.</p>
+<div class="figure align-center">
+<img alt="_images/17b.JPG" src="_images/17b.JPG" />
+</div>
+</div>
+<div class="section" id="gps-lcd-and-xbee-headers">
+<h2>8) GPS, LCD and XBEE Headers<a class="headerlink" href="#gps-lcd-and-xbee-headers" title="Permalink to this headline">¶</a></h2>
+<p>Use the remainder of the 36-position (pos) female breakaway header to break off the following headers:</p>
+<ul class="simple">
+<li>8 pos header x 1</li>
+<li>9 pos header x 1</li>
+</ul>
+<p>Solder these into positions U1 (9 pos header) and U3 (8 pos header).
+These female headers will be used to connect the Adafruit Ultimate GPS Breakout and Adafruit Monochrome 1.3&#8221; or 0.96&#8221; 128x64 OLED graphic display later in the instructions.</p>
+<div class="figure align-center">
+<img alt="_images/17d.JPG" src="_images/17d.JPG" />
+</div>
+<p>Take the two pre-cut 10-position headers. These shorter headers are ready to use. Solder these into the board at position U2.</p>
+<p>These female headers will be used to connect the XBEE RF module or Sparkfun RN-XV WiFly later in the instructions.</p>
+<div class="figure align-center">
+<img alt="_images/18b.JPG" src="_images/18b.JPG" />
+</div>
+</div>
+<div class="section" id="placing-large-components">
+<h2>9) Placing large components<a class="headerlink" href="#placing-large-components" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="openlog-sd-card-data-logger">
+<h3>OpenLog SD card data logger<a class="headerlink" href="#openlog-sd-card-data-logger" title="Permalink to this headline">¶</a></h3>
+<p>Place the OpenLog onto the 6-pin header and solder in place as shown in the image below.</p>
+<div class="figure align-center">
+<img alt="_images/19.JPG" src="_images/19.JPG" />
+</div>
+</div>
+<div class="section" id="pololu-3v3-power-regulator">
+<h3>Pololu 3V3  power regulator<a class="headerlink" href="#pololu-3v3-power-regulator" title="Permalink to this headline">¶</a></h3>
+<p>Place the Pololu 3V3 module onto the 4-pin header and solder in place as shown in the image below.</p>
+<div class="figure align-center">
+<img alt="_images/20.JPG" src="_images/20.JPG" />
+</div>
+</div>
+<div class="section" id="xbee-wifly-wireless-communication-module">
+<h3>XBEE/WiFly wireless communication module<a class="headerlink" href="#xbee-wifly-wireless-communication-module" title="Permalink to this headline">¶</a></h3>
+<p>Insert the XBEE RF module or Sparkfun RN-XV WiFly into the sockets as shown in the image below.</p>
+<div class="figure align-center">
+<img alt="_images/21a.JPG" src="_images/21a.JPG" />
+</div>
+</div>
+<div class="section" id="adafruit-ultimate-gps-breakout">
+<h3>Adafruit Ultimate GPS Breakout<a class="headerlink" href="#adafruit-ultimate-gps-breakout" title="Permalink to this headline">¶</a></h3>
+<p>Adafruit GPS Breakout board comes with a 9-pin array. Solder this onto the breakout board as shown in the images below.</p>
+<div class="figure align-center">
+<img alt="_images/22a_b.JPG" src="_images/22a_b.JPG" />
+</div>
+<p>Insert the GPS board into the 9-position female header as shown in the image below.</p>
+<div class="figure align-center">
+<img alt="_images/22c.JPG" src="_images/22c.JPG" />
+</div>
+</div>
+<div class="section" id="adafruit-oled-graphic-display">
+<h3>Adafruit OLED graphic display<a class="headerlink" href="#adafruit-oled-graphic-display" title="Permalink to this headline">¶</a></h3>
+<p>The Adafruit graphic display comes with an 8-pin array. Solder this onto the board as shown in the image below and insert the LCD display into the 8-position female header.</p>
+<div class="figure align-center">
+<img alt="_images/23.JPG" src="_images/23.JPG" />
+</div>
+</div>
+</div>
+<div class="section" id="teensy-board">
+<h2>10) Teensy board<a class="headerlink" href="#teensy-board" title="Permalink to this headline">¶</a></h2>
+<p>Take the Teensy header and solder onto the Teensy board as shown in the image below.</p>
+<div class="figure align-center">
+<img alt="_images/24.JPG" src="_images/24.JPG" />
+</div>
+<p>Program the Teensy with the Safecast Air firmware</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Place the Teensy board into the female headers as shown below.</p>
+<div class="figure align-center">
+<img alt="_images/25.JPG" src="_images/25.JPG" />
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="enclosure_1.html">Enclosure</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2015, IO Rodeo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

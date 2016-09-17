@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reflow soldering SMT components &mdash; Safecast Air Documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Safecast Air Documentation" href="index.html" />
+    <link rel="up" title="Table of Contents" href="toc.html" />
+    <link rel="next" title="Joystick input circuit" href="v4_pcb_2.html" />
+    <link rel="prev" title="Bill of Materials" href="hardware_r4.html" /> 
+  </head>
+  <body>
+      <div class="header"><a href="http://www.blog.safecast.org"  target="_blank">
+  <img class="rightlogo" src="_static/safecast_logo_2.png" alt="Logo"/>
+  </a><h1 class="heading"><a href="index.html">
+  <span>Safecast Air Documentation</span></a></h1>
+<h2 class="heading"><span>Reflow soldering SMT components</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="hardware_r4.html">Bill of Materials</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="v4_pcb_2.html">Joystick input circuit</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="reflow-soldering-smt-components">
+<h1>Reflow soldering SMT components<a class="headerlink" href="#reflow-soldering-smt-components" title="Permalink to this headline">¶</a></h1>
+<p>There are several surface mount (SMT) components in the kit. These should be soldered onto the board first before the through-hole components. For this step you will need solder paste and tweezers. We use a toaster oven for reflow soldering.
+If you are new to reflow soldering, there are online resources and tutorials.</p>
+<div class="section" id="overview-of-steps">
+<h2>Overview of steps<a class="headerlink" href="#overview-of-steps" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Place a small amount of solder paste onto the pads for the component you are working on</li>
+<li>Use tweezers to pick up, place and align the component onto the solder paste</li>
+<li>If necessary, use a magnifying lens to check the component placement on the board</li>
+<li>Repeat steps for all components before reflow soldering</li>
+<li>Once all of the components below are placed you can begin reflow soldering</li>
+</ul>
+</div>
+<div class="section" id="voltage-divider-resistors-for-the-alphasense-4-electrode-gas-sensors">
+<h2>Voltage divider resistors for the alphasense 4-electrode gas sensors<a class="headerlink" href="#voltage-divider-resistors-for-the-alphasense-4-electrode-gas-sensors" title="Permalink to this headline">¶</a></h2>
+<p>R1-R23 odd-numbered resistors (68K) and R2-R24 even-numbered resistors (20K) are paired. For example, R1 &amp; R2 are paired, R3 &amp; R4 etc. Each resistor pair is for one of the 12 analog inputs. The resistor pair form a voltage divider for scaling 0-5V sensor output to 0-1.2V analog input range (using 1.2V internal reference voltage).</p>
+<ul class="simple">
+<li>20K (0.1%) resistors (R2,4,6,8,10,12,14,16,18,20,22,24)</li>
+<li>68K (0.1%) resistors (R1,3,5,7,9,11,13,15,17,19,21,23)</li>
+</ul>
+<div class="figure align-center">
+<img alt="_images/v4_1a.png" src="_images/v4_1a.png" />
+</div>
+<div class="figure align-center">
+<img alt="_images/v4_1b.png" src="_images/v4_1b.png" />
+</div>
+</div>
+<div class="section" id="mosfeft-power-switch-components">
+<h2>MOSFEFT power switch components<a class="headerlink" href="#mosfeft-power-switch-components" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>P-Channel MOSFET (Q1)</li>
+<li>22 Ohm resistor (R25)</li>
+<li>10K resistor (R26)</li>
+</ul>
+<div class="figure align-center">
+<img alt="_images/v4_1h.png" src="_images/v4_1h.png" />
+</div>
+</div>
+<div class="section" id="circuity-for-toggle-switch">
+<h2>Circuity for toggle switch<a class="headerlink" href="#circuity-for-toggle-switch" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>20K Resistor (R27)</li>
+<li>12K Resistor (R28)</li>
+<li>0.1 uF capactor (C1)</li>
+<li>Schmitt buffer (U8)</li>
+</ul>
+<div class="figure align-center">
+<img alt="_images/v4_1g.png" src="_images/v4_1g.png" />
+</div>
+</div>
+<div class="section" id="i2c-pull-up-resistors">
+<h2>I2C pull-up resistors<a class="headerlink" href="#i2c-pull-up-resistors" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>4.7K resistors (R29 and R30)</li>
+</ul>
+<div class="figure align-center">
+<img alt="_images/v4_1e.png" src="_images/v4_1e.png" />
+</div>
+<p>After the last components have been placed, the board is ready to go into the reflow oven. This usually takes aapprox. 5 mins.</p>
+</div>
+<div class="section" id="images-of-the-board-after-reflow-soldering">
+<h2>Images of the board after reflow soldering<a class="headerlink" href="#images-of-the-board-after-reflow-soldering" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<img alt="_images/v4_1i.png" src="_images/v4_1i.png" />
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/v4_1j.png" src="_images/v4_1j.png" />
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="figure align-center">
+<img alt="_images/v4_1k_l.png" src="_images/v4_1k_l.png" />
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="hardware_r4.html">Bill of Materials</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="v4_pcb_2.html">Joystick input circuit</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2015, IO Rodeo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

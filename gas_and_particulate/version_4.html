@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Notes on changes to version r4 &mdash; Safecast Air Documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Safecast Air Documentation" href="index.html" />
+    <link rel="up" title="Table of Contents" href="toc.html" />
+    <link rel="next" title="Bill of Materials" href="hardware_r4.html" />
+    <link rel="prev" title="Table of Contents" href="toc.html" /> 
+  </head>
+  <body>
+      <div class="header"><a href="http://www.blog.safecast.org"  target="_blank">
+  <img class="rightlogo" src="_static/safecast_logo_2.png" alt="Logo"/>
+  </a><h1 class="heading"><a href="index.html">
+  <span>Safecast Air Documentation</span></a></h1>
+<h2 class="heading"><span>Notes on changes to version r4</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="toc.html">Table of Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="hardware_r4.html">Bill of Materials</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="notes-on-changes-to-version-r4">
+<h1>Notes on changes to version r4<a class="headerlink" href="#notes-on-changes-to-version-r4" title="Permalink to this headline">¶</a></h1>
+<p>Below is a layout image for the most recent board (ver 0.1 rev 4).</p>
+<div class="figure align-center">
+<img alt="_images/safecast_v0p1_r4_sized.png" src="_images/safecast_v0p1_r4_sized.png" />
+</div>
+<div class="section" id="safecast-v0-1-r4-change-notes">
+<h2>Safecast V0.1 R4 Change notes<a class="headerlink" href="#safecast-v0-1-r4-change-notes" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Removed header for Amphenol/Shinyei particle sensor. Note, this type of sensor could still be connected to the UEXT header if someone wants to use this type of sensor - we just removed the dedicated header for this.</li>
+<li>Disconnected pin D33. This pin can be problematic if state can&#8217;t be guaranteed at Teensy start up. This pin was used for SPI CS line on UEXT and wifly/XBEE/Lora header. New version is now using pin D32 for the CS line.</li>
+<li>Added on-board temperature and humidity sensor (I2C).  This way the device will always have temperature and humidity regardless of sensor configuration (single sensor, multi-sensor, etc). In previous versions the only temperature sensors were on the gas sensor adaptor boards - so the device only had temperature measurements when the gas sensors were connected.</li>
+<li>Added mosfet switch for controlling power to wifly/XBEE using IO pin on the Teensy. This way the Teensy can toggle the power to the Wifly if it detects that there is an issue e.g. it is unresponsive.</li>
+<li>Replaced some of the existing through-hole components - resistors, capacitors - with surface mount components. This makes layout easier. Used the larger of the surface mount packages e.g. SM0805.</li>
+<li>Added the Safecast logo to the silkscreen (back).</li>
+</ol>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="toc.html">Table of Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="hardware_r4.html">Bill of Materials</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2015, IO Rodeo.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
