@@ -1,5 +1,4 @@
 #!/bin/bash
-
 git checkout gh-pages
 git checkout master docs 
 git reset HEAD
