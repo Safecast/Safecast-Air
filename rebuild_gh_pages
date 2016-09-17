@@ -1,0 +1,16 @@
+#!/bin/bash
+
+git checkout gh-pages
+git checkout master docs 
+git reset HEAD
+
+for docdir in docs/*/; do
+    echo "rebuilding: ${docdir}"
+    name=`basename ${docdir}`
+    cd ${docdir} && make html && cd ../../
+    mkdir ${name}; mv -v ${docdir}/_build/html/* ${name} 
+done;
+
+rm -r docs
+git add -A
+git ci -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`"; git checkout master 
