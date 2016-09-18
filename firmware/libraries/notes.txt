@@ -20,8 +20,8 @@ ArduinoJson
 Streaming
 i2c_t3
 WiflyHQ (modified to work with teensy)
+Adafruit_SSD1306  (modified to work with i2c_t3 library)
 
 Removed
 -----------------------------------------------
 Adafruit-GFX      (comes w/ latest Arduino IDE)
-Adafruit_SSD1306  (comes w/ latest Arduino IDE)
