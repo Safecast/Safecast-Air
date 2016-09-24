@@ -20,6 +20,9 @@ namespace constants
     extern const OPCN2Param DefaultOPCN2Param;
     extern const OPCN2Ids DefaultOPCN2Ids;
 
+    // SHT31 Temperature/Humidity sensor parameters
+    extern const int SHT31Address;
+
     // OLED Display constatns
     extern const int DisplayDC;
     extern const int DisplayCS;

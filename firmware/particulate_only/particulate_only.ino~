@@ -92,7 +92,6 @@ void setup()
     display.println((constants::DeviceId));
     display.display();
     display.println("Initializing ... ");
-    display.println();
     display.display();
     SPI.endTransaction();
     delay(1000);
@@ -103,13 +102,10 @@ void setup()
     gpsMonitor.start();
 
     SPI.beginTransaction(constants::DisplaySPISettings);
-    display.clearDisplay();   
-    display.setCursor(0,0);
     display.println("* gps");
     display.display();
     SPI.endTransaction();
-    delay(200);  // Short delay seems to be necessary or opcn2 will give 
-                 // an error and not work properly. (Check this)
+    delay(500);  
 
     // Setup particle counter
     particleCounter.initialize();
@@ -124,10 +120,10 @@ void setup()
     display.println(laserAndFanOk);
     display.display();
     SPI.endTransaction();
-    delay(200);
+    delay(500);
 
     // Setup humidity and temperature sensor
-    status = humidityAndTempSensor.begin(0x44);
+    status = humidityAndTempSensor.begin(constants::SHT31Address);
     SPI.beginTransaction(constants::DisplaySPISettings);
     display.print("* sht31: ");
     display.println(status);
@@ -135,8 +131,14 @@ void setup()
     SPI.endTransaction();
     delay(500);
 
+    // Setup dataLogger
+    dataLogger.initialize();
+    dataLogger.writeConfiguration();
+    Alarm.timerRepeat(dataLogger.period(), [](){dataLogger.onTimer();} );
 
     SPI.beginTransaction(constants::DisplaySPISettings);
+    display.clearDisplay();
+    display.setCursor(0,0);
     display.println();
     display.println("First reading  ... ");
     display.print("takes ");

@@ -34,6 +34,8 @@ void Logger::onTimer()
 
 void Logger::update()
 {
+    Serial.print("writeDataFlag_ = ");
+    Serial.println(writeDataFlag_);
     if (writeDataFlag_)
     {
         writeData();
@@ -76,7 +78,6 @@ void Logger::writeData()
     String longitudeString = gpsData_.getLongitudeString();
 
     // Get humidity and temperature
-    humidity_ = humidityAndTempSensor.readHumidity();
     humidity_ = humidityAndTempSensor.readHumidity(); 
     temperature_ =  humidityAndTempSensor.readTemperature();
 
@@ -146,6 +147,8 @@ void Logger::writeDisplay() // Temporary hack - create separate display function
     // Display the data
     const int col2 = 50;
     const int col3 = 90;
+    char tmpStr[50];
+
     SPI.beginTransaction(constants::DisplaySPISettings);            
     display.clearDisplay();
     display.setCursor(0,0);
@@ -155,16 +158,34 @@ void Logger::writeDisplay() // Temporary hack - create separate display function
     display.print(opcn2Data_.PM1);
     display.setCursor(col3,display.getCursorY());
     display.println("ug/m3");
+
     display.print("PM2.5");
     display.setCursor(col2,display.getCursorY());
     display.print(opcn2Data_.PM2_5);
     display.setCursor(col3,display.getCursorY());
     display.println("ug/m3");
+
     display.print("PM10");
     display.setCursor(col2,display.getCursorY());
     display.print(opcn2Data_.PM10);
     display.setCursor(col3,display.getCursorY());
     display.println("ug/m3");
+
+    display.print("TEMP");
+    display.setCursor(col2,display.getCursorY());
+    snprintf(tmpStr,sizeof(tmpStr),"%1.2f",temperature_);
+    display.print(tmpStr);
+    display.setCursor(col3,display.getCursorY());
+    display.println("C");
+
+    display.print("HUMD");
+    display.setCursor(col2,display.getCursorY());
+    snprintf(tmpStr,sizeof(tmpStr), "%1.2f",humidity_);
+    display.print(tmpStr);
+    display.setCursor(col3,display.getCursorY());
+    display.println("%");
+
     display.display();
+
     SPI.endTransaction();
 }
