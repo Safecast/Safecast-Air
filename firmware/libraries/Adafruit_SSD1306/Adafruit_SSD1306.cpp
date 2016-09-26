@@ -27,6 +27,8 @@ All text above, and the splash screen below must be included in any redistributi
 #include "Adafruit_GFX.h"
 #include "Adafruit_SSD1306.h"
 
+#define swap(a, b) { int16_t t = a; a = b; b = t; }
+
 // the memory buffer for the LCD
 
 static uint8_t buffer[SSD1306_LCDHEIGHT * SSD1306_LCDWIDTH / 8] = { 
