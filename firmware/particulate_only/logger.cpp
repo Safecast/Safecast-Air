@@ -67,7 +67,6 @@ void Logger::update()
 
 void Logger::writeLog()
 {
-    // Get particle counter data
     OPCN2Ids opcn2Ids = particleCounter.getIds();
 
     // Get GPS position data
@@ -83,8 +82,6 @@ void Logger::writeLog()
     String dateTimeString = gpsData_.getDateTimeString();
     String latitudeString = gpsData_.getLatitudeString();
     String longitudeString = gpsData_.getLongitudeString();
-
-    // Get humidity and temperature
 
     // Create Json output data
     jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
