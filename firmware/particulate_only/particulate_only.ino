@@ -117,8 +117,17 @@ void setupDisplay()
 
 void loadConfiguration()
 {
-    if (!configuration.initialize())
+    // Try to load configuration file
+    bool ok = false;
+    for (int i=0; (i<constants::NumLoadConfigTrys && !ok); i++)
     {
+        delay(10);
+        ok = configuration.initialize();
+    }
+
+    if (!ok)
+    {
+        // Failed to load configuration from SD card.
         SPI.beginTransaction(constants::DisplaySPISettings);
         display.clearDisplay();   
         display.setCursor(0,0);
@@ -126,6 +135,7 @@ void loadConfiguration()
         display.println(configuration.errorMsg());
         display.display();
         SPI.endTransaction();
+        while (true) {}  // Freeze here
     }
     else
     {

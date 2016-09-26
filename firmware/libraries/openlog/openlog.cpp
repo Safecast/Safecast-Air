@@ -90,7 +90,7 @@ bool Openlog::openNewFile(char filename[])
     param_.serialPtr -> write('\r');
     bool done = false;
     bool ok = true; 
-    for (unsigned long i=0; ((i<param_.timeout)||(!done)); i++)
+    for (unsigned long i=0; ((i<param_.timeout)&&(!done)); i++)
     {
         while(param_.serialPtr -> available())
         {
@@ -121,7 +121,7 @@ bool Openlog::openNewFile(char filename[])
     param_.serialPtr -> write('\r');
     done = false;
     ok = true; 
-    for (unsigned long i=0; ((i<param_.timeout)||(!done)); i++)
+    for (unsigned long i=0; ((i<param_.timeout)&&(!done)); i++)
     {
         while(param_.serialPtr -> available())
         {

@@ -33,6 +33,9 @@ namespace constants
     // Openlog parameters
     extern const OpenlogParam DefaultOpenlogParam;
 
+    // Load configuration parameters
+    extern const int NumLoadConfigTrys;
+
     // Logger parameters
     extern const LoggerParam DefaultLoggerParam;
 }
