@@ -10,6 +10,7 @@ filter
 lookup_table
 opcn2
 mq4_methane
+openlog
 
 
 External (third party) libraries

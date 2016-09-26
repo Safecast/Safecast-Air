@@ -1,6 +1,8 @@
 #include "openlog.h"
+#include <EEPROM.h>
 
 const int Openlog::FilenameMaxLen = 13;
+const int Openlog::LogCountMaxVal = 65534;
 
 // Openlog public methods
 // ----------------------------------------------------------------------------
@@ -55,7 +57,7 @@ String Openlog::readFile(char filename[])
     bool ok;
     param_.serialPtr -> print("read ");
     param_.serialPtr -> print(filename);
-    param_.serialPtr -> print('\r');
+    param_.serialPtr -> write('\r');
     String contents = getResponse(ok);
     return contents;
 }
@@ -69,28 +71,74 @@ String Openlog::readFile(String filename)
 }
 
 
-bool  Openlog::openNewFile(char filename)
+bool Openlog::openNewFile(char filename[])
 {
     if (!gotoCommandMode())
     {
         return false;
     }
 
+    // Create new file
     param_.serialPtr -> print("new ");
     param_.serialPtr -> print(filename);
-    param_.serialPtr -> print('\r');
+    param_.serialPtr -> write('\r');
     bool done = false;
+    bool ok = true; 
     for (unsigned long i=0; ((i<param_.timeout)||(!done)); i++)
     {
         while(param_.serialPtr -> available())
         {
-            if (param_.serialPtr -> read() == '<')
+            char val = param_.serialPtr -> read();
+            Serial.println(uint8_t(val));
+            
+            if (val == '>')
             {
                 done = true;
             }
+            if (val == '!')
+            {
+                ok = false;
+                done = true;
+            }
         }
+        delay(1);
     }
-    return done;
+    if (!done)
+    {
+        ok = false;
+        return ok;
+    }
+
+    // Open file for appending
+    param_.serialPtr -> print("append ");
+    param_.serialPtr -> print(filename);
+    param_.serialPtr -> write('\r');
+    done = false;
+    ok = true; 
+    for (unsigned long i=0; ((i<param_.timeout)||(!done)); i++)
+    {
+        while(param_.serialPtr -> available())
+        {
+            char val = param_.serialPtr -> read();
+            Serial.println(uint8_t(val));
+            
+            if (val == '<')
+            {
+                done = true;
+            }
+            if (val == '!')
+            {
+                ok = false;
+                done = true;
+            }
+        }
+        delay(1);
+    }
+    if (!done)
+    {
+        ok = false;
+    }
+    return ok;
 }
 
 
@@ -99,6 +147,20 @@ bool Openlog::openNewFile(String filename)
     char buf[FilenameMaxLen];
     filename.toCharArray(buf,FilenameMaxLen);
     return openNewFile(buf);
+}
+
+
+bool Openlog::openNewLogFile()
+{
+    uint16_t logCount = eepromGetLogCount();
+    char logname[FilenameMaxLen];
+    snprintf(logname, FilenameMaxLen,"LOG%05d.txt", logCount);
+    bool rval = openNewFile(logname);
+    if (rval)
+    {
+        eepromIncrLogCount();
+    }
+    return rval;
 }
 
 
@@ -123,6 +185,38 @@ bool Openlog::gotoCommandMode()
     }
     return rval;
 }
+
+
+void Openlog::eepromIncrLogCount()
+{
+    uint16_t logCount = eepromGetLogCount();
+    eepromSetLogCount(logCount+1);
+}
+
+
+void Openlog::eepromResetLogCount()
+{
+    EEPROM.put(param_.eepromAddrLogCnt,0);
+}
+
+
+uint16_t Openlog::eepromGetLogCount()
+{
+    uint16_t value;
+    EEPROM.get(param_.eepromAddrLogCnt,value);
+    if (value > LogCountMaxVal)
+    {
+        value = 0;
+    }
+    return value;
+}
+
+
+void Openlog::eepromSetLogCount(uint16_t value)
+{
+    EEPROM.put(param_.eepromAddrLogCnt,value);
+}
+
 
 
 HardwareSerial* Openlog::getSerialPtr()

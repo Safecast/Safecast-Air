@@ -8,6 +8,7 @@ class Openlog
     public:
 
         static const int FilenameMaxLen;
+        static const int LogCountMaxVal;
 
         Openlog(OpenlogParam param);
         void initialize();
@@ -20,8 +21,14 @@ class Openlog
         String readFile(char filename[]);
         String readFile(String filename);
 
-        bool openNewFile(char filename);
+        bool openNewFile(char filename[]);
         bool openNewFile(String filename);
+        bool openNewLogFile(); // Automatic filenameing via eeprom log count
+
+        void eepromIncrLogCount();
+        void eepromResetLogCount();
+        uint16_t eepromGetLogCount();
+        void eepromSetLogCount(uint16_t value);
 
         HardwareSerial *getSerialPtr();
 
@@ -34,6 +41,7 @@ class Openlog
         {
             param_.serialPtr -> println(value);
         };
+
 
     protected:  
 

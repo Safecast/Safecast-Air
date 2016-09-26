@@ -3,10 +3,11 @@
 #include <Arduino.h>
 
 struct OpenlogParam
-{
-   unsigned long baudRate;
-   unsigned long timeout;
-   HardwareSerial *serialPtr;
+{ 
+    unsigned long baudRate;
+    unsigned long timeout;
+    int eepromAddrLogCnt;
+    HardwareSerial *serialPtr;
 };
 
 
