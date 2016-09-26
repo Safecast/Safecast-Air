@@ -194,8 +194,6 @@ void setupParticleCounter()
     display.display();
     SPI.endTransaction();
 
-    // Take reading to clear out old histogram counts
-    particleCounter.getHistogramData(); 
 }
 
 
@@ -223,6 +221,9 @@ void setupDataLogger()
     delay(2000);
     Alarm.timerRepeat(dataLogger.logWritePeriod(), [](){dataLogger.writeLogOnTimer();});
     Alarm.timerRepeat(dataLogger.dataSamplePeriod(), [](){dataLogger.dataSampleOnTimer();} );
+
+    // After starting timers take reading from particle sensor to clear out old histogram counts
+    particleCounter.getHistogramData(); 
 }
 
 
