@@ -15,6 +15,12 @@ Openlog::Openlog(OpenlogParam param)
 void Openlog::initialize()
 {
     param_.serialPtr -> begin(param_.baudRate);
+    delay(100);
+    param_.serialPtr -> flush();
+    while (param_.serialPtr -> available())
+    {
+        param_.serialPtr -> read();
+    }
 }
 
 
@@ -167,6 +173,7 @@ bool Openlog::openNewLogFile()
 bool Openlog::gotoCommandMode()
 {
     bool rval = false;
+
     param_.serialPtr -> write(26);
     param_.serialPtr -> write(26);
     param_.serialPtr -> write(26);
@@ -183,6 +190,7 @@ bool Openlog::gotoCommandMode()
         }
         delay(1);
     }
+
     return rval;
 }
 

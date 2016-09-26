@@ -5,27 +5,33 @@
 #include "logger_param.h"
 #include "gps_monitor.h"
 #include "opcn2.h"
+#include "openlog.h"
 
 class Logger
 {
     public:
         static const int JsonBufferSize = 6000;  // Probably bigger than we need
+        static const int DisplayCol2 = 50;
+        static const int DisplayCol3 = 90;
+        
+        Logger(LoggerParam param, Openlog &openlog);
+        bool initialize();
 
-        Logger(LoggerParam param, HardwareSerial *serialPtr=&Serial3);
-
-        void initialize();
-        unsigned long period();
-        void onTimer();
+        unsigned long logWritePeriod();
+        unsigned long dataSamplePeriod();
+        void writeLogOnTimer();
+        void dataSampleOnTimer();
         void update();
 
-        void writeConfiguration();
-        void writeData();
-        void writeDisplay(); // Temporary hack
+        void writeLog();
+        void writeDisplay(); 
 
     protected:
-        HardwareSerial *serialPtr_;
+        Openlog &openlog_;
+
         LoggerParam param_;
-        volatile bool writeDataFlag_ = false;
+        volatile bool writeLogFlag_ = false;
+        volatile bool dataSampleFlag_ = false;
         unsigned long count_ = 0;
         StaticJsonBuffer<JsonBufferSize> jsonBuffer_;
 

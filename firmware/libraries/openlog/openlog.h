@@ -37,6 +37,12 @@ class Openlog
             param_.serialPtr -> print(value);
         };
 
+
+        void println()
+        {
+            param_.serialPtr -> println();
+        };
+
         template<typename T> void println(T value)
         {
             param_.serialPtr -> println(value);

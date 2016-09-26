@@ -3,15 +3,20 @@
 
 #include "opcn2_param.h"
 #include "opcn2_ids.h"
+#include "openlog_param.h"
 #include "logger_param.h"
 #include <SPI.h>
 
 
 namespace constants
 {
-    extern const char SoftwareVersion[];
-    extern const char DeviceName[]; 
-    extern const char  DeviceId[]; 
+    //extern const char SoftwareVersion[];
+    //extern const char DeviceName[]; 
+    //extern const char  DeviceId[]; 
+    
+    extern const String SoftwareVersion;
+    extern const String  DeviceName; 
+    extern const String ConfigurationFile;
 
     extern const long USBSerialBaudRate;
     extern const unsigned long LoopDelay;
@@ -28,6 +33,9 @@ namespace constants
     extern const int DisplayCS;
     extern const int DisplayReset;
     extern const SPISettings DisplaySPISettings;
+
+    // Openlog parameters
+    extern const OpenlogParam DefaultOpenlogParam;
 
     // Logger parameters
     extern const LoggerParam DefaultLoggerParam;

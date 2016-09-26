@@ -30,7 +30,6 @@
 History:
 
 Contact:
-
    
 */
 
@@ -43,109 +42,52 @@ Contact:
 #include <ArduinoJson.h>
 #include <Time.h>
 #include <TimeAlarms.h>
+#include <EEPROM.h>
 #include "constants.h"
+#include "configuration.h"
 #include "fixed_vector.h"
 #include "opcn2.h"
 #include "gps_monitor.h"
+#include "openlog.h"
 #include "logger.h"
 
-Adafruit_SSD1306 display(
-    constants::DisplayDC, 
-    constants::DisplayReset, 
-    constants::DisplayCS
-    );
 
+Adafruit_SSD1306 display( constants::DisplayDC, constants::DisplayReset, constants::DisplayCS);
+Openlog openlog(constants::DefaultOpenlogParam);
+Configuration configuration(constants::ConfigurationFile,openlog);
 GPSMonitor gpsMonitor;
-
 OPCN2 particleCounter(constants::DefaultOPCN2Param, constants::DefaultOPCN2Ids);
-
 Adafruit_SHT31 humidityAndTempSensor = Adafruit_SHT31();
+Logger dataLogger(constants::DefaultLoggerParam,openlog);
 
-Logger dataLogger(constants::DefaultLoggerParam);
 
+void setupDisplay();
+void loadConfiguration(); 
+void showStartupScreen(); 
+void setupGPSMonitor();
+void setupParticleCounter();
+void setupSHT31();
+void setupDataLogger();
+void showFirstReadingScreen();
 
 
 void setup()
 {
-    
-    // Required or conflict with OLED display ... maybe add OPCN2 ... some kind of initialization
-    pinMode(constants::DefaultOPCN2Param.spiCsPin,OUTPUT);
-    digitalWrite(constants::DefaultOPCN2Param.spiCsPin,HIGH);
-    
-    Serial.begin(constants::USBSerialBaudRate);
-    Serial.println("Initializing");
-
     // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
 
-    display.begin(SSD1306_SWITCHCAPVCC);
-    SPI.beginTransaction(constants::DisplaySPISettings);
-    display.clearDisplay();   
-    display.display();
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-    display.print("Safecast Air V");
-    display.println((constants::SoftwareVersion));
-    display.print("Device Name=");
-    display.println((constants::DeviceName));
-    display.print("Device ID=");
-    display.println((constants::DeviceId));
-    display.display();
-    display.println("Initializing ... ");
-    display.display();
-    SPI.endTransaction();
-    delay(1000);
+    // USB Serial for debugging, etc.
+    Serial.begin(constants::USBSerialBaudRate);
 
-    // Setup GPS monitor
-    gpsMonitor.initialize();
-    gpsMonitor.setTimerCallback( []() {gpsMonitor.readData(); });
-    gpsMonitor.start();
-
-    SPI.beginTransaction(constants::DisplaySPISettings);
-    display.println("* gps");
-    display.display();
-    SPI.endTransaction();
-    delay(500);  
-
-    // Setup particle counter
-    particleCounter.initialize();
-    bool status = particleCounter.checkStatus();
-    bool laserAndFanOk = false;
-    particleCounter.setFanAndLaserOn(&laserAndFanOk);
-
-    SPI.beginTransaction(constants::DisplaySPISettings);
-    display.print("* opcn2: ");
-    display.print(status);
-    display.print(",");
-    display.println(laserAndFanOk);
-    display.display();
-    SPI.endTransaction();
-    delay(500);
-
-    // Setup humidity and temperature sensor
-    status = humidityAndTempSensor.begin(constants::SHT31Address);
-    SPI.beginTransaction(constants::DisplaySPISettings);
-    display.print("* sht31: ");
-    display.println(status);
-    display.display();
-    SPI.endTransaction();
-    delay(500);
-
-    // Setup dataLogger
-    dataLogger.initialize();
-    dataLogger.writeConfiguration();
-    Alarm.timerRepeat(dataLogger.period(), [](){dataLogger.onTimer();} );
-
-    SPI.beginTransaction(constants::DisplaySPISettings);
-    display.clearDisplay();
-    display.setCursor(0,0);
-    display.println();
-    display.println("First reading  ... ");
-    display.print("takes ");
-    display.print(constants::DefaultLoggerParam.period);
-    display.println(" seconds");
-    display.display();
-    SPI.endTransaction();
+    setupDisplay();
+    openlog.initialize();
+    loadConfiguration();
+    showStartupScreen();
+    setupGPSMonitor();
+    setupParticleCounter();
+    setupSHT31();
+    setupDataLogger();
+    showFirstReadingScreen();
 }
 
 
@@ -157,6 +99,143 @@ void loop()
 }
 
 
+void setupDisplay()
+{
+    // Required or conflict with OLED display
+    pinMode(constants::DefaultOPCN2Param.spiCsPin,OUTPUT);
+    digitalWrite(constants::DefaultOPCN2Param.spiCsPin,HIGH);
+
+    display.begin(SSD1306_SWITCHCAPVCC);
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    display.clearDisplay();   
+    display.display();
+    display.setTextSize(1);
+    display.setTextColor(WHITE);
+    SPI.endTransaction();
+}
 
 
+void loadConfiguration()
+{
+    if (!configuration.initialize())
+    {
+        SPI.beginTransaction(constants::DisplaySPISettings);
+        display.clearDisplay();   
+        display.setCursor(0,0);
+        display.println("error: config file");
+        display.println(configuration.errorMsg());
+        display.display();
+        SPI.endTransaction();
+    }
+    else
+    {
+        SPI.beginTransaction(constants::DisplaySPISettings);
+        display.clearDisplay();   
+        display.setCursor(0,0);
+        display.println("config file OK");
+        display.display();
+        SPI.endTransaction();
+    }
+    delay(1000);
+}
 
+
+void showStartupScreen()
+{
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    display.clearDisplay();   
+    display.setCursor(0,0);
+    display.print("Safecast Air V");
+    display.println((constants::SoftwareVersion));
+    display.print("Device Name=");
+    display.println((constants::DeviceName));
+    display.print("Device ID=");
+    display.println(configuration.deviceId());
+    display.display();
+    SPI.endTransaction();
+    delay(3000);
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    display.clearDisplay();   
+    display.setCursor(0,0);
+    display.println("Initializing ... ");
+    display.display();
+    SPI.endTransaction();
+}
+
+
+void setupGPSMonitor()
+{
+    // Setup GPS monitor
+    gpsMonitor.initialize();
+    gpsMonitor.setTimerCallback( []() {gpsMonitor.readData(); });
+    gpsMonitor.start();
+
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    display.println("* gps");
+    display.display();
+    SPI.endTransaction();
+}
+
+
+void setupParticleCounter()
+{
+    // Setup particle counter
+    particleCounter.initialize();
+    particleCounter.setIds(configuration.opcn2Ids());
+    bool status = particleCounter.checkStatus();
+    bool laserAndFanOk = false;
+    particleCounter.setFanAndLaserOn(&laserAndFanOk);
+
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    display.print("* opcn2: ");
+    display.print(status);
+    display.print(",");
+    display.println(laserAndFanOk);
+    display.display();
+    SPI.endTransaction();
+
+    // Take reading to clear out old histogram counts
+    particleCounter.getHistogramData(); 
+}
+
+
+void setupSHT31()
+{
+    // Setup humidity and temperature sensor
+    bool status = humidityAndTempSensor.begin(constants::SHT31Address);
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    display.print("* sht31: ");
+    display.println(status);
+    display.display();
+    SPI.endTransaction();
+}
+
+
+void setupDataLogger()
+{
+    // Setup dataLogger timer
+    bool loggerOk =  dataLogger.initialize();
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    display.print("* log: ");
+    display.println(loggerOk);
+    display.display();
+    SPI.endTransaction();
+    delay(2000);
+    Alarm.timerRepeat(dataLogger.logWritePeriod(), [](){dataLogger.writeLogOnTimer();});
+    Alarm.timerRepeat(dataLogger.dataSamplePeriod(), [](){dataLogger.dataSampleOnTimer();} );
+}
+
+
+void showFirstReadingScreen()
+{
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    display.clearDisplay();
+    display.setCursor(0,0);
+    display.println();
+    display.println("First reading  ... ");
+    display.print("takes ");
+    display.print(dataLogger.dataSamplePeriod());
+    display.println(" seconds");
+    display.display();
+    SPI.endTransaction();
+}

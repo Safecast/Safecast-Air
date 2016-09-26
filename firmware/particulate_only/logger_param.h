@@ -4,7 +4,8 @@
 
 struct LoggerParam
 {
-   unsigned long period;
+   unsigned long logWritePeriod;
+   unsigned long dataSamplePeriod;
    unsigned long baudRate;
 };
 

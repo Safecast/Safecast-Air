@@ -122,12 +122,12 @@ String OPCN2Data::toString()
     // Add temperature or pressure
     if (haveTemperature)
     {
-        snprintf(scratch,ScratchArraySize,"temperature = %d\n",temperature);
+        snprintf(scratch,ScratchArraySize,"temperature = %lu\n",temperature);
         dataStr += String(scratch);
     }
     if (havePressure)
     {
-        snprintf(scratch,ScratchArraySize,"pressure = %d\n",pressure);
+        snprintf(scratch,ScratchArraySize,"pressure = %lu\n",pressure);
         dataStr += String(scratch);
     }
 

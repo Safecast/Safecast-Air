@@ -3,64 +3,71 @@
 #include <Adafruit_GPS.h>
 #include <Adafruit_SHT31.h>
 #include "constants.h"
+#include "configuration.h"
 #include "opcn2_ids.h"
 
+extern Configuration configuration;
 extern GPSMonitor gpsMonitor;
 extern OPCN2 particleCounter;
 extern Adafruit_SSD1306 display;
 extern Adafruit_SHT31 humidityAndTempSensor; 
 
-Logger::Logger(LoggerParam param, HardwareSerial *serialPtr)
+Logger::Logger(LoggerParam param, Openlog &openlog) : openlog_(openlog)
 {
     param_ = param;
-    serialPtr_ = serialPtr;
 }
 
 
-void Logger::initialize()
+bool Logger::initialize()
 {
-    serialPtr_ -> begin(param_.baudRate);
+    return openlog_.openNewLogFile();
 }
 
-unsigned long Logger::period()
+
+unsigned long Logger::logWritePeriod()
 {
-    return param_.period;
+    return param_.logWritePeriod;
 }
 
-void Logger::onTimer()
+
+unsigned long Logger::dataSamplePeriod()
 {
-    writeDataFlag_ = true;
+    return param_.dataSamplePeriod;
 }
+
+void Logger::writeLogOnTimer()
+{
+    writeLogFlag_ = true;
+}
+
+
+void Logger::dataSampleOnTimer()
+{
+    dataSampleFlag_ = true;
+}
+
 
 void Logger::update()
 {
-    Serial.print("writeDataFlag_ = ");
-    Serial.println(writeDataFlag_);
-    if (writeDataFlag_)
+    if (dataSampleFlag_)
     {
-        writeData();
+        opcn2Data_ = particleCounter.getHistogramData();
+        humidity_ = humidityAndTempSensor.readHumidity(); 
+        temperature_ =  humidityAndTempSensor.readTemperature();
         writeDisplay();
-        writeDataFlag_ = false;
+        dataSampleFlag_ = false;
+    }
+    if (writeLogFlag_)
+    {
+        writeLog();
+        writeLogFlag_ = false;
     }
 }
 
-void Logger::writeConfiguration()
-{
-    // Not done ... not being used ... 
-    
-    jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
-    JsonObject &rootObj = jsonBuffer_.createObject();
-    rootObj["dev"] = constants::DeviceName;  // Change to something from loaded settings
-    rootObj["id"] = constants::DeviceId;     // Change to something from loaded settings
-    rootObj["msg"] = "cfg";
 
-}
-
-
-void Logger::writeData()
+void Logger::writeLog()
 {
     // Get particle counter data
-    opcn2Data_ = particleCounter.getHistogramData();
     OPCN2Ids opcn2Ids = particleCounter.getIds();
 
     // Get GPS position data
@@ -78,14 +85,13 @@ void Logger::writeData()
     String longitudeString = gpsData_.getLongitudeString();
 
     // Get humidity and temperature
-    humidity_ = humidityAndTempSensor.readHumidity(); 
-    temperature_ =  humidityAndTempSensor.readTemperature();
 
     // Create Json output data
     jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
     JsonObject &rootObj = jsonBuffer_.createObject();
-    rootObj["dev"] = constants::DeviceName;           // Change to something from loaded settings
-    rootObj["id"] = constants::DeviceId;              // Change to something from loaded settings
+    rootObj["dev"] = constants::DeviceName.c_str();        
+    String deviceId = configuration.deviceId();
+    rootObj["id"]  = deviceId.c_str();              
     rootObj["msg"] = "dat";
 
     // Add GPS data
@@ -136,18 +142,25 @@ void Logger::writeData()
         }
     }
 
+    // Add temperature humidity sensor
+    JsonObject &sht31Obj = rootObj.createNestedObject("sht31");
+    sht31Obj["temp"] = temperature_;
+    sht31Obj["humd"] = humidity_;
+    JsonObject &sht31IdsObj = sht31Obj.createNestedObject("ids");
+    sht31IdsObj["temp"] = configuration.sht31Ids().temperature; 
+    sht31IdsObj["humd"] = configuration.sht31Ids().humidity;
+
     // Write json object to open log
-    rootObj.printTo(*serialPtr_);
-    serialPtr_ -> println();
+    rootObj.printTo(*openlog_.getSerialPtr());
+    openlog_.println();
 }
 
 
-void Logger::writeDisplay() // Temporary hack - create separate display function at some point.
+void Logger::writeDisplay() 
 {
     // Display the data
-    const int col2 = 50;
-    const int col3 = 90;
-    char tmpStr[50];
+    const int col2 = DisplayCol2;
+    const int col3 = DisplayCol3;
 
     SPI.beginTransaction(constants::DisplaySPISettings);            
     display.clearDisplay();
@@ -170,6 +183,8 @@ void Logger::writeDisplay() // Temporary hack - create separate display function
     display.print(opcn2Data_.PM10);
     display.setCursor(col3,display.getCursorY());
     display.println("ug/m3");
+
+    char tmpStr[50];
 
     display.print("TEMP");
     display.setCursor(col2,display.getCursorY());
