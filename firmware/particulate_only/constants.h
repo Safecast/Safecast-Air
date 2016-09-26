@@ -10,12 +10,8 @@
 
 namespace constants
 {
-    //extern const char SoftwareVersion[];
-    //extern const char DeviceName[]; 
-    //extern const char  DeviceId[]; 
-    
     extern const String SoftwareVersion;
-    extern const String  DeviceName; 
+    extern const String DeviceName; 
     extern const String ConfigurationFile;
 
     extern const long USBSerialBaudRate;
