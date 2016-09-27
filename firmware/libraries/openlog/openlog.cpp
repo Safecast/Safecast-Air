@@ -16,10 +16,16 @@ void Openlog::initialize()
 {
     param_.serialPtr -> begin(param_.baudRate);
     delay(100);
+    flush();
+}
+
+void Openlog::flush()
+{
     param_.serialPtr -> flush();
     while (param_.serialPtr -> available())
     {
         param_.serialPtr -> read();
+        delay(2);
     }
 }
 

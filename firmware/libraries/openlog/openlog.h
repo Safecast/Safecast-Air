@@ -12,6 +12,7 @@ class Openlog
 
         Openlog(OpenlogParam param);
         void initialize();
+        void flush();
 
         bool gotoCommandMode();
 

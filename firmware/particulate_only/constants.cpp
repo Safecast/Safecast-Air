@@ -28,7 +28,7 @@ namespace constants
     const OpenlogParam DefaultOpenlogParam = {115200, 500, 0, &Serial3} ;
 
     // Load configuration parameters
-    extern const int NumLoadConfigTrys = 10;
+    extern const int NumLoadConfigTrys = 20;
 
     // Logger parameters 
     // writeLogPeriod(s), dataSamplePeriod(s), baudRate 

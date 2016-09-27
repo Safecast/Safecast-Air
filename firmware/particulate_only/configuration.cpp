@@ -12,6 +12,8 @@ Configuration::Configuration(char filename[], Openlog &openlog)
 
 bool Configuration::initialize()
 {
+    openlog_.flush();
+
     // Read configuration file contents and parse json
     String fileContents = openlog_.readFile(filename_);
     if (fileContents.length() == 0)
