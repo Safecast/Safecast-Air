@@ -73,8 +73,6 @@ void showFirstReadingScreen();
 
 void setup()
 {
-    delay(200); 
-
     // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
 
@@ -123,15 +121,14 @@ void loadConfiguration()
     bool ok = false;
     for (int i=0; (i<constants::NumLoadConfigTrys && !ok); i++)
     {
-        // Temporary ... log configuration diagnostic 
-        //--------------------------------------------------
         SPI.beginTransaction(constants::DisplaySPISettings);
         display.clearDisplay();   
         display.setCursor(0,0);
+        display.print("load config: ");
         display.println(i);
         display.display();
         SPI.endTransaction();
-        // -------------------------------------------------
+
         ok = configuration.initialize();
         delay(10);
     }

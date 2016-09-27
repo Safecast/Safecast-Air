@@ -6,6 +6,7 @@ const int Openlog::LogCountMaxVal = 65534;
 
 // Openlog public methods
 // ----------------------------------------------------------------------------
+
 Openlog::Openlog(OpenlogParam param)
 {
     param_ = param;
@@ -15,9 +16,34 @@ Openlog::Openlog(OpenlogParam param)
 void Openlog::initialize()
 {
     param_.serialPtr -> begin(param_.baudRate);
-    delay(100);
-    flush();
+    pinMode(param_.resetPin, OUTPUT);
+    reset();
+    waitForPrompt();
 }
+
+
+void Openlog::reset()
+{
+    digitalWrite(param_.resetPin, LOW);
+    delay(100);
+    digitalWrite(param_.resetPin, HIGH);
+}
+
+
+void Openlog::waitForPrompt()
+{
+    while (true)
+    {
+        if (param_.serialPtr -> available())
+        {
+            if ((param_.serialPtr -> read()) == '>')
+            {
+                break;
+            }
+        }
+    }
+}
+
 
 void Openlog::flush()
 {

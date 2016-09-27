@@ -12,10 +12,11 @@ class Openlog
 
         Openlog(OpenlogParam param);
         void initialize();
+        void reset();
+        void waitForPrompt();
         void flush();
 
         bool gotoCommandMode();
-
         int  getFileSize(char filename[]);
         int  getFileSize(String filename);
 

@@ -25,7 +25,8 @@ namespace constants
     const SPISettings DisplaySPISettings(4000000,MSBFIRST,SPI_MODE0);
 
     // Openlog parameters
-    const OpenlogParam DefaultOpenlogParam = {115200, 500, 0, &Serial3} ;
+    // baudrate, timeout, eepromAddrLogCnt, resetPin, *serialPtr 
+    const OpenlogParam DefaultOpenlogParam = {115200, 500, 0, 6, &Serial3} ;
 
     // Load configuration parameters
     extern const int NumLoadConfigTrys = 20;

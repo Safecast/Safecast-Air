@@ -7,6 +7,7 @@ struct OpenlogParam
     unsigned long baudRate;
     unsigned long timeout;
     int eepromAddrLogCnt;
+    int resetPin;
     HardwareSerial *serialPtr;
 };
 
