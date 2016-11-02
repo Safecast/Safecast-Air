@@ -73,6 +73,9 @@ void showFirstReadingScreen();
 
 void setup()
 {
+    // Turn off wifly
+    dataLogger.initializeWiFlyPwrPin();
+
     // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
 
@@ -230,7 +233,7 @@ void setupSHT31()
 void setupDataLogger()
 {
     // Setup dataLogger timer
-    bool loggerOk =  dataLogger.initialize();
+    bool loggerOk =  dataLogger.initializeFile();
     SPI.beginTransaction(constants::DisplaySPISettings);
     display.print("* log: ");
     display.println(loggerOk);
@@ -242,6 +245,30 @@ void setupDataLogger()
 
     // After starting timers take reading from particle sensor to clear out old histogram counts
     particleCounter.getHistogramData(); 
+
+    // Setup wifly
+    dataLogger.initializeWiFly();
+
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    if (dataLogger.haveWiFly())
+    {
+        if (dataLogger.haveNetwork())
+        {
+            display.print("* ip: ");
+            display.println(dataLogger.ip());
+        }
+        else
+        {
+            display.println("* no network");
+        }
+    }
+    else
+    {
+        display.println("* no wifly");
+    }
+    display.display();
+    SPI.endTransaction();
+    delay(2000);
 }
 
 

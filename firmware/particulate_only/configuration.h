@@ -10,7 +10,8 @@
 class Configuration
 {
     public:
-        static const int JsonBufferSize = 1000;
+        static const int JsonBufferSize = 1500;
+        static const int MaxNumberOfGateways = 5;
 
         Configuration(String filename, Openlog &openlog);
         Configuration(char filename[], Openlog &openlog);
@@ -24,6 +25,12 @@ class Configuration
         String deviceId();
         String wifiSSID();
         String wifiPass();
+
+        String apiKey();
+        int numberOfGateways();
+        String gateway(int num);
+        String randomGateway();
+
         OPCN2Ids opcn2Ids();
         SHT31Ids sht31Ids();
 
@@ -31,6 +38,11 @@ class Configuration
         void setDeviceId(String deviceId);
         void setWifiSSID(String wifiSSID);
         void setWifiPass(String wifiPass);
+
+        void setApiKey(String apiKey);
+        void setNumberOfGateways(int num);
+        void setGateway(int num, String gateway);
+
         void setOPCN2Ids(OPCN2Ids opcn2Ids);
         void setSHT31Ids(SHT31Ids sht31Ids);
 
@@ -47,6 +59,11 @@ class Configuration
         String deviceId_ = String("");
         String wifiSSID_ = String("");
         String wifiPass_ = String("");
+
+        String apiKey_   = String("");
+        int numberOfGateways_ = 0;
+        String gateways_[MaxNumberOfGateways];
+
         OPCN2Ids opcn2Ids_; 
         SHT31Ids sht31Ids_;
 

@@ -5,6 +5,7 @@
 #include "opcn2_ids.h"
 #include "openlog_param.h"
 #include "logger_param.h"
+#include "wifly_param.h"
 #include <SPI.h>
 
 
@@ -38,6 +39,10 @@ namespace constants
 
     // Logger parameters
     extern const LoggerParam DefaultLoggerParam;
+    extern const int RandomSeedAinPin;
+
+    // Wifly parameters
+    extern const WiflyParam DefaultWiFlyParam;
 }
 
 #endif
