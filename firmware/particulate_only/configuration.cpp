@@ -1,4 +1,5 @@
 #include "configuration.h"
+#include "constants.h"
 
 Configuration::Configuration(String filename, Openlog &openlog) 
 : filename_(filename), openlog_(openlog)
@@ -12,6 +13,9 @@ Configuration::Configuration(char filename[], Openlog &openlog)
 
 bool Configuration::initialize()
 {
+    // Set random seed for random gatway selection
+    randomSeed(analogRead(constants::RandomSeedAinPin));  
+
     openlog_.flush();
 
     // Read configuration file contents and parse json
@@ -78,6 +82,44 @@ bool Configuration::setConfigFromJson(JsonObject &jsonRoot)
         return false;
     }
 
+    // New
+    // ------------
+
+    if (jsonRoot.containsKey("api_key"))
+    {
+        const char *apiKeyTmp = jsonRoot["api_key"];
+        apiKey_ = String(apiKeyTmp);
+    }
+    else
+    {
+        errorMsg_ = String("no api_key");
+        return false;
+    }
+
+    if (jsonRoot.containsKey("gateways"))
+    {
+        JsonArray &gatewaysJson = jsonRoot["gateways"];
+        if (gatewaysJson.size() == 0)
+        {
+            errorMsg_ = String("zero gateways");
+            return false;
+        }
+        numberOfGateways_ = min(gatewaysJson.size(),MaxNumberOfGateways);
+        for (int i=0; i<numberOfGateways_; i++)
+        {
+            const char *gatewayTmp = gatewaysJson[i];
+            gateways_[i] = String(gatewayTmp);
+        }
+    }
+    else
+    {
+        errorMsg_ = String("no gateways");
+        return false;
+    }
+
+
+    // -----------
+    
     if (jsonRoot.containsKey("opcn2_ids"))
     {
         JsonArray &dataIdsJson = jsonRoot["opcn2_ids"];
@@ -130,8 +172,6 @@ bool Configuration::setConfigFromJson(JsonObject &jsonRoot)
         return false;
     }
 
-
-
     isInitialized_= true;
     return true;
 }
@@ -163,6 +203,38 @@ String Configuration::wifiSSID()
 String Configuration::wifiPass()
 {
     return wifiPass_;
+}
+
+
+String Configuration::apiKey()
+{
+    return apiKey_;
+}
+
+
+int Configuration::numberOfGateways()
+{
+    return numberOfGateways_;
+}
+
+
+String Configuration::gateway(int num)
+{
+    if ((num > 0) && (num < numberOfGateways_))
+    {
+        return gateways_[num];
+    }
+    else
+    {
+        return String("");
+    }
+}
+
+
+String Configuration::randomGateway()
+{
+    int num = random(0,numberOfGateways_);
+    return gateways_[num];
 }
 
 
@@ -200,6 +272,27 @@ void Configuration::setWifiPass(String wifiPass)
 }
 
 
+void Configuration::setApiKey(String apiKey)
+{
+    apiKey_ = apiKey;
+}
+
+
+void Configuration::setNumberOfGateways(int num)
+{
+    numberOfGateways_ = num;
+}
+
+
+void Configuration::setGateway(int num, String gateway)
+{
+    if ((num > 0) && (num < numberOfGateways_))
+    {
+        gateways_[num] = gateway;
+    }
+}
+
+
 void Configuration::setOPCN2Ids(OPCN2Ids opcn2Ids)
 {
     opcn2Ids_ = opcn2Ids;
@@ -228,6 +321,17 @@ String Configuration::toString()
     configString += String("deviceId: ") + deviceId_ + String("\n");
     configString += String("wifiSSID: ") + wifiSSID_ + String("\n");
     configString += String("wifiPass: ") + wifiPass_ + String("\n");
+    configString += String("apiKey:   ") + apiKey_   + String("\n"); 
+    configString += String("gateways: [");
+    for (int i=0; i<numberOfGateways_; i++)
+    {
+        configString += gateways_[i];
+        if (i < (numberOfGateways_-1))
+        {
+            configString += String(",");
+        }
+    }
+    configString += String("]\n"); 
     configString += String("opcn2Ids: [");
     configString += String(opcn2Ids_.pm1)   + String(",");
     configString += String(opcn2Ids_.pm2_5) + String(",");
@@ -248,5 +352,19 @@ String Configuration::toString()
         }
     }
     configString += String("]]\n");
+    configString += String("sht31Ids: [");
+    if (SHT31Ids::IndexTemperature < SHT31Ids::IndexHumidity)
+    {
+        configString += sht31Ids_.temperature;
+        configString += String(",");
+        configString += sht31Ids_.humidity; 
+    }
+    else
+    {
+        configString += sht31Ids_.humidity; 
+        configString += String(",");
+        configString += sht31Ids_.temperature;
+    }
+    configString += String("]\n");
     return configString;
 }

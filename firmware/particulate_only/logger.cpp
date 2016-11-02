@@ -18,9 +18,75 @@ Logger::Logger(LoggerParam param, Openlog &openlog) : openlog_(openlog)
 }
 
 
-bool Logger::initialize()
+bool Logger::initializeFile()
 {
     return openlog_.openNewLogFile();
+}
+
+
+void Logger::initializeWiFlyPwrPin()
+{
+    pinMode(constants::DefaultWiFlyParam.pwrPin, OUTPUT);
+    digitalWrite(constants::DefaultWiFlyParam.pwrPin, HIGH);
+    delay(PwrInitDelay);
+}
+
+void Logger::toggleWiFlyPwr()
+{
+    // Toggle power
+    digitalWrite(constants::DefaultWiFlyParam.pwrPin, HIGH);
+    delay(constants::DefaultWiFlyParam.pwrOffDelay);
+
+    digitalWrite(constants::DefaultWiFlyParam.pwrPin, LOW);
+    delay(constants::DefaultWiFlyParam.pwrOnDelay);
+}
+
+
+bool Logger::initializeWiFly()
+{
+    toggleWiFlyPwr();
+
+    // Begin serial communications 
+    constants::DefaultWiFlyParam.serialPtr -> begin(constants::DefaultWiFlyParam.baudRate);
+
+    if (!wiFly_.begin(constants::DefaultWiFlyParam.serialPtr, &Serial))
+    {
+        haveWiFly_ = false;
+    }
+    else
+    {
+        haveWiFly_ = true;
+    }
+
+
+    if (!haveWiFly_)
+    {
+        return false;
+    }
+
+    // Associate with network
+    if (!wiFly_.isAssociated())
+    {
+        wiFly_.setSSID(configuration.wifiSSID().c_str());
+        wiFly_.setPassphrase(configuration.wifiPass().c_str());
+        wiFly_.enableDHCP();
+        if (wiFly_.join())
+        {
+            haveNetwork_ = true;
+            char ipBuf[32]; 
+            ip_ = String(wiFly_.getIP(ipBuf,sizeof(ipBuf)));
+        }
+        else
+        {
+            haveNetwork_ = false;
+            ip_ = String("");
+        }
+    }
+    else
+    {
+        haveNetwork_ = true;
+    }
+    return haveNetwork_;
 }
 
 
@@ -61,6 +127,7 @@ void Logger::update()
     {
         writeLog();
         writeLogFlag_ = false;
+        sendDataToServer();
     }
 }
 
@@ -70,12 +137,12 @@ void Logger::writeLog()
     OPCN2Ids opcn2Ids = particleCounter.getIds();
 
     // Get GPS position data
-    bool gpsDataOk = false;
+    gpsDataOk_ = false;
     if (gpsMonitor.haveData())
     {
-        gpsData_ = gpsMonitor.getData(&gpsDataOk);
+        gpsData_ = gpsMonitor.getData(&gpsDataOk_);
     }
-    if (!gpsDataOk)
+    if (!gpsDataOk_)
     {
         return;
     }
@@ -197,7 +264,138 @@ void Logger::writeDisplay()
     display.setCursor(col3,display.getCursorY());
     display.println("%");
 
+    display.print("FIX");
+    display.setCursor(col2,display.getCursorY());
+    if ((gpsData_.fix) && (gpsDataOk_))
+    {
+        display.print("true");
+    }
+    else
+    {
+        display.print("false");
+    }
+
     display.display();
 
     SPI.endTransaction();
+}
+
+
+bool Logger::haveWiFly()
+{
+    return haveWiFly_;
+}
+
+
+bool Logger::haveNetwork()
+{
+    return haveNetwork_;
+}
+
+
+String Logger::ip()
+{
+    return ip_;
+}
+
+
+void Logger::sendDataToServer() 
+{
+    if (!haveNetwork_)
+    {
+        initializeWiFly();
+        return;
+    }
+    //if ((!gpsDataOk_) || (!gpsData_.fix))
+    if (!gpsDataOk_)
+    {
+        return;
+    }
+
+    String captured_at = gpsData_.getDateTimeString();
+    String deviceId  = configuration.deviceId();
+    String dateTime  = gpsData_.getDateTimeString();
+    String latitude  = gpsData_.getLatitudeString();
+    String longitude = gpsData_.getLongitudeString();
+    String height    = String(gpsData_.getAltitudeInMeter(),5); 
+
+    String PM1_value   = String(opcn2Data_.PM1,5);
+    String PM2_5_value = String(opcn2Data_.PM2_5,5);
+    String PM10_value  = String(opcn2Data_.PM10,5);
+    String temp_value  = String(temperature_,5);
+    String humd_value  = String(humidity_,5);
+
+    String PM1_unit   = String("PM1");
+    String PM2_5_unit = String("PM2.5");
+    String PM10_unit  = String("PM10");
+    String temp_unit  = String("TEMPC");
+    String humd_unit  = String("HUMD%");
+
+    String opcn2Type = String("OPCN2");
+    String sht31Type = String("SHT31");
+
+    OPCN2Ids opcn2Ids = particleCounter.getIds();
+    unsigned int temp_id = configuration.sht31Ids().temperature; 
+    unsigned int humd_id = configuration.sht31Ids().humidity;
+
+    String unitArray[NumUnitToSend] = {PM1_unit, PM2_5_unit, PM10_unit, temp_unit, humd_unit};
+    String valueArray[NumUnitToSend] = {PM1_value, PM2_5_value, PM10_value, temp_value, humd_value};
+    String deviceTypeIdArray[NumUnitToSend] = {opcn2Type, opcn2Type, opcn2Type, sht31Type, sht31Type};
+    unsigned int sensorIdArray[NumUnitToSend] = {opcn2Ids.pm1, opcn2Ids.pm2_5, opcn2Ids.pm10, temp_id, humd_id}; 
+
+    String hostString = String("Host: ") + configuration.randomGateway() + String(":80");
+    for (int i=0; i<NumUnitToSend; i++)
+    { 
+        jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
+        JsonObject &testObj = jsonBuffer_.createObject();
+        testObj["captured_at"] = 
+        testObj["longitude"] =  longitude.c_str();  
+        testObj["latitude"] = latitude.c_str();
+        testObj["device_id"] = deviceId.c_str();
+        testObj["value"] = valueArray[i].c_str();
+        testObj["unit"] = unitArray[i].c_str();
+        testObj["height"] = height.c_str();;
+        testObj["devicetype_id"] = deviceTypeIdArray[i].c_str();
+        testObj["sensor_id"] = sensorIdArray[i];
+
+        char buf[JsonBufferSize];
+        testObj.printTo(buf,JsonBufferSize);
+        String bufLen = String(strlen(buf));
+
+
+        if (wiFly_.open("192.168.1.103", 5000))
+        {
+            wiFly_.println("POST /jsontest HTTP/1.1");
+            wiFly_.println(hostString); 
+            wiFly_.println("Content-type: application/json");
+            wiFly_.print("Content-Length: ");
+            wiFly_.println(bufLen);
+            wiFly_.println("User-Agent: Arduino");
+            wiFly_.println();
+            wiFly_.println(buf);
+            wiFly_.close();
+            sendFailCount_ = 0;
+            delay(500);
+        }
+        else
+        {
+            sendFailCount_++;
+            Serial.println("send failure!!");
+            //Serial.println("rebooting wifly");
+            //initializeWiFly();
+        }
+        Serial.println(buf);
+        Serial.println();
+    }
+
+    //Serial.println("rebooting wifly");
+    //initializeWiFly();
+
+    //if (sendFailCount_ >= MaxSendFailCount)
+    //{
+    //    Serial.println("rebooting wifly");
+    //    initializeWiFly();
+    //    wiflyRebootCount_++;
+    //    sendFailCount_ = 0;
+    //}
 }
