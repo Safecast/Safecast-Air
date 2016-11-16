@@ -1,8 +1,8 @@
-#ifndef WIFLY_PARAM_H
-#define WIFLY_PARAM_H
+#ifndef WIFI_PARAM_H
+#define WIFI_PARAM_H
 #include <Arduino.h>
 
-struct WiflyParam
+struct WifiParam
 {
     int pwrPin;
     unsigned long pwrOnDelay;

@@ -12,6 +12,8 @@ extern OPCN2 particleCounter;
 extern Adafruit_SSD1306 display;
 extern Adafruit_SHT31 humidityAndTempSensor; 
 
+//const uint32_t TmpHostport = 5001;
+
 Logger::Logger(LoggerParam param, Openlog &openlog) : openlog_(openlog)
 {
     param_ = param;
@@ -23,70 +25,77 @@ bool Logger::initializeFile()
     return openlog_.openNewLogFile();
 }
 
+bool Logger::initializeWifi()
+{ 
+    wifiOK_ = true;
+    wifiErrorMsg_ = String("");
 
-void Logger::initializeWiFlyPwrPin()
-{
-    pinMode(constants::DefaultWiFlyParam.pwrPin, OUTPUT);
-    digitalWrite(constants::DefaultWiFlyParam.pwrPin, HIGH);
-    delay(PwrInitDelay);
+    pinMode(constants::DefaultWifiParam.pwrPin, OUTPUT);
+    wifiTogglePower();
+
+    wifi_ = ESP8266(*constants::DefaultWifiParam.serialPtr, constants::DefaultWifiParam.baudRate);
+
+    if (!wifi_.setOprToStation()) 
+    {
+        wifiErrorMsg_ = String("err stat");
+        wifiOK_= false;
+        return wifiOK_;
+    }
+
+    if (!wifi_.joinAP(configuration.wifiSSID(), configuration.wifiPass()))
+    {
+        wifiErrorMsg_ = String("err join");
+        wifiOK_= false;
+        return wifiOK_;
+    }
+
+    if (!wifi_.disableMUX()) 
+    {
+        wifiErrorMsg_ = String("err mux");
+        wifiOK_= false;
+        return wifiOK_;
+    }
+
+    wifiIP_ = wifi_.getLocalIP();
+    return wifiOK_; 
 }
 
-void Logger::toggleWiFlyPwr()
-{
-    // Toggle power
-    digitalWrite(constants::DefaultWiFlyParam.pwrPin, HIGH);
-    delay(constants::DefaultWiFlyParam.pwrOffDelay);
 
-    digitalWrite(constants::DefaultWiFlyParam.pwrPin, LOW);
-    delay(constants::DefaultWiFlyParam.pwrOnDelay);
+bool Logger::wifiOK()
+{
+    return wifiOK_;
 }
 
 
-bool Logger::initializeWiFly()
+void Logger::wifiPowerOn()
 {
-    toggleWiFlyPwr();
+    digitalWrite(constants::DefaultWifiParam.pwrPin, LOW);
+}
 
-    // Begin serial communications 
-    constants::DefaultWiFlyParam.serialPtr -> begin(constants::DefaultWiFlyParam.baudRate);
-
-    if (!wiFly_.begin(constants::DefaultWiFlyParam.serialPtr, &Serial))
-    {
-        haveWiFly_ = false;
-    }
-    else
-    {
-        haveWiFly_ = true;
-    }
+void Logger::wifiPowerOff()
+{ 
+    digitalWrite(constants::DefaultWifiParam.pwrPin, HIGH);
+}
 
 
-    if (!haveWiFly_)
-    {
-        return false;
-    }
+void Logger::wifiTogglePower()
+{
+    wifiPowerOff();
+    delay(constants::DefaultWifiParam.pwrOffDelay);
+    wifiPowerOn();
+    delay(constants::DefaultWifiParam.pwrOnDelay);
+}
 
-    // Associate with network
-    if (!wiFly_.isAssociated())
-    {
-        wiFly_.setSSID(configuration.wifiSSID().c_str());
-        wiFly_.setPassphrase(configuration.wifiPass().c_str());
-        wiFly_.enableDHCP();
-        if (wiFly_.join())
-        {
-            haveNetwork_ = true;
-            char ipBuf[32]; 
-            ip_ = String(wiFly_.getIP(ipBuf,sizeof(ipBuf)));
-        }
-        else
-        {
-            haveNetwork_ = false;
-            ip_ = String("");
-        }
-    }
-    else
-    {
-        haveNetwork_ = true;
-    }
-    return haveNetwork_;
+
+String Logger::wifiIP()
+{
+    return wifiIP_;
+}
+
+
+String Logger::wifiErrorMsg()
+{
+    return wifiErrorMsg_;
 }
 
 
@@ -127,7 +136,7 @@ void Logger::update()
     {
         writeLog();
         writeLogFlag_ = false;
-        sendDataToServer();
+        wifiSendDataToServer();
     }
 }
 
@@ -268,11 +277,21 @@ void Logger::writeDisplay()
     display.setCursor(col2,display.getCursorY());
     if ((gpsData_.fix) && (gpsDataOk_))
     {
-        display.print("true");
+        display.println("true");
     }
     else
     {
-        display.print("false");
+        display.println("false");
+    }
+    display.print("WIFI");
+    display.setCursor(col2,display.getCursorY());
+    if (wifiOK_)
+    {
+        display.println("ok");
+    }
+    else
+    {
+        display.println(wifiErrorMsg_);
     }
 
     display.display();
@@ -281,36 +300,39 @@ void Logger::writeDisplay()
 }
 
 
-bool Logger::haveWiFly()
+bool Logger::wifiReset()
 {
-    return haveWiFly_;
-}
-
-
-bool Logger::haveNetwork()
-{
-    return haveNetwork_;
-}
-
-
-String Logger::ip()
-{
-    return ip_;
-}
-
-
-void Logger::sendDataToServer() 
-{
-    if (!haveNetwork_)
+    initializeWifi();
+    wifiResetCount_++;
+    bool rval = true;
+    if (wifiOK_)
     {
-        initializeWiFly();
-        return;
+        wifiSendFailCount_ = 0;
     }
-    //if ((!gpsDataOk_) || (!gpsData_.fix))
+    else
+    {
+        rval = false;
+    }
+    return rval;
+}
+
+
+void Logger::wifiSendDataToServer() 
+{
+    Serial.println("wifiSendDataToServer");
+
+    if (!wifiOK_) 
+    {
+        wifiReset();
+    }
+    Serial.println("wifi OK");
+
     if (!gpsDataOk_)
     {
         return;
     }
+    Serial.println("gpsData OK");
+    Serial.println();
 
     String captured_at = gpsData_.getDateTimeString();
     String deviceId  = configuration.deviceId();
@@ -338,17 +360,30 @@ void Logger::sendDataToServer()
     unsigned int temp_id = configuration.sht31Ids().temperature; 
     unsigned int humd_id = configuration.sht31Ids().humidity;
 
-    String unitArray[NumUnitToSend] = {PM1_unit, PM2_5_unit, PM10_unit, temp_unit, humd_unit};
-    String valueArray[NumUnitToSend] = {PM1_value, PM2_5_value, PM10_value, temp_value, humd_value};
-    String deviceTypeIdArray[NumUnitToSend] = {opcn2Type, opcn2Type, opcn2Type, sht31Type, sht31Type};
-    unsigned int sensorIdArray[NumUnitToSend] = {opcn2Ids.pm1, opcn2Ids.pm2_5, opcn2Ids.pm10, temp_id, humd_id}; 
+    String unitArray[WifiNumUnitToSend] = {PM1_unit, PM2_5_unit, PM10_unit, temp_unit, humd_unit};
+    String valueArray[WifiNumUnitToSend] = {PM1_value, PM2_5_value, PM10_value, temp_value, humd_value};
+    String deviceTypeIdArray[WifiNumUnitToSend] = {opcn2Type, opcn2Type, opcn2Type, sht31Type, sht31Type};
+    unsigned int sensorIdArray[WifiNumUnitToSend] = {opcn2Ids.pm1, opcn2Ids.pm2_5, opcn2Ids.pm10, temp_id, humd_id}; 
 
-    String hostString = String("Host: ") + configuration.randomGateway() + String(":80");
-    for (int i=0; i<NumUnitToSend; i++)
+    String hostname = configuration.randomGateway();
+    unsigned int  port = configuration.port();
+    String apiKey = configuration.apiKey();
+
+    for (int i=0; i<WifiNumUnitToSend; i++)
     { 
+
+        if (wifiSendFailCount_ >= WifiMaxSendFailCount) 
+        { 
+            wifiReset();
+        }
+        if (!wifiOK_)
+        {
+            continue;
+        }
+
         jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
         JsonObject &testObj = jsonBuffer_.createObject();
-        testObj["captured_at"] = 
+        testObj["captured_at"] = captured_at.c_str(); 
         testObj["longitude"] =  longitude.c_str();  
         testObj["latitude"] = latitude.c_str();
         testObj["device_id"] = deviceId.c_str();
@@ -358,44 +393,66 @@ void Logger::sendDataToServer()
         testObj["devicetype_id"] = deviceTypeIdArray[i].c_str();
         testObj["sensor_id"] = sensorIdArray[i];
 
-        char buf[JsonBufferSize];
-        testObj.printTo(buf,JsonBufferSize);
-        String bufLen = String(strlen(buf));
+        char jsonCharBuffer[JsonBufferSize];
+        testObj.printTo(jsonCharBuffer,JsonBufferSize);
+        String jsonCharBufferLen = String(strlen(jsonCharBuffer));
 
-
-        if (wiFly_.open("192.168.1.103", 5000))
+        String sendString;
+        sendString += String("POST ");
+        if (apiKey.length() == 0)
         {
-            wiFly_.println("POST /jsontest HTTP/1.1");
-            wiFly_.println(hostString); 
-            wiFly_.println("Content-type: application/json");
-            wiFly_.print("Content-Length: ");
-            wiFly_.println(bufLen);
-            wiFly_.println("User-Agent: Arduino");
-            wiFly_.println();
-            wiFly_.println(buf);
-            wiFly_.close();
-            sendFailCount_ = 0;
-            delay(500);
+            sendString += String("/jsontest ");
         }
         else
         {
-            sendFailCount_++;
-            Serial.println("send failure!!");
-            //Serial.println("rebooting wifly");
-            //initializeWiFly();
+            sendString += String("/scripts/indextest.php?api_key=") + apiKey + String(" ");
         }
-        Serial.println(buf);
+        sendString += String("HTTP/1.1\r\n");
+        sendString += String("Connection: close\r\n");
+        sendString += String("Host: ") + hostname + String(":") + String(port) + String("\r\n");
+        sendString += String("User-Agent: Arduino\r\n");
+        sendString += String("Content-Type: application/json\r\n");
+        sendString += String("Content-Length: ") + String(jsonCharBufferLen)+ String("\r\n\r\n");
+        sendString += String(jsonCharBuffer);
+        sendString += String("\r\n");
+        const char *sendBuffer = sendString.c_str();
+
+        Serial.print("cnt:   ");
+        Serial.println(wifiSendCount_);
+        Serial.print("fail:  ");
+        Serial.println(wifiSendFailCount_);
+        Serial.print("reset: ");
+        Serial.println(wifiResetCount_);
         Serial.println();
+        Serial.print(sendBuffer);
+        Serial.println();
+        Serial.print("connect to host: ");
+
+        if (wifi_.createTCP(hostname, port))
+        {
+            Serial.println("ok");
+
+            wifi_.send((const uint8_t *)sendBuffer, strlen(sendBuffer));
+
+            uint8_t recvBuffer[1024] = {0};
+            uint32_t len = wifi_.recv(recvBuffer, sizeof(recvBuffer), 2000);
+            if (len > 0) 
+            {
+                Serial.print("received:");
+                for(uint32_t i = 0; i < len; i++) 
+                {
+                    Serial.print((char)recvBuffer[i]);
+                }
+                wifiSendFailCount_ = 0;
+            }
+            wifiSendCount_++;
+        } 
+        else 
+        {
+            Serial.println("err");
+            wifiSendFailCount_++;
+        }
+        Serial.println();
+        delay(500);
     }
-
-    //Serial.println("rebooting wifly");
-    //initializeWiFly();
-
-    //if (sendFailCount_ >= MaxSendFailCount)
-    //{
-    //    Serial.println("rebooting wifly");
-    //    initializeWiFly();
-    //    wiflyRebootCount_++;
-    //    sendFailCount_ = 0;
-    //}
 }

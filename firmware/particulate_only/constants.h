@@ -5,7 +5,7 @@
 #include "opcn2_ids.h"
 #include "openlog_param.h"
 #include "logger_param.h"
-#include "wifly_param.h"
+#include "wifi_param.h"
 #include <SPI.h>
 
 
@@ -41,8 +41,8 @@ namespace constants
     extern const LoggerParam DefaultLoggerParam;
     extern const int RandomSeedAinPin;
 
-    // Wifly parameters
-    extern const WiflyParam DefaultWiFlyParam;
+    // Wifi parameters
+    extern const WifiParam DefaultWifiParam;
 }
 
 #endif
