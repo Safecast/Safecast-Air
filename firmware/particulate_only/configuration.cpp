@@ -82,9 +82,6 @@ bool Configuration::setConfigFromJson(JsonObject &jsonRoot)
         return false;
     }
 
-    // New
-    // ------------
-
     if (jsonRoot.containsKey("api_key"))
     {
         const char *apiKeyTmp = jsonRoot["api_key"];
@@ -117,9 +114,11 @@ bool Configuration::setConfigFromJson(JsonObject &jsonRoot)
         return false;
     }
 
+    if (jsonRoot.containsKey("port"))
+    {
+        port_ = jsonRoot["port"];
+    }
 
-    // -----------
-    
     if (jsonRoot.containsKey("opcn2_ids"))
     {
         JsonArray &dataIdsJson = jsonRoot["opcn2_ids"];
@@ -238,6 +237,12 @@ String Configuration::randomGateway()
 }
 
 
+unsigned int Configuration::port()
+{
+    return port_;
+}
+
+
 OPCN2Ids Configuration::opcn2Ids()
 {
     return opcn2Ids_;
@@ -290,6 +295,12 @@ void Configuration::setGateway(int num, String gateway)
     {
         gateways_[num] = gateway;
     }
+}
+
+
+void Configuration::setPort(unsigned int port)
+{
+    port_ = port;
 }
 
 

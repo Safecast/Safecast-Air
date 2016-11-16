@@ -30,6 +30,7 @@ class Configuration
         int numberOfGateways();
         String gateway(int num);
         String randomGateway();
+        unsigned int port();
 
         OPCN2Ids opcn2Ids();
         SHT31Ids sht31Ids();
@@ -42,6 +43,7 @@ class Configuration
         void setApiKey(String apiKey);
         void setNumberOfGateways(int num);
         void setGateway(int num, String gateway);
+        void setPort(unsigned int port);
 
         void setOPCN2Ids(OPCN2Ids opcn2Ids);
         void setSHT31Ids(SHT31Ids sht31Ids);
@@ -63,6 +65,7 @@ class Configuration
         String apiKey_   = String("");
         int numberOfGateways_ = 0;
         String gateways_[MaxNumberOfGateways];
+        unsigned int port_ = 80;
 
         OPCN2Ids opcn2Ids_; 
         SHT31Ids sht31Ids_;

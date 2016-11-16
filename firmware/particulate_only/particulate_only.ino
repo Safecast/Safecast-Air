@@ -73,9 +73,6 @@ void showFirstReadingScreen();
 
 void setup()
 {
-    // Turn off wifly
-    dataLogger.initializeWiFlyPwrPin();
-
     // This is the magic trick for snprintf to support float
     asm(".global _snprintf_float");
 
@@ -99,6 +96,11 @@ void loop()
     Alarm.delay(constants::LoopDelay);
     gpsMonitor.update();
     dataLogger.update();
+
+    // Keep alive ... opcn2 seems to stop sometimes
+    bool status = particleCounter.checkStatus();
+    bool laserAndFanOk = false;
+    particleCounter.setFanAndLaserOn(&laserAndFanOk);
 }
 
 
@@ -247,24 +249,18 @@ void setupDataLogger()
     particleCounter.getHistogramData(); 
 
     // Setup wifly
-    dataLogger.initializeWiFly();
+    bool wifiOk = dataLogger.initializeWifi();
 
     SPI.beginTransaction(constants::DisplaySPISettings);
-    if (dataLogger.haveWiFly())
+    if (wifiOk)
     {
-        if (dataLogger.haveNetwork())
-        {
-            display.print("* ip: ");
-            display.println(dataLogger.ip());
-        }
-        else
-        {
-            display.println("* no network");
-        }
+        display.print("* ip: ");
+        display.println(dataLogger.wifiIP());
     }
     else
     {
-        display.println("* no wifly");
+        display.print("* ");
+        display.println(dataLogger.wifiErrorMsg());
     }
     display.display();
     SPI.endTransaction();
