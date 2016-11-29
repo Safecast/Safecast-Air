@@ -3,7 +3,7 @@
 
 namespace constants
 {
-    const String SoftwareVersion = "0.1";
+    const String SoftwareVersion = "0.11";
     const String  DeviceName = "air001"; 
     const String ConfigurationFile = "SAFECAST.txt";
 
