@@ -12,8 +12,6 @@ extern OPCN2 particleCounter;
 extern Adafruit_SSD1306 display;
 extern Adafruit_SHT31 humidityAndTempSensor; 
 
-//const uint32_t TmpHostport = 5001;
-
 Logger::Logger(LoggerParam param, Openlog &openlog) : openlog_(openlog)
 {
     param_ = param;
@@ -287,7 +285,9 @@ void Logger::writeDisplay()
     display.setCursor(col2,display.getCursorY());
     if (wifiOK_)
     {
-        display.println("ok");
+        display.print("ok");
+        display.setCursor(col3,display.getCursorY());
+        display.print(wifiSendCount_);
     }
     else
     {
