@@ -25,7 +25,7 @@ void Openlog::initialize()
 void Openlog::reset()
 {
     digitalWrite(param_.resetPin, LOW);
-    delay(100);
+    delay(200);
     digitalWrite(param_.resetPin, HIGH);
 }
 
@@ -127,7 +127,7 @@ bool Openlog::openNewFile(char filename[])
         while(param_.serialPtr -> available())
         {
             char val = param_.serialPtr -> read();
-            Serial.println(uint8_t(val));
+            //Serial.println(uint8_t(val));
             
             if (val == '>')
             {
@@ -158,7 +158,7 @@ bool Openlog::openNewFile(char filename[])
         while(param_.serialPtr -> available())
         {
             char val = param_.serialPtr -> read();
-            Serial.println(uint8_t(val));
+            //Serial.println(uint8_t(val));
             
             if (val == '<')
             {

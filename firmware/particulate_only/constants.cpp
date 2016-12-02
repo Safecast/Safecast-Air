@@ -3,7 +3,7 @@
 
 namespace constants
 {
-    const String SoftwareVersion = "0.1";
+    const String SoftwareVersion = "0.11";
     const String  DeviceName = "air001"; 
     const String ConfigurationFile = "SAFECAST.txt";
 
@@ -33,8 +33,13 @@ namespace constants
 
     // Logger parameters 
     // writeLogPeriod(s), dataSamplePeriod(s), baudRate 
-    const LoggerParam DefaultLoggerParam = {300, 60, 115200};
-    //const LoggerParam DefaultLoggerParam = {30, 15, 115200}; // Testing
+    const LoggerParam DefaultLoggerParam = {300, 30, 115200};
+    //const LoggerParam DefaultLoggerParam = {60, 30, 115200}; // Testing
+    const int RandomSeedAinPin = A12;
+
+    // Wifi parameters 
+    // pwrPin, pwerOnDelay, pwrOffDelay, baudrate, *serialPtr
+    const WifiParam DefaultWifiParam = {31, 4000, 1000, 9600, &Serial2};
 }
 
 

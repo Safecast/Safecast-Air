@@ -96,6 +96,11 @@ void loop()
     Alarm.delay(constants::LoopDelay);
     gpsMonitor.update();
     dataLogger.update();
+
+    // Keep alive ... opcn2 seems to stop sometimes
+    bool status = particleCounter.checkStatus();
+    bool laserAndFanOk = false;
+    particleCounter.setFanAndLaserOn(&laserAndFanOk);
 }
 
 
@@ -230,7 +235,7 @@ void setupSHT31()
 void setupDataLogger()
 {
     // Setup dataLogger timer
-    bool loggerOk =  dataLogger.initialize();
+    bool loggerOk =  dataLogger.initializeFile();
     SPI.beginTransaction(constants::DisplaySPISettings);
     display.print("* log: ");
     display.println(loggerOk);
@@ -242,6 +247,24 @@ void setupDataLogger()
 
     // After starting timers take reading from particle sensor to clear out old histogram counts
     particleCounter.getHistogramData(); 
+
+    // Setup wifly
+    bool wifiOk = dataLogger.initializeWifi();
+
+    SPI.beginTransaction(constants::DisplaySPISettings);
+    if (wifiOk)
+    {
+        display.print("* ip: ");
+        display.println(dataLogger.wifiIP());
+    }
+    else
+    {
+        display.print("* ");
+        display.println(dataLogger.wifiErrorMsg());
+    }
+    display.display();
+    SPI.endTransaction();
+    delay(2000);
 }
 
 
