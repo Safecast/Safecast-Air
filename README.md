@@ -8,8 +8,8 @@ Instructions for building the Safecast Air [Prototype kit](https://kithub.cc/saf
 Hardware
 Instructions for drilling the holes and mounting the particulate sensor and PCB in the case. https://github.com/tarabrown/Safecast-Air/tree/master/hardware
 
-SD Card Files
-SAFECAST.txt and CONFIG.txt
+SD Card Files  
+SAFECAST.txt and CONFIG.txt  
 https://github.com/Safecast/Safecast-Air/tree/master/notes/sd_card_example
 
 Support
