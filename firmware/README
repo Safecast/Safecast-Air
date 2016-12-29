@@ -14,5 +14,7 @@ For the beta we are specifically using the files from /particulate_only
 Look in Arduino preferences and make sure that your Arduino sketchbook location is pointing at the folder on your local drive. Example:
 /Users/yourname/Desktop/Safecast-Air-master/firmware/  
 
-
+Practice  
+If you are new to updating Arduino, then please go through this quick tutorial. Start with "Install Arduino" and then practice with the Blink exercise. You will then apply this same logic to upload the Safecast files.
+https://www.pjrc.com/teensy/tutorial.html  
 
