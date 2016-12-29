@@ -1,6 +1,18 @@
-Teensy3.1 firmware for the safecast air prototype. 
+You will need the following in order to update the firmware:  
 
-Required libraries:
+Arduino IDE 1.6.11  
+https://www.arduino.cc/en/Main/OldSoftwareReleases#previous  
+  
+Teensy (software for version 3.2)  
+https://www.pjrc.com/teensy/teensyduino.html  
+  
+Firmware files  
+https://github.com/Safecast/Safecast-Air/tree/master/firmware  
+  
+For the beta we are specifically using the files from /particulate_only  
+  
+Look in Arduino preferences and make sure that your Arduino sketchbook location is pointing at the folder on your local drive. Example:
+/Users/yourname/Desktop/Safecast-Air-master/firmware/  
 
 
 
