@@ -10,7 +10,10 @@ Instructions for drilling the holes and mounting the particulate sensor and PCB 
 
 SD Card Files  
 SAFECAST.txt and CONFIG.txt  
-https://github.com/Safecast/Safecast-Air/tree/master/notes/sd_card_example
-
-Support
+https://github.com/Safecast/Safecast-Air/tree/master/notes/sd_card_example  
+  
+Firmware Updates  
+https://github.com/Safecast/Safecast-Air/blob/master/firmware/README  
+  
+Support  
 https://groups.google.com/forum/#!forum/safecast-air
