@@ -11,8 +11,26 @@ https://github.com/Safecast/Safecast-Air/tree/master/firmware
   
 For the beta we are specifically using the files from /particulate_only  
   
-Look in Arduino preferences and make sure that your Arduino sketchbook location is pointing at the folder on your local drive. Example:
-/Users/yourname/Desktop/Safecast-Air-master/firmware/  
+Look in Arduino preferences and make sure that your Arduino sketchbook location is pointing at the 'firmware' folder on your local drive. Example:
+/Users/yourname/Desktop/Safecast-Air-master/firmware/  After making this change to the Arduino IDE make sure to restart the Arduino IDE.  
+
+
+Programing:
+
+1. Using the Arduino IDE open the file named particulate_only.ino which is located in the firmware/particulate_only subdirectory.
+
+2. Go to the "Tools -> Board:"  menu item and select the board type (Teensy 3.1/3.2).
+
+3. Go to the "Tools -> USB Type:" menu item select the  USB type (Serial). 
+
+4. Go to the "Tools -> CPU Speed:" menu item and select the CPU speed (72MHz)
+
+5. Go to the "Tools -> Port:" menu item and select port associated with your teensy 3.2 device e.g. COM1 (windows) or  /dev/ttyACM0 (linux)
+
+6. Build the firmware by selecting the "Sketch -> Verify/Compile" menu item (or the "check mark" menu icon).
+
+7. Upload the firmware to your teensy 3.2 by selecting the "Sketch -> Upload" menu item (or the "right arrow" menu icon). 
+
 
 Practice  
 If you are new to updating Arduino, then please go through this quick tutorial. Start with "Install Arduino" and then practice with the Blink exercise. You will then apply this same logic to upload the Safecast files.
