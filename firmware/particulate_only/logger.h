@@ -55,17 +55,17 @@ class Logger
         uint32_t wifiResetCount_ = 0;
 
         LoggerParam param_;
-        volatile bool writeLogFlag_ = false;
-        volatile bool dataSampleFlag_ = false;
-        unsigned long count_ = 0;
         StaticJsonBuffer<JsonBufferSize> jsonBuffer_;
 
         bool gpsDataOk_ = false;
         GPSData gpsData_;
+
         OPCN2Data opcn2Data_;
         float temperature_;  // deg C
         float humidity_;     // percent
 
+        volatile bool writeLogFlag_ = false;
+        volatile bool dataSampleFlag_ = false;
 
 };
 

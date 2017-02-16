@@ -98,9 +98,9 @@ void loop()
     dataLogger.update();
 
     // Keep alive ... opcn2 seems to stop sometimes
-    bool status = particleCounter.checkStatus();
-    bool laserAndFanOk = false;
-    particleCounter.setFanAndLaserOn(&laserAndFanOk);
+    //bool status = particleCounter.checkStatus();
+    //bool laserAndFanOk = false;
+    //particleCounter.setFanAndLaserOn(&laserAndFanOk);
 }
 
 

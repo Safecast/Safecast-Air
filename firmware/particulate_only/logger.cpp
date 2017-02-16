@@ -1,4 +1,5 @@
 #include "logger.h"
+#include "util/atomic.h"
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GPS.h>
 #include <Adafruit_SHT31.h>
@@ -141,6 +142,14 @@ void Logger::update()
 
 void Logger::writeLog()
 {
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+    {
+        OPCN2Data opcn2DataCpy = opcn2Data_;
+        float humidityCpy = humidity_;
+        float temperatureCpy = temperature_;
+    }
+
+
     OPCN2Ids opcn2Ids = particleCounter.getIds();
 
     // Get GPS position data
@@ -331,6 +340,7 @@ void Logger::wifiSendDataToServer()
     {
         return;
     }
+
     Serial.println("gpsData OK");
     Serial.println();
 

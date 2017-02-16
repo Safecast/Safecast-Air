@@ -142,7 +142,7 @@ String OPCN2::getInfoString(bool *ok)
     return infoString;
 }
 
-OPCN2Data OPCN2::getHistogramData(bool *ok)
+OPCN2Data OPCN2::getHistogramData(bool *ok) 
 {
     uint8_t rsp[HistogramMessageSize];
 
