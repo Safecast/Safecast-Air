@@ -4,7 +4,7 @@ Documentation for Safecast's Air Quality Monitoring device and platform.
 
 Purchase Kit or Parts  
 Kit  
-https://shop.kithub.cc/collections/environmental-monitoring-kits/products/safecast-air-quality-monitoring-kit-beta-version
+https://shop.kithub.cc/products/safecast-air-quality-monitoring-kit-beta-version
 
 Parts  
 https://github.com/Safecast/Safecast-Air/wiki/Assembly-Manual#parts-list
