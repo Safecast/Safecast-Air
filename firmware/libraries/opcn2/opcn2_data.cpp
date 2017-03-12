@@ -25,13 +25,14 @@ OPCN2Data::OPCN2Data()
 
 }
 
+
 OPCN2Data::OPCN2Data(uint8_t spiData[])
 {
     fromSPIData(spiData);
 }
 
 
-void OPCN2Data::fromSPIData(uint8_t spiData[])
+void OPCN2Data::fromSPIData(uint8_t spiData[]) 
 {
     uint8_t pos = 0; 
 

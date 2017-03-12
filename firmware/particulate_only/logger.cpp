@@ -112,11 +112,13 @@ unsigned long Logger::dataSamplePeriod()
 void Logger::writeLogOnTimer()
 {
     writeLogFlag_ = true;
+    wifiSendUnitIndex_ = 0;
 }
 
 
 void Logger::dataSampleOnTimer()
 {
+    particleCounter.checkStatus();
     dataSampleFlag_ = true;
 }
 
@@ -135,20 +137,13 @@ void Logger::update()
     {
         writeLog();
         writeLogFlag_ = false;
-        wifiSendDataToServer();
     }
+    wifiSendDataToServer();
 }
 
 
 void Logger::writeLog()
 {
-    ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
-    {
-        OPCN2Data opcn2DataCpy = opcn2Data_;
-        float humidityCpy = humidity_;
-        float temperatureCpy = temperature_;
-    }
-
 
     OPCN2Ids opcn2Ids = particleCounter.getIds();
 
@@ -328,20 +323,27 @@ bool Logger::wifiReset()
 
 void Logger::wifiSendDataToServer() 
 {
-    Serial.println("wifiSendDataToServer");
 
-    if (!wifiOK_) 
+    if (wifiSendUnitIndex_ >= WifiNumUnitToSend)
     {
-        wifiReset();
+        return;
     }
-    Serial.println("wifi OK");
 
     if (!gpsDataOk_)
     {
         return;
     }
 
-    Serial.println("gpsData OK");
+    Serial.print("wifiSendDataToServer: unitIndex = ");
+    Serial.println(wifiSendUnitIndex_);
+
+    if ((!wifiOK_)  || (wifiSendFailCount_ >= WifiMaxSendFailCount))
+    {
+        wifiReset();
+        return;
+    }
+
+    Serial.println("wifi OK");
     Serial.println();
 
     String captured_at = gpsData_.getDateTimeString();
@@ -379,90 +381,79 @@ void Logger::wifiSendDataToServer()
     unsigned int  port = configuration.port();
     String apiKey = configuration.apiKey();
 
-    for (int i=0; i<WifiNumUnitToSend; i++)
-    { 
 
-        if (wifiSendFailCount_ >= WifiMaxSendFailCount) 
-        { 
-            wifiReset();
-        }
-        if (!wifiOK_)
-        {
-            continue;
-        }
+    jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
+    JsonObject &testObj = jsonBuffer_.createObject();
+    testObj["captured_at"] = captured_at.c_str(); 
+    testObj["longitude"] =  longitude.c_str();  
+    testObj["latitude"] = latitude.c_str();
+    testObj["device_id"] = deviceId.c_str();
+    testObj["value"] = valueArray[wifiSendUnitIndex_].c_str();
+    testObj["unit"] = unitArray[wifiSendUnitIndex_].c_str();
+    testObj["height"] = height.c_str();;
+    testObj["devicetype_id"] = deviceTypeIdArray[wifiSendUnitIndex_].c_str();
+    testObj["sensor_id"] = sensorIdArray[wifiSendUnitIndex_];
 
-        jsonBuffer_ = StaticJsonBuffer<JsonBufferSize>(); // Clear the buffer 
-        JsonObject &testObj = jsonBuffer_.createObject();
-        testObj["captured_at"] = captured_at.c_str(); 
-        testObj["longitude"] =  longitude.c_str();  
-        testObj["latitude"] = latitude.c_str();
-        testObj["device_id"] = deviceId.c_str();
-        testObj["value"] = valueArray[i].c_str();
-        testObj["unit"] = unitArray[i].c_str();
-        testObj["height"] = height.c_str();;
-        testObj["devicetype_id"] = deviceTypeIdArray[i].c_str();
-        testObj["sensor_id"] = sensorIdArray[i];
+    char jsonCharBuffer[JsonBufferSize];
+    testObj.printTo(jsonCharBuffer,JsonBufferSize);
+    String jsonCharBufferLen = String(strlen(jsonCharBuffer));
 
-        char jsonCharBuffer[JsonBufferSize];
-        testObj.printTo(jsonCharBuffer,JsonBufferSize);
-        String jsonCharBufferLen = String(strlen(jsonCharBuffer));
-
-        String sendString;
-        sendString += String("POST ");
-        if (apiKey.length() == 0)
-        {
-            sendString += String("/jsontest ");
-        }
-        else
-        {
-            sendString += String("/scripts/indextest.php?api_key=") + apiKey + String(" ");
-        }
-        sendString += String("HTTP/1.1\r\n");
-        sendString += String("Connection: close\r\n");
-        sendString += String("Host: ") + hostname + String(":") + String(port) + String("\r\n");
-        sendString += String("User-Agent: Arduino\r\n");
-        sendString += String("Content-Type: application/json\r\n");
-        sendString += String("Content-Length: ") + String(jsonCharBufferLen)+ String("\r\n\r\n");
-        sendString += String(jsonCharBuffer);
-        sendString += String("\r\n");
-        const char *sendBuffer = sendString.c_str();
-
-        Serial.print("cnt:   ");
-        Serial.println(wifiSendCount_);
-        Serial.print("fail:  ");
-        Serial.println(wifiSendFailCount_);
-        Serial.print("reset: ");
-        Serial.println(wifiResetCount_);
-        Serial.println();
-        Serial.print(sendBuffer);
-        Serial.println();
-        Serial.print("connect to host: ");
-
-        if (wifi_.createTCP(hostname, port))
-        {
-            Serial.println("ok");
-
-            wifi_.send((const uint8_t *)sendBuffer, strlen(sendBuffer));
-
-            uint8_t recvBuffer[1024] = {0};
-            uint32_t len = wifi_.recv(recvBuffer, sizeof(recvBuffer), 2000);
-            if (len > 0) 
-            {
-                Serial.print("received:");
-                for(uint32_t i = 0; i < len; i++) 
-                {
-                    Serial.print((char)recvBuffer[i]);
-                }
-                wifiSendFailCount_ = 0;
-            }
-            wifiSendCount_++;
-        } 
-        else 
-        {
-            Serial.println("err");
-            wifiSendFailCount_++;
-        }
-        Serial.println();
-        delay(500);
+    String sendString;
+    sendString += String("POST ");
+    if (apiKey.length() == 0)
+    {
+        sendString += String("/jsontest ");
     }
+    else
+    {
+        sendString += String("/scripts/indextest.php?api_key=") + apiKey + String(" ");
+    }
+    sendString += String("HTTP/1.1\r\n");
+    sendString += String("Connection: close\r\n");
+    sendString += String("Host: ") + hostname + String(":") + String(port) + String("\r\n");
+    sendString += String("User-Agent: Arduino\r\n");
+    sendString += String("Content-Type: application/json\r\n");
+    sendString += String("Content-Length: ") + String(jsonCharBufferLen)+ String("\r\n\r\n");
+    sendString += String(jsonCharBuffer);
+    sendString += String("\r\n");
+    const char *sendBuffer = sendString.c_str();
+
+    Serial.print("cnt:   ");
+    Serial.println(wifiSendCount_);
+    Serial.print("fail:  ");
+    Serial.println(wifiSendFailCount_);
+    Serial.print("reset: ");
+    Serial.println(wifiResetCount_);
+    Serial.println();
+    Serial.print(sendBuffer);
+    Serial.println();
+    Serial.print("connect to host: ");
+
+    if (wifi_.createTCP(hostname, port))
+    {
+        Serial.println("ok");
+
+        wifi_.send((const uint8_t *)sendBuffer, strlen(sendBuffer));
+
+        uint8_t recvBuffer[1024] = {0};
+        uint32_t len = wifi_.recv(recvBuffer, sizeof(recvBuffer), 2000);
+        if (len > 0) 
+        {
+            Serial.print("received:");
+            for(uint32_t j=0; j < len; j++) 
+            {
+                Serial.print((char)recvBuffer[j]);
+            }
+            wifiSendFailCount_ = 0;
+        }
+        wifiSendCount_++;
+    } 
+    else 
+    {
+        Serial.println("err");
+        wifiSendFailCount_++;
+    }
+    Serial.println();
+    wifiSendUnitIndex_++;
+
 }

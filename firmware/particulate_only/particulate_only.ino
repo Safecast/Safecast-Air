@@ -79,15 +79,34 @@ void setup()
     // USB Serial for debugging, etc.
     Serial.begin(constants::USBSerialBaudRate);
 
+    Serial.println("begin setup");
+
+    Serial.println("* display");
     setupDisplay();
+
+    Serial.println("* openlog");
     openlog.initialize();
+
+    Serial.println("* loadConfiguration");
     loadConfiguration();
+
     showStartupScreen();
+
+    Serial.println("* gps");
     setupGPSMonitor();
+
+    Serial.println("* particleCounter");
     setupParticleCounter();
+
+    Serial.println("* SHT31");
     setupSHT31();
+
+    Serial.println("* dataLogger");
     setupDataLogger();
+
     showFirstReadingScreen();
+
+    Serial.println("setup complete");
 }
 
 
@@ -96,11 +115,6 @@ void loop()
     Alarm.delay(constants::LoopDelay);
     gpsMonitor.update();
     dataLogger.update();
-
-    // Keep alive ... opcn2 seems to stop sometimes
-    //bool status = particleCounter.checkStatus();
-    //bool laserAndFanOk = false;
-    //particleCounter.setFanAndLaserOn(&laserAndFanOk);
 }
 
 

@@ -165,8 +165,58 @@ OPCN2Data OPCN2::getHistogramData(bool *ok)
     SPI.endTransaction();
     delay(SPICmdDelayMs);
 
+    if (ok != nullptr)
+    {
+        if (rsp[0] == 0xf3)
+        {
+            *ok = true;
+        }
+        else
+        {
+            *ok = false;
+        }
+    }
+
     return OPCN2Data(rsp);
 }
+
+//void OPCN2::getHistogramData(volatile OPCN2Data &opcn2Data, bool *ok)
+//{
+//    uint8_t rsp[HistogramMessageSize];
+//
+//    SPI.beginTransaction(spiSettings_);
+//    digitalWrite(param_.spiCsPin,LOW);
+//    for (int i=0; i<HistogramMessageSize; i++)
+//    {
+//        rsp[i] = SPI.transfer(CmdReadHistogramData);
+//        if (i==0)
+//        {
+//            delay(SPICmdDelayMs);
+//        }
+//        else
+//        {
+//            delayMicroseconds(SPIValDelayUs);
+//        }
+//        
+//    }
+//    digitalWrite(param_.spiCsPin,HIGH);
+//    SPI.endTransaction();
+//    delay(SPICmdDelayMs);
+//
+//    if (ok != nullptr)
+//    {
+//        if (rsp[0] == 0xf3)
+//        {
+//            *ok = true;
+//        }
+//        else
+//        {
+//            *ok = false;
+//        }
+//    }
+//
+//    opcn2Data.fromSPIData(rsp);
+//}
 
 
 void OPCN2::setIds(OPCN2Ids ids)

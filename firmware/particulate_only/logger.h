@@ -50,9 +50,10 @@ class Logger
         bool wifiOK_ = false;;
         String wifiIP_;
         String wifiErrorMsg_;
-        uint32_t wifiSendCount_ = 0;
-        uint32_t wifiSendFailCount_ = 0;
-        uint32_t wifiResetCount_ = 0;
+        uint32_t wifiSendCount_ = 0;      // Number of wifi message sent
+        uint32_t wifiSendFailCount_ = 0;  // Number of consecutive send failures 
+        uint32_t wifiResetCount_ = 0;     // Number of wifi resets
+        uint32_t wifiSendUnitIndex_ = 0;  // Unit index for wifi sends
 
         LoggerParam param_;
         StaticJsonBuffer<JsonBufferSize> jsonBuffer_;
@@ -61,9 +62,8 @@ class Logger
         GPSData gpsData_;
 
         OPCN2Data opcn2Data_;
-        float temperature_;  // deg C
-        float humidity_;     // percent
-
+        volatile float temperature_;  // deg C
+        volatile float humidity_;     // percent
         volatile bool writeLogFlag_ = false;
         volatile bool dataSampleFlag_ = false;
 

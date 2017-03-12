@@ -6,6 +6,7 @@ class OPCN2Data
 {
 
     public:
+
         static const int NumHistogramBins = 16;
         static const int ScratchArraySize = 50;
 

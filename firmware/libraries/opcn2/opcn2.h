@@ -33,6 +33,7 @@ class OPCN2
         void setFanAndLaserOff(bool *ok=nullptr);
         String getInfoString(bool *ok=nullptr);
         OPCN2Data getHistogramData(bool *ok=nullptr);
+        //void getHistogramData(volatile OPCN2Data &opcn2Data, bool *ok=nullptr);
 
         void setIds(OPCN2Ids ids);
         OPCN2Ids getIds();
