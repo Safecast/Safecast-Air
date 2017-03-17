@@ -118,7 +118,6 @@ void Logger::writeLogOnTimer()
 
 void Logger::dataSampleOnTimer()
 {
-    particleCounter.checkStatus();
     dataSampleFlag_ = true;
 }
 
@@ -127,16 +126,20 @@ void Logger::update()
 {
     if (dataSampleFlag_)
     {
+        Serial.print("sample data ... ");
         opcn2Data_ = particleCounter.getHistogramData();
         humidity_ = humidityAndTempSensor.readHumidity(); 
         temperature_ =  humidityAndTempSensor.readTemperature();
         writeDisplay();
         dataSampleFlag_ = false;
+        Serial.println("done");
     }
     if (writeLogFlag_)
     {
+        Serial.print("write log ... ");
         writeLog();
         writeLogFlag_ = false;
+        Serial.println("done");
     }
     wifiSendDataToServer();
 }

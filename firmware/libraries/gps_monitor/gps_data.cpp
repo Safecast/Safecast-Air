@@ -34,7 +34,7 @@ GPSData::GPSData()
 String GPSData::getDateTimeString()
 {
     char scratch[ScratchArraySize];
-    snprintf(scratch,ScratchArraySize,"20%d-%d-%dT%d:%d:%dZ",year,month,day,hour,minute,seconds);
+    snprintf(scratch,ScratchArraySize,"20%d-%02d-%02dT%02d:%02d:%02dZ",year,month,day,hour,minute,seconds);
     return String(scratch);
 }
 

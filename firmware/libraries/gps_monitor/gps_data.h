@@ -53,7 +53,7 @@ class GPSData
 
     protected:
 
-        static const int ScratchArraySize = 150;
+        static const int ScratchArraySize = 200;
         static constexpr float CentimeterToMeter = 1.0e-2;
         static constexpr float KnotsToMeterPerSec = 0.514444;
         static double convertToDecDeg(double valueNEMAish, char hemi);
